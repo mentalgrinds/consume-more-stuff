@@ -23,7 +23,7 @@ route.get('/:id', ( req, res ) => {
   console.log('users ID route has been requested: GET ');
   let id = req.params.id;
   console.log('users.get/:id :', id);
-  User.findById(id)
+  user.findById(id)
   .then((data) => {
     console.log('users ID route has been requested:, result: ', data);
     res.json(data);
