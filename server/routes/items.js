@@ -11,27 +11,27 @@ const {item}                 = db;
 
 
 route.get('/', ( req, res ) => {
-  console.log('users route has been requested: GET ');
+  console.log('items route has been requested: GET ');
   item.findAll({raw:true})
   .then((DataCollection) => {
-    console.log('users route has queried all data from the DB, result: ', DataCollection);
+    console.log('items route has queried all data from the DB, result: ', DataCollection);
     res.json(DataCollection);
   });
 });
 
 route.get('/:id', ( req, res ) => {
-  console.log('users ID route has been requested: GET ');
+  console.log('items ID route has been requested: GET ');
   let id = req.params.id;
-  console.log('users.get/:id :', id);
+  console.log('items.get/:id :', id);
   item.findById(id)
   .then((data) => {
-    console.log('users ID route has been requested:, result: ', data);
+    console.log('items ID route has been requested:, result: ', data);
     res.json(data);
   });
 });
 
 route.post('/new', ( req, res ) => {
-  console.log('users route has been requested: POST ');
+  console.log('items route has been requested: POST ');
   item.create({
     name : req.body.name,
     description : req.body.description,
@@ -42,15 +42,15 @@ route.post('/new', ( req, res ) => {
     notes : req.body.notes,
     image    : req.body.image
   }).then((data) => {
-    console.log('users route has posted new data to the DB, result: ', data);
+    console.log('items route has posted new data to the DB, result: ', data);
     res.json(data);
   });
 });
 
 route.put('/:id', ( req, res ) => {
-  console.log('users ID route has been requested: PUT ');
+  console.log('items ID route has been requested: PUT ');
   let id = req.params.id;
-  console.log('users.put/:id :', id);
+  console.log('items.put/:id :', id);
   let data = req.body;
   return item.update({
     name : req.body.name,
@@ -68,17 +68,17 @@ route.put('/:id', ( req, res ) => {
 });
 
 route.delete('/:id', ( req, res ) => {
-  console.log('users ID route has been requested: DELETE ');
+  console.log('items ID route has been requested: DELETE ');
   let id = req.params.id;
-  console.log('users.delete/:id :', id);
+  console.log('items.delete/:id :', id);
   let data = req.body;
-  console.log('users.delete/:id data :', data);
+  console.log('items.delete/:id data :', data);
   item.destroy({
       where     : [{id: id}],
       returning : true,
       plain     : true
     }).then((data) => {
-      console.log('users ID route has been updated:, result: ', data);
+      console.log('items ID route has been updated:, result: ', data);
       return res.json(data);
   })
 });
