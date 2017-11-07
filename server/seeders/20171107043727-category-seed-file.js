@@ -1,0 +1,172 @@
+'use strict';
+
+module.exports = {
+  up : function (queryInterface, Sequelize) {
+    return queryInterface.bulkInsert('users',[{
+  "title": "vehicles",
+  "createdAt": "2/20/2017",
+  "updatedAt": "10/21/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "9/19/2017",
+  "updatedAt": "12/27/2016"
+}, {
+  "title": "furniture",
+  "createdAt": "8/22/2017",
+  "updatedAt": "8/4/2017"
+}, {
+  "title": "computers",
+  "createdAt": "1/8/2017",
+  "updatedAt": "7/19/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "11/18/2016",
+  "updatedAt": "1/21/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "5/20/2017",
+  "updatedAt": "12/8/2016"
+}, {
+  "title": "appliances",
+  "createdAt": "9/6/2017",
+  "updatedAt": "3/6/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "1/30/2017",
+  "updatedAt": "3/3/2017"
+}, {
+  "title": "computers",
+  "createdAt": "3/11/2017",
+  "updatedAt": "3/14/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "2/11/2017",
+  "updatedAt": "11/22/2016"
+}, {
+  "title": "furniture",
+  "createdAt": "10/22/2017",
+  "updatedAt": "1/18/2017"
+}, {
+  "title": "computers",
+  "createdAt": "12/7/2016",
+  "updatedAt": "12/5/2016"
+}, {
+  "title": "appliances",
+  "createdAt": "10/5/2017",
+  "updatedAt": "3/15/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "1/28/2017",
+  "updatedAt": "10/22/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "4/21/2017",
+  "updatedAt": "1/31/2017"
+}, {
+  "title": "furniture",
+  "createdAt": "6/30/2017",
+  "updatedAt": "4/15/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "8/2/2017",
+  "updatedAt": "9/11/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "4/1/2017",
+  "updatedAt": "7/27/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "10/9/2017",
+  "updatedAt": "11/2/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "3/7/2017",
+  "updatedAt": "12/10/2016"
+}] , {});
+  },
+
+  down : function (queryInterface, Sequelize) {
+    queryInterface.bulkDelete('users',[{
+  "title": "vehicles",
+  "createdAt": "2/20/2017",
+  "updatedAt": "10/21/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "9/19/2017",
+  "updatedAt": "12/27/2016"
+}, {
+  "title": "furniture",
+  "createdAt": "8/22/2017",
+  "updatedAt": "8/4/2017"
+}, {
+  "title": "computers",
+  "createdAt": "1/8/2017",
+  "updatedAt": "7/19/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "11/18/2016",
+  "updatedAt": "1/21/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "5/20/2017",
+  "updatedAt": "12/8/2016"
+}, {
+  "title": "appliances",
+  "createdAt": "9/6/2017",
+  "updatedAt": "3/6/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "1/30/2017",
+  "updatedAt": "3/3/2017"
+}, {
+  "title": "computers",
+  "createdAt": "3/11/2017",
+  "updatedAt": "3/14/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "2/11/2017",
+  "updatedAt": "11/22/2016"
+}, {
+  "title": "furniture",
+  "createdAt": "10/22/2017",
+  "updatedAt": "1/18/2017"
+}, {
+  "title": "computers",
+  "createdAt": "12/7/2016",
+  "updatedAt": "12/5/2016"
+}, {
+  "title": "appliances",
+  "createdAt": "10/5/2017",
+  "updatedAt": "3/15/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "1/28/2017",
+  "updatedAt": "10/22/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "4/21/2017",
+  "updatedAt": "1/31/2017"
+}, {
+  "title": "furniture",
+  "createdAt": "6/30/2017",
+  "updatedAt": "4/15/2017"
+}, {
+  "title": "appliances",
+  "createdAt": "8/2/2017",
+  "updatedAt": "9/11/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "4/1/2017",
+  "updatedAt": "7/27/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "10/9/2017",
+  "updatedAt": "11/2/2017"
+}, {
+  "title": "vehicles",
+  "createdAt": "3/7/2017",
+  "updatedAt": "12/10/2016"
+}] )
+  }
+};
+
