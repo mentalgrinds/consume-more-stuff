@@ -30,12 +30,30 @@ module.exports = function(sequelize, DataTypes){
     deleted:{
       type: DataTypes.DATEONLY,
       defaultValue: null
+    },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    conditionId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    itemstatusId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   })
 
   Item.associate = function(models){
   Item.belongsTo(models.user)
-  Item.belongsTo(models.category)
+  Item.belongsTo(models.category, {
+    foreignKey: 'categoryId'
+  })
   Item.belongsTo(models.condition)
   Item.belongsTo(models.itemstatus)
   }

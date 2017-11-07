@@ -14,10 +14,10 @@ module.exports = {
   "deleted": "1/7/2018",
   "createdAt": "9/30/2017",
   "updatedAt": "3/9/2017",
-  "userId": 15,
   "categoryId": 3,
   "conditionId": 1,
-  "itemstatusId": 1
+  "itemstatusId": 1,
+  "userId": 1
 }] , {});
   },
 

@@ -4,10 +4,10 @@ module.exports = function(sequelize, DataTypes){
 
   })
 
-  // ItemStatus.associate = function(models){
-  //   ItemStatus.hasMany(models.item, {
-  //     foreignKey: 'itemstatus_id'
-  //   })
-  // }
+  ItemStatus.associate = function(models){
+    ItemStatus.hasMany(models.item, {
+      foreignKey: 'itemstatusId'
+    })
+  }
   return ItemStatus;
 }
