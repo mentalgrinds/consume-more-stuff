@@ -6,10 +6,10 @@ module.exports = function(sequelize, DataTypes){
     }
   })
 
-  Condition.associate = function(models){
-    Condition.hasMany(models.item, {
-      foreignKey: 'condition_id', as: 'condition'
-    })
-  }
+  // Condition.associate = function(models){
+  //   Condition.hasMany(models.item, {
+  //     foreignKey: 'condition_id'
+  //   })
+  // }
   return Condition;
 }

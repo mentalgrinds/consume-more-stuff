@@ -18,9 +18,8 @@ module.exports = {
   "title": "computers",
   "createdAt": "1/8/2017",
   "updatedAt": "7/19/2017"
-}] )
-  }
-},
+}] , {});
+  },
 
   down : function (queryInterface, Sequelize) {
     queryInterface.bulkDelete('categories',null )
