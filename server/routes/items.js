@@ -23,7 +23,7 @@ route.get('/:id', ( req, res ) => {
   console.log('users ID route has been requested: GET ');
   let id = req.params.id;
   console.log('users.get/:id :', id);
-  user.findById(id)
+  item.findById(id)
   .then((data) => {
     console.log('users ID route has been requested:, result: ', data);
     res.json(data);
@@ -32,7 +32,7 @@ route.get('/:id', ( req, res ) => {
 
 route.post('/new', ( req, res ) => {
   console.log('users route has been requested: POST ');
-  user.create({
+  item.create({
     name : req.body.name,
     description : req.body.description,
     price    : req.body.price,
@@ -52,7 +52,7 @@ route.put('/:id', ( req, res ) => {
   let id = req.params.id;
   console.log('users.put/:id :', id);
   let data = req.body;
-  return user.update({
+  return item.update({
     name : req.body.name,
     description : req.body.description,
     price    : req.body.price,
@@ -73,7 +73,7 @@ route.delete('/:id', ( req, res ) => {
   console.log('users.delete/:id :', id);
   let data = req.body;
   console.log('users.delete/:id data :', data);
-  user.destroy({
+  item.destroy({
       where     : [{id: id}],
       returning : true,
       plain     : true
