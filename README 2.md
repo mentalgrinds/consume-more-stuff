@@ -33,7 +33,7 @@ CREATE DATABASE cmsdb;
 
 React App name: cms
 
-sequelize init - has already been run
+
 sequelize seed:create --name users-seed-file  - has already been run
 sequelize seed:create --name items-seed-file  - has already been run
 
