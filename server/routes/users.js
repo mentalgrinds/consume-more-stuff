@@ -47,18 +47,14 @@ route.put('/:id', ( req, res ) => {
   let id = req.params.id;
   console.log('users.put/:id :', id);
   let data = req.body;
-  console.log('users.put/:id data :', data);
-  return User.findById(id)
-  .then(data => {
-    return User.update(data, {
-      where     : [{id: id}],
-      returning : true,
-      plain     : true
-    }).then(data => {
-      console.log('users ID route has been updated:, result: ', data);
-      return res.json(data);
-    })
-  })
+  return user.update({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email
+  }, {where: {id:id}
+  }).then((user) => {
+    res.json('User updated');
+  });
 });
 
 route.delete('/:id', ( req, res ) => {
@@ -67,7 +63,7 @@ route.delete('/:id', ( req, res ) => {
   console.log('users.delete/:id :', id);
   let data = req.body;
   console.log('users.delete/:id data :', data);
-  User.destroy({
+  user.destroy({
       where     : [{id: id}],
       returning : true,
       plain     : true
