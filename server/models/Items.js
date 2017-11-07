@@ -51,9 +51,7 @@ module.exports = function(sequelize, DataTypes){
 
   Item.associate = function(models){
   Item.belongsTo(models.user)
-  Item.belongsTo(models.category, {
-    foreignKey: 'categoryId'
-  })
+  Item.belongsTo(models.category)
   Item.belongsTo(models.condition)
   Item.belongsTo(models.itemstatus)
   }
