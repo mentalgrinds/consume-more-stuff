@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 
+import { loadItems } from '../../actions/items';
+
+import NewItemForm from '../NewItemForm';
 import Header from '../../components/header';
 
 class App extends Component {
@@ -19,6 +22,10 @@ class App extends Component {
   }
 
   componentDidMount(){
+
+    this.props.loadItems();
+
+
     //load items, users, etc.
   }
 
@@ -27,9 +34,23 @@ class App extends Component {
       <div className="App">
       <Header />
        Hello World! Here's where we'll render our components!
+      <NewItemForm />
       </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadItems: () => {
+      dispatch(loadItems())
+    }
+  }
+}
+
+const ConnectedApp = connect(
+  null,
+  mapDispatchToProps
+)(App)
+
+export default ConnectedApp;
