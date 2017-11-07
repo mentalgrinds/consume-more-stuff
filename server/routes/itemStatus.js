@@ -11,6 +11,8 @@ const {itemstatus}            = db;
 
 
 route.get('/', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('itemstatus route has been requested: GET ');
   itemstatus.findAll({raw:true})
   .then((DataCollection) => {
@@ -20,6 +22,8 @@ route.get('/', ( req, res ) => {
 });
 
 route.get('/:id', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('itemstatus ID route has been requested: GET ');
   let id = req.params.id;
   console.log('itemstatus.get/:id :', id);
@@ -31,6 +35,8 @@ route.get('/:id', ( req, res ) => {
 });
 
 route.post('/new', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('itemstatus route has been requested: POST ');
   itemstatus.create({
     sold : req.body.sold,
@@ -42,6 +48,8 @@ route.post('/new', ( req, res ) => {
 });
 
 route.put('/:id', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('itemstatus ID route has been requested: PUT ');
   let id = req.params.id;
   console.log('itemstatus.put/:id :', id);
@@ -56,6 +64,8 @@ route.put('/:id', ( req, res ) => {
 });
 
 route.delete('/:id', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('itemstatus ID route has been requested: DELETE ');
   let id = req.params.id;
   console.log('itemstatus.delete/:id :', id);
@@ -70,6 +80,21 @@ route.delete('/:id', ( req, res ) => {
       return res.json(data);
   })
 });
+
+function isAuthenticated(req, res, next){
+  console.log("REQ.USER.ID***********************",req.user.id,"***********************");
+  let id = parseInt(req.params.id);
+  let userId = parseInt(req.user.id);
+  //console.log(id === userId);
+  if(id === req.user.id){
+    console.log("They Match - TRUE access GRANTED******************")
+    req.isAuthenticated();
+    next();
+  }
+  else{
+    res.redirect('/');
+    console.log('denied');}
+}
 
 
 module.exports = route;

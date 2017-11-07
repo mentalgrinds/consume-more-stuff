@@ -33,4 +33,19 @@ route.post('/', (req,res) =>{
   });
 });
 
+function isAuthenticated(req, res, next){
+  console.log("REQ.USER.ID***********************",req.user.id,"***********************");
+  let id = parseInt(req.params.id);
+  let userId = parseInt(req.user.id);
+  //console.log(id === userId);
+  if(id === req.user.id){
+    console.log("They Match - TRUE access GRANTED******************")
+    req.isAuthenticated();
+    next();
+  }
+  else{
+    res.redirect('/');
+    console.log('denied');}
+}
+
 module.exports = route;
