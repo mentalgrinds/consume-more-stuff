@@ -2,6 +2,7 @@ module.exports = function(sequelize, DataTypes){
   const User = sequelize.define('user', {
     username: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
     },
     password: {
@@ -10,6 +11,7 @@ module.exports = function(sequelize, DataTypes){
     },
     email:{
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false
     },
     userstatus:{
@@ -19,7 +21,7 @@ module.exports = function(sequelize, DataTypes){
 
   User.associate = function(models){
     User.hasMany(models.item, {
-      foreignKey: 'id', as: 'item_id'
+      foreignKey: 'item_id', as: 'item'
     })
   }
   return User;

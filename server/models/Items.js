@@ -27,13 +27,16 @@ module.exports = function(sequelize, DataTypes){
     image:{
       type: DataTypes.STRING
     },
-    seller:{
-      type: DataTypes.STRING
+    deleted:{
+      type: DataTypes.DATEONLY,
+      defaultValue: null
     }
   })
 
   Item.associate = function(models){
-  Item.belongsTo(models.user);
+  Item.belongsTo(models.user, {
+    foreignKey: 'seller_id', as: 'user'
+  });
   Item.belongsTo(models.category, {
     foreignKey: 'category_id', as: 'category'
   });
