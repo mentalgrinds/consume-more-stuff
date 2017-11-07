@@ -8,6 +8,7 @@ const path            = require('path');
 const db              = require('./models');
 const Redis           = require('connect-redis')(session);
 const LocalStrategy   = require('passport-local').Strategy;
+var cors              = require('cors')
 const saltRounds      = 12;
 const PORT            = process.env.PORT || 3000;
 const app             = express();
@@ -19,6 +20,7 @@ app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: false
 app.use(passport.initialize());
 app.use(passport.session());
 //Routes
+app.use(cors())
 app.use('/api', routes);
 
 
