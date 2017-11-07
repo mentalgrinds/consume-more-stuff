@@ -31,6 +31,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.data)
     return (
       <div className="App">
       <Header />
@@ -39,6 +40,14 @@ class App extends Component {
     );
   }
 }
+
+const mapStatetoProps = (state) => {
+  return {
+    data : state.items
+
+  }
+}
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -49,7 +58,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const ConnectedApp = connect(
-  null,
+  mapStatetoProps,
   mapDispatchToProps
 )(App)
 
