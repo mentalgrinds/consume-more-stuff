@@ -20,34 +20,34 @@ route.get('/', ( req, res ) => {
 });
 
 route.get('/:id', ( req, res ) => {
-  console.log('users ID route has been requested: GET ');
+  console.log('itemstatus ID route has been requested: GET ');
   let id = req.params.id;
-  console.log('users.get/:id :', id);
-  user.findById(id)
+  console.log('itemstatus.get/:id :', id);
+  itemstatus.findById(id)
   .then((data) => {
-    console.log('users ID route has been requested:, result: ', data);
+    console.log('itemstatus ID route has been requested:, result: ', data);
     res.json(data);
   });
 });
 
 route.post('/new', ( req, res ) => {
-  console.log('users route has been requested: POST ');
-  user.create({
+  console.log('itemstatus route has been requested: POST ');
+  itemstatus.create({
     username : req.body.username,
     password : req.body.password,
     email    : req.body.email
   }).then((data) => {
-    console.log('users route has posted new data to the DB, result: ', data);
+    console.log('itemstatus route has posted new data to the DB, result: ', data);
     res.json(data);
   });
 });
 
 route.put('/:id', ( req, res ) => {
-  console.log('users ID route has been requested: PUT ');
+  console.log('itemstatus ID route has been requested: PUT ');
   let id = req.params.id;
-  console.log('users.put/:id :', id);
+  console.log('itemstatus.put/:id :', id);
   let data = req.body;
-  return user.update({
+  return itemstatus.update({
     username: req.body.username,
     password: req.body.password,
     email: req.body.email
@@ -58,17 +58,17 @@ route.put('/:id', ( req, res ) => {
 });
 
 route.delete('/:id', ( req, res ) => {
-  console.log('users ID route has been requested: DELETE ');
+  console.log('itemstatus ID route has been requested: DELETE ');
   let id = req.params.id;
-  console.log('users.delete/:id :', id);
+  console.log('itemstatus.delete/:id :', id);
   let data = req.body;
-  console.log('users.delete/:id data :', data);
-  user.destroy({
+  console.log('itemstatus.delete/:id data :', data);
+  itemstatus.destroy({
       where     : [{id: id}],
       returning : true,
       plain     : true
     }).then((data) => {
-      console.log('users ID route has been updated:, result: ', data);
+      console.log('itemstatus ID route has been updated:, result: ', data);
       return res.json(data);
   })
 });
