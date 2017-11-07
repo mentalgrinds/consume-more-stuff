@@ -6,51 +6,47 @@ const LocalStrategy           = require('passport-local').Strategy;
 const saltRounds              = 12;
 const route                   = express.Router();
 const db                      = require('../models');
-const {user}                 = db;
+const {category}              = db;
 
 
 
 route.get('/', ( req, res ) => {
-  console.log('users route has been requested: GET ');
-  user.findAll({raw:true})
+  console.log('category route has been requested: GET ');
+  category.findAll({raw:true})
   .then((DataCollection) => {
-    console.log('users route has queried all data from the DB, result: ', DataCollection);
+    console.log('category route has queried all data from the DB, result: ', DataCollection);
     res.json(DataCollection);
   });
 });
 
 route.get('/:id', ( req, res ) => {
-  console.log('users ID route has been requested: GET ');
+  console.log('category ID route has been requested: GET ');
   let id = req.params.id;
-  console.log('users.get/:id :', id);
-  user.findById(id)
+  console.log('category.get/:id :', id);
+  category.findById(id)
   .then((data) => {
-    console.log('users ID route has been requested:, result: ', data);
+    console.log('category ID route has been requested:, result: ', data);
     res.json(data);
   });
 });
 
 route.post('/new', ( req, res ) => {
-  console.log('users route has been requested: POST ');
-  user.create({
-    username : req.body.username,
-    password : req.body.password,
-    email    : req.body.email
+  console.log('category route has been requested: POST ');
+  category.create({
+    title : req.body.title
   }).then((data) => {
-    console.log('users route has posted new data to the DB, result: ', data);
+    console.log('category route has posted new data to the DB, result: ', data);
     res.json(data);
   });
 });
 
 route.put('/:id', ( req, res ) => {
-  console.log('users ID route has been requested: PUT ');
+  console.log('category ID route has been requested: PUT ');
   let id = req.params.id;
-  console.log('users.put/:id :', id);
+  console.log('category.put/:id :', id);
   let data = req.body;
-  return user.update({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email
+  return category.update({
+    title: req.body.title
   }, {where: {id:id}
   }).then((user) => {
     res.json('User updated');
@@ -58,17 +54,17 @@ route.put('/:id', ( req, res ) => {
 });
 
 route.delete('/:id', ( req, res ) => {
-  console.log('users ID route has been requested: DELETE ');
+  console.log('category ID route has been requested: DELETE ');
   let id = req.params.id;
-  console.log('users.delete/:id :', id);
+  console.log('category.delete/:id :', id);
   let data = req.body;
-  console.log('users.delete/:id data :', data);
-  user.destroy({
+  console.log('category.delete/:id data :', data);
+  category.destroy({
       where     : [{id: id}],
       returning : true,
       plain     : true
     }).then((data) => {
-      console.log('users ID route has been updated:, result: ', data);
+      console.log('category ID route has been updated:, result: ', data);
       return res.json(data);
   })
 });
