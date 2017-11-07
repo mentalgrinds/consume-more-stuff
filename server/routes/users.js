@@ -50,7 +50,8 @@ route.put('/:id', ( req, res ) => {
   return user.update({
     username: req.body.username,
     password: req.body.password,
-    email: req.body.email
+    email: req.body.email,
+    userstatus: req.body.userstatus
   }, {where: {id:id}
   }).then((user) => {
     res.json('User updated');

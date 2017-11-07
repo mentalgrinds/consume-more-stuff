@@ -4,79 +4,74 @@ const passport                = require('passport');
 const bcrypt                  = require('bcrypt');
 const LocalStrategy           = require('passport-local').Strategy;
 const saltRounds              = 12;
-const categories              = express.Router();
-// const db                      = require('../../models');
-const ModelName               = 'temp';
+const route                   = express.Router();
+const db                      = require('../models');
+const {user}                 = db;
 
 
 
-categories.get('/', ( req, res ) => {
-  console.log('categories route has been requested: GET ');
-  res.json("smoke test - categories route");
-  ModelName.findAll({raw:true})
+route.get('/', ( req, res ) => {
+  console.log('users route has been requested: GET ');
+  user.findAll({raw:true})
   .then((DataCollection) => {
-    console.log('categories route has queried all data from the DB, result: ', DataCollection);
-    //res.json(DataCollection); when DB is setup un-comment in mean time:
+    console.log('users route has queried all data from the DB, result: ', DataCollection);
+    res.json(DataCollection);
   });
 });
 
-categories.get('/:id', ( req, res ) => {
-  console.log('categories ID route has been requested: GET ');
+route.get('/:id', ( req, res ) => {
+  console.log('users ID route has been requested: GET ');
   let id = req.params.id;
-  console.log('categories.get/:id :', id);
-  ModelName.findById(id)
+  console.log('users.get/:id :', id);
+  user.findById(id)
   .then((data) => {
-    console.log('categories ID route has been requested:, result: ', data);
+    console.log('users ID route has been requested:, result: ', data);
     res.json(data);
   });
 });
 
-categories.post('/:id', ( req, res ) => {
-  console.log('categories route has been requested: POST ');
-  ModelName.create({
+route.post('/new', ( req, res ) => {
+  console.log('users route has been requested: POST ');
+  user.create({
     username : req.body.username,
     password : req.body.password,
     email    : req.body.email
   }).then((data) => {
-    console.log('categories route has posted new data to the DB, result: ', data);
+    console.log('users route has posted new data to the DB, result: ', data);
     res.json(data);
   });
 });
 
-categories.put('/:id', ( req, res ) => {
-  console.log('categories ID route has been requested: PUT ');
+route.put('/:id', ( req, res ) => {
+  console.log('users ID route has been requested: PUT ');
   let id = req.params.id;
-  console.log('categories.put/:id :', id);
+  console.log('users.put/:id :', id);
   let data = req.body;
-  console.log('categories.put/:id data :', data);
-  return ModelName.findById(id)
-  .then(data => {
-    return ModelName.update(data, {
-      where     : [{id: id}],
-      returning : true,
-      plain     : true
-    }).then(data => {
-      console.log('categories ID route has been updated:, result: ', data);
-      return res.json(data);
-    })
-  })
+  return user.update({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email
+  }, {where: {id:id}
+  }).then((user) => {
+    res.json('User updated');
+  });
 });
 
-categories.delete('/:id', ( req, res ) => {
-  console.log('categories ID route has been requested: DELETE ');
+route.delete('/:id', ( req, res ) => {
+  console.log('users ID route has been requested: DELETE ');
   let id = req.params.id;
-  console.log('categories.delete/:id :', id);
+  console.log('users.delete/:id :', id);
   let data = req.body;
-  console.log('categories.delete/:id data :', data);
-  ModelName.destroy({
+  console.log('users.delete/:id data :', data);
+  user.destroy({
       where     : [{id: id}],
       returning : true,
       plain     : true
     }).then((data) => {
-      console.log('categories ID route has been updated:, result: ', data);
+      console.log('users ID route has been updated:, result: ', data);
       return res.json(data);
   })
 });
 
 
-module.exports = categories;
+module.exports = route;
