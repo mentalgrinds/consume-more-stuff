@@ -47,7 +47,7 @@ route.get('/:id', ( req, res ) => {
   console.log('users.get/:id :', id);
   user.findById(id)
   .then((data) => {
-    console.log('users ID route has been requested:, result: ', data);
+    // console.log('users ID route has been requested:, result: ', data);
     res.json(data);
   });
 });
@@ -61,7 +61,7 @@ route.post('/new', ( req, res ) => {
     password : req.body.password,
     email    : req.body.email
   }).then((data) => {
-    console.log('users route has posted new data to the DB, result: ', data);
+    // console.log('users route has posted new data to the DB, result: ', data);
     res.json(data);
   });
 });

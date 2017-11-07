@@ -48,7 +48,7 @@ route.post('/new', ( req, res ) => {
     notes : req.body.notes,
     image    : req.body.image
   }).then((data) => {
-    console.log('items route has posted new data to the DB, result: ', data);
+    // console.log('items route has posted new data to the DB, result: ', data);
     res.json(data);
   });
 });

@@ -21,6 +21,18 @@ route.get('/', ( req, res ) => {
   });
 });
 
+route.post('/new', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  console.log('conditions route has been requested: POST ');
+  condition.create({
+    title : req.body.title
+  }).then((data) => {
+    // console.log('conditions route has posted new data to the DB, result: ', data);
+    res.json(data);
+  });
+});
+
 route.get('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
@@ -30,18 +42,6 @@ route.get('/:id', ( req, res ) => {
   condition.findById(id)
   .then((data) => {
     console.log('conditions ID route has been requested:, result: ', data);
-    res.json(data);
-  });
-});
-
-route.post('/new', ( req, res ) => {
-  let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('conditions route has been requested: POST ');
-  condition.create({
-    title : req.body.title
-  }).then((data) => {
-    console.log('conditions route has posted new data to the DB, result: ', data);
     res.json(data);
   });
 });

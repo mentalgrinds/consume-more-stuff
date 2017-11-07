@@ -21,6 +21,17 @@ route.get('/', ( req, res ) => {
   });
 });
 
+route.post('/new', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  console.log('category route has been requested: POST ');
+  category.create({
+    title : req.body.title
+  }).then((data) => {
+    res.json(data);
+  });
+});
+
 route.get('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
@@ -34,17 +45,7 @@ route.get('/:id', ( req, res ) => {
   });
 });
 
-route.post('/new', ( req, res ) => {
-  let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('category route has been requested: POST ');
-  category.create({
-    title : req.body.title
-  }).then((data) => {
-    console.log('category route has posted new data to the DB, result: ', data);
-    res.json(data);
-  });
-});
+
 
 route.put('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
