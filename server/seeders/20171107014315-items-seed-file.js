@@ -1,26 +1,532 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('Person', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
+  up : function (queryInterface, Sequelize) {
+    return queryInterface.bulkInsert('users', [{
+  "name": "Car",
+  "description": "monitoring",
+  "price": "$7200.15",
+  "manufacturer": "Toyota",
+  "model": "MKX",
+  "category": "Vehicles",
+  "dimensions": "3",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/utlaborumnihil.jpg?size=50x50&set=set1",
+  "seller": "csapshed0",
+  "creadtedAt": "7/6/2017",
+  "updatedAt": "11/10/2016"
+}, {
+  "name": "Motorcycle",
+  "description": "alliance",
+  "price": "$8172.81",
+  "manufacturer": "BMW",
+  "model": "Savana 1500",
+  "category": "Vehicles",
+  "dimensions": "600",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/voluptatemmaioresquis.bmp?size=50x50&set=set1",
+  "seller": "ghavenhand1",
+  "creadtedAt": "5/16/2017",
+  "updatedAt": "8/22/2017"
+}, {
+  "name": "Car",
+  "description": "support",
+  "price": "$9780.19",
+  "manufacturer": "Mercedes",
+  "model": "Miata MX-5",
+  "category": "Vehicles",
+  "dimensions": "008",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/uttemporenostrum.bmp?size=50x50&set=set1",
+  "seller": "rdolder2",
+  "creadtedAt": "4/25/2017",
+  "updatedAt": "10/10/2017"
+}, {
+  "name": "Wrangler",
+  "description": "high-level",
+  "price": "$6094.99",
+  "manufacturer": "VW",
+  "model": "Montero",
+  "category": "Vehicles",
+  "dimensions": "9699",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/doloremnamrecusandae.bmp?size=50x50&set=set1",
+  "seller": "cdedmam3",
+  "creadtedAt": "1/14/2017",
+  "updatedAt": "5/13/2017"
+}, {
+  "name": "Motorcycle",
+  "description": "productivity",
+  "price": "$8431.19",
+  "manufacturer": "Honda",
+  "model": "Grand Caravan",
+  "category": "Vehicles",
+  "dimensions": "0",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/nihilcorporisquo.bmp?size=50x50&set=set1",
+  "seller": "ehawkey4",
+  "creadtedAt": "4/13/2017",
+  "updatedAt": "8/23/2017"
+}, {
+  "name": "Car",
+  "description": "mobile",
+  "price": "$8095.86",
+  "manufacturer": "Tesla",
+  "model": "98",
+  "category": "Vehicles",
+  "dimensions": "821",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/consecteturconsequaturconsequatur.bmp?size=50x50&set=set1",
+  "seller": "bhayles5",
+  "creadtedAt": "4/29/2017",
+  "updatedAt": "2/6/2017"
+}, {
+  "name": "Motorcycle",
+  "description": "Cloned",
+  "price": "$6384.89",
+  "manufacturer": "VW",
+  "model": "F350",
+  "category": "Vehicles",
+  "dimensions": "3692",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/exaspernaturlaborum.png?size=50x50&set=set1",
+  "seller": "mweedon6",
+  "creadtedAt": "6/19/2017",
+  "updatedAt": "10/2/2017"
+}, {
+  "name": "Bike",
+  "description": "Up-sized",
+  "price": "$3017.11",
+  "manufacturer": "Tesla",
+  "model": "Challenger",
+  "category": "Vehicles",
+  "dimensions": "34692",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/etodioaut.png?size=50x50&set=set1",
+  "seller": "emaddy7",
+  "creadtedAt": "8/11/2017",
+  "updatedAt": "1/6/2017"
+}, {
+  "name": "Car",
+  "description": "Operative",
+  "price": "$6645.55",
+  "manufacturer": "Honda",
+  "model": "1500",
+  "category": "Vehicles",
+  "dimensions": "459",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/etsaepedolores.bmp?size=50x50&set=set1",
+  "seller": "igauford8",
+  "creadtedAt": "7/22/2017",
+  "updatedAt": "1/30/2017"
+}, {
+  "name": "Civic",
+  "description": "initiative",
+  "price": "$5765.30",
+  "manufacturer": "Tesla",
+  "model": "S-Series",
+  "category": "Vehicles",
+  "dimensions": "43412",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/maximeundeenim.jpg?size=50x50&set=set1",
+  "seller": "ekeedy9",
+  "creadtedAt": "2/19/2017",
+  "updatedAt": "8/19/2017"
+}, {
+  "name": "Civic",
+  "description": "Optional",
+  "price": "$8816.91",
+  "manufacturer": "VW",
+  "model": "Reno",
+  "category": "Vehicles",
+  "dimensions": "64779",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/teneturarchitectoaliquam.bmp?size=50x50&set=set1",
+  "seller": "dcliffta",
+  "creadtedAt": "3/7/2017",
+  "updatedAt": "12/22/2016"
+}, {
+  "name": "Wrangler",
+  "description": "tertiary",
+  "price": "$3443.66",
+  "manufacturer": "Mercedes",
+  "model": "Tacoma",
+  "category": "Vehicles",
+  "dimensions": "369",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/dolorumdoloresrerum.jpg?size=50x50&set=set1",
+  "seller": "bminihaneb",
+  "creadtedAt": "12/2/2016",
+  "updatedAt": "10/13/2017"
+}, {
+  "name": "Bike",
+  "description": "toolset",
+  "price": "$7080.47",
+  "manufacturer": "JEEP",
+  "model": "9000",
+  "category": "Vehicles",
+  "dimensions": "09290",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/sedmaioresalias.png?size=50x50&set=set1",
+  "seller": "bkydc",
+  "creadtedAt": "5/29/2017",
+  "updatedAt": "1/11/2017"
+}, {
+  "name": "Civic",
+  "description": "actuating",
+  "price": "$9937.06",
+  "manufacturer": "Honda",
+  "model": "Vigor",
+  "category": "Vehicles",
+  "dimensions": "7",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/solutadoloremquo.bmp?size=50x50&set=set1",
+  "seller": "nbedrosiand",
+  "creadtedAt": "4/15/2017",
+  "updatedAt": "3/6/2017"
+}, {
+  "name": "Car",
+  "description": "empowering",
+  "price": "$9310.24",
+  "manufacturer": "VW",
+  "model": "Quattroporte",
+  "category": "Vehicles",
+  "dimensions": "1649",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/autemquiaesse.bmp?size=50x50&set=set1",
+  "seller": "mosmone",
+  "creadtedAt": "5/5/2017",
+  "updatedAt": "1/12/2017"
+}, {
+  "name": "Truck",
+  "description": "Mandatory",
+  "price": "$8029.47",
+  "manufacturer": "JEEP",
+  "model": "B-Series",
+  "category": "Vehicles",
+  "dimensions": "24",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/aporromaiores.jpg?size=50x50&set=set1",
+  "seller": "ldunnetf",
+  "creadtedAt": "12/7/2016",
+  "updatedAt": "6/25/2017"
+}, {
+  "name": "Truck",
+  "description": "analyzer",
+  "price": "$8115.89",
+  "manufacturer": "Tesla",
+  "model": "Pajero",
+  "category": "Vehicles",
+  "dimensions": "13",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/molestiasdolorumaspernatur.png?size=50x50&set=set1",
+  "seller": "ashentong",
+  "creadtedAt": "6/15/2017",
+  "updatedAt": "10/29/2017"
+}, {
+  "name": "Bike",
+  "description": "24 hour",
+  "price": "$3244.25",
+  "manufacturer": "BMW",
+  "model": "xD",
+  "category": "Vehicles",
+  "dimensions": "98",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/sitquiquia.jpg?size=50x50&set=set1",
+  "seller": "clegraveh",
+  "creadtedAt": "11/3/2017",
+  "updatedAt": "11/14/2016"
+}, {
+  "name": "Wrangler",
+  "description": "Persistent",
+  "price": "$4218.49",
+  "manufacturer": "JEEP",
+  "model": "S90",
+  "category": "Vehicles",
+  "dimensions": "5991",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/sintquibusdamrepudiandae.bmp?size=50x50&set=set1",
+  "seller": "joelsi",
+  "creadtedAt": "10/21/2017",
+  "updatedAt": "6/6/2017"
+}, {
+  "name": "Motorcycle",
+  "description": "Compatible",
+  "price": "$4897.54",
+  "manufacturer": "Mercedes",
+  "model": "Century",
+  "category": "Vehicles",
+  "dimensions": "40",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/magninemosed.png?size=50x50&set=set1",
+  "seller": "cbluej",
+  "creadtedAt": "10/12/2017",
+  "updatedAt": "5/30/2017"
+}], {});
   },
 
-  down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
+  down : function (queryInterface, Sequelize) {
+    queryInterface.bulkDelete('users', [{
+  "name": "Car",
+  "description": "monitoring",
+  "price": "$7200.15",
+  "manufacturer": "Toyota",
+  "model": "MKX",
+  "category": "Vehicles",
+  "dimensions": "3",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/utlaborumnihil.jpg?size=50x50&set=set1",
+  "seller": "csapshed0",
+  "creadtedAt": "7/6/2017",
+  "updatedAt": "11/10/2016"
+}, {
+  "name": "Motorcycle",
+  "description": "alliance",
+  "price": "$8172.81",
+  "manufacturer": "BMW",
+  "model": "Savana 1500",
+  "category": "Vehicles",
+  "dimensions": "600",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/voluptatemmaioresquis.bmp?size=50x50&set=set1",
+  "seller": "ghavenhand1",
+  "creadtedAt": "5/16/2017",
+  "updatedAt": "8/22/2017"
+}, {
+  "name": "Car",
+  "description": "support",
+  "price": "$9780.19",
+  "manufacturer": "Mercedes",
+  "model": "Miata MX-5",
+  "category": "Vehicles",
+  "dimensions": "008",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/uttemporenostrum.bmp?size=50x50&set=set1",
+  "seller": "rdolder2",
+  "creadtedAt": "4/25/2017",
+  "updatedAt": "10/10/2017"
+}, {
+  "name": "Wrangler",
+  "description": "high-level",
+  "price": "$6094.99",
+  "manufacturer": "VW",
+  "model": "Montero",
+  "category": "Vehicles",
+  "dimensions": "9699",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/doloremnamrecusandae.bmp?size=50x50&set=set1",
+  "seller": "cdedmam3",
+  "creadtedAt": "1/14/2017",
+  "updatedAt": "5/13/2017"
+}, {
+  "name": "Motorcycle",
+  "description": "productivity",
+  "price": "$8431.19",
+  "manufacturer": "Honda",
+  "model": "Grand Caravan",
+  "category": "Vehicles",
+  "dimensions": "0",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/nihilcorporisquo.bmp?size=50x50&set=set1",
+  "seller": "ehawkey4",
+  "creadtedAt": "4/13/2017",
+  "updatedAt": "8/23/2017"
+}, {
+  "name": "Car",
+  "description": "mobile",
+  "price": "$8095.86",
+  "manufacturer": "Tesla",
+  "model": "98",
+  "category": "Vehicles",
+  "dimensions": "821",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/consecteturconsequaturconsequatur.bmp?size=50x50&set=set1",
+  "seller": "bhayles5",
+  "creadtedAt": "4/29/2017",
+  "updatedAt": "2/6/2017"
+}, {
+  "name": "Motorcycle",
+  "description": "Cloned",
+  "price": "$6384.89",
+  "manufacturer": "VW",
+  "model": "F350",
+  "category": "Vehicles",
+  "dimensions": "3692",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/exaspernaturlaborum.png?size=50x50&set=set1",
+  "seller": "mweedon6",
+  "creadtedAt": "6/19/2017",
+  "updatedAt": "10/2/2017"
+}, {
+  "name": "Bike",
+  "description": "Up-sized",
+  "price": "$3017.11",
+  "manufacturer": "Tesla",
+  "model": "Challenger",
+  "category": "Vehicles",
+  "dimensions": "34692",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/etodioaut.png?size=50x50&set=set1",
+  "seller": "emaddy7",
+  "creadtedAt": "8/11/2017",
+  "updatedAt": "1/6/2017"
+}, {
+  "name": "Car",
+  "description": "Operative",
+  "price": "$6645.55",
+  "manufacturer": "Honda",
+  "model": "1500",
+  "category": "Vehicles",
+  "dimensions": "459",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/etsaepedolores.bmp?size=50x50&set=set1",
+  "seller": "igauford8",
+  "creadtedAt": "7/22/2017",
+  "updatedAt": "1/30/2017"
+}, {
+  "name": "Civic",
+  "description": "initiative",
+  "price": "$5765.30",
+  "manufacturer": "Tesla",
+  "model": "S-Series",
+  "category": "Vehicles",
+  "dimensions": "43412",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/maximeundeenim.jpg?size=50x50&set=set1",
+  "seller": "ekeedy9",
+  "creadtedAt": "2/19/2017",
+  "updatedAt": "8/19/2017"
+}, {
+  "name": "Civic",
+  "description": "Optional",
+  "price": "$8816.91",
+  "manufacturer": "VW",
+  "model": "Reno",
+  "category": "Vehicles",
+  "dimensions": "64779",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/teneturarchitectoaliquam.bmp?size=50x50&set=set1",
+  "seller": "dcliffta",
+  "creadtedAt": "3/7/2017",
+  "updatedAt": "12/22/2016"
+}, {
+  "name": "Wrangler",
+  "description": "tertiary",
+  "price": "$3443.66",
+  "manufacturer": "Mercedes",
+  "model": "Tacoma",
+  "category": "Vehicles",
+  "dimensions": "369",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/dolorumdoloresrerum.jpg?size=50x50&set=set1",
+  "seller": "bminihaneb",
+  "creadtedAt": "12/2/2016",
+  "updatedAt": "10/13/2017"
+}, {
+  "name": "Bike",
+  "description": "toolset",
+  "price": "$7080.47",
+  "manufacturer": "JEEP",
+  "model": "9000",
+  "category": "Vehicles",
+  "dimensions": "09290",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/sedmaioresalias.png?size=50x50&set=set1",
+  "seller": "bkydc",
+  "creadtedAt": "5/29/2017",
+  "updatedAt": "1/11/2017"
+}, {
+  "name": "Civic",
+  "description": "actuating",
+  "price": "$9937.06",
+  "manufacturer": "Honda",
+  "model": "Vigor",
+  "category": "Vehicles",
+  "dimensions": "7",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/solutadoloremquo.bmp?size=50x50&set=set1",
+  "seller": "nbedrosiand",
+  "creadtedAt": "4/15/2017",
+  "updatedAt": "3/6/2017"
+}, {
+  "name": "Car",
+  "description": "empowering",
+  "price": "$9310.24",
+  "manufacturer": "VW",
+  "model": "Quattroporte",
+  "category": "Vehicles",
+  "dimensions": "1649",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/autemquiaesse.bmp?size=50x50&set=set1",
+  "seller": "mosmone",
+  "creadtedAt": "5/5/2017",
+  "updatedAt": "1/12/2017"
+}, {
+  "name": "Truck",
+  "description": "Mandatory",
+  "price": "$8029.47",
+  "manufacturer": "JEEP",
+  "model": "B-Series",
+  "category": "Vehicles",
+  "dimensions": "24",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/aporromaiores.jpg?size=50x50&set=set1",
+  "seller": "ldunnetf",
+  "creadtedAt": "12/7/2016",
+  "updatedAt": "6/25/2017"
+}, {
+  "name": "Truck",
+  "description": "analyzer",
+  "price": "$8115.89",
+  "manufacturer": "Tesla",
+  "model": "Pajero",
+  "category": "Vehicles",
+  "dimensions": "13",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/molestiasdolorumaspernatur.png?size=50x50&set=set1",
+  "seller": "ashentong",
+  "creadtedAt": "6/15/2017",
+  "updatedAt": "10/29/2017"
+}, {
+  "name": "Bike",
+  "description": "24 hour",
+  "price": "$3244.25",
+  "manufacturer": "BMW",
+  "model": "xD",
+  "category": "Vehicles",
+  "dimensions": "98",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/sitquiquia.jpg?size=50x50&set=set1",
+  "seller": "clegraveh",
+  "creadtedAt": "11/3/2017",
+  "updatedAt": "11/14/2016"
+}, {
+  "name": "Wrangler",
+  "description": "Persistent",
+  "price": "$4218.49",
+  "manufacturer": "JEEP",
+  "model": "S90",
+  "category": "Vehicles",
+  "dimensions": "5991",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/sintquibusdamrepudiandae.bmp?size=50x50&set=set1",
+  "seller": "joelsi",
+  "creadtedAt": "10/21/2017",
+  "updatedAt": "6/6/2017"
+}, {
+  "name": "Motorcycle",
+  "description": "Compatible",
+  "price": "$4897.54",
+  "manufacturer": "Mercedes",
+  "model": "Century",
+  "category": "Vehicles",
+  "dimensions": "40",
+  "notes": "These are notes of the sale item",
+  "image": "https://robohash.org/magninemosed.png?size=50x50&set=set1",
+  "seller": "cbluej",
+  "creadtedAt": "10/12/2017",
+  "updatedAt": "5/30/2017"
+}])
   }
 };
+
