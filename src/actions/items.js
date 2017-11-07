@@ -1,7 +1,11 @@
 const axios = require('axios');
 
+//Note: editItem expects backend to send back the new item that was edited. When returning Item.update, make sure returning: true is included in the options object, and res.json back the item.
+
 export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
+export const EDIT_ITEM = 'EDIT_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
 
 export const loadItems = () => {
   return function(dispatch){
@@ -24,5 +28,29 @@ export const addItem = (newItem) => {
         item: item.data
       });
     });
+  }
+}
+
+export const editItem = (newInfo) => {
+  return function(dispatch){
+    return axios.put(`/api/items/${newInfo.id}`, newInfo)
+    .then( item => {
+      dispatch({
+        type: EDIT_ITEM,
+        item: item.data
+      });
+    });
+  }
+}
+
+export const deleteItem = (itemToDelete) => {
+  return function(dispatch){
+    return axios.delete(`/api/items/${itemToDelete.id}`)
+    .then ( response => {
+      dispatch ({
+        type: DELETE_ITEM,
+        itemData: response.data
+      })
+    })
   }
 }

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { loadItems } from '../../actions/items';
 
-import NewItemForm from '../NewItemForm';
 import Header from '../../components/header';
 
 class App extends Component {
@@ -33,8 +32,7 @@ class App extends Component {
     return (
       <div className="App">
       <Header />
-       Hello World! Here's where we'll render our components!
-      <NewItemForm />
+       Hello World! Here's where we will render our authorized container and our unauthorized container.
       </div>
     );
   }
