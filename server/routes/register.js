@@ -24,10 +24,10 @@ route.post('/', (req,res) =>{
       })
       .then( (user) => {
         console.log(user);
-        res.redirect('/users/login');
+        res.json('user successfully added');
       })
       .catch((err) => {
-        return res.send('Username has been taken'); 
+        return res.json('Username has been taken'); 
       });
     });
   });
