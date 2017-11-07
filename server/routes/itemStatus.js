@@ -12,11 +12,11 @@ const {itemstatus}            = db;
 
 route.get('/', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  console.log('Is the current user authenticated:',(value ? 'Yes Baseem' : 'No Baseem'),'the current REQ.USER:',req.user);
   console.log('itemstatus route has been requested: GET ');
   itemstatus.findAll({raw:true})
   .then((DataCollection) => {
-    console.log('itemstatus route has queried all data from the DB, result: ', DataCollection);
+    // console.log('itemstatus route has queried all data from the DB, result: ', DataCollection);
     res.json(DataCollection);
   });
 });
@@ -77,7 +77,7 @@ route.delete('/:id', ( req, res ) => {
       plain     : true
     }).then((data) => {
       console.log('itemstatus ID route has been updated:, result: ', data);
-      return res.json(data);
+      return res.json({id:id});
   })
 });
 

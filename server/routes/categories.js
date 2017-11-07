@@ -12,11 +12,11 @@ const {category}              = db;
 
 route.get('/', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+   console.log('Is the current user authenticated:',(value ? 'Yes Baseem' : 'No Baseem'),'the current REQ.USER:',req.user);
   console.log('category route has been requested: GET ');
   category.findAll({raw:true})
   .then((DataCollection) => {
-    console.log('category route has queried all data from the DB, result: ', DataCollection);
+    // console.log('category route has queried all data from the DB, result: ', DataCollection);
     res.json(DataCollection);
   });
 });
@@ -75,7 +75,7 @@ route.delete('/:id', ( req, res ) => {
       plain     : true
     }).then((data) => {
       console.log('category ID route has been updated:, result: ', data);
-      return res.json(data);
+      return res.json({id:id});
   })
 });
 
