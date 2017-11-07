@@ -6,7 +6,7 @@ const bcrypt          = require('bcrypt');
 const routes          = require('./routes');
 const path            = require('path');
 const db              = require('./models');
-const {users}          = db;
+const {user}          = db;
 const Redis           = require('connect-redis')(session);
 const LocalStrategy   = require('passport-local').Strategy;
 const saltRounds      = 12;
@@ -36,7 +36,7 @@ passport.serializeUser((user,done) => {
 
 passport.deserializeUser((user, done) => {
   console.log('deserializing');
-  users.findOne({where: { id: user.id}})
+  db.user.findOne({where: { id: user.id}})
   .then(user => {
     return done(null, {
       id: user.id,
@@ -46,7 +46,7 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
-    users.findOne({where: { username: username } })
+    db.user.findOne({where: { username: username } })
     .then( user => {
       if(user === null) {
         return done(null, false, {message: 'bad username or password'});
