@@ -33,9 +33,8 @@ route.get('/:id', ( req, res ) => {
 route.post('/new', ( req, res ) => {
   console.log('itemstatus route has been requested: POST ');
   itemstatus.create({
-    username : req.body.username,
-    password : req.body.password,
-    email    : req.body.email
+    sold : req.body.sold,
+    published : req.body.published
   }).then((data) => {
     console.log('itemstatus route has posted new data to the DB, result: ', data);
     res.json(data);
@@ -48,9 +47,8 @@ route.put('/:id', ( req, res ) => {
   console.log('itemstatus.put/:id :', id);
   let data = req.body;
   return itemstatus.update({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email
+    sold : req.body.sold,
+    published : req.body.published
   }, {where: {id:id}
   }).then((user) => {
     res.json('User updated');
