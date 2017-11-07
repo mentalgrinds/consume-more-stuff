@@ -2,7 +2,7 @@
 
 module.exports = {
   up : function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('users',[{
+    return queryInterface.bulkInsert('itemstatuses',[{
   "sold": "false",
   "published": "false",
   "createdAt": "10/25/2017",
@@ -106,7 +106,7 @@ module.exports = {
   },
 
   down : function (queryInterface, Sequelize) {
-    queryInterface.bulkDelete('users',[{
+    queryInterface.bulkDelete('itemstatuses',[{
   "sold": "false",
   "published": "false",
   "createdAt": "10/25/2017",

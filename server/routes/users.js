@@ -4,36 +4,35 @@ const passport                = require('passport');
 const bcrypt                  = require('bcrypt');
 const LocalStrategy           = require('passport-local').Strategy;
 const saltRounds              = 12;
-const users                   = express.Router();
-// const db                      = require('../../models');
-const ModelName               = 'temp';
+const route                   = express.Router();
+const db                      = require('../models');
+const {user}                 = db;
 
 
 
-users.get('/', ( req, res ) => {
+route.get('/', ( req, res ) => {
   console.log('users route has been requested: GET ');
-  res.json("smoke test - users route");
-  ModelName.findAll({raw:true})
+  user.findAll({raw:true})
   .then((DataCollection) => {
     console.log('users route has queried all data from the DB, result: ', DataCollection);
-    //res.json(DataCollection); when DB is setup un-comment in mean time:
+    res.json(DataCollection);
   });
 });
 
-users.get('/:id', ( req, res ) => {
+route.get('/:id', ( req, res ) => {
   console.log('users ID route has been requested: GET ');
   let id = req.params.id;
   console.log('users.get/:id :', id);
-  ModelName.findById(id)
+  user.findById(id)
   .then((data) => {
     console.log('users ID route has been requested:, result: ', data);
     res.json(data);
   });
 });
 
-users.post('/:id', ( req, res ) => {
+route.post('/new', ( req, res ) => {
   console.log('users route has been requested: POST ');
-  ModelName.create({
+  user.create({
     username : req.body.username,
     password : req.body.password,
     email    : req.body.email
@@ -43,32 +42,29 @@ users.post('/:id', ( req, res ) => {
   });
 });
 
-users.put('/:id', ( req, res ) => {
+route.put('/:id', ( req, res ) => {
   console.log('users ID route has been requested: PUT ');
   let id = req.params.id;
   console.log('users.put/:id :', id);
   let data = req.body;
-  console.log('users.put/:id data :', data);
-  return ModelName.findById(id)
-  .then(data => {
-    return ModelName.update(data, {
-      where     : [{id: id}],
-      returning : true,
-      plain     : true
-    }).then(data => {
-      console.log('users ID route has been updated:, result: ', data);
-      return res.json(data);
-    })
-  })
+  return user.update({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email,
+    userstatus: req.body.userstatus
+  }, {where: {id:id}
+  }).then((user) => {
+    res.json('User updated');
+  });
 });
 
-users.delete('/:id', ( req, res ) => {
+route.delete('/:id', ( req, res ) => {
   console.log('users ID route has been requested: DELETE ');
   let id = req.params.id;
   console.log('users.delete/:id :', id);
   let data = req.body;
   console.log('users.delete/:id data :', data);
-  ModelName.destroy({
+  user.destroy({
       where     : [{id: id}],
       returning : true,
       plain     : true
@@ -79,4 +75,4 @@ users.delete('/:id', ( req, res ) => {
 });
 
 
-module.exports = users;
+module.exports = route;
