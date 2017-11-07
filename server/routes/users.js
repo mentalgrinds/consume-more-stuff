@@ -30,9 +30,9 @@ route.get('/:id', ( req, res ) => {
   });
 });
 
-route.post('/:id', ( req, res ) => {
+route.post('/new', ( req, res ) => {
   console.log('users route has been requested: POST ');
-  User.create({
+  user.create({
     username : req.body.username,
     password : req.body.password,
     email    : req.body.email
