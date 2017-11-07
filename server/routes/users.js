@@ -12,11 +12,11 @@ const {user}                  = db;
 
 route.get('/', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log(value);
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('users route has been requested: GET ');
   user.findAll({raw:true})
   .then((DataCollection) => {
-    console.log('users route has queried all data from the DB, result: ', DataCollection);
+    //console.log('users route has queried all data from the DB, result: ', DataCollection);
     res.json(DataCollection);
   });
 });
@@ -94,11 +94,12 @@ route.delete('/:id', ( req, res ) => {
 
 //SECRET ROUTE
 function isAuthenticated(req, res, next){
-  //console.log("***********************",req.user.id,"***********************");
+  console.log("REQ.USER.ID***********************",req.user.id,"***********************");
   let id = parseInt(req.params.id);
   let userId = parseInt(req.user.id);
   //console.log(id === userId);
   if(id === req.user.id){
+    console.log("They Match - TRUE access GRANTED******************")
     req.isAuthenticated();
     next();
   }

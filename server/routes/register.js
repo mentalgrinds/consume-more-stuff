@@ -10,7 +10,7 @@ const {user}                  = db;
 
 //REGISTER ROUTE
 route.get('/',(req,res)=>{
-  res.render('register');
+  res.json('registeration page');
 });
 
 route.post('/', (req,res) =>{
