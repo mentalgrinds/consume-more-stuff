@@ -3,7 +3,7 @@ import React from 'react';
 const Logo = () => {
   return (
     <div id="logo">
-      [ hip, hip ]
+      [ hip, hip ] ((this is our logo component guys))
     </div>
   );
 }

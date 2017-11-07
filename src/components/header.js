@@ -7,7 +7,12 @@ const Header = () => {
     <div id="header">
       <Logo />
       <div>
-        <h1>Depeche NODE lol</h1>
+        <h1>
+          High Quality Marketplace for Legal Goods and Services
+        </h1>
+        <h2>
+          Торговая площадка высокого качества для юридических товаров и услуг
+        </h2>
       </div>
     </div>
   );
