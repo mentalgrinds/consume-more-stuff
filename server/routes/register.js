@@ -10,7 +10,7 @@ const {user}                  = db;
 
 //REGISTER ROUTE
 route.get('/',(req,res)=>{
-  res.json('registeration page');
+  res.json('Welcome to the api Registration page');
 });
 
 route.post('/', (req,res) =>{
@@ -18,9 +18,9 @@ route.post('/', (req,res) =>{
     bcrypt.hash(req.body.password, salt, function(err, hash){
       db.user.create({
         username: req.body.username,
-        password: hash
-        // link: req.body.link,
-        // description: req.body.description
+        password: hash,
+        email: req.body.email,
+        userstatus: (req.body.email ? 'active' : 'inactive')
       })
       .then( (user) => {
         console.log(user);

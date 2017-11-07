@@ -23,8 +23,10 @@ route.get('/', ( req, res ) => {
 
 //LOGIN ROUTE
 route.get('/login',(req,res)=>{
-  console.log("***********************",req.user);
-  res.render("login");
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  console.log("REQ.USER***********************",req.user);
+  res.json("Welcome to the LOGIN PAGE!");
 });
 
 route.post('/login', passport.authenticate('local', {
@@ -38,6 +40,8 @@ route.get('/logout', (req,res) =>{
 });
 
 route.get('/:id', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('users ID route has been requested: GET ');
   let id = req.params.id;
   console.log('users.get/:id :', id);
@@ -49,6 +53,8 @@ route.get('/:id', ( req, res ) => {
 });
 
 route.post('/new', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('users route has been requested: POST ');
   user.create({
     username : req.body.username,
@@ -61,6 +67,8 @@ route.post('/new', ( req, res ) => {
 });
 
 route.put('/:id', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('users ID route has been requested: PUT ');
   let id = req.params.id;
   console.log('users.put/:id :', id);
@@ -77,6 +85,8 @@ route.put('/:id', ( req, res ) => {
 });
 
 route.delete('/:id', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('users ID route has been requested: DELETE ');
   let id = req.params.id;
   console.log('users.delete/:id :', id);
@@ -92,7 +102,7 @@ route.delete('/:id', ( req, res ) => {
   })
 });
 
-//SECRET ROUTE
+
 function isAuthenticated(req, res, next){
   console.log("REQ.USER.ID***********************",req.user.id,"***********************");
   let id = parseInt(req.params.id);
