@@ -2,14 +2,15 @@ module.exports = function(sequelize, DataTypes){
   const Item = sequelize.define('item', {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     description:{
-     type: DataTypes.STRING
+     type: DataTypes.STRING,
+     allowNull: false
     },
     price:{
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: false
     },
     manufacturer:{
       type: DataTypes.STRING
@@ -18,10 +19,12 @@ module.exports = function(sequelize, DataTypes){
       type: DataTypes.STRING
     },
     condition:{
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     category:{
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     dimensions:{
       type: DataTypes.STRING
@@ -48,5 +51,3 @@ module.exports = function(sequelize, DataTypes){
   return Item;
 }
 
-
-//FOR REVIEW: ITEMSTATUS , please confirm BOOLEAN datatype
