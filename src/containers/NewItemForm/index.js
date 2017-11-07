@@ -103,7 +103,7 @@ class NewItemForm extends Component {
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.title} placeholder="Title" onChange={this.handleChangeTitle}/>
-          <input type="text" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
+          <input type="text" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/> ACTUALLY NVM THIS IS AN UPLOAD THING
           <input type="text" value={this.state.description} placeholder="Item description" onChange={this.handleChangeDescription}/>
           <input type="text" value={this.state.price} placeholder="Price" onChange={this.handleChangePrice}/>
           CATEGORY SELECT

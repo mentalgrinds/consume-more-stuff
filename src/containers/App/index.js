@@ -6,6 +6,8 @@ import { loadItems } from '../../actions/items';
 
 import Header from '../../components/header';
 
+import RegistrationForm from '../RegistrationForm';
+
 class App extends Component {
 
   constructor(){
