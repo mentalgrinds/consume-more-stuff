@@ -55,9 +55,11 @@ route.put('/:id', ( req, res ) => {
   let data = req.body;
   return condition.update({
     title: req.body.title
-  }, {where: {id:id}
-  }).then((user) => {
-    res.json('User updated');
+  }, {where     : [{id: id}],
+      returning : true,
+      plain     : true
+  }).then((condition) => {
+    res.json(condition);
   });
 });
 
@@ -69,13 +71,13 @@ route.delete('/:id', ( req, res ) => {
   console.log('conditions.delete/:id :', id);
   let data = req.body;
   console.log('conditions.delete/:id data :', data);
-  condition.destroy({
-      where     : [{id: id}],
+  return condition.update({
+    title: 'deprecated'
+  }, {where     : [{id: id}],
       returning : true,
       plain     : true
-    }).then((data) => {
-      console.log('conditions ID route has been updated:, result: ', data);
-      return res.json({id:id});
+  }).then((condition) => {
+    res.json(condition);
   })
 });
 

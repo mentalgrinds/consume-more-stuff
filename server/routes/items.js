@@ -69,9 +69,11 @@ route.put('/:id', ( req, res ) => {
     dimensions    : req.body.dimensions,
     notes : req.body.notes,
     image    : req.body.image
-  }, {where: {id:id}
-  }).then((user) => {
-    res.json('User updated');
+  }, {where     : [{id: id}],
+      returning : true,
+      plain     : true
+  }).then((item) => {
+    res.json(item);
   });
 });
 
@@ -83,13 +85,13 @@ route.delete('/:id', ( req, res ) => {
   console.log('items.delete/:id :', id);
   let data = req.body;
   console.log('items.delete/:id data :', data);
-  item.destroy({
-      where     : [{id: id}],
+  return item.update({
+    notes: 'deprecated'
+  }, {where     : [{id: id}],
       returning : true,
       plain     : true
-    }).then((data) => {
-      console.log('items ID route has been updated:, result: ', data);
-      return res.json({id:id});
+  }).then((item) => {
+    res.json(item);
   })
 });
 

@@ -56,9 +56,11 @@ route.put('/:id', ( req, res ) => {
   let data = req.body;
   return category.update({
     title: req.body.title
-  }, {where: {id:id}
-  }).then((user) => {
-    res.json('User updated');
+  }, {where     : [{id: id}],
+      returning : true,
+      plain     : true
+  }).then((category) => {
+    res.json(category);
   });
 });
 
@@ -70,13 +72,13 @@ route.delete('/:id', ( req, res ) => {
   console.log('category.delete/:id :', id);
   let data = req.body;
   console.log('category.delete/:id data :', data);
-  category.destroy({
-      where     : [{id: id}],
+  return category.update({
+    title: 'deprecated'
+  }, {where     : [{id: id}],
       returning : true,
       plain     : true
-    }).then((data) => {
-      console.log('category ID route has been updated:, result: ', data);
-      return res.json({id:id});
+  }).then((category) => {
+    res.json(category);
   })
 });
 

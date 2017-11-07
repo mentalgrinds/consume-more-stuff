@@ -57,9 +57,11 @@ route.put('/:id', ( req, res ) => {
   return itemstatus.update({
     sold : req.body.sold,
     published : req.body.published
-  }, {where: {id:id}
-  }).then((user) => {
-    res.json('User updated');
+  }, {where     : [{id: id}],
+      returning : true,
+      plain     : true
+  }).then((status) => {
+    res.json(status);
   });
 });
 
@@ -71,13 +73,14 @@ route.delete('/:id', ( req, res ) => {
   console.log('itemstatus.delete/:id :', id);
   let data = req.body;
   console.log('itemstatus.delete/:id data :', data);
-  itemstatus.destroy({
-      where     : [{id: id}],
+  return itemstatus.update({
+    itemstatus: 'deprecated'
+  }, {where     : [{id: id}],
       returning : true,
       plain     : true
-    }).then((data) => {
-      console.log('itemstatus ID route has been updated:, result: ', data);
-      return res.json({id:id});
+  }).then((itemstatus) => {
+    res.json(itemstatus);
+
   })
 });
 

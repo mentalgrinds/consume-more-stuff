@@ -78,9 +78,11 @@ route.put('/:id', ( req, res ) => {
     password: req.body.password,
     email: req.body.email,
     userstatus: req.body.userstatus
-  }, {where: {id:id}
+  }, {where     : [{id: id}],
+      returning : true,
+      plain     : true
   }).then((user) => {
-    res.json('User updated');
+    res.json(user);
   });
 });
 
@@ -89,16 +91,17 @@ route.delete('/:id', ( req, res ) => {
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('users ID route has been requested: DELETE ');
   let id = req.params.id;
-  console.log('users.delete/:id :', id);
+  console.log('users.update/:id :', id);
   let data = req.body;
-  console.log('users.delete/:id data :', data);
-  user.destroy({
-      where     : [{id: id}],
+  console.log('users.update/:id data :', data);
+  return user.update({
+    userstatus: 'inactive'
+  }, {where     : [{id: id}],
       returning : true,
       plain     : true
-    }).then((data) => {
-      console.log('users ID route has been updated:, result: ', data);
-      return res.json({id:id});
+  }).then((user) => {
+    res.json(user);
+
   })
 });
 
