@@ -6,7 +6,7 @@ const LocalStrategy           = require('passport-local').Strategy;
 const saltRounds              = 12;
 const route                   = express.Router();
 const db                      = require('../models');
-const {user}                 = db;
+const {user}                  = db;
 
 
 
