@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 //Authentication:
 app.use(session({
-  store: new redis(), 
+  store: new Redis(), 
   secret: 'keyboard cat', 
   resave: false, 
   saveUninitialized: false }));

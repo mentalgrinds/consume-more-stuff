@@ -11,12 +11,30 @@ const {user}                  = db;
 
 
 route.get('/', ( req, res ) => {
+  let value = req.isAuthenticated();
+  console.log(value);
   console.log('users route has been requested: GET ');
   user.findAll({raw:true})
   .then((DataCollection) => {
     console.log('users route has queried all data from the DB, result: ', DataCollection);
     res.json(DataCollection);
   });
+});
+
+//LOGIN ROUTE
+route.get('/login',(req,res)=>{
+  console.log("***********************",req.user);
+  res.render("login");
+});
+
+route.post('/login', passport.authenticate('local', {
+    successRedirect: '/users',
+    failureRedirect: '/'
+  }));
+
+route.get('/logout', (req,res) =>{
+  req.logout();
+  res.sendStatus(200);
 });
 
 route.get('/:id', ( req, res ) => {
@@ -73,6 +91,21 @@ route.delete('/:id', ( req, res ) => {
       return res.json(data);
   })
 });
+
+//SECRET ROUTE
+function isAuthenticated(req, res, next){
+  //console.log("***********************",req.user.id,"***********************");
+  let id = parseInt(req.params.id);
+  let userId = parseInt(req.user.id);
+  //console.log(id === userId);
+  if(id === req.user.id){
+    req.isAuthenticated();
+    next();
+  }
+  else{
+    res.redirect('/');
+    console.log('denied');}
+}
 
 
 module.exports = route;
