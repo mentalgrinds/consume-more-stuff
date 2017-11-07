@@ -18,22 +18,11 @@ module.exports = function(sequelize, DataTypes){
     model:{
       type: DataTypes.STRING
     },
-    condition:{
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    category:{
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     dimensions:{
       type: DataTypes.STRING
     },
     notes:{
       type: DataTypes.STRING
-    },
-    itemstatus:{
-      type: DataTypes.BOOLEAN
     },
     image:{
       type: DataTypes.STRING
@@ -44,9 +33,16 @@ module.exports = function(sequelize, DataTypes){
   })
 
   Item.associate = function(models){
-    Item.belongsTo(models.user,{
-      foreignKey: 'seller'
-    })
+  Item.belongsTo(models.user);
+  Item.belongsTo(models.category, {
+    foreignKey: 'category_id', as: 'category'
+  });
+  Item.belongsTo(models.condition, {
+    foreignKey: 'condition_id', as: 'condition'
+    });
+  Item.belongsTo(models.itemstatus, {
+    foreignKey: 'itemstatus_id', as: 'itemstatus'
+    });
   }
   return Item;
 }

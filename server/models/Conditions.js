@@ -7,8 +7,8 @@ module.exports = function(sequelize, DataTypes){
   })
 
   Condition.associate = function(models){
-    Condition.belongsTo(models.item, {
-      foreignKey: 'condition', as: 'condition'
+    Condition.hasMany(models.item, {
+      foreignKey: 'condition_id', as: 'condition'
     })
   }
   return Condition;

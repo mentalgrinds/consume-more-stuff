@@ -9,8 +9,8 @@ module.exports = function(sequelize, DataTypes){
   })
 
   ItemStatus.associate = function(models){
-    ItemStatus.belongsTo(models.item, {
-      foreignKey: 'itemstatus', as: 'itemstatus'
+    ItemStatus.hasMany(models.item, {
+      foreignKey: 'itemstatus_id', as: 'itemstatus'
     })
   }
   return ItemStatus;
