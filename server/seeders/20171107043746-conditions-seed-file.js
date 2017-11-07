@@ -7,166 +7,22 @@ module.exports = {
   "createdAt": "12/4/2016",
   "updatedAt": "1/31/2017"
 }, {
-  "title": "used",
+  "title": "good",
   "createdAt": "10/17/2017",
   "updatedAt": "8/29/2017"
 }, {
-  "title": "used",
+  "title": "ok",
   "createdAt": "8/24/2017",
   "updatedAt": "6/27/2017"
 }, {
-  "title": "ok",
+  "title": "used",
   "createdAt": "8/9/2017",
   "updatedAt": "10/21/2017"
-}, {
-  "title": "new",
-  "createdAt": "7/27/2017",
-  "updatedAt": "11/23/2016"
-}, {
-  "title": "good",
-  "createdAt": "5/14/2017",
-  "updatedAt": "10/1/2017"
-}, {
-  "title": "good",
-  "createdAt": "8/17/2017",
-  "updatedAt": "6/20/2017"
-}, {
-  "title": "new",
-  "createdAt": "11/29/2016",
-  "updatedAt": "12/24/2016"
-}, {
-  "title": "ok",
-  "createdAt": "6/2/2017",
-  "updatedAt": "8/31/2017"
-}, {
-  "title": "good",
-  "createdAt": "12/3/2016",
-  "updatedAt": "5/25/2017"
-}, {
-  "title": "new",
-  "createdAt": "10/13/2017",
-  "updatedAt": "6/1/2017"
-}, {
-  "title": "new",
-  "createdAt": "4/12/2017",
-  "updatedAt": "3/22/2017"
-}, {
-  "title": "used",
-  "createdAt": "2/20/2017",
-  "updatedAt": "11/24/2016"
-}, {
-  "title": "used",
-  "createdAt": "5/1/2017",
-  "updatedAt": "1/13/2017"
-}, {
-  "title": "used",
-  "createdAt": "2/16/2017",
-  "updatedAt": "8/21/2017"
-}, {
-  "title": "new",
-  "createdAt": "3/17/2017",
-  "updatedAt": "5/30/2017"
-}, {
-  "title": "used",
-  "createdAt": "8/29/2017",
-  "updatedAt": "1/5/2017"
-}, {
-  "title": "ok",
-  "createdAt": "8/11/2017",
-  "updatedAt": "9/3/2017"
-}, {
-  "title": "new",
-  "createdAt": "5/7/2017",
-  "updatedAt": "7/31/2017"
-}, {
-  "title": "ok",
-  "createdAt": "5/31/2017",
-  "updatedAt": "10/19/2017"
 }] , {});
   },
 
   down : function (queryInterface, Sequelize) {
-    queryInterface.bulkDelete('conditions',[{
-  "title": "new",
-  "createdAt": "12/4/2016",
-  "updatedAt": "1/31/2017"
-}, {
-  "title": "used",
-  "createdAt": "10/17/2017",
-  "updatedAt": "8/29/2017"
-}, {
-  "title": "used",
-  "createdAt": "8/24/2017",
-  "updatedAt": "6/27/2017"
-}, {
-  "title": "ok",
-  "createdAt": "8/9/2017",
-  "updatedAt": "10/21/2017"
-}, {
-  "title": "new",
-  "createdAt": "7/27/2017",
-  "updatedAt": "11/23/2016"
-}, {
-  "title": "good",
-  "createdAt": "5/14/2017",
-  "updatedAt": "10/1/2017"
-}, {
-  "title": "good",
-  "createdAt": "8/17/2017",
-  "updatedAt": "6/20/2017"
-}, {
-  "title": "new",
-  "createdAt": "11/29/2016",
-  "updatedAt": "12/24/2016"
-}, {
-  "title": "ok",
-  "createdAt": "6/2/2017",
-  "updatedAt": "8/31/2017"
-}, {
-  "title": "good",
-  "createdAt": "12/3/2016",
-  "updatedAt": "5/25/2017"
-}, {
-  "title": "new",
-  "createdAt": "10/13/2017",
-  "updatedAt": "6/1/2017"
-}, {
-  "title": "new",
-  "createdAt": "4/12/2017",
-  "updatedAt": "3/22/2017"
-}, {
-  "title": "used",
-  "createdAt": "2/20/2017",
-  "updatedAt": "11/24/2016"
-}, {
-  "title": "used",
-  "createdAt": "5/1/2017",
-  "updatedAt": "1/13/2017"
-}, {
-  "title": "used",
-  "createdAt": "2/16/2017",
-  "updatedAt": "8/21/2017"
-}, {
-  "title": "new",
-  "createdAt": "3/17/2017",
-  "updatedAt": "5/30/2017"
-}, {
-  "title": "used",
-  "createdAt": "8/29/2017",
-  "updatedAt": "1/5/2017"
-}, {
-  "title": "ok",
-  "createdAt": "8/11/2017",
-  "updatedAt": "9/3/2017"
-}, {
-  "title": "new",
-  "createdAt": "5/7/2017",
-  "updatedAt": "7/31/2017"
-}, {
-  "title": "ok",
-  "createdAt": "5/31/2017",
-  "updatedAt": "10/19/2017"
-}] )
+    queryInterface.bulkDelete('conditions',null )
   }
 };
 

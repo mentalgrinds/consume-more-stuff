@@ -20,5 +20,9 @@ module.exports = {
   "updatedAt": "7/19/2017"
 }] )
   }
-};
+},
 
+  down : function (queryInterface, Sequelize) {
+    queryInterface.bulkDelete('categories',null )
+  }
+};
