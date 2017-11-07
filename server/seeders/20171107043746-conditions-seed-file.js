@@ -2,7 +2,7 @@
 
 module.exports = {
   up : function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('users',[{
+    return queryInterface.bulkInsert('conditions',[{
   "title": "new",
   "createdAt": "12/4/2016",
   "updatedAt": "1/31/2017"
@@ -86,7 +86,7 @@ module.exports = {
   },
 
   down : function (queryInterface, Sequelize) {
-    queryInterface.bulkDelete('users',[{
+    queryInterface.bulkDelete('conditions',[{
   "title": "new",
   "createdAt": "12/4/2016",
   "updatedAt": "1/31/2017"
