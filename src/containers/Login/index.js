@@ -31,22 +31,19 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     }
-
-    this.props.addUser(newUser);
+    console.log(newUser);
+    this.props.checkAuth(newUser);
   }
 
-  componentDidMount(){
-    this.props.checkAuth();
-  }
 
   render(){
     console.log('hello');
     console.log(this.props.user);
     return (
       <div id="login-form">
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername}/>
-          <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword}/>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername.bind(this)}/>
+          <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword.bind(this)}/>
           <input type="submit" className="button" value="Complete Registration"/>
         </form>
       </div>
@@ -64,18 +61,9 @@ const mapStatetoProps = (state) => {
   }
 }
 
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    checkAuth: () => {
-      dispatch(checkAuth())
-    }
-  }
-}
-
 const ConnectedLogin = connect(
   mapStatetoProps,
-  mapDispatchToProps
+  {checkAuth}
 )(Login)
 
 export default ConnectedLogin;

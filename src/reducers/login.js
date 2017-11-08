@@ -8,7 +8,7 @@ const loginUser = (state = initialState, action) => {
   switch(action.type){
     case LOGIN:
     console.log(action.user)
-      return [ ...action.user ];
+      return action.user;
     default:
       return state
   }

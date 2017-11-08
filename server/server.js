@@ -25,7 +25,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 //Routes
-app.use(cors())
 app.use('/api', routes);
 
 passport.serializeUser((users,done) => {
