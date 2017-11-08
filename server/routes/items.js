@@ -69,9 +69,25 @@ route.post('/', upload.single('image'), ( req, res ) => {
     userId : 1,
     itemstatusId: 1
   }).then((data) => {
+      return item.findOne({
+        where: {
+          id: data.id
+        },
+        include: [
+        { model: User, as: 'seller' },
+        { model: Category, as: 'itemcategory'},
+        { model: Condition, as: 'itemcondition'},
+        { model: ItemStatus, as: 'itemstatus'}
+        ]
+      })
     // console.log('items route has posted new data to the DB, result: ', data);
-    res.json(data);
-  });
+    .then((item) => {
+      return res.json(item);
+    })
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 });
 
 route.put('/:id', ( req, res ) => {
