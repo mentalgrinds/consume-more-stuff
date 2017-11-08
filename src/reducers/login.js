@@ -1,8 +1,8 @@
 import { LOGIN_USER,LOGOUT_USER, } from '../actions/login.js';
 
-const initialState = [];
 
-const loginUser = (state = initialState, action) => {
+
+const loginUser = (state = {}, action) => {
   console.log('loginUser dispatcher run')
 
   switch(action.type){

@@ -127,6 +127,8 @@ class NewItemForm extends Component {
     this.props.addItem(formData);
   }
 
+
+
   render(){
     return (
       <div id="new-item-form">

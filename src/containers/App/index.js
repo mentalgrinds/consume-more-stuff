@@ -6,6 +6,7 @@ import { Redirect } from 'react-router'
 import { loadItems } from '../../actions/items';
 import Login from '../Login';
 import AllItemView from '../AllItemView';
+import NewItemForm from '../NewItemForm';
 
 class App extends Component {
 
@@ -29,12 +30,10 @@ class App extends Component {
   componentDidMount(){
 
     this.props.loadItems();
-
-
-
-
     //load items, users, etc.
   }
+
+
 
   render() {
     console.log(this.props.data)
@@ -42,7 +41,7 @@ class App extends Component {
     const {redirect} = this.state;
     
     if(redirect) {
-      return <Redirect to='/' />;
+      return <NewItemForm />;
     }
     return <Login />;
   }
