@@ -51,7 +51,7 @@ class Login extends Component {
 
     console.log('hello');
     console.log('logged in user',this.state.authUser);
-    console.log(localStorage.getItem('auth'));
+    console.log('local storage auth ',localStorage.getItem('auth'));
     return (
       <div id="login-form">
       <div>HELLO {this.props.user.username}</div>
