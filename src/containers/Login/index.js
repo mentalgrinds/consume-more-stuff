@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { checkAuth } from '../../actions/login';
+import { loginUser,checkAuth } from '../../actions/login';
 
 class Login extends Component {
   constructor(props){
@@ -31,14 +31,17 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     }
-    console.log(newUser);
-    this.props.checkAuth(newUser);
+      this.props.loginUser(newUser);
+     
   }
+
+
+
 
 
   render(){
     console.log('hello');
-    console.log(this.props.user);
+    console.log('logged in user',this.props);
     return (
       <div id="login-form">
         <form onSubmit={this.handleSubmit.bind(this)}>
@@ -63,7 +66,8 @@ const mapStatetoProps = (state) => {
 
 const ConnectedLogin = connect(
   mapStatetoProps,
-  {checkAuth}
+  {loginUser,
+  checkAuth}
 )(Login)
 
 export default ConnectedLogin;
