@@ -7,11 +7,8 @@ const loginUser = (state = initialState, action) => {
 
   switch(action.type){
     case LOGIN_USER:
-    console.log(action.user.data)
-      return action.user.data;
-    case CHECK_AUTH:
-    console.log(action.user.data)
-      return action.user.data;
+    console.log(action.user)
+      return action.user;
     default:
       return state
   }

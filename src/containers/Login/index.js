@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginUser,checkAuth } from '../../actions/login';
+import { loginUser } from '../../actions/login';
 
 class Login extends Component {
   constructor(props){
@@ -8,9 +8,11 @@ class Login extends Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      authUser: this.props.user
     }
   }
+
 
   handleChangeUsername(event){
     this.setState({
@@ -32,18 +34,27 @@ class Login extends Component {
       password: this.state.password
     }
       this.props.loginUser(newUser);
-     
+    }
+
+  componentWillReceiveProps(nextProps){ 
+    this.setState({authUser: nextProps.user.username})
+    localStorage.setItem('auth', true);
   }
 
 
 
 
 
+
+
   render(){
+
     console.log('hello');
-    console.log('logged in user',this.props);
+    console.log('logged in user',this.state.authUser);
+    console.log('local storage auth ',localStorage.getItem('auth'));
     return (
       <div id="login-form">
+      <div>HELLO {this.props.user.username}</div>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername.bind(this)}/>
           <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword.bind(this)}/>
@@ -59,15 +70,14 @@ class Login extends Component {
 
 const mapStatetoProps = (state) => {
   return {
-    user : state.user
+    user : state.loginUser
 
   }
 }
 
 const ConnectedLogin = connect(
   mapStatetoProps,
-  {loginUser,
-  checkAuth}
+  {loginUser}
 )(Login)
 
 export default ConnectedLogin;
