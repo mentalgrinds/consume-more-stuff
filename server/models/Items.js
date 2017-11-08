@@ -50,11 +50,18 @@ module.exports = function(sequelize, DataTypes){
   })
 
   Item.associate = function(models){
-  Item.belongsTo(models.user)
-  Item.belongsTo(models.category)
-  Item.belongsTo(models.condition)
-  Item.belongsTo(models.itemstatus)
+    Item.belongsTo(models.user, {
+      foreignKey: 'userId', as: 'seller'
+    }),
+    Item.belongsTo(models.category, {
+      foreignKey: 'categoryId', as: 'itemcategory'
+    }),
+    Item.belongsTo(models.condition, {
+      foreignKey: 'conditionId', as: 'itemcondition'
+    }),
+    Item.belongsTo(models.itemstatus, {
+      foreignKey: 'itemstatusId', as: 'itemstatus'
+    })
   }
   return Item;
 }
-

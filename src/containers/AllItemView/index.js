@@ -1,36 +1,42 @@
 import React, {Component} from 'react';
-import ItemDetailView from '../../components/ItemDetailView'
+import ItemDetailView from '../../components/ItemDetailView';
+import { connect } from 'react-redux';
+import { loadItems } from '../../actions/items';
+import ItemList from '../../components/ItemList';
+
+class AllItemView extends Component {
+  constructor(){
+    super();
 
 
-const AllItemView = ({items}) => {
-  return (
-    <div className='allItemView'>
-      {
-        cards.map((item) => {
-          return (
-            <ItemDetailView
-              name={item.id}
-              user={item.userId}
-              itemstatusId={item.itemstatusId.title}
-              description={item.description}
-              image={item.image}
-              price={item.price}
-              conditionId={item.conditionId.title}
-              categoryId={item.categoryId.title}
-              manufacturer={item.manufacturer}
-              model={item.model}
-              dimensions={item.dimensions}
-              notes={item.notes}
-              createdAt={item.createdAt}
-              updatedAt={item.updatedAt}
-            />
-          )
-        })
-      }
-    </div>
+  }
 
-  )
+  render(){
+    return(
+      <div>
+        <ItemList items={this.props.items}/>
+      </div>
+    )
+  }
 }
 
+const mapStateToProps = (state) => {
+  return{
+    items: state.items
+  }
+}
 
-export default AllItemView;
+const mapDispatchToProps = (dispatch) => {
+  return{
+    loadItems: () => {
+      dispatch(loadItems())
+    }
+  }
+}
+
+const ConnectedAllItemView = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AllItemView)
+
+export default ConnectedAllItemView;

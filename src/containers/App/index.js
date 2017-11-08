@@ -10,8 +10,9 @@ import RegistrationForm from '../RegistrationForm';
 
 import NewItemForm from '../NewItemForm';
 
-class App extends Component {
+import AllItemView from '../AllItemView';
 
+class App extends Component {
   constructor(){
     super();
 
@@ -38,6 +39,7 @@ class App extends Component {
       <div className="App">
       <Header />
        Hello World! Here's where we will render our authorized container and our unauthorized container.
+       <AllItemView/>
       </div>
     );
   }

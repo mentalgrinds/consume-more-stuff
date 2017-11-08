@@ -10,6 +10,10 @@ const {item}                 = db;
 
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
+const User = db.user;
+const Category = db.category;
+const Condition = db.condition;
+const ItemStatus = db.itemstatus;
 
 
 
@@ -17,7 +21,14 @@ route.get('/', ( req, res ) => {
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated:',(value ? 'Yes Baseem' : 'No Baseem'),'the current REQ.USER:',req.user);
   console.log('items route has been requested: GET ');
-  item.findAll({raw:true})
+  item.findAll({
+    include:[
+      { model: User, as: 'seller' },
+      { model: Category, as: 'itemcategory'},
+      { model: Condition, as: 'itemcondition'},
+      { model: ItemStatus, as: 'itemstatus'}
+    ]
+  })
   .then((DataCollection) => {
     // console.log('items route has queried all data from the DB, result: ', DataCollection);
     res.json(DataCollection);
