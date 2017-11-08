@@ -8,9 +8,10 @@ export const loginUser = (newUser) => {
   return function(dispatch){
     return axios.post('/api/users/login',newUser)
     .then( user => {
+      console.log('user from then', user)
       dispatch({
         type: LOGIN_USER,
-        user: user
+        user: user.data
       });
     });
   }

@@ -41,9 +41,10 @@ class Login extends Component {
 
   render(){
     console.log('hello');
-    console.log('logged in user',this.props);
+    console.log('logged in user',this.props.user);
     return (
       <div id="login-form">
+      <div>HELLO{this.props.user.username}</div>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername.bind(this)}/>
           <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword.bind(this)}/>
@@ -59,7 +60,7 @@ class Login extends Component {
 
 const mapStatetoProps = (state) => {
   return {
-    user : state.user
+    user : state.loginUser
 
   }
 }
