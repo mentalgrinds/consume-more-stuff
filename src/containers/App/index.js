@@ -4,15 +4,8 @@ import { connect } from 'react-redux';
 
 import { loadItems } from '../../actions/items';
 
-import Header from '../../components/header';
-
-import RegistrationForm from '../RegistrationForm';
-
-import NewItemForm from '../NewItemForm';
-
-import AllItemView from '../AllItemView';
-
 class App extends Component {
+
   constructor(){
     super();
 
@@ -37,9 +30,7 @@ class App extends Component {
     console.log(this.props.data)
     return (
       <div className="App">
-      <Header />
        Hello World! Here's where we will render our authorized container and our unauthorized container.
-       <AllItemView/>
       </div>
     );
   }
