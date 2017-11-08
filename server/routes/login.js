@@ -16,7 +16,7 @@ route.get('/',(req,res)=>{
   return res.json(req.user);
 });
 
-route.post('/',isAuthenticated, function(req, res, next) {
+route.post('/', function(req, res, next) {
   console.log(req.body);
   let local = {}
   passport.authenticate('local', function(err, user, info) {
@@ -35,12 +35,6 @@ route.post('/',isAuthenticated, function(req, res, next) {
   })(req, res, next);
 });
 
-function isAuthenticated(req, res, next){
-
-    req.isAuthenticated();
-    next();
-
-}
 
 
 module.exports = route;
