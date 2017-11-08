@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../../actions/login';
 import Logout from '../Logout'
+import { Redirect, withRouter, Link} from 'react-router';
 
 class Login extends Component {
   constructor(props){
@@ -10,7 +11,6 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      authUser: localStorage.getItem('auth')
     }
   }
 
@@ -36,6 +36,16 @@ class Login extends Component {
       this.props.loginUser(newUser);
   }
 
+  handleAuth(event){
+    event.preventDefault();
+    console.log('i got clicked');
+    if(localStorage.getItem('userId')){
+        this.props.history.push('/'); 
+      }
+    console.log('nothing should happen');
+
+  }
+
 
 
   render(){
@@ -44,9 +54,12 @@ class Login extends Component {
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername.bind(this)}/>
           <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword.bind(this)}/>
-          <input type="submit" className="button" value="Login"/>
+          <input 
+            type="submit" 
+            onClick={()=>(this.props.history.push('/'))}
+            className="button" 
+            value="Login"/>
         </form>
-        <Logout/>
       </div>
 
     )
@@ -67,4 +80,4 @@ const ConnectedLogin = connect(
   {loginUser,logoutUser}
 )(Login)
 
-export default ConnectedLogin;
+export default withRouter(ConnectedLogin);

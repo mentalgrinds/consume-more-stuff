@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link, withRouter} from 'react-router-dom';
+import { Redirect } from 'react-router'
 import { loadItems } from '../../actions/items';
 import Login from '../Login';
 import AllItemView from '../AllItemView';
@@ -12,9 +13,9 @@ class App extends Component {
     super();
 
     if(localStorage.getItem('userId')){
-      this.state = { auth: true };
+      this.state = { auth: true, redirect: true };
     }else{
-      this.state = { auth: false };
+      this.state = { auth: false, redirect: false };
     }
 
   }
@@ -38,15 +39,12 @@ class App extends Component {
   render() {
     console.log(this.props.data)
     console.log(this.props.auth)
-    return (
-      <div className="App">
-       Hello World! Here's where we will render our authorized container and our unauthorized container.
-        <Switch>
-            {this.state.auth ? <Route path="/" component={AllItemView} /> : <Route path="/" component={Login} /> }
-        </Switch>
-
-      </div>
-    );
+    const {redirect} = this.state;
+    
+    if(redirect) {
+      return <Redirect to='/' />;
+    }
+    return <Login />;
   }
 }
 
@@ -72,4 +70,4 @@ const ConnectedApp = connect(
   mapDispatchToProps
 )(App)
 
-export default ConnectedApp;
+export default withRouter(ConnectedApp);
