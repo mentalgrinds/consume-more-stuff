@@ -18,7 +18,7 @@ export const loadUsers = () => {
 
 export const addUser = (newUser) => {
   return function(dispatch){
-    return axios.post('/api/users', newUser)
+    return axios.post('/api/register', newUser)
     .then( user => {
       dispatch({
         type: ADD_USER,
