@@ -8,9 +8,11 @@ class Login extends Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      authUser: this.props.user
     }
   }
+
 
   handleChangeUsername(event){
     this.setState({
@@ -32,19 +34,25 @@ class Login extends Component {
       password: this.state.password
     }
       this.props.loginUser(newUser);
-     
+    }
+
+  componentWillReceiveProps(nextProps){ 
+    this.setState({authUser: nextProps.user.username})
   }
 
 
 
 
 
+
+
   render(){
+
     console.log('hello');
-    console.log('logged in user',this.props.user);
+    console.log('logged in user',this.state.authUser);
     return (
       <div id="login-form">
-      <div>HELLO{this.props.user.username}</div>
+      <div>HELLO {this.props.user.username}</div>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername.bind(this)}/>
           <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword.bind(this)}/>
