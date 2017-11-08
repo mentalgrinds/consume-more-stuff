@@ -11,6 +11,10 @@ class AllItemView extends Component {
 
   }
 
+  componentWillMount(){
+    // this.props.loadItems();
+  }
+
   render(){
     return(
       <div>
@@ -19,6 +23,7 @@ class AllItemView extends Component {
     )
   }
 }
+
 
 const mapStateToProps = (state) => {
   return{
