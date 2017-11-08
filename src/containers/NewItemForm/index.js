@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { addItem } from '../../actions/items.js';
+import { loadItemStatuses } from '../../actions/itemStatuses.js';
+import { loadConditions } from '../../actions/conditions.js';
+import { loadCategories } from '../../actions/categories.js';
+import Select from '../../components/Select';
 
 class NewItemForm extends Component {
 
@@ -15,7 +19,10 @@ class NewItemForm extends Component {
       manufacturer: '',
       model: '',
       dimensions: '',
-      notes: ''
+      notes: '',
+      category: '',
+      condition: '',
+      itemStatus: ''
     }
 
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -26,10 +33,20 @@ class NewItemForm extends Component {
     this.handleChangeModel = this.handleChangeModel.bind(this);
     this.handleChangeDimensions = this.handleChangeDimensions.bind(this);
     this.handleChangeNotes = this.handleChangeNotes.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this.handleChangeCondition = this.handleChangeCondition.bind(this);
+    this.handleChangeItemStatus = this.handleChangeItemStatus.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
 
 
+  }
+
+  componentDidMount(){
+
+    this.props.loadConditions();
+    this.props.loadCategories();
+    this.props.loadItemStatuses();
   }
 
   handleChangeName(event){
@@ -80,6 +97,25 @@ class NewItemForm extends Component {
     })
   }
 
+  handleChangeCategory(event){
+    this.setState({
+      category: event.target.value
+    })
+  }
+
+  handleChangeCondition(event){
+    this.setState({
+      condition: event.target.value
+    })
+  }
+
+  handleChangeItemStatus(event){
+    this.setState({
+      itemStatus: event.target.value
+    })
+  }
+
+
   handleSubmit(event){
     event.preventDefault();
 
@@ -106,9 +142,13 @@ class NewItemForm extends Component {
           <input type="file" id="image-upload" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
           <input type="text" value={this.state.description} placeholder="Item description" onChange={this.handleChangeDescription}/>
           <input type="text" value={this.state.price} placeholder="Price" onChange={this.handleChangePrice}/>
-          CATEGORY SELECT
-          CONDITION SELECT
-          ITEM STATUS SELECT
+
+          <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
+
+          <Select name="condition" handler={this.handleChangeCondition} list={this.props.conditions} show="title" />
+
+          <Select name="itemStatus" handler={this.handleChangeItemStatus} list={this.props.itemStatuses} show="title" />
+
           <input type="text" value={this.state.manufacturer} placeholder="Manufacturer/Make" onChange={this.handleChangeManufacturer}/>
           <input type="text" value={this.state.model} placeholder="Model" onChange={this.handleChangeModel}/>
           <input type="text" value={this.state.dimensions} placeholder="Dimensions" onChange={this.handleChangeDimensions}/>
@@ -120,16 +160,33 @@ class NewItemForm extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return{
+    categories: state.categories,
+    conditions: state.conditions,
+    itemStatuses: state.itemStatuses
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addItem: (item) => {
       dispatch(addItem(item))
+    },
+    loadConditions: () => {
+      dispatch(loadConditions())
+    },
+    loadCategories: () => {
+      dispatch(loadCategories())
+    },
+    loadItemStatuses: () => {
+      dispatch(loadItemStatuses())
     }
   }
 }
 
 const ConnectedNewItemForm = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(NewItemForm);
 
