@@ -18,9 +18,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 //Authentication:
 app.use(session({
-  store: new Redis(), 
-  secret: 'keyboard cat', 
-  resave: false, 
+  store: new Redis(),
+  secret: 'keyboard cat',
+  resave: false,
   saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,7 +53,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
       if(user === null) {
         return done(null, false, {message: 'bad username or password'});
       }
-      else { 
+      else {
         bcrypt.compare(password, user.password)
         .then (res => {
           console.log(res);
