@@ -1,6 +1,8 @@
 const axios = require('axios');
 
 export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
+
 
 export const loginUser = (newUser) => {
   console.log(newUser);
@@ -16,4 +18,17 @@ export const loginUser = (newUser) => {
   }
 }
 
+
+
+export const logoutUser = () => {
+  return function(dispatch){
+    return axios.get('/api/users/logout')
+    .then( () => {
+      dispatch({
+        type: LOGOUT_USER,
+        user: null
+      });
+    });
+  }
+}
 
