@@ -40,9 +40,13 @@ ReactDOM.render(
     <div>
       <Header />
       <Link to="/">Home</Link>
+      <br></br>
       <Link to="/new-item">New Item</Link>
+      <br></br>
       <Link to="/all">All Items</Link>
+      <br></br>
       <Link to="/register">Register</Link>
+      <br></br>
       <Link to="/login">Login</Link>
 
       <Route exact path="/" component={App} />
