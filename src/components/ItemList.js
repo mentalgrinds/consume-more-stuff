@@ -6,7 +6,7 @@ const ItemList = ({items}) => {
   return (
     <div className='allItemList'>
       {
-        items.map((item, seller) => {
+        items.map((item) => {
           console.log('ITEM', item)
           return (
             <ItemDetailView

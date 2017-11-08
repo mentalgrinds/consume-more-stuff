@@ -3,6 +3,8 @@ import ItemDetailView from '../../components/ItemDetailView';
 import { connect } from 'react-redux';
 import { loadItems } from '../../actions/items';
 import ItemList from '../../components/ItemList';
+import TopItemsView from '../../containers/TopItemsView';
+
 
 class AllItemView extends Component {
   constructor(){
@@ -19,6 +21,7 @@ class AllItemView extends Component {
     return(
       <div>
         <ItemList items={this.props.items}/>
+        <TopItemsView/>
       </div>
     )
   }
