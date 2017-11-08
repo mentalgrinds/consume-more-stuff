@@ -9,14 +9,14 @@ const db                      = require('../models');
 const {user}                  = db;
 
 //LOGIN ROUTE
-route.get('/login',(req,res)=>{
+route.get('/',(req,res)=>{
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log("REQ.USER***********************",req.user);
   return res.json(req.user);
 });
 
-route.post('/login',isAuthenticated, function(req, res, next) {
+route.post('/',isAuthenticated, function(req, res, next) {
   console.log(req.body);
   let local = {}
   passport.authenticate('local', function(err, user, info) {

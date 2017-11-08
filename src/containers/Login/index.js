@@ -12,8 +12,6 @@ class Login extends Component {
       password: '',
       authUser: localStorage.getItem('auth')
     }
-
-    console.log(this.props);
   }
 
 
