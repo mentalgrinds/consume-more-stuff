@@ -4,12 +4,24 @@ import './index.css';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+
 import thunk from 'redux-thunk';
 
 import reducers from './reducers';
 
 import App from './containers/App';
+import Header from './components/header';
+import NewItemForm from './containers/NewItemForm';
+import AllItemView from './containers/AllItemView';
+import Login from './containers/Login'
+
 import registerServiceWorker from './registerServiceWorker';
+
 
 
 
@@ -21,7 +33,22 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+  <Router>
+    <div>
+      <Header />
+      <Link to="/">Home</Link>
+      <Link to="/new-item">New Item</Link>
+      <Link to="/all">All Items</Link>
+      <Link to="/login">Login</Link>
+
+
+      <Route exact path="/" component={App} />
+      <Route path="/new-item" component={NewItemForm} />
+      <Route path="/all" component={AllItemView} />
+      <Route path="/login" component={Login} />
+
+    </div>
+  </Router>
   </Provider>,
   document.getElementById('root')
 );
