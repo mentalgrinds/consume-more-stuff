@@ -8,6 +8,8 @@ import Header from '../../components/header';
 
 import RegistrationForm from '../RegistrationForm';
 
+import NewItemForm from '../NewItemForm';
+
 class App extends Component {
 
   constructor(){

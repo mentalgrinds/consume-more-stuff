@@ -21,8 +21,7 @@ class NewItemForm extends Component {
       dimensions: '',
       notes: '',
       category: '',
-      condition: '',
-      itemStatus: ''
+      condition: ''
     }
 
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -35,7 +34,6 @@ class NewItemForm extends Component {
     this.handleChangeNotes = this.handleChangeNotes.bind(this);
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.handleChangeCondition = this.handleChangeCondition.bind(this);
-    this.handleChangeItemStatus = this.handleChangeItemStatus.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -109,13 +107,6 @@ class NewItemForm extends Component {
     })
   }
 
-  handleChangeItemStatus(event){
-    this.setState({
-      itemStatus: event.target.value
-    })
-  }
-
-
   handleSubmit(event){
     event.preventDefault();
 
@@ -129,6 +120,8 @@ class NewItemForm extends Component {
     formData.append('model', this.state.model);
     formData.append('dimensions', this.state.dimensions);
     formData.append('notes', this.state.notes);
+    formData.append('category', this.state.category);
+    formData.append('condition', this.state.condition);
 
 
     this.props.addItem(formData);
@@ -146,8 +139,6 @@ class NewItemForm extends Component {
           <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
 
           <Select name="condition" handler={this.handleChangeCondition} list={this.props.conditions} show="title" />
-
-          <Select name="itemStatus" handler={this.handleChangeItemStatus} list={this.props.itemStatuses} show="title" />
 
           <input type="text" value={this.state.manufacturer} placeholder="Manufacturer/Make" onChange={this.handleChangeManufacturer}/>
           <input type="text" value={this.state.model} placeholder="Model" onChange={this.handleChangeModel}/>
