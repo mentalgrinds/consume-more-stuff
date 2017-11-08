@@ -1,7 +1,6 @@
 const axios = require('axios');
 
 export const LOGIN_USER = 'LOGIN_USER';
-export const CHECK_AUTH = 'CHECK_AUTH';
 
 export const loginUser = (newUser) => {
   console.log(newUser);
@@ -17,14 +16,4 @@ export const loginUser = (newUser) => {
   }
 }
 
-export const checkAuth = () => {
-  return function(dispatch){
-    return axios.get('/api/users/login')
-    .then( user => {
-      dispatch({
-        type: CHECK_AUTH,
-        user: user
-      });
-    });
-  }
-}
+

@@ -9,9 +9,6 @@ const loginUser = (state = initialState, action) => {
     case LOGIN_USER:
     console.log(action.user)
       return action.user;
-    case CHECK_AUTH:
-    console.log(action.user)
-      return action.user;
     default:
       return state
   }

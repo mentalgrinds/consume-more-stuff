@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginUser,checkAuth } from '../../actions/login';
+import { loginUser } from '../../actions/login';
 
 class Login extends Component {
   constructor(props){
@@ -67,8 +67,7 @@ const mapStatetoProps = (state) => {
 
 const ConnectedLogin = connect(
   mapStatetoProps,
-  {loginUser,
-  checkAuth}
+  {loginUser}
 )(Login)
 
 export default ConnectedLogin;
