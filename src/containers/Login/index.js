@@ -38,6 +38,7 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps){ 
     this.setState({authUser: nextProps.user.username})
+    localStorage.setItem('auth', true);
   }
 
 
@@ -50,6 +51,7 @@ class Login extends Component {
 
     console.log('hello');
     console.log('logged in user',this.state.authUser);
+    console.log(localStorage.getItem('auth'));
     return (
       <div id="login-form">
       <div>HELLO {this.props.user.username}</div>
