@@ -10,6 +10,8 @@ import {
   Link
 } from 'react-router-dom';
 
+import { Redirect } from 'react-router';
+
 import thunk from 'redux-thunk';
 
 import reducers from './reducers';
@@ -18,7 +20,8 @@ import App from './containers/App';
 import Header from './components/header';
 import NewItemForm from './containers/NewItemForm';
 import AllItemView from './containers/AllItemView';
-import Login from './containers/Login'
+import Login from './containers/Login';
+import RegistrationForm from './containers/RegistrationForm';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -39,12 +42,13 @@ ReactDOM.render(
       <Link to="/">Home</Link>
       <Link to="/new-item">New Item</Link>
       <Link to="/all">All Items</Link>
+      <Link to="/register">Register</Link>
       <Link to="/login">Login</Link>
-
 
       <Route exact path="/" component={App} />
       <Route path="/new-item" component={NewItemForm} />
       <Route path="/all" component={AllItemView} />
+      <Route path="/register" component={RegistrationForm} />
       <Route path="/login" component={Login} />
 
     </div>

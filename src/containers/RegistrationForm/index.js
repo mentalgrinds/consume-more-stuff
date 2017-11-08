@@ -12,6 +12,11 @@ class RegistrationForm extends Component {
       password: '',
       email: ''
     }
+
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChangeUsername(event){
@@ -51,7 +56,7 @@ class RegistrationForm extends Component {
           <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername}/>
           <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword}/>
           <input type="text" value={this.state.email} placeholder="email address" onChange={this.handleChangeEmail}/>
-          <input type="submit" class="button" value="Complete Registration"/>
+          <input type="submit" className="button" value="Complete Registration"/>
         </form>
       </div>
 
