@@ -49,6 +49,12 @@ class Login extends Component {
 
 
   render(){
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const redirect = localStorage.getItem('userId');
+
+    if(redirect){
+      return ( <Redirect to={from}/>)
+    }
     
     return (
       <div id="login-form">

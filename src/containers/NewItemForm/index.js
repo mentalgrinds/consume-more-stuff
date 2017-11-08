@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Switch, Route, Link, Redirect} from 'react-router-dom';
 import { addItem } from '../../actions/items.js';
 import { loadItemStatuses } from '../../actions/itemStatuses.js';
 import { loadConditions } from '../../actions/conditions.js';
 import { loadCategories } from '../../actions/categories.js';
 import Select from '../../components/Select';
+import Login from '../Login';
 
 class NewItemForm extends Component {
 
@@ -37,6 +38,11 @@ class NewItemForm extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
 
+     if(localStorage.getItem('userId')){
+      this.state = { auth: true, redirect: true };
+    }else{
+      this.state = { auth: false, redirect: false };
+    }
 
   }
 
