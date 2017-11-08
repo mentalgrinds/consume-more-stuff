@@ -9,8 +9,7 @@ class NewItemForm extends Component {
     super(props);
 
     this.state = {
-      title: '',
-      image: '',
+      name: '',
       description: '',
       price: '',
       manufacturer: '',
@@ -19,7 +18,7 @@ class NewItemForm extends Component {
       notes: ''
     }
 
-    this.handleChangeTitle = this.handleChangeTitle.bind(this);
+    this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeImage = this.handleChangeImage.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleChangePrice = this.handleChangePrice.bind(this);
@@ -33,9 +32,9 @@ class NewItemForm extends Component {
 
   }
 
-  handleChangeTitle(event){
+  handleChangeName(event){
     this.setState({
-      title: event.target.value
+      name: event.target.value
     })
   }
 
@@ -84,26 +83,27 @@ class NewItemForm extends Component {
   handleSubmit(event){
     event.preventDefault();
 
-    let newItem = {
-      title: this.state.title,
-      image: this.state.image,
-      description: this.state.description,
-      price: this.state.price,
-      manufacturer: this.state.manufacturer,
-      model: this.state.model,
-      dimensions: this.state.dimensions,
-      notes: this.state.notes
-    }
+    let fileInput = document.getElementById('image-upload');
+    let formData = new FormData();
+    formData.append('image', fileInput.value);
+    formData.append('name', this.state.name);
+    formData.append('description', this.state.description);
+    formData.append('price', this.state.price);
+    formData.append('manufacturer', this.state.manufacturer);
+    formData.append('model', this.state.model);
+    formData.append('dimensions', this.state.dimensions);
+    formData.append('notes', this.state.notes);
 
-    this.props.addItem(newItem);
+
+    this.props.addItem(formData);
   }
 
   render(){
     return (
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.title} placeholder="Title" onChange={this.handleChangeTitle}/>
-          <input type="text" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/> ACTUALLY NVM THIS IS AN UPLOAD THING
+          <input type="text" value={this.state.name} placeholder="Name" onChange={this.handleChangeName}/>
+          <input type="file" id="image-upload" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
           <input type="text" value={this.state.description} placeholder="Item description" onChange={this.handleChangeDescription}/>
           <input type="text" value={this.state.price} placeholder="Price" onChange={this.handleChangePrice}/>
           CATEGORY SELECT
@@ -113,7 +113,7 @@ class NewItemForm extends Component {
           <input type="text" value={this.state.model} placeholder="Model" onChange={this.handleChangeModel}/>
           <input type="text" value={this.state.dimensions} placeholder="Dimensions" onChange={this.handleChangeDimensions}/>
           <input type="text" value={this.state.notes} placeholder="Notes" onChange={this.handleChangeNotes}/>
-          <input type="submit" class="button" value="Add Item"/>
+          <input type="submit" className="button" value="Add Item"/>
         </form>
       </div>
     )
