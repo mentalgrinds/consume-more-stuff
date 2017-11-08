@@ -26,7 +26,7 @@ route.get('/login',(req,res)=>{
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log("REQ.USER***********************",req.user);
-  res.json("Welcome to the LOGIN PAGE!");
+  res.json(req.user);
 });
 
 route.post('/login', passport.authenticate('local', {

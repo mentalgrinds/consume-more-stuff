@@ -28,21 +28,21 @@ app.use(passport.session());
 app.use(cors())
 app.use('/api', routes);
 
-passport.serializeUser((user,done) => {
+passport.serializeUser((users,done) => {
   console.log("serializing");
   return done(null, {
-    id: user.id,
-    username: user.username
+    id: users.id,
+    username: users.username
   });
 });
 
-passport.deserializeUser((user, done) => {
+passport.deserializeUser((users, done) => {
   console.log('deserializing');
-  db.user.findOne({where: { id: user.id}})
+  db.user.findOne({where: { id: users.id}})
   .then(user => {
     return done(null, {
-      id: user.id,
-      username: user.username
+      id: users.id,
+      username: users.username
     });
   });
 });
