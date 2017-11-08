@@ -29,10 +29,20 @@ route.get('/login',(req,res)=>{
   res.json(req.user);
 });
 
-route.post('/login', passport.authenticate('local', {
-    successRedirect: '/users',
-    failureRedirect: '/'
-  }));
+route.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }//send fail message - logged in false //some error reason
+    if (!user) { return res.json('/login'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      let local = {}
+      local.id = req.user.id;
+      local.username = req.user.username;
+      return res.json(local);
+    });
+  })(req, res, next);
+});
+
 
 route.get('/logout', (req,res) =>{
   req.logout();
