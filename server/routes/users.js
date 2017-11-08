@@ -26,13 +26,24 @@ route.get('/login',(req,res)=>{
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log("REQ.USER***********************",req.user);
-  res.json("Welcome to the LOGIN PAGE!");
+  return res.json(req.user);
 });
 
-route.post('/login', passport.authenticate('local', {
-    successRedirect: '/users',
-    failureRedirect: '/'
-  }));
+route.post('/login',isAuthenticated, function(req, res, next) {
+  console.log(req.body);
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }//send fail message - logged in false //some error reason
+    if (!user) { return res.json('false - not a user'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      let local = {}
+      local.id = req.user.id;
+      local.username = req.user.username;
+      return res.json(local);
+    });
+  })(req, res, next);
+});
+
 
 route.get('/logout', (req,res) =>{
   req.logout();
@@ -107,18 +118,10 @@ route.delete('/:id', ( req, res ) => {
 
 
 function isAuthenticated(req, res, next){
-  console.log("REQ.USER.ID***********************",req.user.id,"***********************");
-  let id = parseInt(req.params.id);
-  let userId = parseInt(req.user.id);
-  //console.log(id === userId);
-  if(id === req.user.id){
-    console.log("They Match - TRUE access GRANTED******************")
+
     req.isAuthenticated();
     next();
-  }
-  else{
-    res.redirect('/');
-    console.log('denied');}
+
 }
 
 
