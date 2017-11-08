@@ -8,6 +8,9 @@ const route                   = express.Router();
 const db                      = require('../models');
 const {item}                 = db;
 
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
 
 
 route.get('/', ( req, res ) => {
@@ -34,7 +37,7 @@ route.get('/:id', ( req, res ) => {
   });
 });
 
-route.post('/new', ( req, res ) => {
+route.post('/', upload.single('image'), ( req, res ) => {
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('items route has been requested: POST ');
