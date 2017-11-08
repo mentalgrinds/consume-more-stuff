@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
-
+import { Switch, Route, Link, withRouter} from 'react-router-dom';
+import { Redirect } from 'react-router'
 import { loadItems } from '../../actions/items';
+import Login from '../Login';
+import AllItemView from '../AllItemView';
+import NewItemForm from '../NewItemForm';
 
 class App extends Component {
 
   constructor(){
     super();
 
-    this.state = {
-      authorized: false
+    if(localStorage.getItem('userId')){
+      this.state = { auth: true, redirect: true };
+    }else{
+      this.state = { auth: false, redirect: false };
     }
+
   }
+
+
 
   componentWillMount(){
 
@@ -21,24 +30,27 @@ class App extends Component {
   componentDidMount(){
 
     this.props.loadItems();
-
-
     //load items, users, etc.
   }
 
+
+
   render() {
     console.log(this.props.data)
-    return (
-      <div className="App">
-       Hello World! Here's where we will render our authorized container and our unauthorized container.
-      </div>
-    );
+    console.log(this.props.auth)
+    const {redirect} = this.state;
+    
+    if(redirect) {
+      return <NewItemForm />;
+    }
+    return <Login />;
   }
 }
 
 const mapStatetoProps = (state) => {
   return {
-    data : state.items
+    data : state.items,
+    auth : state.loginUser
 
   }
 }
@@ -57,4 +69,4 @@ const ConnectedApp = connect(
   mapDispatchToProps
 )(App)
 
-export default ConnectedApp;
+export default withRouter(ConnectedApp);

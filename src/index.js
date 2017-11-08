@@ -21,6 +21,7 @@ import Header from './components/header';
 import NewItemForm from './containers/NewItemForm';
 import AllItemView from './containers/AllItemView';
 import Login from './containers/Login';
+import Logout from './containers/Logout';
 import RegistrationForm from './containers/RegistrationForm';
 
 import registerServiceWorker from './registerServiceWorker';
@@ -40,16 +41,24 @@ ReactDOM.render(
     <div>
       <Header />
       <Link to="/">Home</Link>
+      <br></br>
       <Link to="/new-item">New Item</Link>
+      <br></br>
       <Link to="/all">All Items</Link>
+      <br></br>
       <Link to="/register">Register</Link>
+      <br></br>
       <Link to="/login">Login</Link>
+      <br></br>
+      <Link to="/logout">Logout</Link>
 
       <Route exact path="/" component={App} />
       <Route path="/new-item" component={NewItemForm} />
       <Route path="/all" component={AllItemView} />
       <Route path="/register" component={RegistrationForm} />
       <Route path="/login" component={Login} />
+      <Route path="/logout" component={Logout} />
+
 
     </div>
   </Router>

@@ -21,35 +21,6 @@ route.get('/', ( req, res ) => {
   });
 });
 
-//LOGIN ROUTE
-route.get('/login',(req,res)=>{
-  let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log("REQ.USER***********************",req.user);
-  return res.json(req.user);
-});
-
-route.post('/login',isAuthenticated, function(req, res, next) {
-  console.log(req.body);
-  passport.authenticate('local', function(err, user, info) {
-    if (err) { return next(err); }//send fail message - logged in false //some error reason
-    if (!user) { return res.json('false - not a user'); }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      let local = {}
-      local.id = req.user.id;
-      local.username = req.user.username;
-      return res.json(local);
-    });
-  })(req, res, next);
-});
-
-
-route.get('/logout', (req,res) =>{
-  req.logout();
-  res.sendStatus(200);
-});
-
 route.get('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
