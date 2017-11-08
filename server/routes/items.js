@@ -41,6 +41,9 @@ route.post('/', upload.single('image'), ( req, res ) => {
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('items route has been requested: POST ');
+
+  //Note: I just set userId and itemstatusId to 1 temporarily. it will be the req.user once we have a login feature.
+
   item.create({
     name : req.body.name,
     description : req.body.description,
@@ -49,7 +52,11 @@ route.post('/', upload.single('image'), ( req, res ) => {
     model : req.body.model,
     dimensions    : req.body.dimensions,
     notes : req.body.notes,
-    image    : req.body.image
+    image    : req.body.image,
+    categoryId : req.body.category,
+    conditionId : req.body.condition,
+    userId : 1,
+    itemstatusId: 1
   }).then((data) => {
     // console.log('items route has posted new data to the DB, result: ', data);
     res.json(data);
