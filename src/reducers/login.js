@@ -8,7 +8,6 @@ const loginUser = (state = initialState, action) => {
   switch(action.type){
     case LOGIN_USER:
     console.log("login action: ", action.user)
-    localStorage.setItem('auth', true);
     localStorage.setItem('username', action.user.username);
     localStorage.setItem('userId', action.user.id);
       return action.user;
