@@ -22,7 +22,6 @@ route.get('/', ( req, res ) => {
   console.log('Is the current user authenticated:',(value ? 'Yes Baseem' : 'No Baseem'),'the current REQ.USER:',req.user);
   console.log('items route has been requested: GET ');
   item.findAll({
-    raw:true,
     include:[
       { model: User, as: 'seller' },
       { model: Category, as: 'itemcategory'},
