@@ -11,7 +11,7 @@ const SingleItem = ({item,backToItems}) => {
         <b>User:</b> {item ? item[0].userId : null}<br/>
         <b>Item Status:</b> {item ? item[0].itemstatusId : null}<br/>
         <b>Description:</b>{item ? item[0].description : null}<br/>
-        <b>Image:</b>{item ? item[0].image : null}<br/>
+        <b>Image:</b>{item ? <img src={item[0].image} /> : null}<br/>
         <b>Price:</b>{item ? item[0].price : null}<br/>
         <b>Condition:</b>{item ? item[0].conditionId : null}<br/>
         <b>Category:</b>{item ? item[0].categoryId : null}<br/>
