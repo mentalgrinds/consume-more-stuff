@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import { loadItems } from '../../actions/items';
 import Login from '../Login';
 import NewItemForm from '../NewItemForm';
+import AllItemView from '../AllItemView';
 
 class App extends Component {
 
@@ -37,7 +38,7 @@ class App extends Component {
     const {redirect} = this.state;
     
     if(redirect) {
-      return <NewItemForm />;
+      return <AllItemView />;
     }
     return <Login />;
   }
