@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../../actions/login';
-import Logout from '../Logout'
-import { Redirect, withRouter, Link} from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 
 class Login extends Component {
   constructor(props){

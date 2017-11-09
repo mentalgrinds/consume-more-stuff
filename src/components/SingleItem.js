@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from './Select';
+
 
 
 const SingleItem = ({item,backToItems,edit,auth,editNow,handleName,handleUser,handleItemStatus,handleDescription,handleImage,handlePrice,handleCondition,handleCategory,handleManufacturer,handleModel,handleDimensions,handleNotes}) => {
@@ -13,7 +13,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleName,handleUser,ha
             <div className="detail-view-title">
                 <h1>Item # {item ? item[0].id : null}</h1><br/>
                 <h2>{item ? item[0].name : null}</h2>
-                {item ? <img src={item[0].image} /> : null}<br/>
+                {item ? <img alt='Preview' src={item[0].image} /> : null}<br/>
             </div>
             <div className="detail-view-details">
                 {item ? item[0].description : null}<br/><br/>

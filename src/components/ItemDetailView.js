@@ -24,7 +24,7 @@ const ItemDetailView = ({id, name, userId, itemstatusId, description, image, pri
         <div className="all-view-title">
             <span onClick={(e)=>loadSingleItem(id,e)}><h1>Item #{id}</h1></span>
             <h2>{name}</h2>
-            <img src={image} /><br />
+            <img alt='Preview' src={image}/><br />
         </div>
 
         <div className="all-view-details">

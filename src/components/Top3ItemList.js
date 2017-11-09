@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ItemDetailView from './ItemDetailView';
 
 const Top3ItemList = ({items, categoryNumber}) => {

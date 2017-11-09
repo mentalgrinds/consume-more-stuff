@@ -1,16 +1,9 @@
 import React, {Component} from 'react';
-import ItemDetailView from '../../components/ItemDetailView';
 import { connect } from 'react-redux';
 import { loadItems,editItem } from '../../actions/items';
 import ItemList from '../../components/ItemList';
-
-import TopItemsView from '../../containers/TopItemsView';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterUser';
-
-
-
-import ItemStatusListView from '../../containers/ItemStatusListView';
 
 
 class AllItemView extends Component {

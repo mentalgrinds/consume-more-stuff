@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Link, Redirect} from 'react-router-dom';
 import { addItem } from '../../actions/items.js';
 import { loadItemStatuses } from '../../actions/itemStatuses.js';
 import { loadConditions } from '../../actions/conditions.js';
 import { loadCategories } from '../../actions/categories.js';
 import Select from '../../components/Select';
-import Login from '../Login';
+
 
 class NewItemForm extends Component {
 
@@ -167,7 +166,7 @@ class NewItemForm extends Component {
             Image:
             <input type="file" id="image-upload" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
             <div id="uploaded-image-preview">
-              <img alt="Image Preview" src={this.state.imageUrl} />
+              <img alt="Preview" src={this.state.imageUrl} />
             </div>
           </div>
 

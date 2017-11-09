@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
-import { Switch, Route, Link, withRouter} from 'react-router-dom';
-import { Redirect } from 'react-router'
+import {withRouter} from 'react-router-dom';
 import { loadItems } from '../../actions/items';
 import Login from '../Login';
-import AllItemView from '../AllItemView';
 import NewItemForm from '../NewItemForm';
 
 class App extends Component {

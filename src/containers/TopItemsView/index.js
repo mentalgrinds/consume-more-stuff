@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import ItemDetailView from '../../components/ItemDetailView';
 import { connect } from 'react-redux';
 import { loadItems } from '../../actions/items';
-import ItemList from '../../components/ItemList';
 import Top3ItemList from '../../components/Top3ItemList';
 
 
