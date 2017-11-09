@@ -12,8 +12,8 @@ const {condition}                 = db;
 
 route.get('/', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated:',(value ? 'Yes Baseem' : 'No Baseem'),'the current REQ.USER:',req.user);
-  console.log('conditions route has been requested: GET ');
+  //console.log('Is the current user authenticated:',(value ? 'Yes Baseem' : 'No Baseem'),'the current REQ.USER:',req.user);
+  //console.log('conditions route has been requested: GET ');
   condition.findAll({raw:true})
   .then((DataCollection) => {
     // console.log('conditions route has queried all data from the DB, result: ', DataCollection);
@@ -23,8 +23,8 @@ route.get('/', ( req, res ) => {
 
 route.post('/new', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('conditions route has been requested: POST ');
+  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  //console.log('conditions route has been requested: POST ');
   condition.create({
     title : req.body.title
   }).then((data) => {
@@ -35,10 +35,10 @@ route.post('/new', ( req, res ) => {
 
 route.get('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('conditions ID route has been requested: GET ');
+  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  //console.log('conditions ID route has been requested: GET ');
   let id = req.params.id;
-  console.log('conditions.get/:id :', id);
+  //console.log('conditions.get/:id :', id);
   condition.findById(id)
   .then((data) => {
     console.log('conditions ID route has been requested:, result: ', data);
@@ -48,10 +48,10 @@ route.get('/:id', ( req, res ) => {
 
 route.put('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('conditions ID route has been requested: PUT ');
+  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  //console.log('conditions ID route has been requested: PUT ');
   let id = req.params.id;
-  console.log('conditions.put/:id :', id);
+  //console.log('conditions.put/:id :', id);
   let data = req.body;
   return condition.update({
     title: req.body.title
@@ -65,12 +65,12 @@ route.put('/:id', ( req, res ) => {
 
 route.delete('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('conditions ID route has been requested: DELETE ');
+  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  //console.log('conditions ID route has been requested: DELETE ');
   let id = req.params.id;
-  console.log('conditions.delete/:id :', id);
+  //console.log('conditions.delete/:id :', id);
   let data = req.body;
-  console.log('conditions.delete/:id data :', data);
+  //console.log('conditions.delete/:id data :', data);
   return condition.update({
     title: 'deprecated'
   }, {where     : [{id: id}],
@@ -82,12 +82,12 @@ route.delete('/:id', ( req, res ) => {
 });
 
 function isAuthenticated(req, res, next){
-  console.log("REQ.USER.ID***********************",req.user.id,"***********************");
+  //console.log("REQ.USER.ID***********************",req.user.id,"***********************");
   let id = parseInt(req.params.id);
   let userId = parseInt(req.user.id);
   //console.log(id === userId);
   if(id === req.user.id){
-    console.log("They Match - TRUE access GRANTED******************")
+    //console.log("They Match - TRUE access GRANTED******************")
     req.isAuthenticated();
     next();
   }

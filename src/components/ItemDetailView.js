@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ItemDetailView = ({id, name, userId, itemstatusId, description, image, price, conditionId, categoryId, manufacturer, model, dimensions, notes, createdAt, updatedAt}) => {
+const ItemDetailView = ({id, name, userId, itemstatusId, description, image, price, conditionId, categoryId, manufacturer, model, dimensions, notes, createdAt, updatedAt,loadSingleItem}) => {
   return (
     <div className='eachItem'>
       <ol>
-        <b>Item-Id:</b> {id}<br/>
+        <span onClick={(e)=>loadSingleItem(id,e)}><b>Item-Id:{id}</b></span><br/><br/>
         <b>Name:</b>{name}<br/>
         <b>User:</b> {userId}<br/>
         <b>Item Status:</b> {itemstatusId}<br/>

@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import ItemDetailView from './ItemDetailView';
 
 
-const ItemList = ({items}) => {
+const ItemList = ({items,loadSingleItem}) => {
   return (
     <div className='allItemList'>
       {
-        items.map((item) => {
+        items.map((item,idx) => {
           console.log('ITEM', item)
           return (
             <ItemDetailView
+              loadSingleItem={loadSingleItem}
+              key={idx}
               id={item.id}
               name={item.name}
               description={item.description}

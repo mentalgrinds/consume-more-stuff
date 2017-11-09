@@ -3,7 +3,6 @@ import { LOGIN_USER,LOGOUT_USER, } from '../actions/login.js';
 
 
 const loginUser = (state = {}, action) => {
-  console.log('loginUser dispatcher run')
 
   switch(action.type){
     case LOGIN_USER:

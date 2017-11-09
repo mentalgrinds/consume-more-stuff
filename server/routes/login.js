@@ -11,13 +11,13 @@ const {user}                  = db;
 //LOGIN ROUTE
 route.get('/',(req,res)=>{
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log("REQ.USER***********************",req.user);
+  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  //console.log("REQ.USER***********************",req.user);
   return res.json(req.user);
 });
 
 route.post('/', function(req, res, next) {
-  console.log(req.body);
+  //console.log(req.body);
   let local = {}
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }//send fail message - logged in false //some error reason
