@@ -4,17 +4,29 @@ import { connect } from 'react-redux';
 import { loadItems } from '../../actions/items';
 import ItemList from '../../components/ItemList';
 import TopItemsView from '../../containers/TopItemsView';
+import SingleItem from '../../components/SingleItem.js';
+import filterItem from '../../lib/filterUser';
+
 
 
 class AllItemView extends Component {
   constructor(){
     super();
 
+        this.state = {
+          item: ''
+    }
 
   }
 
   componentWillMount(){
     this.props.loadItems();
+  }
+
+  loadSingleItem(id,e){
+    let items = this.props.items;
+    let item = filterItem(items,id)
+    this.setState({item: item});
   }
 
   backToItems(e){
@@ -23,11 +35,19 @@ class AllItemView extends Component {
   }
 
   render(){
+    const item = this.state.item;
     return(
       <div>
+       {item ?
+        <SingleItem 
+          backToItems={this.backToItems.bind(this)}
+          item={this.state.item}/>
+        :
+        <ItemList
+          loadSingleItem={this.loadSingleItem.bind(this)} 
+          items={this.props.items}/>
+        }
 
-        <ItemList items={this.props.items}/>
-        <TopItemsView/>
       </div>
     )
   }
