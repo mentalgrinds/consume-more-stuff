@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadUsers } from '../../actions/users';
+import UserList from '../../components/UserList.js';
 
 
 
@@ -19,7 +20,7 @@ class User extends Component {
     console.log(this.props.users);
     return(
       <div>
-Hello from user!
+        <UserList users={this.props.users}/>
       </div>
     )
   }

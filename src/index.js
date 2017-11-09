@@ -10,7 +10,7 @@ import {
   Link
 } from 'react-router-dom';
 
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 
 import thunk from 'redux-thunk';
 
