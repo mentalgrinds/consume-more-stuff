@@ -4,6 +4,7 @@ import { loadUsers,editUser } from '../../actions/users';
 import UserList from '../../components/UserList.js';
 import filterUserStatus from '../../lib/filterUserStatus';
 import filterUser from '../../lib/filterUser';
+import editHelper from '../../lib/editUser';
 import SingleUser from '../../components/SingleUser.js';
 
 
@@ -13,60 +14,26 @@ class User extends Component {
 
     this.state = {
       user: '',
-      username: '',
-      password: '',
-      email: '',
       auth: true,
       edit: false
     }
   }
 
-
-  handleChangeUsername(event){
-    this.setState({
-      username: event.target.value
-    })
-  }
-
-  handleChangePassword(event){
-    this.setState({
-      password: event.target.value
-    })
-  }
-
-  handleChangeEmail(event){
-    this.setState({
-      email: event.target.value
-    })
-  }
+  handleChange(e){ editHelper(e); }
 
   editNow(user,e){
-    this.setState({user: user});
-    this.setState({edit: true});
+    let editedUser = editHelper(e);
+    this.setState({user: user, edit: true});
     if(this.state.edit){
-      let user = {
-      id: this.state.user[0].id,
-      username: this.state.username,
-      password: this.state.password,
-      email: this.state.email,
-      userstatus: (this.state.email ? 'active' : 'inactive')
-    }
-    console.log(user);
-    this.props.editUser(user);
-    this.setState({user: null});
-    this.setState({edit: false});
+      editedUser.id = user[0].id;
+      this.props.editUser(editedUser);
+      this.setState({user: null, edit: false});
     }
   }
 
-  componentWillMount(){
-    this.props.loadUsers();
-  }
+  componentWillMount(){ this.props.loadUsers(); }
+  loadUser(id,e){ this.setState( {user: filterUser(this.props.users,id)} ); }
 
-  loadUser(id,e){
-    let users = this.props.users;
-    let user = filterUser(users,id)
-    this.setState({user: user});
-  }
   backToUsers(e){
     e.preventDefault();
     this.setState({user: null});
@@ -81,9 +48,7 @@ class User extends Component {
           editNow={this.editNow.bind(this)}
           edit={this.state.edit}
           auth={this.state.auth}
-          handleChangeUsername={this.handleChangeUsername.bind(this)}
-          handleChangePassword={this.handleChangePassword.bind(this)}
-          handleChangeEmail={this.handleChangeEmail.bind(this)}
+          handleChange={this.handleChange.bind(this)}
           backToUsers={this.backToUsers.bind(this)}
           user={this.state.user} />
         :
