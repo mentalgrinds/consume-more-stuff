@@ -1,13 +1,14 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
 
-const ItemStatusList = ({items, statusId}) => {
+
+const ItemStatusList = ({items, statusId, currentUserId}) => {
   console.log('itemstatuslist', items)
   return (
     <div className='itemStatusList'>
       {
         items.filter( (item) => {
-          return item.itemstatus.id === Number(statusId);
+          return item.itemstatus.id === Number(statusId) && item.userId === Number(currentUse;
         }).map( (categoryItem) => {
           return (
             <ItemDetailView
