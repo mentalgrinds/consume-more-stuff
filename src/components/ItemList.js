@@ -6,10 +6,11 @@ const ItemList = ({items}) => {
   return (
     <div className='allItemList'>
       {
-        items.map((item) => {
+        items.map((item,idx) => {
           console.log('ITEM', item)
           return (
             <ItemDetailView
+              key={idx}
               id={item.id}
               name={item.name}
               description={item.description}

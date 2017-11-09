@@ -14,12 +14,18 @@ class AllItemView extends Component {
   }
 
   componentWillMount(){
-    // this.props.loadItems();
+    this.props.loadItems();
+  }
+
+  backToItems(e){
+    e.preventDefault();
+    this.setState({item: null});
   }
 
   render(){
     return(
       <div>
+
         <ItemList items={this.props.items}/>
         <TopItemsView/>
       </div>
