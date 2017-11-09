@@ -157,7 +157,7 @@ class NewItemForm extends Component {
     return (
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
-          Title: <input type="text" value={this.state.name} placeholder="Name" onChange={this.handleChangeName}/>
+          Title: <input type="text" value={this.state.name} onChange={this.handleChangeName}/>
           <br/>
           <br/>
 
@@ -175,7 +175,7 @@ class NewItemForm extends Component {
           <textarea cols="50" rows="10" value={this.state.description} onChange={this.handleChangeDescription} />
           <br/>
           <br/>
-          Price: <input type="text" value={this.state.price} placeholder="Price" onChange={this.handleChangePrice}/>
+          Price: <input type="text" value={this.state.price} onChange={this.handleChangePrice}/>
           <br/>
           <br/>
           Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
@@ -184,13 +184,13 @@ class NewItemForm extends Component {
           Condition: <Select name="condition" handler={this.handleChangeCondition} list={this.props.conditions} show="title" />
           <br/>
           <br/>
-          Manufacturer or make: <input type="text" value={this.state.manufacturer} placeholder="Manufacturer/Make" onChange={this.handleChangeManufacturer}/>
+          Manufacturer or make: <input type="text" value={this.state.manufacturer} placeholder="(optional)" onChange={this.handleChangeManufacturer}/>
           <br/>
           <br/>
-          Model: <input type="text" value={this.state.model} placeholder="Model" onChange={this.handleChangeModel}/>
+          Model: <input type="text" value={this.state.model} placeholder="(optional)" onChange={this.handleChangeModel}/>
           <br/>
           <br/>
-          Dimensions: <input type="text" value={this.state.dimensions} placeholder="Dimensions" onChange={this.handleChangeDimensions}/>
+          Dimensions: <input type="text" value={this.state.dimensions} placeholder="(optional)" onChange={this.handleChangeDimensions}/>
           <br/>
           <br/>
           Any other specifications or notes:
