@@ -62,7 +62,6 @@ route.post('/', upload.single('file'), ( req, res ) => {
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('items route has been requested: POST ');
   let file = req.file;
-  console.log('file', file);
 
   //Note: I just set userId and itemstatusId to 1 temporarily. it will be the req.user once we have a login feature.
 
