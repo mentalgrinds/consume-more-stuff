@@ -4,6 +4,7 @@ const ItemDetailView = ({id, name, userId, itemstatusId, description, image, pri
   return (
     <div className='eachItem'>
       <ol>
+
         <span onClick={(e)=>loadSingleItem(id,e)}><b>Item-Id:{id}</b></span><br/><br/>
         <b>Name:</b>{name}<br/>
         <b>User:</b> {userId}<br/>
@@ -20,6 +21,29 @@ const ItemDetailView = ({id, name, userId, itemstatusId, description, image, pri
         <b>Posted At: </b>{createdAt}<br/>
         <b>Updated At: </b>{updatedAt}<br/>
         <button onClick={(e)=>edit(id,e)}>EDIT</button>
+
+        <div className="all-view-title">
+            <span onClick={(e)=>loadSingleItem(id,e)}><h1>Item #{id}</h1></span>
+            <h2>{name}</h2>
+            <img src={image} /><br />
+        </div>
+
+        <div className="all-view-details">
+            {description}<br/><br/>
+            Price: $ {price}<br/>
+            <b>User:</b> {userId}<br/>
+            <b>Item Status:</b> {itemstatusId}<br/>
+            <b>Condition:</b>{conditionId}<br/>
+            <b>Category:</b>{categoryId}<br/>
+            <b>Manufacturer:</b>{manufacturer}<br/>
+            <b>Model:</b>{model}<br/>
+            <b>Dimensions:</b>{dimensions}<br/>
+            <b>Notes:</b>{notes}<br/><br/>
+            <b>Posted At: </b>{createdAt}<br/>
+            <b>Updated At: </b>{updatedAt}<br/>
+        </div>
+
+
       </ol>
     </div>
   )
