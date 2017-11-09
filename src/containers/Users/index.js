@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadUsers } from '../../actions/users';
 import UserList from '../../components/UserList.js';
-
+import filterUserStatus from '../../lib/filterUserStatus';
 
 
 class User extends Component {
@@ -17,10 +17,12 @@ class User extends Component {
   }
 
   render(){
-    console.log(this.props.users);
     return(
       <div>
-        <UserList users={this.props.users}/>
+        <UserList 
+          users={this.props.users}
+          activeUsers={this.props.activeUsers}
+          inactiveUsers={this.props.inactiveUsers}/>
       </div>
     )
   }
@@ -29,7 +31,9 @@ class User extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    users: state.users
+    users: state.users,
+    activeUsers: filterUserStatus(state.users,'active'),
+    inactiveUsers: filterUserStatus(state.users,'inactive')
   }
 }
 
