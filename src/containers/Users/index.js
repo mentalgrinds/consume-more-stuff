@@ -19,11 +19,6 @@ class User extends Component {
       auth: true,
       edit: false
     }
-
-    this.handleChangeUsername = this.handleChangeUsername.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
@@ -45,20 +40,34 @@ class User extends Component {
     })
   }
 
-  handleSubmit(id,e){
-    e.preventDefault();
-    let user = {
-      id: id,
+  // handleSubmit(id,e){
+  //   e.preventDefault();
+  //   let user = {
+  //     id: id,
+  //     username: this.state.username,
+  //     password: this.state.password,
+  //     email: this.state.email,
+  //     userstatus: (this.state.email ? 'active' : 'inactive')
+  //   }
+  //   this.props.editUser(user);
+  // }
+
+  editNow(user,e){
+    this.setState({user: user});
+    this.setState({edit: true});
+    if(this.state.edit){
+      let user = {
+      id: this.state.user[0].id,
       username: this.state.username,
       password: this.state.password,
       email: this.state.email,
       userstatus: (this.state.email ? 'active' : 'inactive')
     }
+    console.log(user);
     this.props.editUser(user);
-  }
-
-  edit(user,e){
-    this.setState({user: user});
+    this.setState({user: null});
+    this.setState({edit: false});
+    }
   }
 
 
@@ -87,12 +96,12 @@ class User extends Component {
       <div>
       {user ? 
         <SingleUser
-          edit={this.edit.bind(this)}
+          editNow={this.editNow.bind(this)}
+          edit={this.state.edit}
           auth={this.state.auth}
-          handleChangeUsername={this.handleChangeUsername}
-          handleChangePassword={this.handleChangePassword}
-          handleChangeEmail={this.handleChangeEmail}
-          handleSubmit={this.handleSubmit.bind(this)}
+          handleChangeUsername={this.handleChangeUsername.bind(this)}
+          handleChangePassword={this.handleChangePassword.bind(this)}
+          handleChangeEmail={this.handleChangeEmail.bind(this)}
           backToUsers={this.backToUsers.bind(this)}
           user={this.state.user} />
         :
