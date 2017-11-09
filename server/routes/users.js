@@ -12,8 +12,8 @@ const {user}                  = db;
 
 route.get('/', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated:',(value ? 'Yes Baseem' : 'No Baseem'),'the current REQ.USER:',req.user);
-  console.log('users route has been requested: GET ');
+  //console.log('Is the current user authenticated:',(value ? 'Yes Baseem' : 'No Baseem'),'the current REQ.USER:',req.user);
+  //console.log('users route has been requested: GET ');
   user.findAll({raw:true})
   .then((DataCollection) => {
     //console.log('users route has queried all data from the DB, result: ', DataCollection);
@@ -23,8 +23,8 @@ route.get('/', ( req, res ) => {
 
 route.get('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('users ID route has been requested: GET ');
+  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  //console.log('users ID route has been requested: GET ');
   let id = req.params.id;
   console.log('users.get/:id :', id);
   user.findById(id)
@@ -36,8 +36,8 @@ route.get('/:id', ( req, res ) => {
 
 route.post('/new', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('users route has been requested: POST ');
+  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  //console.log('users route has been requested: POST ');
   user.create({
     username : req.body.username,
     password : req.body.password,
@@ -50,8 +50,8 @@ route.post('/new', ( req, res ) => {
 
 route.put('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('users ID route has been requested: PUT ');
+  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  //console.log('users ID route has been requested: PUT ');
   let id = req.params.id;
   console.log('users.put/:id :', id);
   let data = req.body;
@@ -70,12 +70,12 @@ route.put('/:id', ( req, res ) => {
 
 route.delete('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('users ID route has been requested: DELETE ');
+  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
+  //console.log('users ID route has been requested: DELETE ');
   let id = req.params.id;
-  console.log('users.update/:id :', id);
+  //console.log('users.update/:id :', id);
   let data = req.body;
-  console.log('users.update/:id data :', data);
+  //console.log('users.update/:id data :', data);
   return user.update({
     userstatus: 'inactive'
   }, {where     : [{id: id}],

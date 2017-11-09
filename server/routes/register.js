@@ -23,7 +23,7 @@ route.post('/', (req,res) =>{
         userstatus: (req.body.email ? 'active' : 'inactive')
       })
       .then( (user) => {
-        console.log(user);
+        //console.log(user);
         res.json('user successfully added');
       })
       .catch((err) => {
@@ -34,12 +34,12 @@ route.post('/', (req,res) =>{
 });
 
 function isAuthenticated(req, res, next){
-  console.log("REQ.USER.ID***********************",req.user.id,"***********************");
+  //console.log("REQ.USER.ID***********************",req.user.id,"***********************");
   let id = parseInt(req.params.id);
   let userId = parseInt(req.user.id);
   //console.log(id === userId);
   if(id === req.user.id){
-    console.log("They Match - TRUE access GRANTED******************")
+    //console.log("They Match - TRUE access GRANTED******************")
     req.isAuthenticated();
     next();
   }
