@@ -11,7 +11,7 @@ const {item}                 = db;
 
 const multer = require('multer');
 const storage = multer.diskStorage({
-  destination: './uploads',
+  destination: './uploads/items',
   filename(req, file, cb){
     cb(null, `${file.originalname}`);
   }
@@ -59,11 +59,8 @@ route.get('/:id', ( req, res ) => {
 
 route.post('/', upload.single('file'), ( req, res ) => {
   let value = req.isAuthenticated();
-  console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  console.log('items route has been requested: POST ');
-  let file = req.file;
 
-  //Note: I just set userId and itemstatusId to 1 temporarily. it will be the req.user once we have a login feature.
+  let file = req.file;
 
   item.create({
     name : req.body.name,
@@ -76,7 +73,7 @@ route.post('/', upload.single('file'), ( req, res ) => {
     image    : req.file.path,
     categoryId : req.body.category,
     conditionId : req.body.condition,
-    userId : 1,
+    userId : req.user.id,
     itemstatusId: 1
   }).then((data) => {
       return item.findOne({
@@ -101,8 +98,7 @@ route.post('/', upload.single('file'), ( req, res ) => {
 
 route.put('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  //console.log('items ID route has been requested: PUT ');
+
   let id = req.params.id;
   //console.log('items.put/:id :', id);
   let data = req.body;
