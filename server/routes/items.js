@@ -8,8 +8,17 @@ const route                   = express.Router();
 const db                      = require('../models');
 const {item}                 = db;
 
+
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const storage = multer.diskStorage({
+  destination: './uploads',
+  filename(req, file, cb){
+    cb(null, `${file.originalname}`);
+  }
+})
+const upload = multer({ storage });
+
+
 const User = db.user;
 const Category = db.category;
 const Condition = db.condition;
@@ -48,10 +57,11 @@ route.get('/:id', ( req, res ) => {
   });
 });
 
-route.post('/', upload.single('image'), ( req, res ) => {
+route.post('/', upload.single('file'), ( req, res ) => {
   let value = req.isAuthenticated();
   console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
   console.log('items route has been requested: POST ');
+  let file = req.file;
 
   //Note: I just set userId and itemstatusId to 1 temporarily. it will be the req.user once we have a login feature.
 
@@ -63,7 +73,7 @@ route.post('/', upload.single('image'), ( req, res ) => {
     model : req.body.model,
     dimensions    : req.body.dimensions,
     notes : req.body.notes,
-    image    : req.body.image,
+    image    : req.file.path,
     categoryId : req.body.category,
     conditionId : req.body.condition,
     userId : 1,
@@ -80,7 +90,6 @@ route.post('/', upload.single('image'), ( req, res ) => {
         { model: ItemStatus, as: 'itemstatus'}
         ]
       })
-    // console.log('items route has posted new data to the DB, result: ', data);
     .then((item) => {
       return res.json(item);
     })
