@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadItems,editItem } from '../../actions/items';
-import DasboardItemList from '../../components/DasboardItemList';
-import DashboardSingleItem from '../../components/DashboardSingleItem.js';
-import DashboardItemDetailView from '../../components/DashboardItemDetailView.js';
+import ItemStatusList from '../../components/ItemStatusList';
+import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
 import editHelper from '../../lib/editItem';
+import TopItemsView from '../ItemStatusListView';
 
 
 class Dashboard extends Component {
@@ -42,11 +42,12 @@ class Dashboard extends Component {
 
   render(){
     const item = this.state.item;
+    const id = localStorage.getItem('userId');
     return(
       <div>
 
        {item ?
-        <DashboardSingleItem
+        <SingleItem
 
           edit={this.state.edit}
           auth={this.state.auth}
@@ -55,10 +56,14 @@ class Dashboard extends Component {
           handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}/>
         :
-        <DasboardItemList
-          loadSingleItem={this.loadSingleItem.bind(this)} 
-          items={this.props.items}/>
+        <div>
+        <h1> PUBLISHED </h1>
+        <ItemStatusList loadSingleItem={this.loadSingleItem.bind(this)} items={this.props.items} statusId={2} currentUserId = {id}/>
+        <h1> SOLD ITEMS  </h1>
+        <ItemStatusList loadSingleItem={this.loadSingleItem.bind(this)} items={this.props.items} statusId={1} currentUserId = {id}/>
+        </div>
         }
+        
 
 
 

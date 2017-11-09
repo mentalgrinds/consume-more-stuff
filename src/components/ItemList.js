@@ -1,6 +1,5 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
-import DashboardItemDetailView from './DashboardItemDetailView';
 
 const ItemList = ({items,loadSingleItem,edit}) => {
   return (
