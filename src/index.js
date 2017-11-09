@@ -38,21 +38,23 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
   <Router>
-    <div>
+    <div id="content-div">
       <Header />
-      <Link to="/">Home</Link>
-      <br></br>
-      <Link to="/new-item">New Item</Link>
-      <br></br>
-      <Link to="/all">All Items</Link>
-      <br></br>
-      <Link to="/users">Users</Link>
-      <br></br>
-      <Link to="/register">Register</Link>
-      <br></br>
-      <Link to="/login">Login</Link>
-      <br></br>
-      <Link to="/logout">Logout</Link>
+      <div id="nav">
+        <Link to="/">Home</Link>
+        <br></br>
+        <Link to="/new-item">New Item</Link>
+        <br></br>
+        <Link to="/all">All Items</Link>
+        <br></br>
+        <Link to="/users">Users</Link>
+        <br></br>
+        <Link to="/register">Register</Link>
+        <br></br>
+        <Link to="/login">Login</Link>
+        <br></br>
+        <Link to="/logout">Logout</Link>
+      </div>
 
       <Route exact path="/" component={App} />
       <Route path="/new-item" component={NewItemForm} />
