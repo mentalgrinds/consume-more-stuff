@@ -5,7 +5,7 @@ import ItemList from '../../components/ItemList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterUser';
 import editHelper from '../../lib/editItem';
-
+import ItemStatusListView from '../ItemStatusListView';
 
 class AllItemView extends Component {
   constructor(){
@@ -24,7 +24,7 @@ class AllItemView extends Component {
     let editedItem = editHelper(e);
     this.setState({item: item, edit: true});
     if(this.state.edit){
-      editedItem.id = item[0].id; 
+      editedItem.id = item[0].id;
       this.props.editItem(editedItem);
       this.setState({item: null, edit: false});
     }
@@ -55,11 +55,11 @@ class AllItemView extends Component {
           backToItems={this.backToItems.bind(this)}/>
         :
         <ItemList
-          loadSingleItem={this.loadSingleItem.bind(this)} 
+          loadSingleItem={this.loadSingleItem.bind(this)}
           items={this.props.items}/>
         }
-
-
+        ITEMSTATUSLISTVIEW HERE - RENDER (for testing only)
+        <ItemStatusListView/>
 
       </div>
     )
