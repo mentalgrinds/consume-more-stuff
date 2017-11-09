@@ -13,15 +13,13 @@ class Logout extends Component {
 
   render(){
     return (
-      <div>
-      {localStorage.getItem('userId') ?
+
         <div id="logout-form">
           <form onSubmit={this.handleLogout.bind(this)}>
             <input type="submit" className="button" value="Logout"/>
           </form>
         </div>
-        : null }
-      </div>
+
     )
   }
 
