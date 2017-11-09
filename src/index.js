@@ -10,6 +10,7 @@ import {
   Link
 } from 'react-router-dom';
 
+
 // import { Redirect } from 'react-router';
 
 import thunk from 'redux-thunk';
@@ -26,6 +27,8 @@ import RegistrationForm from './containers/RegistrationForm';
 import Users from './containers/Users';
 import Dashboard from './containers/Dashboard';
 
+import Nav from './containers/Nav';
+
 import registerServiceWorker from './registerServiceWorker';
 
 
@@ -41,23 +44,8 @@ ReactDOM.render(
   <Router>
     <div id="content-div">
       <Header />
-      <div id="nav">
-        <Link to="/">Home</Link>
-        <br></br>
-        <Link to="/new-item">New Item</Link>
-        <br></br>
-        <Link to="/all">All Items</Link>
-        <br></br>
-        <Link to="/users">Users</Link>
-        <br></br>
-        <Link to="/register">Register</Link>
-        <br></br>
-        <Link to="/dashboard">Dashboard</Link>
-        <br></br>
-        <Link to="/login">Login</Link>
-        <br></br>
-        <Link to="/logout">Logout</Link>
-      </div>
+      <Nav />
+
 
       <Route exact path="/" component={App} />
       <Route path="/new-item" component={NewItemForm} />
