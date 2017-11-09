@@ -23,10 +23,8 @@ class User extends Component {
   }
 
   loadUser(id,e){
-    console.log(id);
     let users = this.props.users;
     let user = filterUser(users,id)
-    console.log(user);
     this.setState({user: user});
   }
 

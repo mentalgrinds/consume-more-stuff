@@ -36,8 +36,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props.data)
-    console.log(this.props.auth)
     const {redirect} = this.state;
     
     if(redirect) {
