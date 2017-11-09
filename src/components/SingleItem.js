@@ -8,7 +8,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange}) => {
         <div className="back-to-list">
             <button onClick={(e)=>backToItems(e)}>Back</button>
         </div>
-    {!edit ? 
+    {!edit ?
         <ol>
             <div className="detail-view-title">
                 <h1>Item # {item ? item[0].id : null}</h1><br/>
@@ -19,11 +19,10 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange}) => {
                 {item ? item[0].description : null}<br/><br/>
                 Price: $ {item ? item[0].price : null}<br/>
 
-                Status: {item ? item[0].itemstatusId : null}<br/>
+                Status: {item ? item[0].itemstatus.title : null}<br/>
 
-                <b>User:</b> {item ? item[0].userId : null}<br/>
-                <b>Condition:</b>{item ? item[0].conditionId : null}<br/>
-                <b>Category:</b>{item ? item[0].categoryId : null}<br/>
+                <b>Condition:</b>{item ? item[0].itemcondition.title : null}<br/>
+                <b>Category:</b>{item ? item[0].itemcategory.title : null}<br/>
                 <b>Manufacturer:</b>{item ? item[0].manufacturer : null}<br/>
                 <b>Model:</b>{item ? item[0].model : null}<br/>
                 <b>Dimensions:</b>{item ? item[0].dimensions : null}<br/>
@@ -34,66 +33,66 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange}) => {
         </ol>
             :  <div>
                 <form>
-                  <input 
-                    type="text" 
-                    placeholder="Name" 
+                  <input
+                    type="text"
+                    placeholder="Name"
                     name="name"
                     onChange={handleChange}/>
-                    <input 
+                    <input
                     type="text"
                     name="user"
-                    placeholder="Item User" 
+                    placeholder="Item User"
                     onChange={handleChange}/>
-                  <input 
+                  <input
                     type="text"
                     name="description"
-                    placeholder="Item description" 
+                    placeholder="Item description"
                     onChange={handleChange}/>
-                  <input 
+                  <input
                     type="text"
-                    name="price" 
-                    placeholder="Price" 
+                    name="price"
+                    placeholder="Price"
                     onChange={handleChange}/>
 
-                  <select 
-                    name="category" 
+                  <select
+                    name="category"
                     onChange={handleChange}
-                    defaultValue='select one please'> 
+                    defaultValue='select one please'>
                     <option value="vehicle">vehicle</option>
                     <option value="computer">computer</option>
                     <option value="furniture">furniture</option>
                     <option value="appliances">appliances</option>
                     </select>
 
-                  <select 
-                    name="condition" 
+                  <select
+                    name="condition"
                     onChange={handleChange}
-                    defaultValue='select one please'> 
+                    defaultValue='select one please'>
                     <option value="okay">okay</option>
                     <option value="good">good</option>
                     <option value="used">used</option>
                     <option value="new">new</option>
                     </select>
 
-                  <input 
+                  <input
                     type="text"
-                    name="manfucturer" 
-                    placeholder="Manufacturer/Make" 
+                    name="manfucturer"
+                    placeholder="Manufacturer/Make"
                     onChange={handleChange}/>
-                  <input 
+                  <input
                     type="text"
-                    name="model"  
-                    placeholder="Model" 
+                    name="model"
+                    placeholder="Model"
                     onChange={handleChange}/>
-                  <input 
+                  <input
                     type="text"
-                    name="dimensions"  
-                    placeholder="Dimensions" 
+                    name="dimensions"
+                    placeholder="Dimensions"
                     onChange={handleChange}/>
-                  <input 
+                  <input
                     type="text"
-                    name="notes"  
-                    placeholder="Notes" 
+                    name="notes"
+                    placeholder="Notes"
                     onChange={handleChange}/>
                 </form>
              </div> }
