@@ -20,7 +20,6 @@ const ItemDetailView = ({id, name, userId, itemstatusId, description, image, pri
         <b>Notes:</b>{notes}<br/>
         <b>Posted At: </b>{createdAt}<br/>
         <b>Updated At: </b>{updatedAt}<br/>
-        <button onClick={(e)=>edit(id,e)}>EDIT</button>
 
         <div className="all-view-title">
             <span onClick={(e)=>loadSingleItem(id,e)}><h1>Item #{id}</h1></span>

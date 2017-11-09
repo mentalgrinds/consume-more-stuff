@@ -40,18 +40,6 @@ class User extends Component {
     })
   }
 
-  // handleSubmit(id,e){
-  //   e.preventDefault();
-  //   let user = {
-  //     id: id,
-  //     username: this.state.username,
-  //     password: this.state.password,
-  //     email: this.state.email,
-  //     userstatus: (this.state.email ? 'active' : 'inactive')
-  //   }
-  //   this.props.editUser(user);
-  // }
-
   editNow(user,e){
     this.setState({user: user});
     this.setState({edit: true});
@@ -70,21 +58,15 @@ class User extends Component {
     }
   }
 
-
-
-
   componentWillMount(){
     this.props.loadUsers();
   }
-
-
 
   loadUser(id,e){
     let users = this.props.users;
     let user = filterUser(users,id)
     this.setState({user: user});
   }
-
   backToUsers(e){
     e.preventDefault();
     this.setState({user: null});

@@ -29,8 +29,6 @@ export const addUser = (newUser) => {
 }
 
 export const editUser = (newInfo) => {
-  console.log('hello');
-console.log(newInfo)
   return function(dispatch){
     return axios.put(`/api/users/${newInfo.id}`, newInfo)
     .then (user => {
