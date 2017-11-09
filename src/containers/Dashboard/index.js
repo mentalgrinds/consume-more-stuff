@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-class Authorized extends Component {
+class Dashboard extends Component {
 
   constructor(){
     super();
@@ -40,9 +40,9 @@ const mapStatetoProps = (state) => {
   }
 }
 
-const ConnectedAuthorized = connect(
+const ConnectedDashboard = connect(
   mapStatetoProps,
   {loadItems}
-)(Authorized)
+)(Dashboard)
 
-export default ConnectedAuthorized;
+export default ConnectedDashboard;
