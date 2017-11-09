@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadItems,editItem } from '../../actions/items';
+import { loadConditions } from '../../actions/conditions';
+import { loadCategories } from '../../actions/categories';
 import ItemList from '../../components/ItemList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterUser';
@@ -24,13 +26,17 @@ class AllItemView extends Component {
     let editedItem = editHelper(e);
     this.setState({item: item, edit: true});
     if(this.state.edit){
-      editedItem.id = item[0].id; 
+      editedItem.id = item[0].id;
       this.props.editItem(editedItem);
       this.setState({item: null, edit: false});
     }
   }
 
-  componentWillMount(){ this.props.loadItems(); }
+  componentWillMount(){
+    this.props.loadItems();
+    this.props.loadCategories();
+    this.props.loadConditions();
+  }
 
   loadSingleItem(id,e){ this.setState({item: filterItem(this.props.items,id)}); }
 
@@ -52,10 +58,13 @@ class AllItemView extends Component {
           item={this.state.item}
           editNow={this.editNow.bind(this)}
           handleChange={this.handleChange.bind(this)}
-          backToItems={this.backToItems.bind(this)}/>
+          backToItems={this.backToItems.bind(this)}
+          categories={this.props.categories}
+          conditions={this.props.conditions}
+        />
         :
         <ItemList
-          loadSingleItem={this.loadSingleItem.bind(this)} 
+          loadSingleItem={this.loadSingleItem.bind(this)}
           items={this.props.items}/>
         }
 
@@ -69,13 +78,15 @@ class AllItemView extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    items: state.items
+    items: state.items,
+    categories: state.categories,
+    conditions: state.conditions
   }
 }
 
 const ConnectedAllItemView = connect(
   mapStateToProps,
-  {loadItems,editItem}
+  {loadItems,editItem,loadCategories,loadConditions}
 )(AllItemView)
 
 export default ConnectedAllItemView;
