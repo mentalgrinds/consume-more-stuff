@@ -24,6 +24,7 @@ import Login from './containers/Login';
 import Logout from './containers/Logout';
 import RegistrationForm from './containers/RegistrationForm';
 import Users from './containers/Users';
+import Dashboard from './containers/Dashboard';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -51,6 +52,8 @@ ReactDOM.render(
         <br></br>
         <Link to="/register">Register</Link>
         <br></br>
+        <Link to="/dashboard">Dashboard</Link>
+        <br></br>
         <Link to="/login">Login</Link>
         <br></br>
         <Link to="/logout">Logout</Link>
@@ -61,6 +64,7 @@ ReactDOM.render(
       <Route path="/all" component={AllItemView} />
       <Route path="/users" component={Users} />
       <Route path="/register" component={RegistrationForm} />
+      <Route path="/dashboard" component={Dashboard} />
       <Route path="/login" component={Login} />
       <Route path="/logout" component={Logout} />
 
