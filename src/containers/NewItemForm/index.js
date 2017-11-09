@@ -142,11 +142,26 @@ class NewItemForm extends Component {
     formData.append('model', this.state.model);
     formData.append('dimensions', this.state.dimensions);
     formData.append('notes', this.state.notes);
-    formData.append('category', this.state.category);
-    formData.append('condition', this.state.condition);
+    formData.append('category', this.state.category || 1);
+    formData.append('condition', this.state.condition || 1);
 
 
     this.props.addItem(formData);
+
+    this.setState({
+      name: '',
+      description: '',
+      price: '',
+      manufacturer: '',
+      model: '',
+      dimensions: '',
+      notes: '',
+      category: '',
+      condition: '',
+      file: '',
+      imageUrl: '',
+      buffer: ''
+    });
   }
 
 
