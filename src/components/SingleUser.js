@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const SingleUser = ({user,backToUsers}) => {
+const SingleUser = ({user,backToUsers,handleSubmit,handleChangeUsername,handleChangePassword,handleChangeEmail,edit,auth}) => {
     return (
     <div className='eachItem'>
       <ol>
@@ -11,6 +11,7 @@ const SingleUser = ({user,backToUsers}) => {
         <b>Password:</b> {user ? user[0].password : null}<br/>
         <b>email:</b> {user ? user[0].email : null}<br/>
         <b>User-Status</b> {user ? user[0].userstatus : null}<br/>
+        <button onClick={(e)=>edit(user,e)}>EDIT</button>
       </ol>
     </div>
   )

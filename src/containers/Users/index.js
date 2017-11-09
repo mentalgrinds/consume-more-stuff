@@ -15,7 +15,9 @@ class User extends Component {
       user: '',
       username: '',
       password: '',
-      email: ''
+      email: '',
+      auth: true,
+      edit: false
     }
 
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -55,6 +57,10 @@ class User extends Component {
     this.props.editUser(user);
   }
 
+  edit(user,e){
+    this.setState({user: user});
+  }
+
 
 
 
@@ -80,15 +86,17 @@ class User extends Component {
     return(
       <div>
       {user ? 
-        <SingleUser 
-        backToUsers={this.backToUsers.bind(this)}
-        user={this.state.user} />
-        :
-        <UserList 
+        <SingleUser
+          edit={this.edit.bind(this)}
+          auth={this.state.auth}
           handleChangeUsername={this.handleChangeUsername}
           handleChangePassword={this.handleChangePassword}
           handleChangeEmail={this.handleChangeEmail}
           handleSubmit={this.handleSubmit.bind(this)}
+          backToUsers={this.backToUsers.bind(this)}
+          user={this.state.user} />
+        :
+        <UserList 
           loadUser={this.loadUser.bind(this)}
           users={this.props.users}
           activeUsers={this.props.activeUsers}

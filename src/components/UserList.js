@@ -2,18 +2,14 @@ import React from 'react';
 import UserDetailView from './UserDetailView';
 
 
-const UserList = ({users,loadUser,handleSubmit,handleChangeUsername,handleChangePassword,handleChangeEmail}) => {
+const UserList = ({users,loadUser}) => {
   return (
     <div className='allItemList'>
      {
         users.map((user,idx) => {
           return (
             <UserDetailView
-              handleChangeUsername={this.handleChangeUsername}
-              handleChangePassword={this.handleChangePassword}
-              handleChangeEmail={this.handleChangeEmail}
               loadUser={loadUser}
-              handleSubmit={handleSubmit}
               key={idx}
               id={user.id}
               username={user.username}

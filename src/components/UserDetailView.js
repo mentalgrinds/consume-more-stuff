@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const UserDetailView = ({id,username,password,email,userstatus,loadUser,handleSubmit,handleChangeUsername,handleChangePassword,handleChangeEmail}) => {
+const UserDetailView = ({id,username,password,email,userstatus,loadUser}) => {
   return (
     <div className='eachItem'>
       <ol>
@@ -10,7 +10,6 @@ const UserDetailView = ({id,username,password,email,userstatus,loadUser,handleSu
         <b>Password:</b> {password}<br/>
         <b>email:</b> {email}<br/>
         <b>User-Status</b> {userstatus}<br/>
-        <button onClick={(e)=>handleSubmit(id,e)}>EDIT</button>
       </ol>
     </div>
   )
