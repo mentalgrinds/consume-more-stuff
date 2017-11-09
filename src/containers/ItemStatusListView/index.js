@@ -3,9 +3,9 @@ import ItemDetailView from '../../components/ItemDetailView';
 import { connect } from 'react-redux';
 import { loadItems } from '../../actions/items';
 import ItemList from '../../components/ItemList';
-import ItemStatusListView from '../../containers/ItemStatusListView';
+import ItemStatusList from '../../components/ItemStatusList';
 
-class AllItemView extends Component {
+class TopItemsView extends Component {
   constructor(){
     super();
 
@@ -13,13 +13,16 @@ class AllItemView extends Component {
   }
 
   componentWillMount(){
-    // this.props.loadItems();
+
   }
 
   render(){
     return(
       <div>
-        <ItemList items={this.props.items}/>
+        <h1> PUBLISHED </h1>
+        <ItemStatusList items={this.props.items} statusId={2}/>
+        <h1> SOLD ITEMS  </h1>
+        <ItemStatusList items={this.props.items} statusId={1}/>
       </div>
     )
   }
@@ -40,9 +43,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const ConnectedAllItemView = connect(
+const ConnectedItemStatusList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AllItemView)
+)(TopItemsView)
 
-export default ConnectedAllItemView;
+export default ConnectedItemStatusList;
