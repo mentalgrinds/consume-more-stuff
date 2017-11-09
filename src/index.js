@@ -46,7 +46,6 @@ ReactDOM.render(
       <Header />
       <Nav />
 
-
       <Route exact path="/" component={App} />
       <Route path="/new-item" component={NewItemForm} />
       <Route path="/all" component={AllItemView} />
@@ -54,7 +53,7 @@ ReactDOM.render(
       <Route path="/register" component={RegistrationForm} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/login" component={Login} />
-      <Route path="/logout" component={Logout} />
+
 
 
     </div>

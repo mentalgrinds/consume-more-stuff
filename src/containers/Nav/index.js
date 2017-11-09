@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logout from '../Logout';
 
 const Nav = () => {
   return (
@@ -17,6 +18,8 @@ const Nav = () => {
       <Link to="/dashboard">Dashboard</Link>
       <br></br>
       <Link to="/login">Login</Link>
+      <Logout />
+
       <br></br>
     </div>
   )
