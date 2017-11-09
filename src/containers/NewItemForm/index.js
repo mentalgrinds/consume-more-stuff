@@ -24,8 +24,7 @@ class NewItemForm extends Component {
       category: '',
       condition: '',
       file: '',
-      imageUrl: '',
-      buffer: ''
+      imageUrl: ''
     }
 
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -59,7 +58,6 @@ class NewItemForm extends Component {
   handleChangeImage(event){
     event.preventDefault();
     let reader = new FileReader();
-    let bufferReader = new FileReader();
 
     let file = event.target.files[0];
     console.log(file);
@@ -71,13 +69,6 @@ class NewItemForm extends Component {
       })
     }
 
-    bufferReader.onloadend = () => {
-      this.setState({
-        buffer: bufferReader.result
-      })
-    }
-
-    bufferReader.readAsArrayBuffer(file);
     reader.readAsDataURL(file);
   }
 
@@ -159,8 +150,7 @@ class NewItemForm extends Component {
       category: '',
       condition: '',
       file: '',
-      imageUrl: '',
-      buffer: ''
+      imageUrl: ''
     });
   }
 
