@@ -54,7 +54,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleName,handleUser,ha
                   <select 
                     name="category" 
                     handler={handleCategory}
-                    defaultValue=''> 
+                    defaultValue='select one please'> 
                     <option value="vehicle">vehicle</option>
                     <option value="computer">computer</option>
                     <option value="furniture">furniture</option>
@@ -64,7 +64,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleName,handleUser,ha
                   <select 
                     name="condition" 
                     handler={handleCondition}
-                    defaultValue=''> 
+                    defaultValue='select one please'> 
                     <option value="okay">okay</option>
                     <option value="good">good</option>
                     <option value="used">used</option>
