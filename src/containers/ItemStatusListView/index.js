@@ -5,6 +5,7 @@ import { loadItems } from '../../actions/items';
 import ItemList from '../../components/ItemList';
 import ItemStatusList from '../../components/ItemStatusList';
 
+
 class TopItemsView extends Component {
   constructor(){
     super();
@@ -15,14 +16,16 @@ class TopItemsView extends Component {
   componentWillMount(){
 
   }
-
+/*ID NEEDS TO BE SET UP*/
   render(){
+    const id = localStorage.getItem('userId')
+    console.log('WHo is in?', id)
     return(
       <div>
         <h1> PUBLISHED </h1>
-        <ItemStatusList items={this.props.items} statusId={2}/>
+        <ItemStatusList items={this.props.items} statusId={2} currentUserId = {id}/>
         <h1> SOLD ITEMS  </h1>
-        <ItemStatusList items={this.props.items} statusId={1}/>
+        <ItemStatusList items={this.props.items} statusId={1} currentUserId = {id}/>
       </div>
     )
   }

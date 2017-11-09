@@ -3,6 +3,8 @@ import React from 'react';
 import Logo from './logo';
 
 const Header = () => {
+  const username = localStorage.getItem('username')
+  const properName = username.charAt(0).toUpperCase() + username.slice(1).toLowerCase()
   return (
     <div id="header">
       <Logo />
@@ -13,6 +15,7 @@ const Header = () => {
         <h2>
           Торговая площадка высокого качества для юридических товаров и услуг
         </h2>
+        Hello, {properName}
       </div>
     </div>
   );
