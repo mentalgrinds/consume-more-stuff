@@ -53,8 +53,8 @@ class AllItemView extends Component {
 
 
 
-   editNow(user,e){
-    this.setState({item: user});
+   editNow(item,e){
+    this.setState({item: item});
     this.setState({edit: true});
     if(this.state.edit){
       let item = {
@@ -72,9 +72,8 @@ class AllItemView extends Component {
         dimensions: this.state.dimensions,
         notes:this.state.notes
     }
-    console.log(item);
     this.props.editItem(item);
-    this.setState({item: item});
+    this.setState({item: null});
     this.setState({edit: false});
     }
   }
