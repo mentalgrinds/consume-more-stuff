@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ItemList from '../../components/ItemList';
 
 
 class Dashboard extends Component {
@@ -10,6 +11,7 @@ class Dashboard extends Component {
     this.state = {
       authorized: false
     }
+    console.log()
   }
 
   componentWillMount(){
@@ -27,6 +29,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="App">
+{/*        <ItemList />*/}
 
       </div>
     );
@@ -41,8 +44,7 @@ const mapStatetoProps = (state) => {
 }
 
 const ConnectedDashboard = connect(
-  mapStatetoProps,
-  {loadItems}
+  mapStatetoProps
 )(Dashboard)
 
 export default ConnectedDashboard;
