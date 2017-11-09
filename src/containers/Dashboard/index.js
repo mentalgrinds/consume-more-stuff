@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadItems,editItem } from '../../actions/items';
-import ItemList from '../../components/ItemList';
+import DasboardItemList from '../../components/DasboardItemList';
 import DashboardSingleItem from '../../components/DashboardSingleItem.js';
 import DashboardItemDetailView from '../../components/DashboardItemDetailView.js';
 import filterItem from '../../lib/filterItem';
@@ -55,7 +55,7 @@ class Dashboard extends Component {
           handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}/>
         :
-        <ItemList
+        <DasboardItemList
           loadSingleItem={this.loadSingleItem.bind(this)} 
           items={this.props.items}/>
         }
