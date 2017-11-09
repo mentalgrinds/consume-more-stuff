@@ -58,8 +58,6 @@ class AllItemView extends Component {
           loadSingleItem={this.loadSingleItem.bind(this)}
           items={this.props.items}/>
         }
-        ITEMSTATUSLISTVIEW HERE - RENDER (for testing only)
-        <ItemStatusListView/>
 
       </div>
     )

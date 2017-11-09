@@ -8,8 +8,7 @@ const ItemStatusList = ({items, statusId, currentUserId}) => {
     <div className='itemStatusList'>
       {
         items.filter( (item) => {
-          console.log('itemstatusList ----> ',item)
-          return item.itemstatus.id === Number(statusId) && item.userId === Number(currentUserId);
+          return item.itemstatus.id === Number(statusId) && item.userId === Number(currentUse;
         }).map( (categoryItem) => {
           return (
             <ItemDetailView
