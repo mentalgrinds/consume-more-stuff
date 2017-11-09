@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
-
+import DashboardItemDetailView from './DashboardItemDetailView';
 
 const ItemList = ({items,loadSingleItem,edit}) => {
   return (
@@ -8,6 +8,7 @@ const ItemList = ({items,loadSingleItem,edit}) => {
       {
         items.map((item,idx) => {
           return (
+
             <ItemDetailView
               loadSingleItem={loadSingleItem}
               edit={edit}
@@ -29,6 +30,7 @@ const ItemList = ({items,loadSingleItem,edit}) => {
               categoryId={item.itemcategory.title}
             />
           )
+
         })
       }
     </div>

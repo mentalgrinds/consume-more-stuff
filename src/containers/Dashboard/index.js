@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadItems,editItem } from '../../actions/items';
 import ItemList from '../../components/ItemList';
-import SingleItem from '../../components/SingleItem.js';
+import DashboardSingleItem from '../../components/DashboardSingleItem.js';
+import DashboardItemDetailView from '../../components/DashboardItemDetailView.js';
 import filterItem from '../../lib/filterItem';
 import editHelper from '../../lib/editItem';
 
@@ -45,7 +46,7 @@ class Dashboard extends Component {
       <div>
 
        {item ?
-        <SingleItem
+        <DashboardSingleItem
 
           edit={this.state.edit}
           auth={this.state.auth}
