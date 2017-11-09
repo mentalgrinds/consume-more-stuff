@@ -1,47 +1,75 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import ItemList from '../../components/ItemList';
 import { loadItems,editItem } from '../../actions/items';
-import filterItem from '../../lib/filterUser';
+import ItemList from '../../components/ItemList';
+import SingleItem from '../../components/SingleItem.js';
+import filterItem from '../../lib/filterItem';
+import editHelper from '../../lib/editItem';
+
 
 class Dashboard extends Component {
+  constructor(){
+    super();
 
-  constructor(props){
-    super(props);
+        this.state = {
+          item: '',
+          auth: true,
+          edit: false
+        }
+  }
 
+  handleChange(e){ editHelper(e); }
 
-    const userId = localStorage.getItem('userId');
-
-    this.state = {
-      authorized: false,
-      userItems: filterItem(this.props.items,userId)
+  editNow(item,e){
+    let editedItem = editHelper(e);
+    this.setState({item: item, edit: true});
+    if(this.state.edit){
+      editedItem.id = item[0].id; 
+      this.props.editItem(editedItem);
+      this.setState({item: null, edit: false});
     }
   }
 
+  componentWillMount(){ this.props.loadItems(); }
 
-  componentWillMount(){ this.props.loadItems();}
+  loadSingleItem(id,e){ this.setState({item: filterItem(this.props.items,localStorage.getItem('userId'))}); }
 
+  backToItems(e){
+    e.preventDefault();
+    this.setState({item: null});
+  }
 
-  render() {
-    const username = localStorage.getItem('username');
-    console.log(this.props.items)
-    return (
+  render(){
+    const item = this.state.item;
+    return(
       <div>
-        <div className="App">
-          <h1>Welcome {username} to your Dashboard View</h1>
-        </div>
-        <div>
-          <ItemList
-            items={this.state.userItems} />
-        </div>
+
+       {item ?
+        <SingleItem
+
+          edit={this.state.edit}
+          auth={this.state.auth}
+          item={this.state.item}
+          editNow={this.editNow.bind(this)}
+          handleChange={this.handleChange.bind(this)}
+          backToItems={this.backToItems.bind(this)}/>
+        :
+        <ItemList
+          loadSingleItem={this.loadSingleItem.bind(this)} 
+          items={this.props.items}/>
+        }
+
+
+
       </div>
-    );
+    )
   }
 }
 
+
 const mapStateToProps = (state) => {
   return{
-    items: state.items
+    items: filterItem(state.items,localStorage.getItem('userId'))
   }
 }
 
