@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ItemDetailView = ({id, name, userId, itemstatusId, description, image, price, conditionId, categoryId, manufacturer, model, dimensions, notes, createdAt, updatedAt,loadSingleItem}) => {
+const ItemDetailView = ({id, name, userId, itemstatusId, description, image, price, conditionId, categoryId, manufacturer, model, dimensions, notes, createdAt, updatedAt,loadSingleItem,edit}) => {
   return (
     <div className='eachItem'>
       <ol>
@@ -19,6 +19,7 @@ const ItemDetailView = ({id, name, userId, itemstatusId, description, image, pri
         <b>Notes:</b>{notes}<br/>
         <b>Posted At: </b>{createdAt}<br/>
         <b>Updated At: </b>{updatedAt}<br/>
+        <button onClick={(e)=>edit(id,e)}>EDIT</button>
       </ol>
     </div>
   )

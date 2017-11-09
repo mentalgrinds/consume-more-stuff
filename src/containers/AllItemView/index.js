@@ -27,6 +27,10 @@ class AllItemView extends Component {
     this.props.loadItems();
   }
 
+  edit(){
+    console.log('edit')
+  }
+
   loadSingleItem(id,e){
     let items = this.props.items;
     let item = filterItem(items,id)
@@ -49,6 +53,7 @@ class AllItemView extends Component {
           item={this.state.item}/>
         :
         <ItemList
+          edit={this.edit.bind(this)}
           loadSingleItem={this.loadSingleItem.bind(this)} 
           items={this.props.items}/>
         }

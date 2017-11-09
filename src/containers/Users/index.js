@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { loadUsers } from '../../actions/users';
+import { loadUsers,editUser } from '../../actions/users';
 import UserList from '../../components/UserList.js';
 import filterUserStatus from '../../lib/filterUserStatus';
 import filterUser from '../../lib/filterUser';
@@ -12,15 +12,57 @@ class User extends Component {
     super();
 
     this.state = {
-      user: ''
+      user: '',
+      username: '',
+      password: '',
+      email: ''
     }
 
-
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+
+  handleChangeUsername(event){
+    this.setState({
+      username: event.target.value
+    })
+  }
+
+  handleChangePassword(event){
+    this.setState({
+      password: event.target.value
+    })
+  }
+
+  handleChangeEmail(event){
+    this.setState({
+      email: event.target.value
+    })
+  }
+
+  handleSubmit(id,e){
+    e.preventDefault();
+    let user = {
+      id: id,
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      userstatus: (this.state.email ? 'active' : 'inactive')
+    }
+    this.props.editUser(user);
+  }
+
+
+
 
   componentWillMount(){
     this.props.loadUsers();
   }
+
+
 
   loadUser(id,e){
     let users = this.props.users;
@@ -43,6 +85,10 @@ class User extends Component {
         user={this.state.user} />
         :
         <UserList 
+          handleChangeUsername={this.handleChangeUsername}
+          handleChangePassword={this.handleChangePassword}
+          handleChangeEmail={this.handleChangeEmail}
+          handleSubmit={this.handleSubmit.bind(this)}
           loadUser={this.loadUser.bind(this)}
           users={this.props.users}
           activeUsers={this.props.activeUsers}
@@ -66,7 +112,7 @@ const mapStateToProps = (state) => {
 
 const ConnectedUser = connect(
   mapStateToProps,
-  {loadUsers}
+  {loadUsers,editUser}
 )(User)
 
 export default ConnectedUser;
