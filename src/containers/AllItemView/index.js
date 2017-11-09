@@ -4,6 +4,7 @@ import { loadItems,editItem } from '../../actions/items';
 import ItemList from '../../components/ItemList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterUser';
+import editHelper from '../../lib/editItem';
 
 
 class AllItemView extends Component {
@@ -12,67 +13,22 @@ class AllItemView extends Component {
 
         this.state = {
           item: '',
-          name: '',
-          user: '',
-          itemstatus: '',
-          description: '',
-          image: '',
-          price: '',
-          condition: '',
-          category: '',
-          manfucturer: '',
-          model: '',
-          dimensions: '',
-          notes:'',
           auth: true,
           edit: false
         }
   }
-   handleName(event)          { this.setState({ name: event.target.value        }) }
-   handleUser(event)          { this.setState({ user: event.target.value        }) }
-   handleItemStatus(event)    { this.setState({ itemstatus: event.target.value  }) }
-   handleDescription(event)   { this.setState({ description: event.target.value }) }
-   handleImage(event)         { this.setState({ image: event.target.value       }) }
-   handlePrice(event)         { this.setState({ price: event.target.value       }) }
-   handleCondition(event)     { this.setState({ condition: event.target.value   }) }
-   handleCategory(event)      { this.setState({ category: event.target.value    }) }
-   handleManufacturer(event)  { this.setState({ manfucturer: event.target.value }) }
-   handleModel(event)         { this.setState({ model: event.target.value       }) }
-   handleDimensions(event)    { this.setState({ dimensions: event.target.value  }) }
-   handleNotes(event)         { this.setState({ notes: event.target.value       }) }
 
-
-
-
-
+  handleChange(e){ editHelper(e); }
 
    editNow(item,e){
-    this.setState({item: item});
-    this.setState({edit: true});
+    let editedItem = editHelper(e);
+    this.setState({item: item, edit: true});
     if(this.state.edit){
-      let item = {
-        id: this.state.item[0].id,
-        name: this.state.name,
-        user: this.state.user,
-        itemstatus: this.state.itemstatus,
-        description: this.state.description,
-        image: this.state.image,
-        price: this.state.price,
-        condition: this.state.condition,
-        category: this.state.category,
-        manfucturer: this.state.manfucturer,
-        model: this.state.model,
-        dimensions: this.state.dimensions,
-        notes:this.state.notes
-    }
-    this.props.editItem(item);
-    this.setState({item: null});
-    this.setState({edit: false});
+      editedItem.id = item[0].id; 
+      this.props.editItem(editedItem);
+      this.setState({item: null, edit: false});
     }
   }
-
-
-
 
   componentWillMount(){
     this.props.loadItems();
@@ -101,18 +57,7 @@ class AllItemView extends Component {
           auth={this.state.auth}
           item={this.state.item}
           editNow={this.editNow.bind(this)}
-          handleName={this.handleName.bind(this)}
-          handleUser={this.handleUser.bind(this)}
-          handleItemStatus={this.handleItemStatus.bind(this)}
-          handleDescription={this.handleDescription.bind(this)}
-          handleImage={this.handleImage.bind(this)}
-          handlePrice={this.handlePrice.bind(this)}
-          handleCondition={this.handleCondition.bind(this)}
-          handleCategory={this.handleCategory.bind(this)}
-          handleManufacturer={this.handleManufacturer.bind(this)}
-          handleModel={this.handleModel.bind(this)}
-          handleDimensions={this.handleDimensions.bind(this)}
-          handleNotes={this.handleNotes.bind(this)} 
+          handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}/>
         :
         <ItemList

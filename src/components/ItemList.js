@@ -7,7 +7,6 @@ const ItemList = ({items,loadSingleItem,edit}) => {
     <div className='allItemList'>
       {
         items.map((item,idx) => {
-          console.log('ITEM', item)
           return (
             <ItemDetailView
               loadSingleItem={loadSingleItem}

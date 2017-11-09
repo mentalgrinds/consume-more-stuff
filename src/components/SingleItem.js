@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-const SingleItem = ({item,backToItems,edit,auth,editNow,handleName,handleUser,handleItemStatus,handleDescription,handleImage,handlePrice,handleCondition,handleCategory,handleManufacturer,handleModel,handleDimensions,handleNotes}) => {
+const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange}) => {
     return (
     <div className='eachItem'>
         <div className="back-to-list">
@@ -37,23 +37,27 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleName,handleUser,ha
                   <input 
                     type="text" 
                     placeholder="Name" 
-                    onChange={handleName}/>
+                    name="name"
+                    onChange={handleChange}/>
                     <input 
                     type="text"
+                    name="user"
                     placeholder="Item User" 
-                    onChange={handleUser}/>
+                    onChange={handleChange}/>
                   <input 
                     type="text"
+                    name="description"
                     placeholder="Item description" 
-                    onChange={handleDescription}/>
+                    onChange={handleChange}/>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="price" 
                     placeholder="Price" 
-                    onChange={handlePrice}/>
+                    onChange={handleChange}/>
 
                   <select 
                     name="category" 
-                    handler={handleCategory}
+                    onChange={handleChange}
                     defaultValue='select one please'> 
                     <option value="vehicle">vehicle</option>
                     <option value="computer">computer</option>
@@ -63,7 +67,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleName,handleUser,ha
 
                   <select 
                     name="condition" 
-                    handler={handleCondition}
+                    onChange={handleChange}
                     defaultValue='select one please'> 
                     <option value="okay">okay</option>
                     <option value="good">good</option>
@@ -72,21 +76,25 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleName,handleUser,ha
                     </select>
 
                   <input 
-                    type="text" 
+                    type="text"
+                    name="manfucturer" 
                     placeholder="Manufacturer/Make" 
-                    onChange={handleManufacturer}/>
+                    onChange={handleChange}/>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="model"  
                     placeholder="Model" 
-                    onChange={handleModel}/>
+                    onChange={handleChange}/>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="dimensions"  
                     placeholder="Dimensions" 
-                    onChange={handleDimensions}/>
+                    onChange={handleChange}/>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="notes"  
                     placeholder="Notes" 
-                    onChange={handleNotes}/>
+                    onChange={handleChange}/>
                 </form>
              </div> }
         {auth ? <button onClick={(e)=>editNow(item,e)}>
