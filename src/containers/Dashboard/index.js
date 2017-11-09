@@ -42,12 +42,6 @@ class Dashboard extends Component {
   }
 
   render(){
-    const { from } = this.props.location.state || { from: { pathname: '/login' } }
-    const redirect = localStorage.getItem('userId');
-
-    if(redirect){
-      return ( <Redirect to={from}/>)
-    }
     const item = this.state.item;
     const id = localStorage.getItem('userId');
     return(
