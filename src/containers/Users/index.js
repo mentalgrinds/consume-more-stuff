@@ -16,10 +16,16 @@ class User extends Component {
     this.props.loadUsers();
   }
 
+  loadUser(id,e){
+    console.log(id);
+    console.log("get user");
+  }
+
   render(){
     return(
       <div>
         <UserList 
+          loadUser={this.loadUser.bind(this)}
           users={this.props.users}
           activeUsers={this.props.activeUsers}
           inactiveUsers={this.props.inactiveUsers}/>

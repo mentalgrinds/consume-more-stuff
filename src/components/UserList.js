@@ -2,13 +2,14 @@ import React from 'react';
 import UserDetailView from './UserDetailView';
 
 
-const UserList = ({users}) => {
+const UserList = ({users,loadUser}) => {
   return (
     <div className='allItemList'>
      {
         users.map((user,idx) => {
           return (
             <UserDetailView
+              loadUser={loadUser}
               key={idx}
               id={user.id}
               username={user.username}
