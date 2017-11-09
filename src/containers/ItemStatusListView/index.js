@@ -43,9 +43,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const ConnectedTopItemsView = connect(
+const ConnectedItemStatusList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TopItemsView)
 
-export default ConnectedTopItemsView;
+export default ConnectedItemStatusList;
