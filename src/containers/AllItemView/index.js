@@ -20,7 +20,7 @@ class AllItemView extends Component {
 
   handleChange(e){ editHelper(e); }
 
-   editNow(item,e){
+  editNow(item,e){
     let editedItem = editHelper(e);
     this.setState({item: item, edit: true});
     if(this.state.edit){
@@ -30,15 +30,9 @@ class AllItemView extends Component {
     }
   }
 
-  componentWillMount(){
-    this.props.loadItems();
-  }
+  componentWillMount(){ this.props.loadItems(); }
 
-  loadSingleItem(id,e){
-    let items = this.props.items;
-    let item = filterItem(items,id)
-    this.setState({item: item});
-  }
+  loadSingleItem(id,e){ this.setState({item: filterItem(this.props.items,id)}); }
 
   backToItems(e){
     e.preventDefault();

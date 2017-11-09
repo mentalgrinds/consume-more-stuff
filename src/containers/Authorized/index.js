@@ -40,18 +40,9 @@ const mapStatetoProps = (state) => {
   }
 }
 
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadItems: () => {
-      dispatch(loadItems())
-    }
-  }
-}
-
 const ConnectedAuthorized = connect(
   mapStatetoProps,
-  mapDispatchToProps
+  {loadItems}
 )(Authorized)
 
 export default ConnectedAuthorized;
