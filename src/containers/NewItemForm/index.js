@@ -159,25 +159,50 @@ class NewItemForm extends Component {
     return (
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.name} placeholder="Name" onChange={this.handleChangeName}/>
-          <input type="file" id="image-upload" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
-          <input type="text" value={this.state.description} placeholder="Item description" onChange={this.handleChangeDescription}/>
-          <input type="text" value={this.state.price} placeholder="Price" onChange={this.handleChangePrice}/>
+          Title: <input type="text" value={this.state.name} onChange={this.handleChangeName}/>
+          <br/>
+          <br/>
 
-          <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
+          <div id="upload-image-form">
+            Image:
+            <input type="file" id="image-upload" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
+            <div id="uploaded-image-preview">
+              <img alt="Image Preview" src={this.state.imageUrl} />
+            </div>
+          </div>
 
-          <Select name="condition" handler={this.handleChangeCondition} list={this.props.conditions} show="title" />
+          <br/>
+          Description:
+          <br/>
+          <textarea cols="50" rows="10" value={this.state.description} onChange={this.handleChangeDescription} />
+          <br/>
+          <br/>
+          Price: <input type="text" value={this.state.price} onChange={this.handleChangePrice}/>
+          <br/>
+          <br/>
+          Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
+          <br/>
+          <br/>
+          Condition: <Select name="condition" handler={this.handleChangeCondition} list={this.props.conditions} show="title" />
+          <br/>
+          <br/>
+          Manufacturer or make: <input type="text" value={this.state.manufacturer} placeholder="(optional)" onChange={this.handleChangeManufacturer}/>
+          <br/>
+          <br/>
+          Model: <input type="text" value={this.state.model} placeholder="(optional)" onChange={this.handleChangeModel}/>
+          <br/>
+          <br/>
+          Dimensions: <input type="text" value={this.state.dimensions} placeholder="(optional)" onChange={this.handleChangeDimensions}/>
+          <br/>
+          <br/>
+          Any other specifications or notes:
+          <br/>
+          <textarea cols="50" rows="10" value={this.state.notes} onChange={this.handleChangeNotes} />
 
-          <input type="text" value={this.state.manufacturer} placeholder="Manufacturer/Make" onChange={this.handleChangeManufacturer}/>
-          <input type="text" value={this.state.model} placeholder="Model" onChange={this.handleChangeModel}/>
-          <input type="text" value={this.state.dimensions} placeholder="Dimensions" onChange={this.handleChangeDimensions}/>
-          <input type="text" value={this.state.notes} placeholder="Notes" onChange={this.handleChangeNotes}/>
-          <input type="submit" className="button" value="Add Item"/>
+          <br/>
+          <input type="submit" className="button" value="Add my item to the marketplace!"/>
         </form>
 
-        <div>
-          <img src={this.state.imageUrl} />
-        </div>
       </div>
     )
   }
