@@ -54,7 +54,7 @@ route.put('/:id', ( req, res ) => {
   //console.log('users ID route has been requested: PUT ');
   let id = req.params.id;
   console.log('users.put/:id :', id);
-  let data = req.body;
+  console.log(req.body);
   return user.update({
     username: req.body.username,
     password: req.body.password,

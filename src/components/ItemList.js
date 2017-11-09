@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ItemDetailView from './ItemDetailView';
 
 
-const ItemList = ({items,loadSingleItem}) => {
+const ItemList = ({items,loadSingleItem,edit}) => {
   return (
     <div className='allItemList'>
       {
@@ -11,6 +11,7 @@ const ItemList = ({items,loadSingleItem}) => {
           return (
             <ItemDetailView
               loadSingleItem={loadSingleItem}
+              edit={edit}
               key={idx}
               id={item.id}
               name={item.name}
