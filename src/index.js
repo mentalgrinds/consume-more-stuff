@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -26,7 +26,6 @@ import RegistrationForm from './containers/RegistrationForm';
 import Users from './containers/Users';
 
 import registerServiceWorker from './registerServiceWorker';
-
 
 
 
