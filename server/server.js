@@ -11,7 +11,7 @@ const Redis           = require('connect-redis')(session);
 const LocalStrategy   = require('passport-local').Strategy;
 var cors              = require('cors')
 const saltRounds      = 12;
-const PORT            = process.env.PORT || 3000;
+const PORT            = process.env.PORT || 8080;
 const app             = express();
 
 app.use(bodyParser.json());
