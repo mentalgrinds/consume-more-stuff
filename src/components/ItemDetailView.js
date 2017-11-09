@@ -9,7 +9,7 @@ const ItemDetailView = ({id, name, userId, itemstatusId, description, image, pri
         <b>User:</b> {userId}<br/>
         <b>Item Status:</b> {itemstatusId}<br/>
         <b>Description:</b>{description}<br/>
-        <b>Image:</b>{image}<br/>
+        <b>Image:</b><img src={image} /><br/>
         <b>Price:</b>{price}<br/>
         <b>Condition:</b>{conditionId}<br/>
         <b>Category:</b>{categoryId}<br/>
