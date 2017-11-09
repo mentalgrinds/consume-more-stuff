@@ -22,7 +22,9 @@ class NewItemForm extends Component {
       dimensions: '',
       notes: '',
       category: '',
-      condition: ''
+      condition: '',
+      file: '',
+      imageUrl: ''
     }
 
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -37,12 +39,6 @@ class NewItemForm extends Component {
     this.handleChangeCondition = this.handleChangeCondition.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-
-     if(localStorage.getItem('userId')){
-      this.state = { auth: true, redirect: true };
-    }else{
-      this.state = { auth: false, redirect: false };
-    }
 
   }
 
@@ -60,9 +56,19 @@ class NewItemForm extends Component {
   }
 
   handleChangeImage(event){
-    this.setState({
-      image: event.target.value
-    })
+    event.preventDefault();
+    let reader = new FileReader();
+
+    let file = event.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imageUrl: reader.result
+      })
+    }
+
+    reader.readAsDataURL(file);
   }
 
   handleChangeDescription(event){
@@ -116,9 +122,9 @@ class NewItemForm extends Component {
   handleSubmit(event){
     event.preventDefault();
 
-    let fileInput = document.getElementById('image-upload');
     let formData = new FormData();
-    formData.append('image', fileInput.value);
+
+    formData.append('file', this.state.file);
     formData.append('name', this.state.name);
     formData.append('description', this.state.description);
     formData.append('price', this.state.price);
@@ -126,11 +132,25 @@ class NewItemForm extends Component {
     formData.append('model', this.state.model);
     formData.append('dimensions', this.state.dimensions);
     formData.append('notes', this.state.notes);
-    formData.append('category', this.state.category);
-    formData.append('condition', this.state.condition);
+    formData.append('category', this.state.category || 1);
+    formData.append('condition', this.state.condition || 1);
 
 
     this.props.addItem(formData);
+
+    this.setState({
+      name: '',
+      description: '',
+      price: '',
+      manufacturer: '',
+      model: '',
+      dimensions: '',
+      notes: '',
+      category: '',
+      condition: '',
+      file: '',
+      imageUrl: ''
+    });
   }
 
 
@@ -154,6 +174,10 @@ class NewItemForm extends Component {
           <input type="text" value={this.state.notes} placeholder="Notes" onChange={this.handleChangeNotes}/>
           <input type="submit" className="button" value="Add Item"/>
         </form>
+
+        <div>
+          <img src={this.state.imageUrl} />
+        </div>
       </div>
     )
   }
