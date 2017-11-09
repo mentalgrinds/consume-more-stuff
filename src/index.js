@@ -24,6 +24,7 @@ import Login from './containers/Login';
 import Logout from './containers/Logout';
 import RegistrationForm from './containers/RegistrationForm';
 import Users from './containers/Users';
+import Dashboard from './containers/Dashboard';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -38,27 +39,32 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
   <Router>
-    <div>
+    <div id="content-div">
       <Header />
-      <Link to="/">Home</Link>
-      <br></br>
-      <Link to="/new-item">New Item</Link>
-      <br></br>
-      <Link to="/all">All Items</Link>
-      <br></br>
-      <Link to="/users">Users</Link>
-      <br></br>
-      <Link to="/register">Register</Link>
-      <br></br>
-      <Link to="/login">Login</Link>
-      <br></br>
-      <Link to="/logout">Logout</Link>
+      <div id="nav">
+        <Link to="/">Home</Link>
+        <br></br>
+        <Link to="/new-item">New Item</Link>
+        <br></br>
+        <Link to="/all">All Items</Link>
+        <br></br>
+        <Link to="/users">Users</Link>
+        <br></br>
+        <Link to="/register">Register</Link>
+        <br></br>
+        <Link to="/dashboard">Dashboard</Link>
+        <br></br>
+        <Link to="/login">Login</Link>
+        <br></br>
+        <Link to="/logout">Logout</Link>
+      </div>
 
       <Route exact path="/" component={App} />
       <Route path="/new-item" component={NewItemForm} />
       <Route path="/all" component={AllItemView} />
       <Route path="/users" component={Users} />
       <Route path="/register" component={RegistrationForm} />
+      <Route path="/dashboard" component={Dashboard} />
       <Route path="/login" component={Login} />
       <Route path="/logout" component={Logout} />
 

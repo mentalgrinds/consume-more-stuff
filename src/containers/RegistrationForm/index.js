@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Redirect, withRouter } from 'react-router';
 import { addUser } from '../../actions/users.js';
 
 class RegistrationForm extends Component {
@@ -10,7 +10,8 @@ class RegistrationForm extends Component {
     this.state = {
       username: '',
       password: '',
-      email: ''
+      email: '',
+      registered: false
     }
 
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -45,11 +46,18 @@ class RegistrationForm extends Component {
       password: this.state.password,
       email: this.state.email
     }
-
+    this.setState({registered: true})
     this.props.addUser(newUser);
   }
 
   render(){
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const redirect = this.state.registered;
+
+    if(redirect){
+      return ( <Redirect to={from}/>)
+    }
+
     return (
       <div id="registration-form">
         <form onSubmit={this.handleSubmit}>
@@ -79,4 +87,4 @@ const ConnectedRegistrationForm = connect(
   mapDispatchToProps
 )(RegistrationForm);
 
-export default ConnectedRegistrationForm;
+export default withRouter(ConnectedRegistrationForm);
