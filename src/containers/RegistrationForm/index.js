@@ -51,7 +51,7 @@ class RegistrationForm extends Component {
   }
 
   render(){
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { from } = this.props.location.state || { from: { pathname: '/login' } }
     const redirect = this.state.registered;
 
     if(redirect){
