@@ -9,6 +9,7 @@ const loginUser = (state = {}, action) => {
     console.log("login action: ", action.user)
     localStorage.setItem('username', action.user.username);
     localStorage.setItem('userId', action.user.id);
+    localStorage.setItem('auth', true);
       return action.user;
     case LOGOUT_USER:
     console.log(action.user)
