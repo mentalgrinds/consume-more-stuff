@@ -4,7 +4,7 @@ import UserDetailView from './UserDetailView';
 
 const UserList = ({users,loadUser}) => {
   return (
-    <div className='allItemList'>
+    <div className='all-user-list'>
      {
         users.map((user,idx) => {
           return (
