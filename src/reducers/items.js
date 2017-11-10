@@ -23,10 +23,10 @@ const items = (state = initialState, action) => {
       console.log([ ...(state.slice(0, index)), action.item, ...(state.slice((index + 1), state.length))])
       return [ ...(state.slice(0, index)), action.item, ...(state.slice((index + 1), state.length))];
     case DELETE_ITEM:
-      let i = state.findIndex((item) => {
-        return item.id === action.item.id
-      });
-      return [ ...(state.slice(0, i)), action.item, ...(state.slice((i + 1), state.length))];
+      let without_deleted = state.filter((elem)=>{
+        return elem.id !== action.item.id;
+      })
+      return [ ...without_deleted];
     default:
       return state
   }
