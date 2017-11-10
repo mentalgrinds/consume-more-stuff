@@ -25,12 +25,14 @@ class AllItemView extends Component {
 
   editNow(item,e){
     let editedItem = editHelper(e);
-    this.setState({item: item, edit: true});
+    this.setState({item: item});
+    this.setState({edit: true});
     if(this.state.edit){
       console.log(item);
       editedItem.id = item[0].id;
       this.props.editItem(editedItem);
-      this.setState({item: null, edit: false});
+      this.setState({item: null});
+      this.setState({edit: false});
     }
   }
 
@@ -48,13 +50,14 @@ class AllItemView extends Component {
 
   backToItems(e){
     e.preventDefault();
-    this.setState({item: false});
+    this.setState({item: null});
   }
 
    destroyItem(item,e){
     e.preventDefault();
     this.props.deleteItem(item);
-    this.setState({item: false, edit: false});
+    this.setState({item: null});
+    this.setState({edit: false});
   }
 
   render(){

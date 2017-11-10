@@ -35,7 +35,7 @@ export const addItem = (newItem) => {
 
 export const editItem = (newInfo) => {
   return function(dispatch){
-    return axios.put(`/api/items/${newInfo[0].id}`, newInfo)
+    return axios.put(`/api/items/${newInfo.id}`, newInfo)
     .then( item => {
       dispatch({
         type: EDIT_ITEM,
@@ -47,7 +47,7 @@ export const editItem = (newInfo) => {
 
 export const deleteItem = (itemToDelete) => {
   return function(dispatch){
-    return axios.delete(`/api/items/${itemToDelete.id}`)
+    return axios.delete(`/api/items/${itemToDelete[0].id}`)
     .then ( item => {
       dispatch ({
         type: DELETE_ITEM,
