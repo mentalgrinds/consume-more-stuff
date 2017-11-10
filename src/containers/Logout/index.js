@@ -6,9 +6,8 @@ class Logout extends Component {
 
 
   handleLogout(event){
-    event.preventDefault();
-    this.props.logoutUser(localStorage.getItem('userId'));
     localStorage.clear();
+    this.props.logoutUser();
   } 
 
   render(){
@@ -19,6 +18,7 @@ class Logout extends Component {
             <input type="submit" className="button" value="Logout"/>
           </form>
         </div>
+
 
     )
   }

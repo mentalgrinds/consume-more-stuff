@@ -8,7 +8,7 @@ const Header = () => {
 
   //const properName = username.charAt(0).toUpperCase() + username.slice(1).toLowerCase()
 
-  const properName = (isLoggedIn() ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : null)
+  const properName = (localStorage.getItem('userId') ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : null)
 
   return (
     <div id="header">
@@ -21,11 +21,8 @@ const Header = () => {
           Торговая площадка высокого качества для юридических товаров и услуг
         </h2>
 
-        Hello, 
 
-        {
-          ( isLoggedIn() ? `Hello, ${properName}` :  ` ` )
-        }
+        {localStorage.getItem('userId') ? `Hello, ${properName}` :  ` ` }
 
       </div>
     </div>
