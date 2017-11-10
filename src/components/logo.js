@@ -3,7 +3,7 @@ import React from 'react';
 const Logo = () => {
   return (
     <div id="logo">
-      [hip, hip]
+      <img id="logo-image" src={require('../kbe.svg')} />
     </div>
   );
 }
