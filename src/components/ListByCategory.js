@@ -7,12 +7,13 @@ import Radio from './Radio';
 //list=the array of items to be turned into a select element. this.props.categories, this.props.conditions, etc.
 //show=name of the column in the table that actually shows what it is. usually 'title' in our case.
 
-const ListByCategory = ({items,categories,handleChange}) => {
+const ListByCategory = ({items,categories,handleChange,idx}) => {
 
 
   return (
       <div>
-        <Radio  
+        <Radio 
+          key={idx} 
           value={categories} 
           handler={handleChange} 
           list={categories}

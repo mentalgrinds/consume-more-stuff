@@ -60,3 +60,7 @@ typings/
 # config file
 /server/config/config.j*
 
+# public
+/public
+/server/public
+
