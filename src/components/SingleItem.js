@@ -13,7 +13,9 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
             <div className="detail-view-title">
                 <h1>Item # {item ? item[0].id : null}</h1><br/>
                 <h2>{item ? item[0].name : null}</h2>
-                {item ? <img alt='Preview' src={item[0].image} /> : null}<br/>
+                <div className="img-container-large">
+                    {item ? <img alt='Preview' className="fullsize" src={(item[0].image).slice(6)} /> : null}<br/>
+                </div>
             </div>
             <div className="detail-view-details">
                 {item ? item[0].description : null}<br/><br/>

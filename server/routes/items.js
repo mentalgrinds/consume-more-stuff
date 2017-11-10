@@ -11,7 +11,7 @@ const {item}                 = db;
 
 const multer = require('multer');
 const storage = multer.diskStorage({
-  destination: './uploads/items',
+  destination: './public/uploads/items',
   filename(req, file, cb){
     cb(null, `${file.originalname}`);
   }
@@ -74,7 +74,7 @@ route.post('/', upload.single('file'), ( req, res ) => {
     categoryId : req.body.category,
     conditionId : req.body.condition,
     userId : req.user.id,
-    itemstatusId: 1
+    itemstatusId: 2
   }).then((data) => {
       return item.findOne({
         where: {

@@ -8,7 +8,9 @@ const ItemDetailView = ({id, name, userId, itemstatusId, description, image, pri
         <div className="all-view-title">
             <span onClick={(e)=>loadSingleItem(id,e)}><h1>Item #{id}</h1></span>
             <h2>{name}</h2>
-            <img alt='Preview' src={image}/><br />
+            <div className="img-container-small">
+                <img alt='Preview' className="thumbnail" src={image.slice(6)}/><br />
+            </div>
         </div>
 
         <div className="all-view-details">
@@ -18,10 +20,7 @@ const ItemDetailView = ({id, name, userId, itemstatusId, description, image, pri
             <b>Item Status:</b> {itemstatusId}<br/>
             <b>Condition:</b>{conditionId}<br/>
             <b>Category:</b>{categoryId}<br/>
-            <b>Manufacturer:</b>{manufacturer}<br/>
-            <b>Model:</b>{model}<br/>
-            <b>Dimensions:</b>{dimensions}<br/>
-            <b>Notes:</b>{notes}<br/><br/>
+
             <b>Posted At: </b>{createdAt}<br/>
             <b>Updated At: </b>{updatedAt}<br/>
         </div>
