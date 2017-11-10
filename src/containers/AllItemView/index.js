@@ -9,6 +9,7 @@ import filterAllItems from '../../lib/filterAllItems';
 import filterItem from '../../lib/filterUser';
 import editHelper from '../../lib/editItem';
 import ItemStatusListView from '../ItemStatusListView';
+import ListByCategory from '../../components/ListByCategory.js';
 
 class AllItemView extends Component {
   constructor(){
@@ -60,10 +61,16 @@ class AllItemView extends Component {
     this.setState({edit: false});
   }
 
+
+
   render(){
     const item = this.state.item;
     return(
       <div>
+        <ListByCategory 
+          handleChange={this.handleChange.bind(this)}
+          categories={this.props.categories}
+          items={this.props.items}/>
 
        {item ?
         <SingleItem
