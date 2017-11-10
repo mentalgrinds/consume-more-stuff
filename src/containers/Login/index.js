@@ -46,9 +46,8 @@ class Login extends Component {
 
   render(){
     const err = this.state.err;
-    const { from } = this.props.location.state || {from: { pathname: '/dashboard' }}
     const redirect = this.state.registered;
-    if(redirect){ return ( <Redirect to={from}/>) }
+    if(redirect){ return ( <Redirect to='/dashboard'/>) }
 
     return (
       <div id="login-form">

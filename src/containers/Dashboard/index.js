@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { } from 'react-router';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
 import ItemStatusList from '../../components/ItemStatusList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
 import filterAllItems from '../../lib/filterAllItems';
 import editHelper from '../../lib/editItem';
-import TopItemsView from '../ItemStatusListView';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 

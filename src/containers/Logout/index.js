@@ -3,7 +3,6 @@ import { Redirect } from 'react-router';
 import { connect} from 'react-redux';
 import { logoutUser } from '../../actions/login';
 import { loginUser } from '../../actions/login';
-import App from '../../containers/App';
 
 class Logout extends Component {
   constructor(props){
@@ -33,11 +32,9 @@ class Logout extends Component {
             <input type="submit" className="button" value="Logout"/>
           </form>
         </div>
-    )
+      )
+    }
   }
-  }
-
-
 }
 
 const mapStatetoProps = (state) => {
