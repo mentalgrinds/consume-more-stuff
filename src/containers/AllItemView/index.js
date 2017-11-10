@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { loadItems,editItem } from '../../actions/items';
+import { loadItems,editItem,deleteItem } from '../../actions/items';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 import ItemList from '../../components/ItemList';
@@ -43,7 +43,13 @@ class AllItemView extends Component {
 
   backToItems(e){
     e.preventDefault();
-    this.setState({item: null});
+    this.setState({item: false});
+  }
+
+  destroyItem(item,e){
+    e.preventDefault();
+    this.props.deleteItem(item);
+    this.setState({item: false, edit: false});
   }
 
   render(){
@@ -58,6 +64,7 @@ class AllItemView extends Component {
           auth={this.state.auth}
           item={this.state.item}
           editNow={this.editNow.bind(this)}
+          destroyItem={this.destroyItem.bind(this)}
           handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
@@ -85,7 +92,7 @@ const mapStateToProps = (state) => {
 
 const ConnectedAllItemView = connect(
   mapStateToProps,
-  {loadItems,editItem,loadCategories,loadConditions}
+  {loadItems,editItem,loadCategories,loadConditions,deleteItem}
 )(AllItemView)
 
 export default ConnectedAllItemView;

@@ -56,9 +56,7 @@ class Dashboard extends Component {
 
   destroyItem(item,e){
     e.preventDefault();
-    console.log(item)
-    console.log('delete');
-    //this.props.deleteItem(user[0]);
+    this.props.deleteItem(item[0]);
   }
 
   render(){
