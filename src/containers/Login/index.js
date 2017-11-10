@@ -10,6 +10,8 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      registered: false,
+      err: false
     }
 
   }
@@ -34,16 +36,18 @@ class Login extends Component {
       password: this.state.password
     }
       this.props.loginUser(newUser);
-  }
+      setTimeout(function() {
+      if(localStorage.username !== undefined){
+        this.setState({registered: true})
+      }this.setState({err: true}); }.bind(this),1000);
+    }
+  
 
 
   render(){
-    const { from } = this.props.location.state || { from: { pathname: '/dashboard' } }
-    const redirect = (localStorage.userId !== 'undefined' ? true : false);
-
-    if(redirect){
-      return ( <Redirect to={from}/>)
-    }
+    const { from } = this.props.location.state || {from: { pathname: '/dashboard' }}
+    const redirect = this.state.registered;
+    if(redirect){ return ( <Redirect to={from}/>) }
 
     return (
       <div id="login-form">
