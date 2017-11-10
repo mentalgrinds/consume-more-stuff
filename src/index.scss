@@ -31,3 +31,22 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+
+#new-item-form{
+  display: flex;
+}
+
+#uploaded-image-preview{
+  margin-top: 20%;
+  margin-left: 30%;
+  height: 300px;
+  width: 300px;
+  border: black solid 1px;
+}
+
+#preview{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
