@@ -97,6 +97,7 @@ route.post('/', upload.single('file'), ( req, res ) => {
 });
 
 route.put('/:id', ( req, res ) => {
+  console.log(req.body)
   let value = req.isAuthenticated();
 
   let id = req.params.id;
@@ -114,26 +115,57 @@ route.put('/:id', ( req, res ) => {
   }, {where     : [{id: id}],
       returning : true,
       plain     : true
-  }).then((item) => {
-    res.json(item);
-  });
+  }).then((data) => {
+      return item.findOne({
+        where: {
+          id: id
+        },
+        include: [
+        { model: User, as: 'seller' },
+        { model: Category, as: 'itemcategory'},
+        { model: Condition, as: 'itemcondition'},
+        { model: ItemStatus, as: 'itemstatus'}
+        ]
+      })
+    .then((item) => {
+      return res.json(item);
+    })
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 });
 
 route.delete('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  //console.log('items ID route has been requested: DELETE ');
+  console.log(req.body);
   let id = req.params.id;
   //console.log('items.delete/:id :', id);
   let data = req.body;
   //console.log('items.delete/:id data :', data);
   return item.update({
-    notes: 'deprecated'
+    notes : 'deprecated'
   }, {where     : [{id: id}],
       returning : true,
       plain     : true
-  }).then((item) => {
-    res.json(item);
+  }).then((data) => {
+      return item.findOne({
+        where: {
+          id: id
+        },
+        include: [
+        { model: User, as: 'seller' },
+        { model: Category, as: 'itemcategory'},
+        { model: Condition, as: 'itemcondition'},
+        { model: ItemStatus, as: 'itemstatus'}
+        ]
+      })
+    .then((item) => {
+      return res.json(item);
+    })
+  })
+  .catch((err) => {
+    console.log(err)
   })
 });
 

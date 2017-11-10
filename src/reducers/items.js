@@ -13,15 +13,17 @@ const items = (state = initialState, action) => {
     case ADD_ITEM:
       return [ ...state, action.item ];
     case EDIT_ITEM:
+    console.log(action.item);
       let index = state.findIndex((item) => {
-        return item.id === action.item[1].id
+        return item.id === action.item.id
       });
-      return [ ...(state.slice(0, index)), action.item[1], ...(state.slice((index + 1), state.length))];
+      console.log([ ...(state.slice(0, index)), action.item, ...(state.slice((index + 1), state.length))])
+      return [ ...(state.slice(0, index)), action.item, ...(state.slice((index + 1), state.length))];
     case DELETE_ITEM:
       let i = state.findIndex((item) => {
-        return item.id === action.item[1].id
+        return item.id === action.item.id
       });
-      return [ ...(state.slice(0, i)), action.item[1], ...(state.slice((i + 1), state.length))];
+      return [ ...(state.slice(0, i)), action.item, ...(state.slice((i + 1), state.length))];
     default:
       return state
   }

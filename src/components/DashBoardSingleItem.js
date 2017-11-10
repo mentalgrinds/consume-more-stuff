@@ -2,7 +2,7 @@ import React from 'react';
 import Select from './Select';
 
 
-const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories, conditions,destroyItem}) => {
+const DashBoardSingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories, conditions,destroyItem}) => {
     return (
     <div className='eachItem'>
         <div className="back-to-list">
@@ -96,4 +96,4 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
 
 
 
-export default SingleItem;
+export default DashBoardSingleItem;

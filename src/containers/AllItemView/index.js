@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { loadItems,editItem } from '../../actions/items';
+import { loadItems,editItem,deleteItem } from '../../actions/items';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 import ItemList from '../../components/ItemList';
 import SingleItem from '../../components/SingleItem.js';
+import filterAllItems from '../../lib/filterAllItems';
 import filterItem from '../../lib/filterUser';
 import editHelper from '../../lib/editItem';
 import ItemStatusListView from '../ItemStatusListView';
@@ -24,11 +25,14 @@ class AllItemView extends Component {
 
   editNow(item,e){
     let editedItem = editHelper(e);
-    this.setState({item: item, edit: true});
+    this.setState({item: item});
+    this.setState({edit: true});
     if(this.state.edit){
+      console.log(item);
       editedItem.id = item[0].id;
       this.props.editItem(editedItem);
-      this.setState({item: null, edit: false});
+      this.setState({item: null});
+      this.setState({edit: false});
     }
   }
 
@@ -38,11 +42,22 @@ class AllItemView extends Component {
     this.props.loadConditions();
   }
 
-  loadSingleItem(id,e){ this.setState({item: filterItem(this.props.items,id)}); }
+    loadSingleItem(id,e){ 
+    this.setState({
+      item: filterAllItems(this.props.items,id)
+    }); 
+  }
 
   backToItems(e){
     e.preventDefault();
     this.setState({item: null});
+  }
+
+   destroyItem(item,e){
+    e.preventDefault();
+    this.props.deleteItem(item);
+    this.setState({item: null});
+    this.setState({edit: false});
   }
 
   render(){
@@ -57,6 +72,7 @@ class AllItemView extends Component {
           auth={this.state.auth}
           item={this.state.item}
           editNow={this.editNow.bind(this)}
+          destroyItem={this.destroyItem.bind(this)}
           handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
@@ -84,7 +100,7 @@ const mapStateToProps = (state) => {
 
 const ConnectedAllItemView = connect(
   mapStateToProps,
-  {loadItems,editItem,loadCategories,loadConditions}
+  {loadItems,editItem,loadCategories,loadConditions,deleteItem}
 )(AllItemView)
 
 export default ConnectedAllItemView;
