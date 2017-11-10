@@ -36,15 +36,16 @@ class Login extends Component {
       this.props.loginUser(newUser);
   }
 
-  handleAuth(event){
-    event.preventDefault();
-    console.log('i got clicked');
-    if(localStorage.getItem('userId')){
-        this.props.history.push('/');
-      }
-    console.log('nothing should happen');
+/*I dont think this is doing anything*/
+  // handleAuth(event){
+  //   event.preventDefault();
+  //   console.log('i got clicked');
+  //   if(localStorage.getItem('userId')){
+  //       this.props.history.push('/');
+  //     }
+  //   console.log('nothing should happen');
 
-  }
+  // }
 
 
 
