@@ -70,6 +70,30 @@ body {
   object-fit: contain;
 }
 
+.img-container-large{
+  height: 400px;
+  width: 400px;
+}
+
+.fullsize {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.img-container-small{
+  height: 200px;
+  width: 200px;
+
+}
+
+.thumbnail{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  margin-left: 25%;
+}
+
 #hello{
   padding-top: 10%;
   color: black;
@@ -89,6 +113,10 @@ body {
 .all-view-title span:hover {
   cursor: pointer;
   color: red;
+}
+
+.all-view-details{
+  text-align: center;
 }
 
 a{
