@@ -5,6 +5,7 @@ import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 import ItemList from '../../components/ItemList';
 import SingleItem from '../../components/SingleItem.js';
+import filterAllItems from '../../lib/filterAllItems';
 import filterItem from '../../lib/filterUser';
 import editHelper from '../../lib/editItem';
 import ItemStatusListView from '../ItemStatusListView';
@@ -39,14 +40,18 @@ class AllItemView extends Component {
     this.props.loadConditions();
   }
 
-  loadSingleItem(id,e){ this.setState({item: filterItem(this.props.items,id)}); }
+    loadSingleItem(id,e){ 
+    this.setState({
+      item: filterAllItems(this.props.items,id)
+    }); 
+  }
 
   backToItems(e){
     e.preventDefault();
     this.setState({item: false});
   }
 
-  destroyItem(item,e){
+   destroyItem(item,e){
     e.preventDefault();
     this.props.deleteItem(item);
     this.setState({item: false, edit: false});
