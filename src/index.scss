@@ -26,10 +26,6 @@ body {
   padding-top: 2%;
 }
 
-#logo{
-  max-width: 20%;
-}
-
 .eachItem .all-view-title{
   text-align: center;
 }
@@ -58,19 +54,39 @@ body {
 }
 
 #logo{
-  width: 15%;
-  font-size: 200%;
-  text-align: center;
-  color: black;
-  margin-top: 5%;
+  height: 150px;
+  width: 150px;
+}
+
+#logo-image{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 #hello{
   margin-top: 8%;
+  margin-left: 2%;
   color: black;
   size: 110%;
 }
 
 #header-text{
+  margin-left: 2%;
   text-align: center;
+}
+
+.all-view-title span:hover {
+  cursor: pointer;
+  color: red;
+}
+
+a{
+  text-decoration: none;
+  color: red;
+  font-size: 120%;
+}
+
+a:hover{
+  color: black;
 }
