@@ -6,8 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 
 
@@ -22,7 +21,6 @@ import Header from './components/header';
 import NewItemForm from './containers/NewItemForm';
 import AllItemView from './containers/AllItemView';
 import Login from './containers/Login';
-import Logout from './containers/Logout';
 import RegistrationForm from './containers/RegistrationForm';
 import Users from './containers/Users';
 import Dashboard from './containers/Dashboard';

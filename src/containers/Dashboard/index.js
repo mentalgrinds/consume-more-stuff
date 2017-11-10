@@ -16,7 +16,7 @@ class Dashboard extends Component {
 
         this.state = {
           item: '',
-          auth: true,
+          auth: localStorage.auth,
           edit: false
         }
   }
@@ -59,6 +59,7 @@ class Dashboard extends Component {
   }
 
   render(){
+    console.log(localStorage.getItem('auth'));
     const item = this.state.item;
     const id = localStorage.getItem('userId');
     return(

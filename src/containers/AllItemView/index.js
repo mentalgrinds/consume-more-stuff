@@ -6,10 +6,7 @@ import { loadCategories } from '../../actions/categories';
 import ItemList from '../../components/ItemList';
 import SingleItem from '../../components/SingleItem.js';
 import filterAllItems from '../../lib/filterAllItems';
-import filterItem from '../../lib/filterUser';
 import editHelper from '../../lib/editItem';
-import ItemStatusListView from '../ItemStatusListView';
-import ListByCategory from '../../components/ListByCategory.js';
 import Select from '../../components/Select';
 
 class AllItemView extends Component {
@@ -85,7 +82,7 @@ class AllItemView extends Component {
 
        {item ?
         <SingleItem
-
+          
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}

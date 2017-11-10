@@ -1,7 +1,5 @@
 import React from 'react';
-
 import Logo from './logo';
-import {isLoggedIn} from '../lib/isLoggedIn'
 
 const Header = () => {
   const username = localStorage.getItem('username')
