@@ -9,7 +9,10 @@ const initialState = [];
 const items = (state = initialState, action) => {
   switch(action.type){
     case LOAD_ITEMS:
-      return [ ...action.items ];
+      let data = action.items.filter((elem)=>{
+        return elem.notes !== "deprecated";
+      })
+      return [ ...data ];
     case ADD_ITEM:
       return [ ...state, action.item ];
     case EDIT_ITEM:
