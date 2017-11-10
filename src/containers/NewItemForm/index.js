@@ -158,49 +158,55 @@ class NewItemForm extends Component {
     return (
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
-          Title: <input type="text" value={this.state.name} onChange={this.handleChangeName}/>
-          <br/>
-          <br/>
-
-          <div id="upload-image-form">
-            Image:
-            <input type="file" accept="image/*" id="image-upload" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
-            <div id="uploaded-image-preview">
-              <img alt="Preview" src={this.state.imageUrl} />
+        <h2>Add item to marketplace</h2>
+          <div id="item-form-left">
+            <div id="upload-image-form">
+            Upload photo:
+            <br />
+              <input type="file" accept="image/*" id="image-upload" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
             </div>
+            <br />
+            Item name: <input type="text" value={this.state.name} onChange={this.handleChangeName}/>
+            <br/>
+            <br/>
+            Description:
+            <br/>
+            <textarea cols="50" rows="10" value={this.state.description} onChange={this.handleChangeDescription} />
+            <br/>
+            <br/>
+
+            Price: <input type="text" value={this.state.price} onChange={this.handleChangePrice}/>
+            <br/>
+            <br/>
+            Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
+            <br/>
+            <br/>
+            Condition: <Select name="condition" handler={this.handleChangeCondition} list={this.props.conditions} show="title" />
+            <br/>
+            <br/>
+            Manufacturer or make: <input type="text" value={this.state.manufacturer} placeholder="(optional)" onChange={this.handleChangeManufacturer}/>
+            <br/>
+            <br/>
+            Model: <input type="text" value={this.state.model} placeholder="(optional)" onChange={this.handleChangeModel}/>
+            <br/>
+            <br/>
+            Dimensions: <input type="text" value={this.state.dimensions} placeholder="(optional)" onChange={this.handleChangeDimensions}/>
+            <br/>
+            <br/>
+            Any other specifications or notes:
+            <br/>
+            <textarea cols="50" rows="10" value={this.state.notes} onChange={this.handleChangeNotes} />
+
+            <br/>
+            <input type="submit" className="button" value="Add my item to the marketplace!"/>
           </div>
-
-          <br/>
-          Description:
-          <br/>
-          <textarea cols="50" rows="10" value={this.state.description} onChange={this.handleChangeDescription} />
-          <br/>
-          <br/>
-          Price: <input type="text" value={this.state.price} onChange={this.handleChangePrice}/>
-          <br/>
-          <br/>
-          Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
-          <br/>
-          <br/>
-          Condition: <Select name="condition" handler={this.handleChangeCondition} list={this.props.conditions} show="title" />
-          <br/>
-          <br/>
-          Manufacturer or make: <input type="text" value={this.state.manufacturer} placeholder="(optional)" onChange={this.handleChangeManufacturer}/>
-          <br/>
-          <br/>
-          Model: <input type="text" value={this.state.model} placeholder="(optional)" onChange={this.handleChangeModel}/>
-          <br/>
-          <br/>
-          Dimensions: <input type="text" value={this.state.dimensions} placeholder="(optional)" onChange={this.handleChangeDimensions}/>
-          <br/>
-          <br/>
-          Any other specifications or notes:
-          <br/>
-          <textarea cols="50" rows="10" value={this.state.notes} onChange={this.handleChangeNotes} />
-
-          <br/>
-          <input type="submit" className="button" value="Add my item to the marketplace!"/>
         </form>
+
+        <div id="item-form-right">
+          <div id="uploaded-image-preview">
+            <img id="preview" alt="Image preview" src={this.state.imageUrl} />
+          </div>
+        </div>
 
       </div>
     )
