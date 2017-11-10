@@ -16,6 +16,7 @@ body {
   color: red;
   border-bottom: black solid 1px;
   font-size: 70%;
+  overflow: hidden;
 }
 
 #header img{
@@ -70,10 +71,10 @@ body {
 }
 
 #hello{
-  margin-top: 8%;
-  margin-left: 2%;
+  padding-top: 10%;
   color: black;
   size: 110%;
+  min-width: 100px;
 }
 
 #header-text{
