@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { } from 'react-router';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
 import ItemStatusList from '../../components/ItemStatusList';
-import SingleItem from '../../components/SingleItem.js';
+import DashBoardSingleItem from '../../components/DashBoardSingleItem.js';
 import filterItem from '../../lib/filterItem';
 import filterAllItems from '../../lib/filterAllItems';
 import editHelper from '../../lib/editItem';
@@ -69,7 +69,7 @@ class Dashboard extends Component {
       <div>
 
        {item ?
-        <SingleItem
+        <DashBoardSingleItem
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}
@@ -81,10 +81,10 @@ class Dashboard extends Component {
           conditions={this.props.conditions}/>
         :
         <div>
-        <h1> PUBLISHED </h1>
-        <ItemStatusList loadSingleItem={this.loadSingleItem.bind(this)} items={this.props.items} statusId={2} currentUserId = {id}/>
-        <h1> SOLD ITEMS  </h1>
-        <ItemStatusList loadSingleItem={this.loadSingleItem.bind(this)} items={this.props.items} statusId={1} currentUserId = {id}/>
+          <h1> PUBLISHED </h1>
+          <ItemStatusList loadSingleItem={this.loadSingleItem.bind(this)} items={this.props.items} statusId={2} currentUserId = {id}/>
+          <h1> SOLD ITEMS  </h1>
+          <ItemStatusList loadSingleItem={this.loadSingleItem.bind(this)} items={this.props.items} statusId={1} currentUserId = {id}/>
         </div>
         }
       </div>
