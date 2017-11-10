@@ -7,7 +7,7 @@ const Top3ItemList = ({items, categoryNumber}) => {
       {
         items.filter( (item) => {
           return item.itemcategory.id === Number(categoryNumber);
-        }).map( (categoryItem,idx) => {
+        }).slice(0,3).map( (categoryItem,idx) => {
           return (
             <ItemDetailView
               key={idx}
