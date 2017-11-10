@@ -21,12 +21,20 @@ route.post('/', function(req, res, next) {
   let local = {}
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }//send fail message - logged in false //some error reason
-    if (!user) { return res.json('false - not a user'); }
+   if (!user) { 
+      return 
+        local.id = 'undefined';
+        local.username = 'undefined';
+        local.auth = false;
+        return res.json(local);  }
     req.logIn(user, function(err) {
       if (err) { 
+        local.id = 'undefined';
+        local.username = 'undefined';
         local.auth = false;
-        return res.json(local); }
-      
+        return res.json(local); 
+      }
+
       local.id = req.user.id;
       local.username = req.user.username;
       local.auth = true;

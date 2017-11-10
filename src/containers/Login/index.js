@@ -36,22 +36,10 @@ class Login extends Component {
       this.props.loginUser(newUser);
   }
 
-/*I dont think this is doing anything*/
-  // handleAuth(event){
-  //   event.preventDefault();
-  //   console.log('i got clicked');
-  //   if(localStorage.getItem('userId')){
-  //       this.props.history.push('/');
-  //     }
-  //   console.log('nothing should happen');
-
-  // }
-
-
 
   render(){
     const { from } = this.props.location.state || { from: { pathname: '/dashboard' } }
-    const redirect = localStorage.getItem('userId');
+    const redirect = (localStorage.userId !== 'undefined' ? true : false);
 
     if(redirect){
       return ( <Redirect to={from}/>)
