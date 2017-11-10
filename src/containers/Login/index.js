@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loginUser, logoutUser } from '../../actions/login';
 import { Redirect, withRouter } from 'react-router';
 
@@ -10,6 +11,7 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      count: 0,
       registered: false,
       err: false
     }
@@ -30,6 +32,9 @@ class Login extends Component {
   }
 
   handleSubmit(event){
+    let val = this.state.count;
+    val++;
+    this.setState({count: val})
     event.preventDefault();
     let newUser = {
       username: this.state.username,
@@ -46,6 +51,8 @@ class Login extends Component {
 
   render(){
     const err = this.state.err;
+    const count = (this.state.count === 3);
+    const errMessage = (count ? 'Please Reset your password' : 'Incorrect Username or Password');
     const redirect = this.state.registered;
     if(redirect){ return ( <Redirect to='/dashboard'/>) }
 
@@ -59,7 +66,9 @@ class Login extends Component {
             className="button"
             value="Login"/>
         </form>
-        {err ? 'Incorrect Username or Password' : null }
+        <br></br>
+        {err ? errMessage : null }
+        {count ? <Link to="/register">   <button>Reset</button></Link> : null}
       </div>
 
     )
