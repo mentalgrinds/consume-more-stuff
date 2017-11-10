@@ -13,17 +13,16 @@ const Header = () => {
   return (
     <div id="header">
       <Logo />
-      <div>
+      <div id="header-text">
         <h1>
           High Quality Marketplace for Legal Goods and Services
         </h1>
         <h2>
           Торговая площадка высокого качества для юридических товаров и услуг
         </h2>
-
-
+      </div>
+      <div id="hello">
         {localStorage.getItem('userId') ? `Hello, ${properName}` :  ` ` }
-
       </div>
     </div>
   );
