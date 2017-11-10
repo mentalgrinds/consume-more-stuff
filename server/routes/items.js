@@ -144,12 +144,28 @@ route.delete('/:id', ( req, res ) => {
   let data = req.body;
   //console.log('items.delete/:id data :', data);
   return item.update({
-    notes: 'deprecated'
+    notes : 'deprecated'
   }, {where     : [{id: id}],
       returning : true,
       plain     : true
-  }).then((item) => {
-    res.json(item);
+  }).then((data) => {
+      return item.findOne({
+        where: {
+          id: id
+        },
+        include: [
+        { model: User, as: 'seller' },
+        { model: Category, as: 'itemcategory'},
+        { model: Condition, as: 'itemcondition'},
+        { model: ItemStatus, as: 'itemstatus'}
+        ]
+      })
+    .then((item) => {
+      return res.json(item);
+    })
+  })
+  .catch((err) => {
+    console.log(err)
   })
 });
 

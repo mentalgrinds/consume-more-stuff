@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { } from 'react-router';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
 import ItemStatusList from '../../components/ItemStatusList';
-import DashBoardSingleItem from '../../components/DashBoardSingleItem.js';
+import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
 import filterAllItems from '../../lib/filterAllItems';
 import editHelper from '../../lib/editItem';
@@ -56,8 +56,6 @@ class Dashboard extends Component {
 
   destroyItem(item,e){
     e.preventDefault();
-    console.log(this.state.item);
-    console.log(item);
     this.props.deleteItem(item);
     this.setState({item: null, edit: false});
   }
@@ -69,7 +67,7 @@ class Dashboard extends Component {
       <div>
 
        {item ?
-        <DashBoardSingleItem
+        <SingleItem
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}

@@ -21,9 +21,9 @@ const items = (state = initialState, action) => {
       return [ ...(state.slice(0, index)), action.item, ...(state.slice((index + 1), state.length))];
     case DELETE_ITEM:
       let i = state.findIndex((item) => {
-        return item.id === action.item[1].id
+        return item.id === action.item.id
       });
-      return [ ...(state.slice(0, i)), action.item[1], ...(state.slice((i + 1), state.length))];
+      return [ ...(state.slice(0, i)), action.item, ...(state.slice((i + 1), state.length))];
     default:
       return state
   }
