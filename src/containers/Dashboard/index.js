@@ -27,7 +27,9 @@ class Dashboard extends Component {
   editNow(item,e){
     let editedItem = editHelper(e);
     this.setState({item: item, edit: true});
+    console.log(item)
     if(this.state.edit){
+      console.log(this.state.item)
       editedItem.id = item[0].id; 
       this.props.editItem(editedItem);
       this.setState({item: null, edit: false});
@@ -47,9 +49,11 @@ class Dashboard extends Component {
     this.setState({item: null});
   }
 
-  destroyItem(user,e){
+  destroyItem(item,e){
     e.preventDefault();
-    this.props.deleteItem(user[0]);
+    console.log(item)
+    console.log('delete');
+    //this.props.deleteItem(user[0]);
   }
 
   render(){

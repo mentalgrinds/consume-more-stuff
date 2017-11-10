@@ -3,7 +3,7 @@ import ItemDetailView from './ItemDetailView';
 
 
 const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
-  console.log('itemstatuslist', items)
+
   return (
     <div className='itemStatusList'>
       {
