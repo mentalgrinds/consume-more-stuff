@@ -14,7 +14,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
                 <h1>Item # {item ? item[0].id : null}</h1><br/>
                 <h2>{item ? item[0].name : null}</h2>
                 <div className="img-container-large">
-                    {item ? <img alt='Preview' className="fullsize" src={(item[0].image).slice(6)} /> : null}<br/>
+                    {item ? <img alt='Preview' className="fullsize" src={(item[0].image).slice(((item[0].image).indexOf('/uploads/')))} /> : null}<br/>
                 </div>
             </div>
             <div className="detail-view-details">
@@ -36,6 +36,12 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
             :  <div id="edit-item-form">
                 <form>
                     <br />
+                    <div className="img-container-large">
+                        <img alt='Preview' className="fullsize" src={(item[0].image).slice(6)} />
+                    </div>
+                    <input type="file" accept="image/*" id="image-upload" placeholder="Upload New Image"/>
+                    <br />
+
                     Name:
                     <br />
                     <input type="text" placeholder={item[0].name} name="name" onChange={handleChange} />
