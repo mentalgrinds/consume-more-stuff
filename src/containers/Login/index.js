@@ -39,12 +39,13 @@ class Login extends Component {
       setTimeout(function() {
       if(localStorage.username !== undefined){
         this.setState({registered: true})
-      }this.setState({err: true}); }.bind(this),1000);
+      }this.setState({err: true}); }.bind(this),900);
     }
   
 
 
   render(){
+    const err = this.state.err;
     const { from } = this.props.location.state || {from: { pathname: '/dashboard' }}
     const redirect = this.state.registered;
     if(redirect){ return ( <Redirect to={from}/>) }
@@ -59,6 +60,7 @@ class Login extends Component {
             className="button"
             value="Login"/>
         </form>
+        {err ? 'Incorrect Username or Password' : null }
       </div>
 
     )
