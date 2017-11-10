@@ -2,7 +2,7 @@ import React from 'react';
 import ItemDetailView from './ItemDetailView';
 
 
-const ItemStatusList = ({items, statusId, currentUserId}) => {
+const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
   console.log('itemstatuslist', items)
   return (
     <div className='itemStatusList'>
@@ -12,6 +12,7 @@ const ItemStatusList = ({items, statusId, currentUserId}) => {
         }).map( (categoryItem) => {
           return (
             <ItemDetailView
+              loadSingleItem={loadSingleItem}
               id={categoryItem.id}
               name={categoryItem.name}
               description={categoryItem.description}

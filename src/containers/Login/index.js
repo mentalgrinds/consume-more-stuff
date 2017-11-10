@@ -11,6 +11,7 @@ class Login extends Component {
       username: '',
       password: '',
     }
+
   }
 
 
@@ -62,7 +63,6 @@ class Login extends Component {
           <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword.bind(this)}/>
           <input
             type="submit"
-            // onClick={()=>(this.props.history.push('/'))}
             className="button"
             value="Login"/>
         </form>

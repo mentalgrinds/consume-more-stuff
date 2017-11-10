@@ -17,7 +17,7 @@ module.exports = {
   "categoryId": 4,
   "conditionId": 1,
   "itemstatusId": 1,
-  "userId": 6
+  "userId": 10
 }, {
   "name": "S2000",
   "description": "Mellivora capensis",
@@ -33,7 +33,7 @@ module.exports = {
   "categoryId": 4,
   "conditionId": 1,
   "itemstatusId": 2,
-  "userId": 7
+  "userId": 10
 }, {
   "name": "Genesis",
   "description": "Psophia viridis",
@@ -49,7 +49,7 @@ module.exports = {
   "categoryId": 4,
   "conditionId": 3,
   "itemstatusId": 1,
-  "userId": 1
+  "userId": 10
 }, {
   "name": "Eurovan",
   "description": "Coluber constrictor",

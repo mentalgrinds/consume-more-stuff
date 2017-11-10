@@ -1,13 +1,13 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
 
-
 const ItemList = ({items,loadSingleItem,edit}) => {
   return (
     <div className='allItemList'>
       {
         items.map((item,idx) => {
           return (
+
             <ItemDetailView
               loadSingleItem={loadSingleItem}
               edit={edit}
@@ -29,6 +29,7 @@ const ItemList = ({items,loadSingleItem,edit}) => {
               categoryId={item.itemcategory.title}
             />
           )
+
         })
       }
     </div>

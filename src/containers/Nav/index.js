@@ -17,8 +17,11 @@ const Nav = () => {
       <br></br>
       <Link to="/dashboard">Dashboard</Link>
       <br></br>
+      {!localStorage.getItem('userId') ?
       <Link to="/login">Login</Link>
+      :
       <Logout />
+      }
 
       <br></br>
     </div>

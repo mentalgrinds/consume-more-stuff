@@ -6,18 +6,19 @@ class Logout extends Component {
 
 
   handleLogout(event){
-    event.preventDefault();
-    this.props.logoutUser(localStorage.getItem('userId'));
     localStorage.clear();
+    this.props.logoutUser();
   } 
 
   render(){
     return (
-      <div id="logout-form">
-        <form onSubmit={this.handleLogout.bind(this)}>
-          <input type="submit" className="button" value="Logout"/>
-        </form>
-      </div>
+
+        <div id="logout-form">
+          <form onSubmit={this.handleLogout.bind(this)}>
+            <input type="submit" className="button" value="Logout"/>
+          </form>
+        </div>
+
 
     )
   }
