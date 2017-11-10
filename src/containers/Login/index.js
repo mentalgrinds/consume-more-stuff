@@ -41,7 +41,7 @@ class Login extends Component {
         this.setState({registered: true})
       }this.setState({err: true}); }.bind(this),900);
     }
-  
+    /*this is the hapi method - needs to be changed to flag from jesse idea*/
 
 
   render(){

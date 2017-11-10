@@ -1,26 +1,40 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
+import { connect} from 'react-redux';
 import { logoutUser } from '../../actions/login';
+import { loginUser } from '../../actions/login';
+import App from '../../containers/App';
 
 class Logout extends Component {
+  constructor(props){
+    super(props);
 
+    this.state = {
+      redirect: false
+    }
+  }
+
+  componentDidMount() { this.props.loginUser(); }
 
   handleLogout(event){
     localStorage.clear();
+    this.setState({redirect: true});
     this.props.logoutUser();
+
   } 
 
   render(){
+    if(this.state.redirect){
+      return ( <Redirect to='/all' /> )
+    }else{
     return (
-
         <div id="logout-form">
           <form onSubmit={this.handleLogout.bind(this)}>
             <input type="submit" className="button" value="Logout"/>
           </form>
         </div>
-
-
     )
+  }
   }
 
 
@@ -28,14 +42,14 @@ class Logout extends Component {
 
 const mapStatetoProps = (state) => {
   return {
-    user : state.loginUser
+    user : state.login
 
   }
 }
 
 const ConnectedLogout = connect(
   mapStatetoProps,
-  {logoutUser}
+  {logoutUser,loginUser}
 )(Logout)
 
 export default ConnectedLogout;
