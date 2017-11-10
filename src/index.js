@@ -42,20 +42,18 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
   <Router>
-    <div id="content-div">
+    <div id="main-div">
       <Header />
-      <Nav />
-
-      <Route exact path="/" component={App} />
-      <Route path="/new-item" component={NewItemForm} />
-      <Route path="/all" component={AllItemView} />
-      <Route path="/users" component={Users} />
-      <Route path="/register" component={RegistrationForm} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/login" component={Login} />
-
-
-
+      <div id="content-div">
+        <Nav />
+        <Route exact path="/" component={App} />
+        <Route path="/new-item" component={NewItemForm} />
+        <Route path="/all" component={AllItemView} />
+        <Route path="/users" component={Users} />
+        <Route path="/register" component={RegistrationForm} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/login" component={Login} />
+      </div>
     </div>
   </Router>
   </Provider>,
