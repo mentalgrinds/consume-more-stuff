@@ -10,6 +10,7 @@ import filterItem from '../../lib/filterUser';
 import editHelper from '../../lib/editItem';
 import ItemStatusListView from '../ItemStatusListView';
 import ListByCategory from '../../components/ListByCategory.js';
+import Select from '../../components/Select';
 
 class AllItemView extends Component {
   constructor(){
@@ -17,12 +18,20 @@ class AllItemView extends Component {
 
         this.state = {
           item: '',
-          auth: true,
+          category: '',
+          auth: localStorage.auth,
           edit: false
         }
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
   }
 
   handleChange(e){ editHelper(e); }
+
+  handleChangeCategory(event){
+    this.setState({
+      category: event.target.value
+    })
+  }
 
   editNow(item,e){
     let editedItem = editHelper(e);
@@ -43,10 +52,10 @@ class AllItemView extends Component {
     this.props.loadConditions();
   }
 
-    loadSingleItem(id,e){ 
+    loadSingleItem(id,e){
     this.setState({
       item: filterAllItems(this.props.items,id)
-    }); 
+    });
   }
 
   backToItems(e){
@@ -65,12 +74,14 @@ class AllItemView extends Component {
 
   render(){
     const item = this.state.item;
+    let filteredItems = this.props.items.filter(
+      (filteredItem) => {
+        return (filteredItem.itemcategory.id).toString().indexOf(this.state.category) !== -1;
+      }
+    );
     return(
       <div>
-        <ListByCategory 
-          handleChange={this.handleChange.bind(this)}
-          categories={this.props.categories}
-          items={this.props.items}/>
+        FILTER: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
 
        {item ?
         <SingleItem
@@ -88,7 +99,7 @@ class AllItemView extends Component {
         :
         <ItemList
           loadSingleItem={this.loadSingleItem.bind(this)}
-          items={this.props.items}/>
+          items={filteredItems}/>
         }
 
       </div>
