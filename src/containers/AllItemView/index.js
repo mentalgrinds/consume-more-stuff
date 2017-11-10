@@ -26,6 +26,7 @@ class AllItemView extends Component {
     let editedItem = editHelper(e);
     this.setState({item: item, edit: true});
     if(this.state.edit){
+      console.log(item);
       editedItem.id = item[0].id;
       this.props.editItem(editedItem);
       this.setState({item: null, edit: false});

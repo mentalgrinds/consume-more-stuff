@@ -5,6 +5,7 @@ import { loadItems,editItem,deleteItem } from '../../actions/items';
 import ItemStatusList from '../../components/ItemStatusList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
+import filterAllItems from '../../lib/filterAllItems';
 import editHelper from '../../lib/editItem';
 import TopItemsView from '../ItemStatusListView';
 import { loadConditions } from '../../actions/conditions';
@@ -42,7 +43,11 @@ class Dashboard extends Component {
     this.props.loadConditions();
   }
 
-  loadSingleItem(id,e){ this.setState({item: filterItem(this.props.items,localStorage.getItem('userId'))}); }
+  loadSingleItem(id,e){ 
+    this.setState({
+      item: filterAllItems(this.props.items,id)
+    }); 
+  }
 
   backToItems(e){
     e.preventDefault();
