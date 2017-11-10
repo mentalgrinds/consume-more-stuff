@@ -7,11 +7,12 @@ const saltRounds              = 12;
 const route                   = express.Router();
 const db                      = require('../models');
 const {item}                 = db;
+const path = require('path');
 
 
 const multer = require('multer');
 const storage = multer.diskStorage({
-  destination: './public/uploads/items',
+  destination: path.join(__dirname, '..', '..', 'public', 'uploads', 'items'),
   filename(req, file, cb){
     cb(null, `${file.originalname}`);
   }
