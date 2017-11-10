@@ -158,10 +158,14 @@ class NewItemForm extends Component {
     return (
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
+        <h2>Add item to marketplace</h2>
           <div id="item-form-left">
             <div id="upload-image-form">
+            Upload photo:
+            <br />
               <input type="file" accept="image/*" id="image-upload" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
             </div>
+            <br />
             Item name: <input type="text" value={this.state.name} onChange={this.handleChangeName}/>
             <br/>
             <br/>
@@ -200,7 +204,7 @@ class NewItemForm extends Component {
 
         <div id="item-form-right">
           <div id="uploaded-image-preview">
-            <img id="preview" alt="Preview" src={this.state.imageUrl} />
+            <img id="preview" alt="Image preview" src={this.state.imageUrl} />
           </div>
         </div>
 
