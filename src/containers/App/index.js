@@ -40,7 +40,7 @@ class App extends Component {
     if(redirect) {
       return <AllItemView />;
     }
-    return <Login />;
+    return <AllItemView />;
   }
 }
 
