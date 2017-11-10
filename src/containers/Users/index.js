@@ -8,6 +8,7 @@ import editHelper from '../../lib/editUser';
 import SingleUser from '../../components/SingleUser.js';
 
 
+
 class User extends Component {
   constructor(){
     super();
@@ -71,6 +72,7 @@ const mapStateToProps = (state) => {
     users: state.users,
     activeUsers: filterUserStatus(state.users,'active'),
     inactiveUsers: filterUserStatus(state.users,'inactive')
+
   }
 }
 

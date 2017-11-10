@@ -84,8 +84,9 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
                     <textarea cols="50" rows="10" name="notes" onChange={handleChange} defaultValue={item[0].notes} />
                 </form>
              </div> }
-        {auth ? <button onClick={(e)=>editNow(item,e)}>
-          {edit ? 'Submit changes' : 'Edit item'}</button> : null}
+            {auth ? <button onClick={(e)=>editNow(item,e)}>
+                {edit ? 'Submit changes' : 'Edit item'}</button> : null}
+
     </div>
   )
 }
