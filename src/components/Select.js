@@ -10,9 +10,9 @@ const Select = (props) => {
   return (
     <select className="select" name={props.name} onChange={props.handler}>
       {
-        props.list.map((item) => {
+        props.list.map((item,idx) => {
           return (
-            <option value={item.id}> {item[props.show]} </option>
+            <option key={idx} value={item.id}> {item[props.show]} </option>
           );
         })
       }

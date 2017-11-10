@@ -204,7 +204,7 @@ class NewItemForm extends Component {
 
         <div id="item-form-right">
           <div id="uploaded-image-preview">
-            <img id="preview" alt="Image preview" src={this.state.imageUrl} />
+            <img id="preview" alt="preview" src={this.state.imageUrl} />
           </div>
         </div>
 

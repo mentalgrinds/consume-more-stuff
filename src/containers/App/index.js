@@ -3,8 +3,6 @@ import './index.css';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { loadItems } from '../../actions/items';
-import Login from '../Login';
-import NewItemForm from '../NewItemForm';
 import AllItemView from '../AllItemView';
 
 class App extends Component {
