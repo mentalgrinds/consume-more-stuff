@@ -13,7 +13,6 @@ class Logout extends Component {
     }
   }
 
-  componentDidMount() { this.props.loginUser(); }
 
   handleLogout(event){
     localStorage.clear();
