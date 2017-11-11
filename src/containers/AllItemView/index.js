@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
+import { loadItemStatuses } from '../../actions/itemStatuses';
 import ItemList from '../../components/ItemList';
 import SingleItem from '../../components/SingleItem.js';
 import filterAllItems from '../../lib/filterAllItems';
@@ -47,6 +48,7 @@ class AllItemView extends Component {
     this.props.loadItems();
     this.props.loadCategories();
     this.props.loadConditions();
+    this.props.loadItemStatuses();
   }
 
     loadSingleItem(id,e){
@@ -82,7 +84,7 @@ class AllItemView extends Component {
 
        {item ?
         <SingleItem
-          
+
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}
@@ -92,6 +94,7 @@ class AllItemView extends Component {
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
           conditions={this.props.conditions}
+          itemStatuses={this.props.itemStatuses}
         />
         :
         <ItemList
@@ -109,13 +112,14 @@ const mapStateToProps = (state) => {
   return{
     items: state.items,
     categories: state.categories,
-    conditions: state.conditions
+    conditions: state.conditions,
+    itemStatuses: state.itemStatuses
   }
 }
 
 const ConnectedAllItemView = connect(
   mapStateToProps,
-  {loadItems,editItem,loadCategories,loadConditions,deleteItem}
+  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem}
 )(AllItemView)
 
 export default ConnectedAllItemView;
