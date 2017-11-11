@@ -6,7 +6,7 @@ import 'moment-timezone';
 import EditItemForm from '../containers/EditItemForm';
 
 
-const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem}) => {
+const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem, closeEdit}) => {
     return (
     <div className='eachItem'>
         <div className="back-to-list">
@@ -37,6 +37,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
             </div>
         </ol>
             :   <EditItemForm
+                    id={item[0].id}
                     name={item[0].name}
                     image={item[0].image}
                     description={item[0].description}
@@ -45,6 +46,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
                     model={item[0].model}
                     dimensions={item[0].dimensions}
                     notes={item[0].notes}
+                    closeEdit={closeEdit}
                 />
             }
 

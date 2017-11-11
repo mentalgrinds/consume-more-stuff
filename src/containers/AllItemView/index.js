@@ -22,6 +22,7 @@ class AllItemView extends Component {
           edit: false
         }
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this.closeEdit = this.closeEdit.bind(this);
   }
 
   handleChangeCategory(event){
@@ -44,6 +45,13 @@ class AllItemView extends Component {
     clearLocal();
   }
 
+  closeEdit(event){
+    this.setState({
+      item: null,
+      edit: false
+    });
+  }
+
   componentWillMount(){
     this.props.loadItems();
     this.props.loadCategories();
@@ -60,6 +68,7 @@ class AllItemView extends Component {
   backToItems(e){
     e.preventDefault();
     this.setState({item: null});
+    this.setState({edit: false});
   }
 
    destroyItem(item,e){
@@ -79,12 +88,13 @@ class AllItemView extends Component {
       }
     );
     return(
-      <div>
+      <div className="single-item">
        {
         item ?
         <SingleItem
 
           edit={this.state.edit}
+          closeEdit={this.closeEdit}
           auth={this.state.auth}
           item={this.state.item}
           editNow={this.editNow.bind(this)}
