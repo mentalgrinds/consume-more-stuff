@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { loadItems } from '../../actions/items';
 import AllItemView from '../AllItemView';
-
+import TopItemsView from '../TopItemsView';
 class App extends Component {
 
   constructor(){
@@ -34,11 +34,11 @@ class App extends Component {
 
   render() {
     const {redirect} = this.state;
-    
+
     if(redirect) {
       return <AllItemView />;
     }
-    return <AllItemView />;
+    return <TopItemsView />;
   }
 }
 
