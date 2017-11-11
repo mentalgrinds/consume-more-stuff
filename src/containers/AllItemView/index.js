@@ -80,9 +80,8 @@ class AllItemView extends Component {
     );
     return(
       <div>
-        FILTER: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
-
-       {item ?
+       {
+        item ?
         <SingleItem
 
           edit={this.state.edit}
@@ -97,11 +96,14 @@ class AllItemView extends Component {
           itemStatuses={this.props.itemStatuses}
         />
         :
-        <ItemList
-          loadSingleItem={this.loadSingleItem.bind(this)}
-          items={filteredItems}/>
-        }
+          <div>
+            FILTER: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
 
+            <ItemList
+              loadSingleItem={this.loadSingleItem.bind(this)}
+              items={filteredItems}/>
+          </div>
+        }
       </div>
     )
   }
