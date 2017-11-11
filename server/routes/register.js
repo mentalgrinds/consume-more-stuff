@@ -19,15 +19,15 @@ route.post('/', (req,res) =>{
       db.user.create({
         username: req.body.username,
         password: hash,
-        email: req.body.email,
-        userstatus: (req.body.email ? 'active' : 'inactive')
+        email: req.body.email.toLowerCase(),
+        userstatus: (req.body.email.toLowerCase() ? 'active' : 'inactive')
       })
       .then( (user) => {
         //console.log(user);
         res.json('user successfully added');
       })
       .catch((err) => {
-        return res.json('Username has been taken'); 
+        return res.json('Username has been taken');
       });
     });
   });
