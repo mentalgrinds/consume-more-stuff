@@ -34,20 +34,6 @@ route.get('/:id', ( req, res ) => {
   });
 });
 
-route.post('/new', ( req, res ) => {
-  let value = req.isAuthenticated();
-  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  //console.log('users route has been requested: POST ');
-  user.create({
-    username : req.body.username,
-    password : req.body.password,
-    email    : req.body.email
-  }).then((data) => {
-    // console.log('users route has posted new data to the DB, result: ', data);
-    res.json(data);
-  });
-});
-
 route.put('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
   //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
