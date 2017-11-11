@@ -98,22 +98,14 @@ route.post('/', upload.single('file'), ( req, res ) => {
 });
 
 route.put('/:id', ( req, res ) => {
-  console.log(req.body)
+
   let value = req.isAuthenticated();
 
   let id = req.params.id;
-  //console.log('items.put/:id :', id);
-  let data = req.body;
-  return item.update({
-    name : req.body.name,
-    description : req.body.description,
-    price    : req.body.price,
-    manufacturer : req.body.manufacturer,
-    model : req.body.model,
-    dimensions    : req.body.dimensions,
-    notes : req.body.notes,
-    image    : req.body.image
-  }, {where     : [{id: id}],
+
+  let newInfo = req.body;
+
+  return item.update(newInfo, {where     : [{id: id}],
       returning : true,
       plain     : true
   }).then((data) => {
@@ -128,8 +120,8 @@ route.put('/:id', ( req, res ) => {
         { model: ItemStatus, as: 'itemstatus'}
         ]
       })
-    .then((item) => {
-      return res.json(item);
+    .then((editedItem) => {
+      return res.json(editedItem);
     })
   })
   .catch((err) => {
