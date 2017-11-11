@@ -7,6 +7,7 @@ const axios = require('axios');
 export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
+export const EDIT_ITEM_IMAGE = 'EDIT_ITEM_IMAGE';
 export const DELETE_ITEM = 'DELETE_ITEM';
 
 export const loadItems = () => {
@@ -37,9 +38,20 @@ export const editItem = (newInfo) => {
   return function(dispatch){
     return axios.put(`/api/items/${newInfo.id}`, newInfo)
     .then( item => {
-      console.log(item.data);
       dispatch({
         type: EDIT_ITEM,
+        item: item.data
+      });
+    });
+  }
+}
+
+export const editItemImage = (newInfo) => {
+  return function(dispatch){
+    return axios.put(`/api/items/${newInfo.id}/image`, newInfo)
+    .then( item => {
+      dispatch({
+        type: EDIT_ITEM_IMAGE,
         item: item.data
       });
     });

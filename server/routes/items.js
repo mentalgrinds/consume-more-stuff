@@ -123,6 +123,40 @@ route.put('/:id', ( req, res ) => {
   })
 });
 
+route.put('/:id/image', upload.single('file'), (req, res) => {
+  let value = req.isAuthenticated();
+  let id = req.params.id;
+
+  let newImage = {
+    image: req.file.path
+  };
+
+  console.log('req.params', req.params);
+
+  return item.update(newImage, {where     : [{id: id}],
+      returning : true,
+      plain     : true
+  }).then((data) => {
+      return item.findOne({
+        where: {
+          id: id
+        },
+        include: [
+        { model: User, as: 'seller' },
+        { model: Category, as: 'itemcategory'},
+        { model: Condition, as: 'itemcondition'},
+        { model: ItemStatus, as: 'itemstatus'}
+        ]
+      })
+    .then((editedItem) => {
+      return res.json(editedItem);
+    })
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+});
+
 route.delete('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
 
