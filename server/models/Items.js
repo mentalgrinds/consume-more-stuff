@@ -9,8 +9,7 @@ module.exports = function(sequelize, DataTypes){
      allowNull: false
     },
     price:{
-      type: DataTypes.DECIMAL,
-      allowNull: false
+      type: DataTypes.DECIMAL
     },
     manufacturer:{
       type: DataTypes.STRING
@@ -22,7 +21,7 @@ module.exports = function(sequelize, DataTypes){
       type: DataTypes.STRING
     },
     notes:{
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     image:{
       type: DataTypes.STRING
