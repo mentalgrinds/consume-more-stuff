@@ -99,7 +99,7 @@ class AllItemView extends Component {
         />
         :
           <div>
-            FILTER: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
+            FILTER by Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
 
             <ItemList
               loadSingleItem={this.loadSingleItem.bind(this)}
