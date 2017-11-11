@@ -123,15 +123,15 @@ route.put('/:id', ( req, res ) => {
   })
 });
 
-route.put('/:id/image', upload.single('file'), (req, res) => {
+route.put('/images/:id', upload.single('file'), (req, res) => {
   let value = req.isAuthenticated();
-  let id = req.params.id;
+  let id = req.body.id;
 
   let newImage = {
     image: req.file.path
   };
 
-  console.log('req.params', req.params);
+  console.log('req.body', req.body);
 
   return item.update(newImage, {where     : [{id: id}],
       returning : true,

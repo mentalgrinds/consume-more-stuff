@@ -12,11 +12,49 @@ class EditItemForm extends Component {
   constructor(props){
     super(props);
 
+    this.state = {
+      file: '',
+      imageUrl: ''
+    }
+
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeImage = this.handleChangeImage.bind(this);
+    this.handleSubmitImage = this.handleSubmitImage.bind(this);
   }
 
   handleChange(e){
     editHelper(e);
+  }
+
+  handleChangeImage(event){
+    event.preventDefault();
+    let reader = new FileReader();
+    let file = event.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imageUrl: reader.result
+      })
+    }
+    reader.readAsDataURL(file);
+  }
+
+  handleSubmitImage(event){
+    event.preventDefault();
+
+    let formData = new FormData();
+    formData.append('file', this.state.file);
+    formData.append('id', this.props.id);
+    this.props.editItemImage(formData);
+
+    this.setState({
+      file: '',
+      imageUrl: ''
+    })
+
+    this.props.closeEdit();
+
+    return false;
   }
 
 
@@ -24,13 +62,24 @@ class EditItemForm extends Component {
   render(){
     return (
       <div id="edit-item-form">
-        <form>
-          <br />
+
+        <form onSubmit={this.handleSubmitImage} >
           <div className="img-container-large">
-              <img alt='Preview' className="fullsize" src={this.props.image} />
+            <img alt='Preview' className="fullsize" src={this.state.imageUrl} />
           </div>
-          <input type="file" accept="image/*" id="image-upload" placeholder="Upload New Image"/>
+          <div className="select-save-buttons">
+            <div className="select-image-button">
+              <input type="file" accept="image/*" id="image-upload" placeholder="Select new image" onChange={this.handleChangeImage}/>
+            </div>
+            <div className="submit-changed-image">
+              <input type="submit" className="button" value="Save image" />
+            </div>
+          </div>
           <br />
+          <br />
+        </form>
+
+        <form>
           <br />
 
           Name:

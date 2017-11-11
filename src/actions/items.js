@@ -48,7 +48,9 @@ export const editItem = (newInfo) => {
 
 export const editItemImage = (newInfo) => {
   return function(dispatch){
-    return axios.put(`/api/items/${newInfo.id}/image`, newInfo)
+    console.log('action dispatched');
+    console.log('newInfo', newInfo);
+    return axios.put(`/api/items/images/${newInfo.id}`, newInfo)
     .then( item => {
       dispatch({
         type: EDIT_ITEM_IMAGE,
