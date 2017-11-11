@@ -163,7 +163,7 @@ class NewItemForm extends Component {
             <div id="upload-image-form">
             Upload photo:
             <br />
-              <input type="file" accept="image/*" id="image-upload" value={this.state.image} placeholder="Image" onChange={this.handleChangeImage}/>
+              <input type="file" accept="image/*" id="image-upload" placeholder="Image" onChange={this.handleChangeImage}/>
             </div>
             <br />
             Item name: <input type="text" value={this.state.name} onChange={this.handleChangeName}/>
