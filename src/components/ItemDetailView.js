@@ -4,28 +4,20 @@ const ItemDetailView = ({id, name, userId, itemstatusId, description, image, pri
   return (
     <div className='eachItem'>
       <ol>
-
         <div className="all-view-title">
-            <span onClick={(e)=>loadSingleItem(id,e)}><h1>Item #{id}</h1></span>
+            <span onClick={(e)=>loadSingleItem(id,e)}>
             <h2>{name}</h2>
-            <div className="img-container-small">
-                <img alt='Preview' className="thumbnail" src={image.slice(((image).indexOf('/uploads/')))}/><br />
-            </div>
+                <div className="img-container-small">
+                    <img alt='Preview' className="thumbnail" src={image.slice(((image).indexOf('/uploads/')))}/><br />
+                </div>
+            </span>
         </div>
 
         <div className="all-view-details">
             {description}<br/><br/>
-            Price: $ {price}<br/>
-            <b>User:</b> {userId}<br/>
-            <b>Item Status:</b> {itemstatusId}<br/>
+            <b>Price:</b> {({price} ? `Price: $ ${price}` : null )}<br/>
             <b>Condition:</b>{conditionId}<br/>
-            <b>Category:</b>{categoryId}<br/>
-
-            <b>Posted At: </b>{createdAt}<br/>
-            <b>Updated At: </b>{updatedAt}<br/>
         </div>
-
-
       </ol>
     </div>
   )
