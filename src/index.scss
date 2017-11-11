@@ -32,13 +32,27 @@ body {
   padding-top: 2%;
 }
 
-.eachItem .all-view-title{
-  text-align: center;
-}
-
 .allItemList{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.allItemList{
+  .eachItem{
+    border: black solid 1px;
+    height: 350px;
+    width: 300px;
+    margin-top: 2%;
+
+  }
+}
+
+.single-item{
+  .eachItem{
+    text-align: center;
+
+  }
 }
 
 #new-item-form{
@@ -75,6 +89,7 @@ body {
   width: 400px;
 }
 
+
 .fullsize {
   height: 100%;
   width: 100%;
@@ -91,7 +106,6 @@ body {
   height: 100%;
   width: 100%;
   object-fit: contain;
-  margin-left: 25%;
 }
 
 #hello{
