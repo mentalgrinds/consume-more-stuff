@@ -24,8 +24,6 @@ class AllItemView extends Component {
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
   }
 
-  handleChange(e){ editHelper(e); }
-
   handleChangeCategory(event){
     this.setState({
       category: event.target.value
@@ -53,7 +51,7 @@ class AllItemView extends Component {
     this.props.loadItemStatuses();
   }
 
-    loadSingleItem(id,e){
+  loadSingleItem(id,e){
     this.setState({
       item: filterAllItems(this.props.items,id)
     });
@@ -91,7 +89,6 @@ class AllItemView extends Component {
           item={this.state.item}
           editNow={this.editNow.bind(this)}
           destroyItem={this.destroyItem.bind(this)}
-          handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
           conditions={this.props.conditions}
