@@ -1,7 +1,7 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
 
-const Top3ItemList = ({items, categoryNumber}) => {
+const Top3ItemList = ({items, categoryNumber, loadSingleItem}) => {
   return (
     <div className='allItemList'>
       {
@@ -10,6 +10,7 @@ const Top3ItemList = ({items, categoryNumber}) => {
         }).slice(0,3).map( (categoryItem,idx) => {
           return (
             <ItemDetailView
+              loadSingleItem={loadSingleItem}
               key={idx}
               id={categoryItem.id}
               name={categoryItem.name}
