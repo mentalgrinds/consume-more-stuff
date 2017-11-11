@@ -1,5 +1,9 @@
 import React from 'react';
 import Select from './Select';
+import Moment from 'react-moment';
+import moment from 'moment/min/moment-with-locales';
+import 'moment-timezone';
+
 
 
 const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories, conditions,destroyItem}) => {
@@ -11,7 +15,6 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
     {!edit ?
         <ol>
             <div className="detail-view-title">
-                <h1>Item # {item ? item[0].id : null}</h1><br/>
                 <h2>{item ? item[0].name : null}</h2>
                 <div className="img-container-large">
                     {item ? <img alt='Preview' className="fullsize" src={(item[0].image).slice(((item[0].image).indexOf('/uploads/')))} /> : null}<br/>
@@ -19,9 +22,9 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
             </div>
             <div className="detail-view-details">
                 {item ? item[0].description : null}<br/><br/>
-                Price: $ {item ? item[0].price : null}<br/>
+                <b>Price:</b>  $ {item ? item[0].price : null}<br/>
 
-                Status: {item ? item[0].itemstatus.title : null}<br/>
+                <b>Status:</b> {item ? item[0].itemstatus.title : null}<br/>
 
                 <b>Condition:</b>{item ? item[0].itemcondition.title : null}<br/>
                 <b>Category:</b>{item ? item[0].itemcategory.title : null}<br/>
@@ -29,8 +32,8 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
                 <b>Model:</b>{item ? item[0].model : null}<br/>
                 <b>Dimensions:</b>{item ? item[0].dimensions : null}<br/>
                 <b>Notes:</b>{item ? item[0].notes : null}<br/><br/>
-                <b>Posted At: </b>{item ? item[0].createdAt : null}<br/>
-                <b>Updated At: </b>{item ? item[0].updatedAt : null}<br/>
+                <b>Posted At: </b>{item ? <Moment date={item[0].createdAt}/> : null}<br/>
+                <b>Updated At: </b>{item ? <Moment date={item[0].updatedAt}/> : null}<br/>
             </div>
         </ol>
             :  <div id="edit-item-form">
