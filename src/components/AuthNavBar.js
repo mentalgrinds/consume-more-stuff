@@ -12,7 +12,7 @@ const AuthNav = () => {
         <br></br>
         <Link to="/all">All Items</Link>
         <br></br>
-        <Link to="/users">Users</Link>
+        <Link to="/settings">Settings</Link>
         <br></br>
         <Link to="/dashboard">Dashboard</Link>
         <br></br>
