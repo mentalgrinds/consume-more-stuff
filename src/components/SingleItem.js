@@ -6,7 +6,7 @@ import 'moment-timezone';
 
 
 
-const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories, conditions,destroyItem}) => {
+const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories, conditions, itemStatuses, destroyItem}) => {
     return (
     <div className='eachItem'>
         <div className="back-to-list">
@@ -44,15 +44,16 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
                     </div>
                     <input type="file" accept="image/*" id="image-upload" placeholder="Upload New Image"/>
                     <br />
+                    <br />
 
                     Name:
                     <br />
                     <input type="text" placeholder={item[0].name} name="name" onChange={handleChange} />
                     <br />
                     <br />
-                    User (??):
+                    Status:
                     <br />
-                    <input type="text" name="user" placeholder="Item User" onChange={handleChange} />
+                    <Select name="status" handler={handleChange} list={itemStatuses} show="title"/>
                     <br />
                     <br />
                     Description:
@@ -62,7 +63,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
                     <br />
                     Price:
                     <br />
-                    <input type="text" name="price" placeholder={item[0].price} onChange={handleChange} />
+                    <input type="number" name="price" placeholder={item[0].price} onChange={handleChange} />
                     <br />
                     <br />
                     Category:
@@ -95,10 +96,10 @@ const SingleItem = ({item,backToItems,edit,auth,editNow,handleChange, categories
                     <textarea cols="50" rows="10" name="notes" onChange={handleChange} defaultValue={item[0].notes} />
                 </form>
              </div> }
-            {auth ? <button onClick={(e)=>destroyItem(item,e)}>
-            Delete Item</button> : null}
-            {auth ? <button onClick={(e)=>editNow(item,e)}>
-                {edit ? 'Submit changes' : 'Edit item'}</button> : null}
+            {auth ? <div className="delete-button"><button onClick={(e)=>destroyItem(item,e)}>
+            Delete Item</button></div> : null}
+            {auth ? <div className="submit-changes-button"><button onClick={(e)=>editNow(item,e)}>
+                {edit ? 'Submit changes' : 'Edit item'}</button></div> : null}
 
     </div>
   )
