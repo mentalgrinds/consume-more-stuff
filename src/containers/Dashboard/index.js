@@ -5,7 +5,7 @@ import ItemStatusList from '../../components/ItemStatusList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
 import filterAllItems from '../../lib/filterAllItems';
-import editHelper from '../../lib/editItem';
+import { editHelper, clearLocal } from '../../lib/editItem';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 
@@ -13,19 +13,23 @@ class Dashboard extends Component {
   constructor(){
     super();
 
-        this.state = {
-          item: '',
-          auth: localStorage.auth,
-          edit: false
-        }
+    this.state = {
+      item: '',
+      auth: localStorage.auth,
+      edit: false
+    }
+
+    this.closeEdit = this.closeEdit.bind(this);
   }
 
-  handleChange(e){ editHelper(e); }
+
 
   editNow(item,e){
     let editedItem = editHelper(e);
-    this.setState({item: item, edit: true});
-    console.log(item)
+    this.setState({
+      item: item,
+      edit: true
+    });
     if(this.state.edit){
       console.log(this.state.item)
       editedItem.id = item[0].id;
@@ -40,6 +44,13 @@ class Dashboard extends Component {
     this.props.loadConditions();
   }
 
+  closeEdit(event){
+    this.setState({
+      item: null,
+      edit: false
+    });
+  }
+
   loadSingleItem(id,e){
     this.setState({
       item: filterAllItems(this.props.items,id)
@@ -48,13 +59,10 @@ class Dashboard extends Component {
 
   backToItems(e){
     e.preventDefault();
-    this.setState({item: null});
-  }
-
-  destroyItem(item,e){
-    e.preventDefault();
-    this.props.deleteItem(item);
-    this.setState({item: null, edit: false});
+    this.setState({
+      item: null,
+      edit: false
+    });
   }
 
   render(){
@@ -69,12 +77,13 @@ class Dashboard extends Component {
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}
-          destroyItem={this.destroyItem.bind(this)}
           editNow={this.editNow.bind(this)}
-          handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
-          conditions={this.props.conditions}/>
+          conditions={this.props.conditions}
+          itemStatuses={this.props.itemStatuses}
+          closeEdit={this.closeEdit}
+          />
         :
         <div>
           <h1> PUBLISHED </h1>
@@ -93,13 +102,14 @@ const mapStateToProps = (state) => {
   return{
     items: filterItem(state.items,localStorage.getItem('userId')),
     categories: state.categories,
-    conditions: state.conditions
+    conditions: state.conditions,
+    itemStatuses: state.itemStatuses
   }
 }
 
 const ConnectedDashboard = connect(
   mapStateToProps,
-  {loadItems,editItem,deleteItem,loadCategories,loadConditions}
+  {loadItems,editItem,loadCategories,loadConditions}
 )(Dashboard)
 
 export default ConnectedDashboard;
