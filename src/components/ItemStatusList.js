@@ -11,6 +11,10 @@ const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
           return item.itemstatus.id === Number(statusId) && item.userId === Number(currentUserId);
         }).map( (categoryItem) => {
           return (
+            <div>
+            <form >
+              <input type="submit" className="button" value="Mark as SOLD"/>
+            </form>
             <ItemDetailView
               loadSingleItem={loadSingleItem}
               id={categoryItem.id}
@@ -29,6 +33,7 @@ const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
               conditionId={categoryItem.itemcondition.title}
               categoryId={categoryItem.itemcategory.title}
             />
+          </div>
           )
         })
       }

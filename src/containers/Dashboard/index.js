@@ -9,7 +9,6 @@ import editHelper from '../../lib/editItem';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 
-
 class Dashboard extends Component {
   constructor(){
     super();
@@ -29,22 +28,22 @@ class Dashboard extends Component {
     console.log(item)
     if(this.state.edit){
       console.log(this.state.item)
-      editedItem.id = item[0].id; 
+      editedItem.id = item[0].id;
       this.props.editItem(editedItem);
       this.setState({item: null, edit: false});
     }
   }
 
-  componentWillMount(){ 
-    this.props.loadItems(); 
+  componentWillMount(){
+    this.props.loadItems();
     this.props.loadCategories();
     this.props.loadConditions();
   }
 
-  loadSingleItem(id,e){ 
+  loadSingleItem(id,e){
     this.setState({
       item: filterAllItems(this.props.items,id)
-    }); 
+    });
   }
 
   backToItems(e){
