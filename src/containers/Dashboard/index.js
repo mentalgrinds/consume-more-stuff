@@ -8,7 +8,6 @@ import filterAllItems from '../../lib/filterAllItems';
 import editHelper from '../../lib/editItem';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
-import ItemStatusListView from '../ItemStatusListView'
 
 class Dashboard extends Component {
   constructor(){
