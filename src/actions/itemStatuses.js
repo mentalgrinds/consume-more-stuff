@@ -14,15 +14,3 @@ export const loadItemStatuses = () => {
     });
   }
 }
-
-export const editItemStatuses = (newInfo) => {
-  return function(dispatch){
-    return axios.put(`/api/itemStatus/${newInfo.id}`, newInfo)
-    .then( itemStatuses => {
-      dispatch({
-        type: EDIT_ITEMSTATUSES,
-        itemStatuses: itemStatuses.data
-      });
-    });
-  }
-}

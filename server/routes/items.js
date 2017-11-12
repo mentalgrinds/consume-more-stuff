@@ -91,14 +91,15 @@ route.post('/', upload.single('file'), ( req, res ) => {
   })
 });
 
-route.put('/:id', ( req, res ) => {
 
+route.put('/:id', ( req, res ) => {
+  console.log('ROUTES')
   let value = req.isAuthenticated();
 
   let id = req.params.id;
 
   let newInfo = req.body;
-
+  console.log('ROUTES - NEW INFO ---> ')
   return item.update(newInfo, {where     : [{id: id}],
       returning : true,
       plain     : true
@@ -121,7 +122,7 @@ route.put('/:id', ( req, res ) => {
   .catch((err) => {
     console.log(err)
   })
-});
+})
 
 route.put('/images/:id', upload.single('file'), (req, res) => {
   let value = req.isAuthenticated();

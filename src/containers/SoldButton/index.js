@@ -5,39 +5,35 @@ import filterAllItems from '../../lib/filterAllItems';
 import filterItem from '../../lib/filterItem';
 import { editItemStatuses } from '../../actions/itemStatuses';
 import { editHelper } from '../../lib/editItem';
-
+import { editItem } from  '../../actions/items'
 
 class SoldButton extends Component {
   constructor(props){
     super(props);
 
- /*     this.state = {
-        status: ''
-      }*/
-
-      this.handleChangeStatus = this.handleChangeStatus.bind(this);
-
-    }
 
 
-  handleChangeStatus(event){
-    event.preventDefault()
-    console.log('handleChange!')
-/*    editHelper(event)*/
+      this.handleSoldButton = this.handleSoldButton.bind(this);
   }
 
-/*  handleChange(e){
-    editHelper(e);
-  }*/
+  componentWillMount() {
+    var context = this;
 
+  }
+
+  handleSoldButton(event){
+   /* event.preventDefault();*/
+    let newData = {
+      id: parseInt(this.props.id),
+      itemstatusId: 1
+    }
+    editItem(newData)
+  }
 
   render(){
-    console.log('PROPS--->' ,this.props.status)
     return(
       <div>
-        <button className="button" onCLick={this.handleChangeStatus}>
-          Mark As Sold
-        </button>
+        <button className='button' active={this.props.itemStatuses === 'sold'} onClick={(event)=>{this.handleSoldButton()}}>Mark As Sold</button>
       </div>
     )
   }
@@ -50,9 +46,17 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    editItem: (data) => {
+      dispatch(editItem(data));
+    }
+  }
+}
+
 const ConnectedSoldButton = connect(
   mapStateToProps,
-  {editItemStatuses}
+  mapDispatchToProps
 )(SoldButton)
 
 export default ConnectedSoldButton;

@@ -33,16 +33,39 @@ export const addItem = (newItem) => {
     });
   }
 }
-
+/*
 export const editItem = (newInfo) => {
+  console.log('ACTONS NEW INFO ---> ', newInfo)
   return function(dispatch){
-    return axios.put(`/api/items/${newInfo.id}`, newInfo)
+    return axios.put(`/api/items/${newInfo.id}/sold`, JSON.stringify(newInfo))
     .then( item => {
+      console.log('ACTIONS', item)
       dispatch({
         type: EDIT_ITEM,
         item: item.data
       });
-    });
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+}
+*/
+
+export const editItem = (newInfo) => {
+  console.log('ACTONS NEW INFO ---> ', newInfo)
+  return function(dispatch){
+    return axios.put(`/api/items/${newInfo.id}/sold`, JSON.stringify(newInfo))
+    .then( item => {
+      console.log('ACTIONS AFTER THEN', item)
+      /*dispatch({
+        type: EDIT_ITEM,
+        item: item.data
+      });*/
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 }
 
