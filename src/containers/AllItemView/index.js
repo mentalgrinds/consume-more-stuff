@@ -74,11 +74,19 @@ class AllItemView extends Component {
 
   render(){
     const item = this.state.item;
+
     let filteredItems = this.props.items.filter(
       (filteredItem) => {
         return (filteredItem.itemcategory.id).toString().indexOf(this.state.category) !== -1;
       }
     );
+
+    let notSoldItems = filteredItems.filter(
+      (filteredItem) => {
+        return filteredItem.itemstatusId === 2;
+      }
+    );
+
     return(
       <div className="single-item">
        {
@@ -101,7 +109,7 @@ class AllItemView extends Component {
 
             <ItemList
               loadSingleItem={this.loadSingleItem.bind(this)}
-              items={filteredItems}/>
+              items={notSoldItems}/>
           </div>
         }
       </div>
