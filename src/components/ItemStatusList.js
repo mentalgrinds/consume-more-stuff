@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
-
+import SoldButton from '../containers/SoldButton';
 
 const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
 
@@ -12,28 +12,26 @@ const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
         }).map( (categoryItem) => {
           return (
             <div>
-            <form >
-              <input type="submit" className="button" value="Mark as SOLD"/>
-            </form>
-            <ItemDetailView
-              loadSingleItem={loadSingleItem}
-              id={categoryItem.id}
-              name={categoryItem.name}
-              description={categoryItem.description}
-              image={categoryItem.image}
-              price={categoryItem.price}
-              manufacturer={categoryItem.manufacturer}
-              model={categoryItem.model}
-              dimensions={categoryItem.dimensions}
-              notes={categoryItem.notes}
-              createdAt={categoryItem.createdAt}
-              updatedAt={categoryItem.updatedAt}
-              itemstatusId={categoryItem.itemstatus.title}
-              userId={categoryItem.seller.username}
-              conditionId={categoryItem.itemcondition.title}
-              categoryId={categoryItem.itemcategory.title}
-            />
-          </div>
+              <SoldButton/>
+              <ItemDetailView
+                loadSingleItem={loadSingleItem}
+                id={categoryItem.id}
+                name={categoryItem.name}
+                description={categoryItem.description}
+                image={categoryItem.image}
+                price={categoryItem.price}
+                manufacturer={categoryItem.manufacturer}
+                model={categoryItem.model}
+                dimensions={categoryItem.dimensions}
+                notes={categoryItem.notes}
+                createdAt={categoryItem.createdAt}
+                updatedAt={categoryItem.updatedAt}
+                itemstatusId={categoryItem.itemstatus.title}
+                userId={categoryItem.seller.username}
+                conditionId={categoryItem.itemcondition.title}
+                categoryId={categoryItem.itemcategory.title}
+              />
+            </div>
           )
         })
       }

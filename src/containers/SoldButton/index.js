@@ -3,31 +3,41 @@ import { connect } from 'react-redux';
 import ItemStatusList from '../../components/ItemStatusList';
 import filterAllItems from '../../lib/filterAllItems';
 import filterItem from '../../lib/filterItem';
-import { loadItems,editItem } from '../../actions/items';
-import { loadItemStatuses } from '../../actions/itemStatuses.js';
+import { editItemStatuses } from '../../actions/itemStatuses';
+import { editHelper } from '../../lib/editItem';
+
 
 class SoldButton extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
-      this.state = {
+ /*     this.state = {
         status: ''
-        }
+      }*/
+
+      this.handleChangeStatus = this.handleChangeStatus.bind(this);
+
     }
 
-  handleSold(event){
-    this.setState({
-      status: event.target.value
-    });
+
+  handleChangeStatus(event){
+    event.preventDefault()
+    console.log('handleChange!')
+/*    editHelper(event)*/
   }
 
+/*  handleChange(e){
+    editHelper(e);
+  }*/
+
+
   render(){
-    const id = localStorage.getItem('userId');
+    console.log('PROPS--->' ,this.props.status)
     return(
       <div>
-        <form onSubmit={this.handleSold.bind(this)}>
-              <input type="submit" className="button" value="Mark as SOLD"/>
-            </form>
+        <button className="button" onCLick={this.handleChangeStatus}>
+          Mark As Sold
+        </button>
       </div>
     )
   }
@@ -42,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const ConnectedSoldButton = connect(
   mapStateToProps,
-  {loadItems, editItem, loadItemStatuses}
+  {editItemStatuses}
 )(SoldButton)
 
 export default ConnectedSoldButton;
