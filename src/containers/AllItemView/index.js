@@ -71,14 +71,6 @@ class AllItemView extends Component {
     this.setState({edit: false});
   }
 
-   destroyItem(item,e){
-    e.preventDefault();
-    this.props.deleteItem(item);
-    this.setState({item: null});
-    this.setState({edit: false});
-  }
-
-
 
   render(){
     const item = this.state.item;
@@ -98,7 +90,6 @@ class AllItemView extends Component {
           auth={this.state.auth}
           item={this.state.item}
           editNow={this.editNow.bind(this)}
-          destroyItem={this.destroyItem.bind(this)}
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
           conditions={this.props.conditions}
