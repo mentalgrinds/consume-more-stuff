@@ -51,25 +51,25 @@ route.put('/:id', ( req, res ) => {
 
 
 
-  route.post('/:id/password', function(req, res, next) {
+  route.put('/:id/password', function(req, res, next) {
+    console.log(req.body)
     passport.authenticate('local', function(err, user, info) {
       console.log('for you',req.body);
-      let password = req.body.newPassword
       let id = user.id;
-
-      user.update({
-        password: password
-      }, {where: {id: id}})
-      .then(()=>{
-        console.log('success');
-      })
-
-
-
-    res.json(user);
-
+      bcrypt.genSalt(saltRounds, function(err,salt){
+        bcrypt.hash(req.body.newPassword, salt, function(err, hash){
+          console.log(req.body.newPassword)
+          db.user.update({
+            password: hash
+          }, {where: {id: id}}).then(()=>{
+            console.log('success');
+          })
+          res.json(user);
+        });
+      });
   })(req, res, next);
 });
+
 
 
 route.put('/:id/password', ( req, res ) => {
