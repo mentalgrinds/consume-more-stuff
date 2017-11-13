@@ -16,7 +16,8 @@ class Settings extends Component {
       matchedPassword: '',
       matched: false,
       valid: false,
-      email: ''
+      email: '',
+      redirect: false
     }
 
     this.handleCurrentPassword = this.handleCurrentPassword.bind(this);
@@ -61,7 +62,9 @@ class Settings extends Component {
     let validation = validator.validate(event.target.value)
     if(validation){
       this.setState({
-        valid: true, email: event.target.value
+        valid: true, 
+        email: event.target.value,
+        redirect: true
       })
     } 
   }
@@ -78,6 +81,12 @@ class Settings extends Component {
   }
 
   render(){
+    const { from } = this.props.location.state || { from: { pathname: '/dashboard' } }
+    const redirect = this.state.redirect;
+
+    if(redirect){
+      return ( <Redirect to={from}/>)
+    }
    
     return (
       <div id="settings-form">
