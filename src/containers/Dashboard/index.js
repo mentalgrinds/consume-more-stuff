@@ -70,7 +70,7 @@ class Dashboard extends Component {
     const item = this.state.item;
     const id = localStorage.getItem('userId');
     return(
-      <div>
+      <div className="dashboard-view">
 
        {item ?
         <SingleItem
@@ -85,7 +85,7 @@ class Dashboard extends Component {
           closeEdit={this.closeEdit}
           />
         :
-        <div>
+        <div className="dash-board-content">
           <h1> PUBLISHED </h1>
           <ItemStatusList loadSingleItem={this.loadSingleItem.bind(this)} items={this.props.items} statusId={2} currentUserId = {id}/>
           <h1> SOLD ITEMS  </h1>

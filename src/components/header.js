@@ -15,9 +15,9 @@ const Header = () => {
         <h1>
           High Quality Marketplace for Legal Goods and Services
         </h1>
-        <h2>
-          Торговая площадка высокого качества для юридических товаров и услуг
-        </h2>
+        <p>
+          Kvalitetsmarknad för juridiska varor och tjänster
+        </p>
       </div>
       <div id="hello">
         {localStorage.getItem('userId') ? `Hello, ${properName}` :  ` ` }
