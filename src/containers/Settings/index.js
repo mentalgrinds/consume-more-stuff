@@ -20,6 +20,7 @@ class Settings extends Component {
       redirect: false,
       passwordUpdated: localStorage.passwordUpdated,
       passwordError: localStorage.passwordError,
+      emailError: false,
       changePassword: false,
       changeEmail: false
     }
@@ -88,7 +89,7 @@ class Settings extends Component {
         valid: true, 
         email: event.target.value
       })
-    } 
+    }
   }
 
   handleEmailSubmit(event){
@@ -98,8 +99,18 @@ class Settings extends Component {
       id: localStorage.userId,
       email: this.state.email
     }
-    console.log(newEmail);
-    this.props.editUser(newEmail);
+    //console.log(newEmail);
+    if(this.state.valid){
+      this.setState({
+      emailError: false, redirect: true
+    }) 
+      this.props.editUser(newEmail);
+    }
+    else{
+      this.setState({
+      emailError: true
+      }) 
+    }
   }
 
   backToSettings(event){
@@ -141,7 +152,8 @@ class Settings extends Component {
           <ChangeEmail 
             handleChangeEmail={this.handleChangeEmail}
             handleEmailSubmit={this.handleEmailSubmit}
-            backToSettings={this.backToSettings}/>
+            backToSettings={this.backToSettings}
+            emailError={this.state.emailError}/>
         : <button onClick={this.changeEmail}>CHANGE EMAIL</button> }
         
       </div>
