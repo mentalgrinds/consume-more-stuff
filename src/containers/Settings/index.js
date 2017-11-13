@@ -17,7 +17,11 @@ class Settings extends Component {
       matched: false,
       valid: false,
       email: '',
-      redirect: false
+      redirect: false,
+      passwordUpdated: localStorage.passwordUpdated,
+      passwordError: localStorage.passwordError,
+      changePassword: false,
+      changeEmail: false
     }
 
     this.handleCurrentPassword = this.handleCurrentPassword.bind(this);
@@ -26,6 +30,22 @@ class Settings extends Component {
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
     this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
+    this.backToSettings = this.backToSettings.bind(this);
+    this.changePassword = this.changePassword.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
+  }
+
+  changeEmail(){
+    this.setState({
+      changeEmail: true
+    })
+
+  }
+  changePassword(){
+    this.setState({
+      changePassword: true
+    })
+
   }
 
   handleCurrentPassword(event){
@@ -66,8 +86,7 @@ class Settings extends Component {
     if(validation){
       this.setState({
         valid: true, 
-        email: event.target.value,
-        redirect: true
+        email: event.target.value
       })
     } 
   }
@@ -83,6 +102,16 @@ class Settings extends Component {
     this.props.editUser(newEmail);
   }
 
+  backToSettings(event){
+    event.preventDefault();
+    this.setState({
+      redirect: true
+    })
+    localStorage.removeItem('passwordError');
+    localStorage.removeItem('passwordUpdated');
+  }
+
+
   render(){
     const { from } = this.props.location.state || { from: { pathname: '/dashboard' } }
     const redirect = this.state.redirect;
@@ -93,28 +122,45 @@ class Settings extends Component {
    
     return (
       <div id="settings-form">
-        <ChangePassword 
-          handleCurrentPassword={this.handleCurrentPassword}
-          handleNewPassword={this.handleNewPassword}
-          handleMatchedPassword={this.handleMatchedPassword}
-          handlePasswordSubmit={this.handlePasswordSubmit}
-          matched={this.state.matched} />
 
-        <ChangeEmail 
-          handleChangeEmail={this.handleChangeEmail}
-          handleEmailSubmit={this.handleEmailSubmit}/>
+        {this.state.changePassword ? 
+          <ChangePassword 
+            handleCurrentPassword={this.handleCurrentPassword}
+            handleNewPassword={this.handleNewPassword}
+            handleMatchedPassword={this.handleMatchedPassword}
+            handlePasswordSubmit={this.handlePasswordSubmit}
+            matched={this.state.matched}
+            passwordUpdated={this.state.passwordUpdated}
+            passwordError={this.state.passwordError} 
+            backToSettings={this.backToSettings}/>
+        : <button onClick={this.changePassword}>CHANGE PASSWORD</button> }
+
+        
+
+        {this.state.changeEmail ? 
+          <ChangeEmail 
+            handleChangeEmail={this.handleChangeEmail}
+            handleEmailSubmit={this.handleEmailSubmit}
+            backToSettings={this.backToSettings}/>
+        : <button onClick={this.changeEmail}>CHANGE EMAIL</button> }
         
       </div>
 
     )
   }
+}
 
-
+const mapStateToProps = (state) => {
+  return{
+    success: state.users
+  }
 }
 
 
+
+
 const ConnectedSettings = connect(
-  null,
+  mapStateToProps,
   {editUser,editPassword}
 )(Settings);
 

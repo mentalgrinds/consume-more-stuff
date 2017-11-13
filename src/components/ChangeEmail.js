@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const ChangeEmail = ({handleChangeEmail,handleEmailSubmit}) => {
+const ChangeEmail = ({handleChangeEmail,handleEmailSubmit,backToSettings}) => {
     return (
     <div className='eachItem'>
       <ol>
@@ -15,6 +15,7 @@ const ChangeEmail = ({handleChangeEmail,handleEmailSubmit}) => {
                 <br></br>
             <input type="submit" className="button" value="Save Changes"/>
           </form>
+          <button onClick={backToSettings}>BACK</button>
       </ol>
     </div>
   )

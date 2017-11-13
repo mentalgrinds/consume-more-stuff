@@ -16,9 +16,12 @@ const users = (state = initialState, action) => {
     case EDIT_PASSWORD:
       let local = {};
       if(action.user.data === parseInt(localStorage.userId)){
-        local.updated = true;
+        localStorage.setItem('passwordUpdated', true);
+        return local.updated = true;
       }
-      return local.updated;
+        localStorage.setItem('passwordError', true);
+
+      return null;
     default:
       return state
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const ChangePassword = ({handleCurrentPassword,handleNewPassword,handleMatchedPassword,handlePasswordSubmit,matched}) => {
+const ChangePassword = ({handleCurrentPassword,handleNewPassword,handleMatchedPassword,handlePasswordSubmit,matched,backToSettings}) => {
     return (
     <div className='eachItem'>
       <ol>
@@ -30,7 +30,11 @@ const ChangePassword = ({handleCurrentPassword,handleNewPassword,handleMatchedPa
 
                 <br></br>
             <input type="submit" className="button" value="Save Changes"/>
+              <br></br>
           </form>
+            {localStorage.passwordUpdated ? 'Password updated sucessfully' : null}
+            {localStorage.passwordError ? 'Password update was not successfull, please try again' : null}
+          <button onClick={backToSettings}>BACK</button>
       </ol>
     </div>
   )
