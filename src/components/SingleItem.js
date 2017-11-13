@@ -13,7 +13,8 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
             <button onClick={(e)=>backToItems(e)}>Back</button>
         </div>
     {!edit ?
-        <div>
+
+        <div className="detail-view">
             <div className="detail-view-title">
                 <h2>{item ? item[0].name : null}</h2>
                 <div className="img-container-large">
@@ -36,6 +37,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
                 <b>Updated At: </b>{item ? <Moment date={item[0].updatedAt}/> : null}<br/>
             </div>
         </div>
+
             :
                 <div className="blank-space-div">
                     <EditItemForm
