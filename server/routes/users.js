@@ -48,40 +48,21 @@ route.put('/:id', ( req, res ) => {
   });
 });
 
-
-
-
   route.put('/:id/password', function(req, res, next) {
-    console.log(req.body)
     passport.authenticate('local', function(err, user, info) {
-      console.log('for you',req.body);
       let id = user.id;
       bcrypt.genSalt(saltRounds, function(err,salt){
         bcrypt.hash(req.body.newPassword, salt, function(err, hash){
-          console.log(req.body.newPassword)
           db.user.update({
             password: hash
           }, {where: {id: id}}).then(()=>{
-            console.log('success');
+                //console.log('password update fired')
           })
-          res.json(user);
+          res.json(user ? user.id : user);
         });
       });
   })(req, res, next);
 });
-
-
-
-route.put('/:id/password', ( req, res ) => {
-  console.log('fired');
-  let value = req.isAuthenticated();
-  let id = req.params.id;
-  let newInfo = req.body;
-  return user.findById(id).then((user)=>{
-    let currentPassword = user.password;
-    console.log(currentPassword);
-  });
-})
 
 
 
