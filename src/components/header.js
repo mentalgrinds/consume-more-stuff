@@ -22,7 +22,7 @@ const Header = () => {
       </div>
       <div id="hello">
         {localStorage.getItem('userId') ? `Hello, ${properName}` :  ` ` }
-        {localStorage.getItem('userId') ? ` ` : <Link to="/login">Login</Link>}
+        {localStorage.getItem('userId') ? ` ` : <div id="link-to-login"><Link to="/login">Login</Link></div>}
       </div>
     </div>
   );
