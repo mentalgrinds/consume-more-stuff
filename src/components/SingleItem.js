@@ -53,7 +53,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
                 </div>
             }
 
-            {auth ?
+            {((auth) && (item[0].userId===parseInt(localStorage.userId))) ?
                 <div className="submit-changes-button">
                     <button onClick={(e)=>editNow(item,e)}>
                         {edit ? 'Submit changes' : 'Edit item'}
