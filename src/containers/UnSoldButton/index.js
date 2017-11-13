@@ -5,19 +5,19 @@ import filterAllItems from '../../lib/filterAllItems';
 import filterItem from '../../lib/filterItem';
 import { editItem } from '../../actions/items';
 
-class SoldButton extends Component {
+class UnSoldButton extends Component {
   constructor(){
     super();
 
-    this.markAsSold = this.markAsSold.bind(this);
+    this.markAsPublished = this.markAsPublished.bind(this);
   }
 
-  markAsSold(event){
+  markAsPublished(event){
     event.preventDefault();
 
     let newInfo = {
       id: this.props.id,
-      itemstatusId: 1
+      itemstatusId: 2
     };
 
     this.props.editItem(newInfo);
@@ -26,8 +26,8 @@ class SoldButton extends Component {
   render(){
 
     return(
-        <form onSubmit={ this.markAsSold }>
-          <input type="submit" className="button" value="Mark as SOLD"/>
+        <form onSubmit={ this.markAsPublished }>
+          <input type="submit" className="button" value="Mark as PUBLISHED"/>
         </form>
     )
   }
@@ -41,9 +41,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const ConnectedSoldButton = connect(
+const ConnectedUnSoldButton = connect(
   null,
   mapDispatchToProps
-)(SoldButton);
+)(UnSoldButton);
 
-export default ConnectedSoldButton;
+export default ConnectedUnSoldButton;

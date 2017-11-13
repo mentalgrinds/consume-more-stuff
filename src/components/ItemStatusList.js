@@ -1,5 +1,7 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
+import SoldButton from '../containers/SoldButton';
+import UnSoldButton from '../containers/UnSoldButton';
 
 
 const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
@@ -12,9 +14,7 @@ const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
         }).map( (categoryItem) => {
           return (
             <div>
-            <form >
-              <input type="submit" className="button" value="Mark as SOLD"/>
-            </form>
+            { categoryItem.itemstatus.id === 2? <SoldButton id={ categoryItem.id }/> : <UnSoldButton id={ categoryItem.id } />}
             <ItemDetailView
               loadSingleItem={loadSingleItem}
               id={categoryItem.id}

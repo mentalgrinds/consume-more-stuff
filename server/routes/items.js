@@ -102,27 +102,35 @@ route.put('/:id', ( req, res ) => {
 
   let newInfo = req.body;
 
-  return item.update(newInfo, {where     : [{id: id}],
-      returning : true,
-      plain     : true
-  }).then((data) => {
-      return item.findOne({
-        where: {
-          id: id
-        },
-        include: [
-        { model: User, as: 'seller' },
-        { model: Category, as: 'itemcategory'},
-        { model: Condition, as: 'itemcondition'},
-        { model: ItemStatus, as: 'itemstatus'}
-        ]
+  return item.findById(id)
+  .then(foundItem => {
+    if(parseInt(foundItem.userId) === parseInt(req.user.id)){
+      return foundItem.update(newInfo, {
+        returning: true,
+        plain: true
       })
-    .then((editedItem) => {
-      return res.json(editedItem);
-    })
-  })
-  .catch((err) => {
-    console.log(err)
+      .then(foundItem => {
+        return item.findOne({
+          where: {
+            id: id
+          },
+          include: [
+            { model: User, as: 'seller' },
+            { model: Category, as: 'itemcategory'},
+            { model: Condition, as: 'itemcondition'},
+            { model: ItemStatus, as: 'itemstatus'}
+          ]
+        })
+        .then((editedItem) => {
+          return res.json(editedItem);
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }else{
+      return res.send('error!');
+    }
   })
 });
 
