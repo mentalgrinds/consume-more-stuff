@@ -126,7 +126,7 @@ class NewItemForm extends Component {
     formData.append('file', this.state.file);
     formData.append('name', this.state.name);
     formData.append('description', this.state.description);
-    formData.append('price', this.state.price);
+    formData.append('price', Number(this.state.price));
     formData.append('manufacturer', this.state.manufacturer);
     formData.append('model', this.state.model);
     formData.append('dimensions', this.state.dimensions);
@@ -176,7 +176,7 @@ class NewItemForm extends Component {
             <br/>
             <br/>
 
-            Price: <input type="text" value={this.state.price} onChange={this.handleChangePrice}/>
+            Price: <input type="number" value={this.state.price} onChange={this.handleChangePrice}/>
             <br/>
             <br/>
             Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
