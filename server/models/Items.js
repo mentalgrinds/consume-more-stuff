@@ -5,11 +5,12 @@ module.exports = function(sequelize, DataTypes){
       allowNull: false
     },
     description:{
-     type: DataTypes.STRING,
-     allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     price:{
-      type: DataTypes.DECIMAL
+      type: DataTypes.INTEGER,
+      defaultValue: null
     },
     manufacturer:{
       type: DataTypes.STRING

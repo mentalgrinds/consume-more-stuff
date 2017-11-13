@@ -15,7 +15,12 @@ const ItemDetailView = ({id, name, description, image, price, conditionId, model
 
         <div className="all-view-details">
             {description}<br/><br/>
-            <b>Price:</b> {({price} ? `Price: $ ${price}` : null )}<br/>
+            {
+              price ?
+                ( [<span className="price">Price: $</span>, <span> {price} </span>]  )
+              :
+              null
+            } <br/>
             <b>Condition:</b>{conditionId}<br/>
         </div>
       </ol>
