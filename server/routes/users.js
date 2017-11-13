@@ -38,6 +38,7 @@ route.put('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
   let id = req.params.id;
   let newInfo = req.body;
+  console.log(newInfo);
   return user.update(newInfo,
     {where     : [{id: id}],
       returning : true,
@@ -46,6 +47,51 @@ route.put('/:id', ( req, res ) => {
     res.json(user);
   });
 });
+
+
+
+
+  route.post('/:id/password', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+      console.log('for you',req.body);
+      let password = req.body.newPassword
+      let id = user.id;
+
+      user.update({
+        password: password
+      }, {where: {id: id}})
+      .then(()=>{
+        console.log('success');
+      })
+
+
+
+    res.json(user);
+
+  })(req, res, next);
+});
+
+
+route.put('/:id/password', ( req, res ) => {
+  console.log('fired');
+  let value = req.isAuthenticated();
+  let id = req.params.id;
+  let newInfo = req.body;
+  return user.findById(id).then((user)=>{
+    let currentPassword = user.password;
+    console.log(currentPassword);
+  });
+})
+
+
+
+
+
+
+
+
+
+
 
 route.delete('/:id', ( req, res ) => {
   let value = req.isAuthenticated();

@@ -29,9 +29,21 @@ export const addUser = (newUser) => {
 }
 
 export const editUser = (newInfo) => {
-  console.log(newInfo);
   return function(dispatch){
     return axios.put(`/api/users/${newInfo.id}`, newInfo)
+    .then (user => {
+      dispatch({
+        type: EDIT_USER,
+        user: user.data
+      });
+    });
+  }
+}
+
+export const editPassword = (newInfo) => {
+  console.log(newInfo);
+  return function(dispatch){
+    return axios.put(`/api/users/${newInfo.id}/password`, newInfo)
     .then (user => {
       dispatch({
         type: EDIT_USER,

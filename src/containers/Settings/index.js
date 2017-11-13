@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router';
-import { editUser } from '../../actions/users.js';
+import { editUser,editPassword } from '../../actions/users.js';
 import ChangePassword from '../../components/ChangePassword';
 import ChangeEmail from '../../components/ChangeEmail';
 const validator = require("email-validator");
@@ -51,11 +51,11 @@ class Settings extends Component {
     event.preventDefault();
 
     let newPassword = {
-      password: this.state.currentPassword,
-      newPassword: this.state.matchedPassword
+      id: localStorage.userId,
+      newPassword: this.state.currentPassword
     }
     console.log(newPassword);
-    this.props.editUser(newPassword);
+    this.props.editPassword(newPassword);
   }
 
   handleChangeEmail(event){
@@ -112,7 +112,7 @@ class Settings extends Component {
 
 const ConnectedSettings = connect(
   null,
-  {editUser}
+  {editUser,editPassword}
 )(Settings);
 
 export default withRouter(ConnectedSettings);
