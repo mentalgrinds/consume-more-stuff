@@ -9,10 +9,11 @@ const users = (state = initialState, action) => {
     case ADD_USER:
       return [ ...state, action.user ];
     case EDIT_USER:
-      let index = state.findIndex((user) => {
-        return user.id === action.user[1].id
+      let index = state.findIndex((item) => {
+        return item.id === action.item.id
       });
-      return [ ...(state.slice(0, index)), action.user[1], ...(state.slice((index + 1), state.length))];
+      console.log([ ...(state.slice(0, index)), action.item, ...(state.slice((index + 1), state.length))])
+      return [ ...(state.slice(0, index)), action.item, ...(state.slice((index + 1), state.length))];
     case EDIT_PASSWORD:
       let local = {};
       if(action.user.data === parseInt(localStorage.userId)){

@@ -36,17 +36,37 @@ route.get('/:id', ( req, res ) => {
 
 route.put('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
+
   let id = req.params.id;
+
   let newInfo = req.body;
-  console.log(newInfo);
-  return user.update(newInfo,
-    {where     : [{id: id}],
-      returning : true,
-      plain     : true
-  }).then((user) => {
-    res.json(user);
-  });
+
+  return user.findById(id)
+  .then(foundUser => {
+    if(parseInt(id) === parseInt(req.user.id)){
+      return foundUser.update(newInfo, {
+        returning: true,
+        plain: true
+      })
+      .then(foundUser => {
+        return user.findOne({
+          where: {
+            id: id
+          }
+        })
+        .then((foundUser) => {
+          return res.json(foundUser);
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }else{
+      return res.send('error!');
+    }
+  })
 });
+
 
   route.put('/:id/password', function(req, res, next) {
     console.log(req.body);
