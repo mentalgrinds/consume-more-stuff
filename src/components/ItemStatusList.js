@@ -12,7 +12,7 @@ const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
         }).map( (categoryItem) => {
           return (
             <div>
-            <SoldButton items={categoryItem.id}/>
+            <SoldButton id={categoryItem.id}/>
             <ItemDetailView
               loadSingleItem={loadSingleItem}
               id={categoryItem.id}

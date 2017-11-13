@@ -54,6 +54,8 @@ route.put('/:id', ( req, res ) => {
   let id = req.params.id;
   //console.log('itemstatus.put/:id :', id);
   let data = req.body;
+  console.log('HELLO')
+  console.log('PUT ITEM routes newInfo', data)
   return itemstatus.update({
     sold : req.body.sold,
     published : req.body.published
@@ -64,6 +66,7 @@ route.put('/:id', ( req, res ) => {
     res.json(status);
   });
 });
+
 
 route.delete('/:id', ( req, res ) => {
   let value = req.isAuthenticated();

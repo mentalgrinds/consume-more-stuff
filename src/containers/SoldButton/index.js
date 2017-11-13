@@ -5,7 +5,7 @@ import filterAllItems from '../../lib/filterAllItems';
 import filterItem from '../../lib/filterItem';
 import { editItemStatuses } from '../../actions/itemStatuses';
 import { editHelper } from '../../lib/editItem';
-import { editItem } from  '../../actions/items'
+import { editItem } from  '../../actions/items';
 
 class SoldButton extends Component {
   constructor(props){
@@ -21,20 +21,21 @@ class SoldButton extends Component {
 
   }
 
-  handleSoldButton(event){
-   /* event.preventDefault();*/
+  handleSoldButton(){
     let newData = {
       id: parseInt(this.props.id),
       itemstatusId: 1
     }
-    console.log('SoldButton newData', newData)
+    console.log('handleSoldButton newData', newData)
     editItem(newData)
   }
+
+
 
   render(){
     return(
       <div>
-        <button className='button' active={this.props.itemStatuses === 'sold'} onClick={(event)=>{this.handleSoldButton()}}>Mark As Sold</button>
+        <button className='button' active={this.props.itemStatuses === 'sold'} onClick={(event)=>{this.handleSoldButton(event)}}>Mark As Sold</button>
       </div>
     )
   }

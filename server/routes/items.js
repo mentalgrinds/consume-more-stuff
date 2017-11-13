@@ -101,7 +101,7 @@ route.put('/:id', ( req, res ) => {
   let id = req.params.id;
 
   let newInfo = req.body;
-
+  console.log('PUT ITEM routes newInfo', newInfo)
   return item.update(newInfo, {where     : [{id: id}],
       returning : true,
       plain     : true

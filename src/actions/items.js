@@ -35,9 +35,11 @@ export const addItem = (newItem) => {
 }
 
 export const editItem = (newInfo) => {
+  console.log('Actions, item', newInfo)
   return function(dispatch){
     return axios.put(`/api/items/${newInfo.id}`, newInfo)
     .then( item => {
+
       dispatch({
         type: EDIT_ITEM,
         item: item.data
