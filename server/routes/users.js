@@ -36,17 +36,10 @@ route.get('/:id', ( req, res ) => {
 
 route.put('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  //console.log('users ID route has been requested: PUT ');
   let id = req.params.id;
-  console.log('users.put/:id :', id);
-  console.log(req.body);
-  return user.update({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email,
-    userstatus: req.body.userstatus
-  }, {where     : [{id: id}],
+  let newInfo = req.body;
+  return user.update(newInfo,
+    {where     : [{id: id}],
       returning : true,
       plain     : true
   }).then((user) => {

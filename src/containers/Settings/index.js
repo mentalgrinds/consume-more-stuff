@@ -46,6 +46,17 @@ class Settings extends Component {
     }
   }
 
+  handlePasswordSubmit(event){
+    event.preventDefault();
+
+    let newPassword = {
+      password: this.state.currentPassword,
+      newPassword: this.state.matchedPassword
+    }
+    console.log(newPassword);
+    this.props.editUser(newPassword);
+  }
+
   handleChangeEmail(event){
     let validation = validator.validate(event.target.value)
     if(validation){
@@ -55,25 +66,15 @@ class Settings extends Component {
     } 
   }
 
-  handlePasswordSubmit(event){
-    event.preventDefault();
-
-    let newPassword = {
-      password: this.state.currentPassword,
-      newPassword: this.state.matchedPassword
-    }
-    console.log(newPassword);
-    //this.props.edituser(newUser);
-  }
-
   handleEmailSubmit(event){
     event.preventDefault();
 
     let newEmail = {
+      id: localStorage.userId,
       email: this.state.email
     }
     console.log(newEmail);
-    //this.props.edituser(newUser);
+    this.props.editUser(newEmail);
   }
 
   render(){
@@ -99,17 +100,10 @@ class Settings extends Component {
 
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    editUser: (user) => {
-      dispatch(editUser(user))
-    }
-  }
-}
 
 const ConnectedSettings = connect(
   null,
-  mapDispatchToProps
+  {editUser}
 )(Settings);
 
 export default withRouter(ConnectedSettings);
