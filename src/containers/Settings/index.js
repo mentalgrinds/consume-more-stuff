@@ -52,7 +52,10 @@ class Settings extends Component {
 
     let newPassword = {
       id: localStorage.userId,
-      newPassword: this.state.currentPassword
+      username: localStorage.username,
+      password: this.state.currentPassword,
+      matchedPassword: this.state.matchedPassword
+
     }
     console.log(newPassword);
     this.props.editPassword(newPassword);

@@ -49,10 +49,11 @@ route.put('/:id', ( req, res ) => {
 });
 
   route.put('/:id/password', function(req, res, next) {
+    console.log(req.body);
     passport.authenticate('local', function(err, user, info) {
       let id = user.id;
       bcrypt.genSalt(saltRounds, function(err,salt){
-        bcrypt.hash(req.body.newPassword, salt, function(err, hash){
+        bcrypt.hash(req.body.matchedPassword, salt, function(err, hash){
           db.user.update({
             password: hash
           }, {where: {id: id}}).then(()=>{
