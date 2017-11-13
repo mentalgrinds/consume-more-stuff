@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from './logo';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const username = localStorage.getItem('username')
@@ -21,6 +22,7 @@ const Header = () => {
       </div>
       <div id="hello">
         {localStorage.getItem('userId') ? `Hello, ${properName}` :  ` ` }
+        {localStorage.getItem('userId') ? ` ` : <Link to="/login">Login</Link>}
       </div>
     </div>
   );
