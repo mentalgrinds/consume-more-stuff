@@ -6,9 +6,8 @@ const AuthNav = () => {
   return (
 
 
-      <div>
-        <Link to="/all">Home</Link>
       <div id="auth-nav">
+        <Link to="/all">Home</Link>
         <Link to="/">Home</Link>
         <br></br>
         <Link to="/new-item">New Item</Link>
