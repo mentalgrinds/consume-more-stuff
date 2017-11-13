@@ -36,23 +36,44 @@ route.get('/:id', ( req, res ) => {
 
 route.put('/:id', ( req, res ) => {
   let value = req.isAuthenticated();
-  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  //console.log('users ID route has been requested: PUT ');
   let id = req.params.id;
-  console.log('users.put/:id :', id);
-  console.log(req.body);
-  return user.update({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email,
-    userstatus: req.body.userstatus
-  }, {where     : [{id: id}],
+  let newInfo = req.body;
+  console.log(newInfo);
+  return user.update(newInfo,
+    {where     : [{id: id}],
       returning : true,
       plain     : true
   }).then((user) => {
     res.json(user);
   });
 });
+
+  route.put('/:id/password', function(req, res, next) {
+    console.log(req.body);
+    passport.authenticate('local', function(err, user, info) {
+      let id = user.id;
+      bcrypt.genSalt(saltRounds, function(err,salt){
+        bcrypt.hash(req.body.matchedPassword, salt, function(err, hash){
+          db.user.update({
+            password: hash
+          }, {where: {id: id}}).then(()=>{
+                //console.log('password update fired')
+          })
+          res.json(user ? user.id : user);
+        });
+      });
+  })(req, res, next);
+});
+
+
+
+
+
+
+
+
+
+
 
 route.delete('/:id', ( req, res ) => {
   let value = req.isAuthenticated();

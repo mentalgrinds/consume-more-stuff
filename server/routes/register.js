@@ -19,8 +19,8 @@ route.post('/', (req,res) =>{
       db.user.create({
         username: req.body.username,
         password: hash,
-        email: req.body.email.toLowerCase(),
-        userstatus: (req.body.email.toLowerCase() ? 'active' : 'inactive')
+        email: req.body.email,
+        userstatus: (req.body.email ? 'active' : 'inactive')
       })
       .then( (user) => {
         //console.log(user);

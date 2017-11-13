@@ -95,7 +95,6 @@ route.post('/', upload.single('file'), ( req, res ) => {
 });
 
 route.put('/:id', ( req, res ) => {
-
   let value = req.isAuthenticated();
 
   let id = req.params.id;
