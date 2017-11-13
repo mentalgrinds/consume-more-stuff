@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
-
+import SoldButton from '../containers/SoldButton';
 
 const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
 
@@ -12,9 +12,7 @@ const ItemStatusList = ({items, statusId, currentUserId,loadSingleItem}) => {
         }).map( (categoryItem) => {
           return (
             <div>
-            <form >
-              <input type="submit" className="button" value="Mark as SOLD"/>
-            </form>
+            <SoldButton items={categoryItem.id}/>
             <ItemDetailView
               loadSingleItem={loadSingleItem}
               id={categoryItem.id}
