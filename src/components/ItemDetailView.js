@@ -3,7 +3,6 @@ import React from 'react';
 const ItemDetailView = ({id, name, description, image, price, conditionId, model,loadSingleItem,}) => {
   return (
     <div className='eachItem'>
-      <ol>
         <div className="all-view-title">
             <span onClick={(e)=>loadSingleItem(id,e)}>
             <h2>{name}</h2>
@@ -23,7 +22,6 @@ const ItemDetailView = ({id, name, description, image, price, conditionId, model
             } <br/>
             <b>Condition:</b>{conditionId}<br/>
         </div>
-      </ol>
     </div>
   )
 }
