@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Redirect, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
 import { loadConditions } from '../../actions/conditions';
@@ -11,9 +10,8 @@ import filterAllItems from '../../lib/filterAllItems';
 import { editHelper } from '../../lib/editItem';
 import { clearLocal } from '../../lib/editItem';
 import Select from '../../components/Select';
-import SingleItemView from '../SingleItemView';
 
-class AllItemView extends Component {
+class SingleItemView extends Component {
   constructor(){
     super();
 
@@ -93,12 +91,35 @@ class AllItemView extends Component {
       }
     );
 
+    return(
+      <div className="single-item">
+       {
+        item ?
+        <SingleItem
 
-      return ( <Redirect to='/items'/>);
+          edit={this.state.edit}
+          closeEdit={this.closeEdit}
+          auth={this.state.auth}
+          item={this.state.item}
+          editNow={this.editNow.bind(this)}
+          backToItems={this.backToItems.bind(this)}
+          categories={this.props.categories}
+          conditions={this.props.conditions}
+          itemStatuses={this.props.itemStatuses}
+        />
+        :
+          <div>
+            FILTER by Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
 
+            <ItemList
+              loadSingleItem={this.loadSingleItem.bind(this)}
+              items={notSoldItems}/>
+          </div>
+        }
+      </div>
+    )
   }
 }
-
 
 
 const mapStateToProps = (state) => {
@@ -109,10 +130,9 @@ const mapStateToProps = (state) => {
     itemStatuses: state.itemStatuses
   }
 }
-
-const ConnectedAllItemView = connect(
+const ConnectedSingleItemView = connect(
   mapStateToProps,
   {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem}
-)(AllItemView)
+)(SingleItemView)
 
-export default ConnectedAllItemView;
+export default ConnectedSingleItemView;
