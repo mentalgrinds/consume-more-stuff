@@ -1,8 +1,11 @@
-function filterRoles(arr,key,query){
+function filterRoles(arr,id){
+
   const data = arr.filter((elem) => {
-  return elem[key] === query;  
+  return elem.admin === true;  
 });
-  return data;
+  return data.filter((elem)=>{
+    return elem.id === parseInt(id);
+  })
 }
 
 
