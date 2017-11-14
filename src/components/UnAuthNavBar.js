@@ -6,6 +6,8 @@ const UnAuthNavBar = () => {
       <div id="unauth-nav">
         <Link to="/">Home</Link>
         <br></br>
+        <Link to="/all">All Items</Link>
+        <br></br>
         <Link to="/register">Register</Link>
       </div>
       )
