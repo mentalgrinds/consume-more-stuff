@@ -32,7 +32,24 @@ class RegistrationForm extends Component {
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.keyResetEmail = this.keyResetEmail.bind(this);
+    this.keyResetUsername = this.keyResetUsername.bind(this);
   }
+
+  keyResetEmail(e){
+    if(e.keyCode == 8){ this.setState({ emailTaken: false }) }
+  }
+
+  keyResetUsername(e){
+    if(e.keyCode == 8){ 
+      this.setState({ 
+        usernameTaken: false,
+        validUsername: false
+      }) }  
+  }
+
+
+
 
   handleChangeUsername(event){
 
@@ -61,6 +78,12 @@ class RegistrationForm extends Component {
     if(self.validLength && self.validNum && self.validCapital){
       this.setState({ validPassword: true }) 
     }
+    if(val.length === 0){
+      this.setState({ validPassword: false }) 
+    }
+    if(val.length < 4){ this.setState({ validLength: false }) }
+    if(!val.match(/\d+/g)){ this.setState({ validNum: false }) }
+    if(!val.match(/[A-Z]/g)){ this.setState({ validCapital: false }) }
   }
 
   handleChangeEmail(event){
@@ -73,6 +96,9 @@ class RegistrationForm extends Component {
       })
     if(email === val){
       this.setState({ emailTaken: true, validEmail: false})
+    }
+    if(val.length === 0){
+      this.setState({ emailTaken: false }) 
     }
   }
 
@@ -105,7 +131,8 @@ class RegistrationForm extends Component {
     return (
       <div id="registration-form">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername}/>
+          <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername}
+            onKeyDown={this.keyResetUsername}/>
           {this.state.usernameTaken ? "This username has been taken please try again" :null}
           {this.state.validUsername ? <img alt='true' width="20" height="20" src="http://bit.ly/2zAafF6"/> : null }
 
@@ -125,7 +152,8 @@ class RegistrationForm extends Component {
           <br></br>
 
 
-          <input type="text" value={this.state.email} placeholder="email address" onChange={this.handleChangeEmail}/>
+          <input type="text" value={this.state.email} placeholder="email address" onChange={this.handleChangeEmail}
+            onKeyDown={this.keyResetEmail}/>
           {this.state.validEmail ? <img alt='true' width="20" height="20" src="http://bit.ly/2zAafF6"/> : null }
           <br></br>
           <br></br>
