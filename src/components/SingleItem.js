@@ -1,7 +1,5 @@
 import React from 'react';
-import Select from './Select';
 import Moment from 'react-moment';
-import moment from 'moment/min/moment-with-locales';
 import 'moment-timezone';
 import EditItemForm from '../containers/EditItemForm';
 

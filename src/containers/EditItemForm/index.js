@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { loadConditions } from '../../actions/conditions';
-import { loadCategories } from '../../actions/categories';
-import { loadItemStatuses } from '../../actions/itemStatuses';
 import { editItemImage, deleteItem } from '../../actions/items';
 import { editHelper } from '../../lib/editItem';
 import Select from '../../components/Select';

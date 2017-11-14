@@ -1,7 +1,6 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
 
-const _ = require('lodash');
 
 
 
