@@ -10,6 +10,9 @@ import filterAllItems from '../../lib/filterAllItems';
 import { editHelper } from '../../lib/editItem';
 import { clearLocal } from '../../lib/editItem';
 import Select from '../../components/Select';
+import _sortBy from 'lodash/sortBy';
+const _ = require('lodash');
+
 
 class AllItemView extends Component {
   constructor(){
@@ -87,6 +90,8 @@ class AllItemView extends Component {
       }
     );
 
+
+
     return(
       <div className="single-item">
        {
@@ -108,8 +113,8 @@ class AllItemView extends Component {
             FILTER by Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
 
             <ItemList
-              loadSingleItem={this.loadSingleItem.bind(this)}
-              items={notSoldItems}/>
+            loadSingleItem={this.loadSingleItem.bind(this)}
+            items={notSoldItems}/>
           </div>
         }
       </div>
@@ -120,7 +125,7 @@ class AllItemView extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    items: state.items,
+    items: _sortBy(state.items, o => +new Date(o.createdAt)).reverse(),
     categories: state.categories,
     conditions: state.conditions,
     itemStatuses: state.itemStatuses
