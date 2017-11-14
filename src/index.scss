@@ -1,14 +1,34 @@
+$dark: black;
+$light: white;
+$bright: #8080ff;
+$splash: tomato;
+$pastel: #f2f2f2;
+$highlight: #ffe600;
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  height: 100%;
-  width: 100%;
+  min-height: 100vh;
+  min-width: 100vh;
+}
+
+#root{
+  min-height: 100vh;
+  min-width: 100vh;
+}
+
+#main-div{
+  min-height: 100vh;
+  min-width: 100vh;
 }
 
 #content-div{
   display: flex;
+  background-color: $pastel;
+  min-height: 100vh;
+  min-width: 100vh;
 }
 
 #unauth-nav{
@@ -22,6 +42,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .new-item{
@@ -30,30 +51,35 @@ body {
 }
 
 .new-item-button{
-  border: #8533ff solid 1px;
-  background-color: #8533ff;
+  border: $dark solid 1px;
+  background-color: $dark;
   margin-bottom: 2%;
   color: white;
   font-size: 120%;
 }
 
 .new-item-button:hover{
-  border: #8533ff solid 1px;
-  color: #ffe600;
+  color: $highlight;
 }
 
 #logout-form{
   .button{
+    border: $dark solid 1px;
     font-size: 120%;
+    background-color: $dark;
+    color: $light;
   }
   .button:hover{
-    background-color: #8533ff;
-    color: #ffe600;
+    color: $highlight;
   }
 }
 
 #unauth-links{
   width: 100%;
+}
+
+.eachItem{
+  background-color: $light;
 }
 
 .itemStatusList{
@@ -83,15 +109,21 @@ body {
 
 }
 
+.hip-hip{
+  color: white;
+}
+
 #header{
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
   height: 250px;
-  width: 100%;
-  color: black;
-  border-bottom: black solid 1px;
-  font-size: 70%;
+  min-width: 100vh;
+  color: $light;
+  background-color: $dark;
+  border-bottom: $dark solid 1px;
   p{
-    color: #8533ff;
+    color: $bright;
   }
 }
 
@@ -101,10 +133,10 @@ body {
 
 #nav{
   min-width: 130px;
-  border-right: black solid 1px;
+  min-height: 100vh;
+  background-color: $splash;
   min-height: 100%;
   margin-right: 2%;
-  margin-left: 2%;
   padding-top: 2%;
 }
 
@@ -195,12 +227,8 @@ body {
 #logo{
   height: 130px;
   width: 250px;
-}
-
-#logo-image{
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
+  font-size: 150%;
+  color: $splash;
 }
 
 .img-container-large{
@@ -270,23 +298,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: #8533ff solid 1px;
-  background-color: #8533ff;
+  border: $bright solid 1px;
+  background-color: $bright;
   margin-bottom: 2%;
    a{
-    color: white;
+    color: $light;
    }
 }
 
 #link-to-login:hover{
-  background-color: white;
-  a{
-    color: #8533ff;
-  }
+  background-color: $splash;
+  border: $splash solid 1px;
 }
 
 #header-text{
-  margin-left: 2%;
   text-align: center;
 }
 
@@ -296,9 +321,9 @@ body {
 
 .button {
   font-size: 110%;
-  border: #8533ff 1px solid;
-  background-color: #8533ff;
-  color: white;
+  border: $bright 1px solid;
+  background-color: $bright;
+  color: $light;
 }
 
 .edit-image{
@@ -309,37 +334,39 @@ body {
 .delete-button{
   button{
     font-size: 120%;
-    border: red 1px solid;
-    background-color: red;
+    border: $splash 1px solid;
+    background-color: $splash;
+    color: $light;
   }
   button:hover{
-    background-color: white;
-    color: red;
+    background-color: $light;
+    color: $splash;
   }
 }
 
 .button:hover{
-  background-color: white;
-  color: #8533ff;
+  border: $bright 1px solid;
+  background-color: $light;
+  color: $bright;
   cursor: pointer;
 }
 
 button {
   font-size: 110%;
-  border: #8533ff 1px solid;
-  background-color: #8533ff;
+  border: $bright 1px solid;
+  background-color: $bright;
   color: white;
 }
 
 button:hover {
   background-color: white;
-  color: #8533ff;
+  color: $bright;
   cursor: pointer;
 }
 
 .all-view-title span:hover {
   cursor: pointer;
-  color: #8533ff;
+  color: $splash;
   -webkit-transition-duration: 400ms;
   -moz-transition-duration: 400ms;
   -o-transition-duration: 400ms;
@@ -354,12 +381,12 @@ button:hover {
 
 a{
   text-decoration: none;
-  color: #8533ff;
+  color: $dark;
   font-size: 120%;
 }
 
 a:hover{
-  color: #ffe600;
+  color: $light;
 }
 
 @media screen and (min-width: 480px){
