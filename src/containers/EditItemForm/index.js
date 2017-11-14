@@ -124,33 +124,36 @@ class EditItemForm extends Component {
           <br />
           <textarea cols="50" rows="10" name="notes" onChange={this.handleChange} defaultValue={this.props.notes} />
         </form>
-
-       <form onSubmit={this.handleSubmitImage} >
-         <h2>
-           Upload new image
-         </h2>
-         <div className="img-container-large">
-           <img alt='Preview' className="fullsize" src={this.state.imageUrl} />
-         </div>
-         <div className="select-save-buttons">
-           <div className="select-image-button">
-             <input type="file" accept="image/*" id="image-upload" placeholder="Select new image" onChange={this.handleChangeImage}/>
-           </div>
-           <div className="submit-changed-image">
-             <input type="submit" className="button" value="Save image" />
-           </div>
-         </div>
-         <br />
-         <br />
-       </form>
-       <div className="delete-button">
-         <h2>
-           Delete listing
-         </h2>
-         <button onClick={(event)=>this.handleDelete(this.props.id, event)}>
-           Delete Item
-         </button>
-       </div>
+        <div className="edit-form-part-two">
+          <div className="edit-image">
+            <form onSubmit={this.handleSubmitImage} >
+               <h2>
+                 Upload new image
+               </h2>
+               <div className="img-container-large">
+                 <img alt='Preview' className="fullsize" src={this.state.imageUrl} />
+               </div>
+               <div className="select-save-buttons">
+                 <div className="select-image-button">
+                   <input type="file" accept="image/*" id="image-upload" placeholder="Select new image" onChange={this.handleChangeImage}/>
+                 </div>
+                 <div className="submit-changed-image">
+                   <input type="submit" className="button" value="Click here to save new image" />
+                 </div>
+                </div>
+            </form>
+          </div>
+           <br />
+           <br />
+          <div className="delete-button">
+           <h2>
+             Delete listing
+           </h2>
+           <button onClick={(event)=>this.handleDelete(this.props.id, event)}>
+             Click here to delete your item
+           </button>
+          </div>
+        </div>
       </div>
 
   )}
