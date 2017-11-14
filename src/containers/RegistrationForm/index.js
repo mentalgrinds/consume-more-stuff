@@ -47,20 +47,17 @@ class RegistrationForm extends Component {
     if(val.length >=4){
       this.setState({ validLength: true })
     }
-
-
-
-    
+    if(val.match(/\d+/g)){
+      this.setState({ validNum: true })
+    }
+    if(val.match(/[A-Z]/g)){
+      this.setState({ validCapital: true })
+    }
     this.setState({ password: event.target.value })
     let self = this.state;
     if(self.validLength && self.validNum && self.validCapital){
       this.setState({ validPassword: true }) 
     }
-
-
-
-
-
   }
 
   handleChangeEmail(event){
