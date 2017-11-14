@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editItemImage, deleteItem } from '../../actions/items';
-import { editHelper } from '../../lib/editItem';
+import { editItem, editItemImage, deleteItem } from '../../actions/items';
+import { editHelper, clearLocal } from '../../lib/editItem';
 import Select from '../../components/Select';
 
 class EditItemForm extends Component {
@@ -14,6 +14,7 @@ class EditItemForm extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeImage = this.handleChangeImage.bind(this);
     this.handleSubmitImage = this.handleSubmitImage.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -60,12 +61,23 @@ class EditItemForm extends Component {
     return false;
   }
 
+  handleSubmit(event){
+    event.preventDefault();
+    let editedItem = editHelper(event);
+    editedItem.id = this.props.id;
+    this.props.editItem(editedItem);
+    this.props.closeEdit();
+    clearLocal();
+
+    return false;
+  }
+
 
 
   render(){
     return (
       <div id="edit-item-form">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <br />
           <h2>
             Modify item listing
@@ -88,7 +100,7 @@ class EditItemForm extends Component {
           <br />
           Price:
           <br />
-          <input type="number" name="price" placeholder={this.props.price} onChange={this.handleChange} />
+          <input type="text" name="price" placeholder={this.props.price} onChange={this.handleChange} />
           <br />
           <br />
           Category:
@@ -119,6 +131,8 @@ class EditItemForm extends Component {
           Notes:
           <br />
           <textarea cols="50" rows="10" name="notes" onChange={this.handleChange} defaultValue={this.props.notes} />
+          <input type="submit" className="button" value="Submit changes" />
+
         </form>
         <div className="edit-form-part-two">
           <div className="edit-image">
@@ -171,6 +185,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteItem: (item) => {
       dispatch(deleteItem(item))
+    },
+    editItem: (item) => {
+      dispatch(editItem(item))
     }
   }
 }
