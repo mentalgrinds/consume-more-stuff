@@ -5,6 +5,7 @@ import ItemStatusList from '../../components/ItemStatusList';
 import { loadUsers } from '../../actions/users';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
+import filterRoles from '../../lib/filterRoles';
 import filterAllItems from '../../lib/filterAllItems';
 import { editHelper } from '../../lib/editItem';
 import { loadConditions } from '../../actions/conditions';
@@ -111,7 +112,8 @@ const mapStateToProps = (state) => {
     items: filterItem(state.items,localStorage.getItem('userId')),
     categories: state.categories,
     conditions: state.conditions,
-    itemStatuses: state.itemStatuses
+    itemStatuses: state.itemStatuses,
+    users: state.users
   }
 }
 
