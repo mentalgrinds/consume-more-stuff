@@ -2,9 +2,11 @@ import React from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import EditItemForm from '../containers/EditItemForm';
-
+const moment = require('moment');
+moment().format();
 
 const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem, closeEdit}) => {
+    console.log(item[0].updatedAt)
     return (
     <div className='eachItem'>
         <div className="back-to-list">
@@ -31,8 +33,10 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
                 <b>Model:</b>{item ? item[0].model : null}<br/>
                 <b>Dimensions:</b>{item ? item[0].dimensions : null}<br/>
                 <b>Notes:</b>{item ? item[0].notes : null}<br/><br/>
-                <b>Posted At: </b>{item ? <Moment date={item[0].createdAt}/> : null}<br/>
-                <b>Updated At: </b>{item ? <Moment date={item[0].updatedAt}/> : null}<br/>
+                <b>Posted At: </b>{item ? (moment(item[0].createdAt).fromNow()) : null}<br/>
+                <b>Updated At: </b>{item ? (moment(item[0].updatedAt).fromNow()) : null } <br/>
+
+
             </div>
         </div>
 
