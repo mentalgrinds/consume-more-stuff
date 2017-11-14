@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Redirect, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
 import { loadConditions } from '../../actions/conditions';
@@ -11,10 +10,8 @@ import filterAllItems from '../../lib/filterAllItems';
 import { editHelper } from '../../lib/editItem';
 import { clearLocal } from '../../lib/editItem';
 import Select from '../../components/Select';
-import SingleItemView from '../SingleItemView';
-import _sortBy from 'lodash/sortBy';
 
-class AllItemView extends Component {
+class SingleItemView extends Component {
   constructor(){
     super();
 
@@ -94,11 +91,6 @@ class AllItemView extends Component {
       }
     );
 
-
-      return ( <Redirect to='/items'/>);
-
-
-
     return(
       <div className="single-item">
        {
@@ -120,30 +112,27 @@ class AllItemView extends Component {
             FILTER by Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
 
             <ItemList
-            loadSingleItem={this.loadSingleItem.bind(this)}
-            items={notSoldItems}/>
+              loadSingleItem={this.loadSingleItem.bind(this)}
+              items={notSoldItems}/>
           </div>
         }
       </div>
     )
-
   }
 }
 
 
-
 const mapStateToProps = (state) => {
   return{
-    items: _sortBy(state.items, o => +new Date(o.createdAt)).reverse(),
+    items: state.items,
     categories: state.categories,
     conditions: state.conditions,
     itemStatuses: state.itemStatuses
   }
 }
-
-const ConnectedAllItemView = connect(
+const ConnectedSingleItemView = connect(
   mapStateToProps,
   {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem}
-)(AllItemView)
+)(SingleItemView)
 
-export default ConnectedAllItemView;
+export default ConnectedSingleItemView;

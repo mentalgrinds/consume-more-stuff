@@ -25,6 +25,7 @@ import RegistrationForm from './containers/RegistrationForm';
 import Users from './containers/Users';
 import Dashboard from './containers/Dashboard';
 import Settings from './containers/Settings';
+import SingleItemView from './containers/SingleItemView'
 
 import Nav from './containers/Nav';
 
@@ -48,6 +49,7 @@ ReactDOM.render(
         <Route exact path="/" component={App} />
         <Route path="/new-item" component={NewItemForm} />
         <Route path="/all" component={AllItemView} />
+        <Route path="/items" component={SingleItemView} />
         <Route path="/users" component={Users} />
         <Route path="/register" component={RegistrationForm} />
         <Route path="/dashboard" component={Dashboard} />
