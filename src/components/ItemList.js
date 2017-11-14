@@ -1,6 +1,9 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
 
+
+
+
 const ItemList = ({items,loadSingleItem,edit}) => {
   return (
     <div className='allItemList'>

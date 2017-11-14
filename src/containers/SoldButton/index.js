@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import ItemStatusList from '../../components/ItemStatusList';
-import filterAllItems from '../../lib/filterAllItems';
-import filterItem from '../../lib/filterItem';
 import { editItem } from '../../actions/items';
 
 class SoldButton extends Component {
