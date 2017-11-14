@@ -60,6 +60,8 @@ route.post('/', upload.single('file'), ( req, res ) => {
 
   let file = req.file;
 
+  let filepath = (req.file.path).slice(((req.file.path).indexOf('/uploads/')));
+
   item.create({
     name : req.body.name,
     description : req.body.description,
@@ -68,7 +70,7 @@ route.post('/', upload.single('file'), ( req, res ) => {
     model : req.body.model,
     dimensions    : req.body.dimensions,
     notes : req.body.notes,
-    image    : req.file.path,
+    image    : filepath,
     categoryId : req.body.category,
     conditionId : req.body.condition,
     userId : req.user.id,
@@ -137,11 +139,11 @@ route.put('/images/:id', upload.single('file'), (req, res) => {
   let value = req.isAuthenticated();
   let id = req.body.id;
 
-  let newImage = {
-    image: req.file.path
-  };
+  let newfilepath = (req.file.path).slice(((req.file.path).indexOf('/uploads/')));
 
-  console.log('req.body', req.body);
+  let newImage = {
+    image: newfilepath
+  };
 
   return item.update(newImage, {where     : [{id: id}],
       returning : true,

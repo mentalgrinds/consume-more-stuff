@@ -17,7 +17,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
             <div className="detail-view-title">
                 <h2>{item ? item[0].name : null}</h2>
                 <div className="img-container-large">
-                    {item ? <img alt='Preview' className="fullsize" src={(item[0].image).slice(((item[0].image).indexOf('/uploads/')))} /> : null}<br/>
+                    {item ? <img alt='Preview' className="fullsize" src={item[0].image} /> : null}<br/>
                 </div>
             </div>
             <div className="detail-view-details">
