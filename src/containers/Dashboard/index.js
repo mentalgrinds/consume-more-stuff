@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadItems,editItem } from '../../actions/items';
-import { loadUsers } from '../../actions/users';
 import ItemStatusList from '../../components/ItemStatusList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
-import filterRoles from '../../lib/filterRoles';
 import filterAllItems from '../../lib/filterAllItems';
 import { editHelper } from '../../lib/editItem';
 import { loadConditions } from '../../actions/conditions';
@@ -44,7 +42,6 @@ class Dashboard extends Component {
     this.props.loadItems();
     this.props.loadCategories();
     this.props.loadConditions();
-    this.props.loadUsers();
   }
 
   closeEdit(event){
@@ -68,15 +65,8 @@ class Dashboard extends Component {
     });
   }
 
-  adminAccess(){
-    console.log(this.props.users);
-    let admin = filterRoles(this.props.users,'roles','admin');
-    console.log(admin); 
-
-  }
-
   render(){
-    this.adminAccess();
+
     const item = this.state.item;
     const id = localStorage.getItem('userId');
     return(
@@ -113,14 +103,13 @@ const mapStateToProps = (state) => {
     items: filterItem(state.items,localStorage.getItem('userId')),
     categories: state.categories,
     conditions: state.conditions,
-    itemStatuses: state.itemStatuses,
-    users: state.users
+    itemStatuses: state.itemStatuses
   }
 }
 
 const ConnectedDashboard = connect(
   mapStateToProps,
-  {loadItems,editItem,loadCategories,loadConditions,loadUsers}
+  {loadItems,editItem,loadCategories,loadConditions}
 )(Dashboard)
 
 export default ConnectedDashboard;
