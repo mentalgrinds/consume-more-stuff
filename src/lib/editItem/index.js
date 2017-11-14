@@ -1,7 +1,7 @@
 let local = {};
 
 export function editHelper(e){
-console.log('edit method lib helper has been fired');
+
   if(e.target.name === 'name')        { local.name=e.target.value; }
   if(e.target.name === 'status')       { local.itemstatusId=parseInt(e.target.value); }
   if(e.target.name === 'user')        { local.user=e.target.value; }

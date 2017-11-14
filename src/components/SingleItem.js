@@ -6,7 +6,6 @@ const moment = require('moment');
 moment().format();
 
 const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem, closeEdit}) => {
-    console.log(item[0].updatedAt)
     return (
     <div className='eachItem'>
         <div className="back-to-list">

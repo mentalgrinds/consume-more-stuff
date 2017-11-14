@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Redirect, withRouter } from 'react-router';
+import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
 import { loadConditions } from '../../actions/conditions';
@@ -11,7 +11,6 @@ import filterAllItems from '../../lib/filterAllItems';
 import { editHelper } from '../../lib/editItem';
 import { clearLocal } from '../../lib/editItem';
 import Select from '../../components/Select';
-import SingleItemView from '../SingleItemView';
 import _sortBy from 'lodash/sortBy';
 
 class AllItemView extends Component {
@@ -72,10 +71,6 @@ class AllItemView extends Component {
     e.preventDefault();
     this.setState({item: null});
     this.setState({edit: false});
-  }
-
-  componentDidUpdate(){
-    this.fetch
   }
 
 
