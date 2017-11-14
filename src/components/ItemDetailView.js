@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ItemDetailView = ({id, name, description, image, price, conditionId, model,loadSingleItem,}) => {
+const ItemDetailView = ({id, name, description, image, price, conditionId, model,loadSingleItem,idx}) => {
   return (
     <div className='eachItem'>
         <div className="all-view-title">

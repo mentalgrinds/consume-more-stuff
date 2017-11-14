@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { loadItems,editItem,deleteItem } from '../../actions/items';
+import { loadItems,editItem } from '../../actions/items';
 import ItemStatusList from '../../components/ItemStatusList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
 import filterAllItems from '../../lib/filterAllItems';
-import { editHelper, clearLocal } from '../../lib/editItem';
+import { editHelper } from '../../lib/editItem';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 

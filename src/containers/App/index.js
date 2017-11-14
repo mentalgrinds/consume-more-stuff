@@ -3,7 +3,6 @@ import './index.css';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { loadItems } from '../../actions/items';
-import AllItemView from '../AllItemView';
 import TopItemsView from '../TopItemsView';
 class App extends Component {
 

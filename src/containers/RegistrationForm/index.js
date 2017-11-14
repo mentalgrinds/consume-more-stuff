@@ -37,11 +37,11 @@ class RegistrationForm extends Component {
   }
 
   keyResetEmail(e){
-    if(e.keyCode == 8){ this.setState({ emailTaken: false }) }
+    if(e.keyCode === 8){ this.setState({ emailTaken: false }) }
   }
 
   keyResetUsername(e){
-    if(e.keyCode == 8){ 
+    if(e.keyCode === 8){ 
       this.setState({ 
         usernameTaken: false,
         validUsername: false

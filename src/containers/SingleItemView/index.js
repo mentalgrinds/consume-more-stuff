@@ -71,9 +71,6 @@ class SingleItemView extends Component {
     this.setState({edit: false});
   }
 
-  componentDidUpdate(){
-    this.fetch
-  }
 
 
   render(){
