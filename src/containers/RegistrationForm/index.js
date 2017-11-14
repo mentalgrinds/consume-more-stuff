@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router';
 import { addUser } from '../../actions/users.js';
+import PasswordRequirements from '../../components/PasswordRequirements';
 const validator = require("email-validator");
+
 
 class RegistrationForm extends Component {
   constructor(props){
@@ -16,7 +18,11 @@ class RegistrationForm extends Component {
       validEmail: false,
       validUsername: false,
       validPassword: false,
-      reqNotMet: false
+      validLength: false,
+      reqNotMet: false,
+      show: false,
+      validCapital: false,
+      validNum: false
     }
 
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -36,13 +42,25 @@ class RegistrationForm extends Component {
   }
 
   handleChangePassword(event){
+    this.setState({show:true});
     let val = event.target.value;
     if(val.length >=4){
-      this.setState({ validPassword: true })
+      this.setState({ validLength: true })
     }
-    this.setState({
-      password: event.target.value
-    })
+
+
+
+    
+    this.setState({ password: event.target.value })
+    let self = this.state;
+    if(self.validLength && self.validNum && self.validCapital){
+      this.setState({ validPassword: true }) 
+    }
+
+
+
+
+
   }
 
   handleChangeEmail(event){
@@ -72,6 +90,7 @@ class RegistrationForm extends Component {
   }
 
   render(){
+    const show = this.state.show;
     const { from } = this.props.location.state || { from: { pathname: '/login' } }
     const redirect = this.state.registered;
 
@@ -83,14 +102,25 @@ class RegistrationForm extends Component {
       <div id="registration-form">
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername}/>
+          <br></br>
+          <br></br>
           <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword}/>
+          {show ? 
+            <PasswordRequirements
+              validLength={this.state.validLength} 
+              validNum={this.state.validNum}
+              validCapital={this.state.validCapital}/> : null }
+          <br></br>
+          <br></br>
           <input type="text" value={this.state.email} placeholder="email address" onChange={this.handleChangeEmail}/>
+          <br></br>
+          <br></br>
           <input type="submit" className="button" value="Complete Registration"/>
         </form>
         {this.state.reqNotMet ? "Requirements have not been met, please try again" : null}
       </div>
 
-    )
+    ) 
   }
 
 
