@@ -33,18 +33,24 @@ class AllItemView extends Component {
     })
   }
 
-  editNow(item,e){
-    let editedItem = editHelper(e);
-    this.setState({item: item});
-    this.setState({edit: true});
-    if(this.state.edit){
-      console.log(item);
-      editedItem.id = item[0].id;
-      this.props.editItem(editedItem);
-      this.setState({item: null});
-      this.setState({edit: false});
+  // editNow(item,e){
+  //   let editedItem = editHelper(e);
+  //   this.setState({item: item});
+  //   this.setState({edit: true});
+  //   if(this.state.edit){
+  //     console.log(item);
+  //     editedItem.id = item[0].id;
+  //     this.props.editItem(editedItem);
+  //     this.setState({item: null});
+  //     this.setState({edit: false});
+  //   }
+  //   clearLocal();
+  // }
+
+  toggleEdit(event){
+    if(this.state.edit===false){
+      this.setState({edit: true})
     }
-    clearLocal();
   }
 
   closeEdit(event){
@@ -104,19 +110,21 @@ class AllItemView extends Component {
           closeEdit={this.closeEdit}
           auth={this.state.auth}
           item={this.state.item}
-          editNow={this.editNow.bind(this)}
+          // editNow={this.editNow.bind(this)}
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
           conditions={this.props.conditions}
           itemStatuses={this.props.itemStatuses}
+          toggleEdit={this.toggleEdit.bind(this)}
         />
         :
           <div>
             FILTER by Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
 
             <ItemList
-            loadSingleItem={this.loadSingleItem.bind(this)}
-            items={notSoldItems}/>
+              loadSingleItem={this.loadSingleItem.bind(this)}
+              items={notSoldItems}
+            />
           </div>
         }
       </div>

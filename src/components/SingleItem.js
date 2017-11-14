@@ -5,7 +5,8 @@ import EditItemForm from '../containers/EditItemForm';
 const moment = require('moment');
 moment().format();
 
-const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem, closeEdit}) => {
+const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem, closeEdit, toggleEdit}) => {
+    console.log('item', item);
     return (
     <div className='eachItem'>
         <div className="back-to-list">
@@ -23,6 +24,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
             <div className="detail-view-details">
                 {item ? item[0].description : null}<br/><br/>
                 <b>Price:</b>  $ {item ? item[0].price : null}<br/>
+                <p>{item[0].id}</p>
 
                 <b>Status:</b> {item ? item[0].itemstatus.title : null}<br/>
 
@@ -35,6 +37,11 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
                 <b>Posted At: </b>{item ? (moment(item[0].createdAt).fromNow()) : null}<br/>
                 <b>Updated At: </b>{item ? (moment(item[0].updatedAt).fromNow()) : null } <br/>
 
+                {auth ?
+                    <button onClick={(e)=>toggleEdit()}>
+                        Edit Item
+                    </button> : null
+                }
 
             </div>
         </div>
@@ -51,18 +58,13 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
                         model={item[0].model}
                         dimensions={item[0].dimensions}
                         notes={item[0].notes}
+                        userId={item[0].userId}
                         closeEdit={closeEdit}
+                        auth={auth}
                     />
                 </div>
             }
 
-            {((auth) && (item[0].userId===parseInt(localStorage.userId))) ?
-                <div className="submit-changes-button">
-                    <button onClick={(e)=>editNow(item,e)}>
-                        {edit ? 'Submit changes' : 'Edit item'}
-                    </button>
-                </div>
-            : null}
     </div>
   )
 }

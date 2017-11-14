@@ -21,29 +21,44 @@ class TopItemsView extends Component {
         edit: false
       }
 
+      this.closeEdit = this.closeEdit.bind(this);
+
   }
 
   handleChange(e){ editHelper(e); }
 
-  editNow(item,e){
-    let editedItem = editHelper(e);
-    this.setState({item: item});
-    this.setState({edit: true});
-    if(this.state.edit){
-      console.log(item);
-      editedItem.id = item[0].id;
-      this.props.editItem(editedItem);
-      this.setState({item: null});
-      this.setState({edit: false});
-    }
-    clearLocal();
-  }
+  // editNow(item,e){
+  //   let editedItem = editHelper(e);
+  //   this.setState({item: item});
+  //   this.setState({edit: true});
+  //   if(this.state.edit){
+  //     console.log(item);
+  //     editedItem.id = item[0].id;
+  //     this.props.editItem(editedItem);
+  //     this.setState({item: null});
+  //     this.setState({edit: false});
+  //   }
+  //   clearLocal();
+  // }
 
   componentWillMount(){
     this.props.loadItems();
     this.props.loadCategories();
     this.props.loadConditions();
     this.props.loadItemStatuses();
+  }
+
+  toggleEdit(event){
+    if(this.state.edit===false){
+      this.setState({edit: true})
+    }
+  }
+
+  closeEdit(event){
+    this.setState({
+      item: null,
+      edit: false
+    });
   }
 
   loadSingleItem(id,e){
@@ -75,13 +90,15 @@ class TopItemsView extends Component {
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}
-          editNow={this.editNow.bind(this)}
+          // editNow={this.editNow.bind(this)}
           destroyItem={this.destroyItem.bind(this)}
           handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
           conditions={this.props.conditions}
           itemStatuses={this.props.itemStatuses}
+          toggleEdit={this.toggleEdit.bind(this)}
+          closeEdit={this.closeEdit}
         />
         :
           <div className= "each-top-item">
