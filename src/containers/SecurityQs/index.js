@@ -13,40 +13,39 @@ class SecurityQs extends Component {
     super(props);
 
     this.state = {
-      qOne:'',
-      qTwo: ''
+      questionOne:'',
+      questionTwo:''
     }
-
-
     this.handleQuestionOne = this.handleQuestionOne.bind(this);
     this.handleQuestionTwo = this.handleQuestionTwo.bind(this);
-
-  }
-
-  keyResetEmail(e){
-    if(e.keyCode === 8){ this.setState({ emailTaken: false }) }
+    this.handleQuestionsSubmit=this.handleQuestionsSubmit.bind(this);
   }
 
 
   handleQuestionOne(e){
      this.setState({
-      qOne: e.target.value
+      questionOne: e.target.value
     })
   }
   handleQuestionTwo(e){
      this.setState({
-      qTwo: e.target.value
+      questionTwo: e.target.value
     })
   }
 
 
-  handleSubmit(e){
+  handleQuestionsSubmit(e){
     e.preventDefault();
+    console.log(this.state.questionOne);
+    console.log(this.state.questionTwo);
     let questions = {
-      qone: this.state.qOne,
-      qtwo: this.state.qTwo
+      id: localStorage.userId,
+      username: localStorage.username,
+      qone: this.state.questionOne,
+      qtwo: this.state.questionTwo
     }
-    this.addQues(questions)
+    console.log(questions);
+    this.props.addQues(questions)
   }
 
 
@@ -57,7 +56,7 @@ class SecurityQs extends Component {
 
     return (
       <div id="registration-form">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleQuestionsSubmit}>
           What is your pets name?
           <input type="text" 
             value={this.state.qOne} 
