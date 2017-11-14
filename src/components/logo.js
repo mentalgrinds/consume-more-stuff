@@ -3,7 +3,7 @@ import React from 'react';
 const Logo = () => {
   return (
     <div id="logo">
-      <img alt='preview' id="logo-image" src="/logo.png" />
+      <h1>[ <span className="hip-hip">hip, hip</span> ]</h1>
     </div>
   );
 }
