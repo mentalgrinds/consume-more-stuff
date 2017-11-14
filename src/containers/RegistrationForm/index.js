@@ -24,7 +24,8 @@ class RegistrationForm extends Component {
       show: false,
       validCapital: false,
       validNum: false,
-      usernameTaken: false
+      usernameTaken: false,
+      emailTaken: false
     }
 
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -36,13 +37,10 @@ class RegistrationForm extends Component {
   handleChangeUsername(event){
 
     let val = event.target.value;
-    if(val.length >=4){
-      this.setState({ validUsername: true })
-    }
-    this.setState({
-      username: event.target.value
-    })
-    console.log('users',this.props.users)
+    if(val.length >=4){ this.setState({ validUsername: true }) }
+
+    this.setState({ username: event.target.value })
+
     let unique = filterRegistration(this.props.users,'username',val);
     let username = unique !== undefined ? unique.username : null
     if(username === val){
@@ -53,15 +51,11 @@ class RegistrationForm extends Component {
   handleChangePassword(event){
     this.setState({show:true});
     let val = event.target.value;
-    if(val.length >=4){
-      this.setState({ validLength: true })
-    }
-    if(val.match(/\d+/g)){
-      this.setState({ validNum: true })
-    }
-    if(val.match(/[A-Z]/g)){
-      this.setState({ validCapital: true })
-    }
+
+    if(val.length >=4){ this.setState({ validLength: true }) }
+    if(val.match(/\d+/g)){ this.setState({ validNum: true }) }
+    if(val.match(/[A-Z]/g)){ this.setState({ validCapital: true }) }
+
     this.setState({ password: event.target.value })
     let self = this.state;
     if(self.validLength && self.validNum && self.validCapital){
@@ -70,10 +64,16 @@ class RegistrationForm extends Component {
   }
 
   handleChangeEmail(event){
+    let val = event.target.value;
+    let unique = filterRegistration(this.props.users,'email',val);
+    let email = unique !== undefined ? unique.email : null
       this.setState({
-        validEmail: validator.validate(event.target.value),
+        validEmail: validator.validate(val),
         email: event.target.value
       })
+    if(email === val){
+      this.setState({ emailTaken: true, validEmail: false})
+    }
   }
 
   handleSubmit(event){
@@ -88,11 +88,7 @@ class RegistrationForm extends Component {
       this.setState({registered: true,reqNotMet: false})
       this.props.addUser(newUser);
     }
-    else{
-      this.setState({reqNotMet: true})
-      console.log("Requirements not met");
-
-    }
+    else{ this.setState({reqNotMet: true}) }
   }
 
     componentWillMount(){ this.props.loadUsers(); }
@@ -130,11 +126,16 @@ class RegistrationForm extends Component {
 
 
           <input type="text" value={this.state.email} placeholder="email address" onChange={this.handleChangeEmail}/>
+          {this.state.validEmail ? <img alt='true' width="20" height="20" src="http://bit.ly/2zAafF6"/> : null }
           <br></br>
           <br></br>
+          {this.state.emailTaken ? `We found this email in our system, if you forget your password please reset your password here:` :null}
+          <br></br>
+          {this.state.emailTaken ? <button>Reset Password</button> :null}
+           <br></br> <br></br>
 
 
-          
+
           <input type="submit" className="button" value="Complete Registration"/>
         </form>
         {this.state.reqNotMet ? "Requirements have not been met, please try again" : null}
