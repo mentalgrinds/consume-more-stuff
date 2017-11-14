@@ -7,16 +7,22 @@ const AuthNav = () => {
 
 
       <div id="auth-nav">
-        <Link to="/all">Home</Link>
-        <br></br>
-        <Link to="/new-item">New Item</Link>
-        <br></br>
-        <Link to="/all">All Items</Link>
-        <br></br>
-        <Link to="/settings">Settings</Link>
-        <br></br>
-        <Link to="/dashboard">Dashboard</Link>
-        <br></br>
+        <div className="go-to-items">
+          <Link to="/">Home</Link>
+          <br/>
+          <Link to="/all">All Items</Link>
+        </div>
+
+        <div className="user-tools">
+          <Link to="/dashboard">Dashboard</Link>
+          <br />
+          <Link to="/settings">Settings</Link>
+        </div>
+
+        <div className="new-item">
+          <Link className="new-item-button" to="/new-item">★New Item★</Link>
+        </div>
+
         <Logout />
       </div>
       )
