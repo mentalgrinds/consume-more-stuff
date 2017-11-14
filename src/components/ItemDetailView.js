@@ -7,7 +7,7 @@ const ItemDetailView = ({id, name, description, image, price, conditionId, model
             <span onClick={(e)=>loadSingleItem(id,e)}>
             <h2>{name}</h2>
                 <div className="img-container-small">
-                    <img alt='Preview' className="thumbnail" src={image.slice(((image).indexOf('/uploads/')))}/><br />
+                    <img alt='Preview' className="thumbnail" src={image}/><br />
                 </div>
             </span>
         </div>
