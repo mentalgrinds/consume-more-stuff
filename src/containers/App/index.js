@@ -36,7 +36,7 @@ class App extends Component {
     const {redirect} = this.state;
 
     if(redirect) {
-      return <AllItemView />;
+      return <TopItemsView />;
     }
     return <TopItemsView />;
   }
