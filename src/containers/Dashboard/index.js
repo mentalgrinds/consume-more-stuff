@@ -24,24 +24,30 @@ class Dashboard extends Component {
 
 
 
-  editNow(item,e){
-    let editedItem = editHelper(e);
-    this.setState({
-      item: item,
-      edit: true
-    });
-    if(this.state.edit){
-      console.log(this.state.item)
-      editedItem.id = item[0].id;
-      this.props.editItem(editedItem);
-      this.setState({item: null, edit: false});
-    }
-  }
+  // editNow(item,e){
+  //   let editedItem = editHelper(e);
+  //   this.setState({
+  //     item: item,
+  //     edit: true
+  //   });
+  //   if(this.state.edit){
+  //     console.log(this.state.item)
+  //     editedItem.id = item[0].id;
+  //     this.props.editItem(editedItem);
+  //     this.setState({item: null, edit: false});
+  //   }
+  // }
 
   componentWillMount(){
     this.props.loadItems();
     this.props.loadCategories();
     this.props.loadConditions();
+  }
+
+  toggleEdit(event){
+    if(this.state.edit===false){
+      this.setState({edit: true})
+    }
   }
 
   closeEdit(event){
@@ -77,12 +83,13 @@ class Dashboard extends Component {
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}
-          editNow={this.editNow.bind(this)}
+          // editNow={this.editNow.bind(this)}
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
           conditions={this.props.conditions}
           itemStatuses={this.props.itemStatuses}
           closeEdit={this.closeEdit}
+          toggleEdit={this.toggleEdit.bind(this)}
           />
         :
         <div className="dash-board-content">
