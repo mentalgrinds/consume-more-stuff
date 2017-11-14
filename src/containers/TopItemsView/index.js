@@ -67,7 +67,7 @@ class TopItemsView extends Component {
   render(){
     const item = this.state.item;
     return(
-      <div>
+      <div className = "top-items">
         {
           item ?
         <SingleItem
@@ -84,7 +84,7 @@ class TopItemsView extends Component {
           itemStatuses={this.props.itemStatuses}
         />
         :
-          <div>
+          <div className= "each-top-item">
             <h1>TOP 3 for COMPUTERS </h1>
             <Top3ItemList items={this.props.items} categoryNumber={1} loadSingleItem={this.loadSingleItem.bind(this)}/>
             <h1>TOP 3 for FURNITURE </h1>
