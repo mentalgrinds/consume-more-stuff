@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadItems,editItem } from '../../actions/items';
+import { loadUsers } from '../../actions/users';
 import ItemStatusList from '../../components/ItemStatusList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
@@ -42,6 +43,7 @@ class Dashboard extends Component {
     this.props.loadItems();
     this.props.loadCategories();
     this.props.loadConditions();
+    this.props.loadUsers();
   }
 
   closeEdit(event){
@@ -66,6 +68,7 @@ class Dashboard extends Component {
   }
 
   render(){
+    
 
     const item = this.state.item;
     const id = localStorage.getItem('userId');
@@ -103,13 +106,14 @@ const mapStateToProps = (state) => {
     items: filterItem(state.items,localStorage.getItem('userId')),
     categories: state.categories,
     conditions: state.conditions,
-    itemStatuses: state.itemStatuses
+    itemStatuses: state.itemStatuses,
+    users: state.users
   }
 }
 
 const ConnectedDashboard = connect(
   mapStateToProps,
-  {loadItems,editItem,loadCategories,loadConditions}
+  {loadItems,editItem,loadCategories,loadConditions,loadUsers}
 )(Dashboard)
 
 export default ConnectedDashboard;
