@@ -44,6 +44,7 @@ body {
 
 .detail-view-details{
   width: 50%;
+  margin-left: 2%;
 
 }
 
@@ -92,11 +93,25 @@ body {
   width: 100%;
 }
 
+.dashboard-view{
+  .detail-view{
+    display: flex;
+    align-items: center;
+  }
+}
+
+.single-item{
+  .detail-view{
+    display: flex;
+    align-items: center;
+  }
+}
+
+
 .single-item{
   width: 100%;
   .eachItem{
     text-align: center;
-
   }
 }
 
@@ -130,8 +145,12 @@ body {
 }
 
 .img-container-large{
-  // height: 350px;
-  width: 100%;
+  width: 80%;
+}
+
+.submit-changes-button{
+  display: flex;
+  justify-content: center;
 }
 
 .blank-space-div{
@@ -188,7 +207,7 @@ body {
 }
 
 #link-to-login{
-  height: 40px;
+  height: 30px;
   width: 60px;
   display: flex;
   align-items: center;
@@ -215,6 +234,32 @@ body {
 
 #header-text h2{
   display: none;
+}
+
+.button {
+  font-size: 110%;
+  border: #8533ff 1px solid;
+  background-color: #8533ff;
+  color: white;
+}
+
+.button:hover{
+  background-color: white;
+  color: #8533ff;
+  cursor: pointer;
+}
+
+button {
+  font-size: 110%;
+  border: #8533ff 1px solid;
+  background-color: #8533ff;
+  color: white;
+}
+
+button:hover {
+  background-color: white;
+  color: #8533ff;
+  cursor: pointer;
 }
 
 .all-view-title span:hover {
