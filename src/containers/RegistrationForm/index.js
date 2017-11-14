@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router';
 import { addUser } from '../../actions/users.js';
+const validator = require("email-validator");
 
 class RegistrationForm extends Component {
   constructor(props){
@@ -11,7 +12,11 @@ class RegistrationForm extends Component {
       username: '',
       password: '',
       email: '',
-      registered: false
+      registered: false,
+      validEmail: false,
+      validUsername: false,
+      validPassword: false,
+      reqNotMet: false
     }
 
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -21,33 +26,49 @@ class RegistrationForm extends Component {
   }
 
   handleChangeUsername(event){
+    let val = event.target.value;
+    if(val.length >=4){
+      this.setState({ validUsername: true })
+    }
     this.setState({
       username: event.target.value
     })
   }
 
   handleChangePassword(event){
+    let val = event.target.value;
+    if(val.length >=4){
+      this.setState({ validPassword: true })
+    }
     this.setState({
       password: event.target.value
     })
   }
 
   handleChangeEmail(event){
-    this.setState({
-      email: event.target.value
-    })
+      this.setState({
+        validEmail: validator.validate(event.target.value),
+        email: event.target.value
+      })
   }
 
   handleSubmit(event){
     event.preventDefault();
-
-    let newUser = {
-      username: this.state.username,
-      password: this.state.password,
-      email: this.state.email
+    let self = this.state;
+    if(self.validUsername && self.validPassword && self.validEmail){
+      let newUser = {
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email
+      }
+      this.setState({registered: true,reqNotMet: false})
+      this.props.addUser(newUser);
     }
-    this.setState({registered: true})
-    this.props.addUser(newUser);
+    else{
+      this.setState({reqNotMet: true})
+      console.log("Requirements not met");
+
+    }
   }
 
   render(){
@@ -66,6 +87,7 @@ class RegistrationForm extends Component {
           <input type="text" value={this.state.email} placeholder="email address" onChange={this.handleChangeEmail}/>
           <input type="submit" className="button" value="Complete Registration"/>
         </form>
+        {this.state.reqNotMet ? "Requirements have not been met, please try again" : null}
       </div>
 
     )
