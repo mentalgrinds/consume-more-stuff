@@ -11,7 +11,7 @@ import filterAllItems from '../../lib/filterAllItems';
 import { editHelper } from '../../lib/editItem';
 import { clearLocal } from '../../lib/editItem';
 import Select from '../../components/Select';
-import _sortBy from 'lodash/sortBy';
+
 
 class AllItemView extends Component {
   constructor(){
@@ -129,7 +129,7 @@ class AllItemView extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    items: _sortBy(state.items, o => +new Date(o.createdAt)).reverse(),
+    items: state.items,
     categories: state.categories,
     conditions: state.conditions,
     itemStatuses: state.itemStatuses
