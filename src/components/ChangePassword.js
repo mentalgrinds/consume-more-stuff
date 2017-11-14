@@ -7,21 +7,21 @@ const ChangePassword = ({handleCurrentPassword,handleNewPassword,handleMatchedPa
       <ol>
           <form onSubmit={handlePasswordSubmit}>
             <input
-              type="text"
+              type="password"
               name='current'
               placeholder='current password'
               onChange={handleCurrentPassword}
               />
               <br></br>
             <input
-              type="text"
+              type="password"
               name='new'
               placeholder='new password'
               onChange={handleNewPassword}
               />
               <br></br>
             <input
-              type="text"
+              type="password"
               name='match'
               placeholder='re-type new password'
               onChange={handleMatchedPassword}
