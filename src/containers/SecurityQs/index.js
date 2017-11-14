@@ -43,9 +43,10 @@ class SecurityQs extends Component {
   handleSubmit(e){
     e.preventDefault();
     let questions = {
-      qOne: this.state.qOne,
-      qTwo: this.state.qTwo
+      qone: this.state.qOne,
+      qtwo: this.state.qTwo
     }
+    this.addQues(questions)
   }
 
 

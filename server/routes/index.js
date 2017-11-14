@@ -10,9 +10,11 @@ const conditions  = require('./conditions.js');
 const itemStatus  = require('./itemStatus.js');
 const login       = require('./login.js');
 const logout      = require('./logout.js');
+const questions   = require('./questions.js');
 
 route.use('/register', register);
 route.use('/login', login);
+route.use('/questions', questions);
 route.use('/users', users);
 route.use('/items', items);
 route.use('/categories', categories);
