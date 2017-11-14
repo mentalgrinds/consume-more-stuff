@@ -69,19 +69,23 @@ class RegistrationForm extends Component {
     this.setState({show:true});
     let val = event.target.value;
 
-    if(val.length >=4){ this.setState({ validLength: true }) }
+    if(val.length >=3){ this.setState({ validLength: true }) }
+      else{this.setState({ validLength: false })}
     if(val.match(/\d+/g)){ this.setState({ validNum: true }) }
     if(val.match(/[A-Z]/g)){ this.setState({ validCapital: true }) }
 
     this.setState({ password: event.target.value })
     let self = this.state;
+    console.log('validLength',self.validLength);
+    console.log('validNum',self.validNum);
+    console.log('validCapital',self.validCapital);
     if(self.validLength && self.validNum && self.validCapital){
       this.setState({ validPassword: true }) 
     }
     if(val.length === 0){
       this.setState({ validPassword: false }) 
     }
-    if(val.length < 4){ this.setState({ validLength: false }) }
+
     if(!val.match(/\d+/g)){ this.setState({ validNum: false }) }
     if(!val.match(/[A-Z]/g)){ this.setState({ validCapital: false }) }
   }
@@ -105,6 +109,10 @@ class RegistrationForm extends Component {
   handleSubmit(event){
     event.preventDefault();
     let self = this.state;
+    console.log('user',self.validUsername);
+    console.log('pwd',self.validPassword);
+    console.log('email',self.validEmail);
+
     if(self.validUsername && self.validPassword && self.validEmail){
       let newUser = {
         username: this.state.username,
@@ -115,6 +123,9 @@ class RegistrationForm extends Component {
       this.props.addUser(newUser);
     }
     else{ this.setState({reqNotMet: true}) }
+      setTimeout(function(){
+        this.setState({reqNotMet: false})
+      }.bind(this),2000);
   }
 
     componentWillMount(){ this.props.loadUsers(); }

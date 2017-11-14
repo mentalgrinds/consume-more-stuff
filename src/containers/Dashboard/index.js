@@ -66,7 +66,7 @@ class Dashboard extends Component {
   }
 
   render(){
-    console.log(localStorage.getItem('auth'));
+
     const item = this.state.item;
     const id = localStorage.getItem('userId');
     return(
