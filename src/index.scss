@@ -116,6 +116,11 @@ body {
   }
 }
 
+.detail-view{
+  display: flex;
+  align-items: center;
+}
+
 .single-item{
   .detail-view{
     display: flex;
@@ -304,38 +309,7 @@ button:hover {
   text-align: center;
 }
 
-.allItemList{
-  img{
-    opacity: 0.7;
-    filter: alpha(opacity=80);
-  }
 
-  img:hover{
-    opacity: 1.0;
-    filter: alpha(opacity=100);
-    -webkit-transition-duration: 400ms;
-    -moz-transition-duration: 400ms;
-    -o-transition-duration: 400ms;
-    transition-duration: 400ms;
-  }
-}
-
-.itemStatusList{
-  img{
-    opacity: 0.7;
-    filter: alpha(opacity=80);
-  }
-
-  img:hover{
-    opacity: 1.0;
-    filter: alpha(opacity=100);
-    -webkit-transition-duration: 400ms;
-    -moz-transition-duration: 400ms;
-    -o-transition-duration: 400ms;
-    transition-duration: 400ms;
-  }
-
-}
 
 a{
   text-decoration: none;
