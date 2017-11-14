@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router';
 import { loadUsers } from '../../actions/users.js';
+import { addQues } from '../../actions/login';
 import PasswordRequirements from '../../components/PasswordRequirements';
 import filterRegistration from '../../lib/filterRegistration';
 const validator = require("email-validator");
@@ -12,10 +13,13 @@ class SecurityQs extends Component {
     super(props);
 
     this.state = {
-      questionOne:''
+      qOne:'',
+      qTwo: ''
     }
 
-    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+
+    this.handleQuestionOne = this.handleQuestionOne.bind(this);
+    this.handleQuestionTwo = this.handleQuestionTwo.bind(this);
 
   }
 
@@ -24,14 +28,26 @@ class SecurityQs extends Component {
   }
 
 
-  handleChangeUsername(e){
-    let val = e.target.value;
+  handleQuestionOne(e){
+     this.setState({
+      qOne: e.target.value
+    })
+  }
+  handleQuestionTwo(e){
+     this.setState({
+      qTwo: e.target.value
+    })
   }
 
 
   handleSubmit(e){
     e.preventDefault();
+    let questions = {
+      qOne: this.state.qOne,
+      qTwo: this.state.qTwo
+    }
   }
+
 
   componentWillMount(){ this.props.loadUsers(); }
 
@@ -41,20 +57,23 @@ class SecurityQs extends Component {
     return (
       <div id="registration-form">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.username} placeholder="username"/>
+          What is your pets name?
+          <input type="text" 
+            value={this.state.qOne} 
+            placeholder="pets name"
+            onChange={this.handleQuestionOne}/>
 
           <br></br>
           <br></br>
-
-          <input type="text" value={this.state.username} placeholder="username"/>
+          What is your favorite color?
+          <input type="text" 
+            value={this.state.qTwo} 
+            placeholder="favorite color"
+            onChange={this.handleQuestionTwo}/>
 
 
           <br></br>
           <br></br>
-
-          <input type="text" value={this.state.username} placeholder="username"/>
-
-
 
           <input type="submit" className="button" value="Complete"/>
 
@@ -75,7 +94,7 @@ const mapStateToProps = (state) => {
 
 const ConnectedSecurityQs = connect(
   mapStateToProps,
-  {loadUsers}
+  {loadUsers,addQues}
 )(SecurityQs);
 
 export default withRouter(ConnectedSecurityQs);

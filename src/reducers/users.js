@@ -1,4 +1,4 @@
-import { LOAD_USERS, ADD_USER, EDIT_USER, EDIT_PASSWORD } from '../actions/users';
+import { LOAD_USERS, ADD_USER, EDIT_USER, EDIT_PASSWORD,ADD_QUES } from '../actions/users';
 
 const initialState = [];
 
