@@ -26,7 +26,7 @@ const ChangePassword = ({handleCurrentPassword,handleNewPassword,handleMatchedPa
               placeholder='re-type new password'
               onChange={handleMatchedPassword}
                 />
-              {matched ? <img alt='true' width="20" height="20" src="http://bit.ly/2zAafF6"/> : <img alt='false' src=""/> }
+              {matched ? <img alt='true' width="20" height="20" src="http://bit.ly/2zAafF6"/> : null }
 
                 <br></br>
             <input type="submit" className="button" value="Save Changes"/>
