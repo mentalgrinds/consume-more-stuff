@@ -150,7 +150,7 @@ class NewItemForm extends Component {
       file: '',
       imageUrl: ''
     });
-    this.props.history.push("/")
+    this.props.history.push("/items")
   }
 
 

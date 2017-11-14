@@ -1,14 +1,14 @@
 import React from 'react';
 import ItemDetailView from './ItemDetailView';
-
-
+import _sortBy from 'lodash/sortBy';
+const _ = require('lodash');
 
 
 const ItemList = ({items,loadSingleItem,edit}) => {
   return (
     <div className='allItemList'>
-      {
-        items.map((item,idx) => {
+      { _.sortBy(items, o => +new Date(o.createdAt)).reverse()
+        .map((item,idx) => {
           return (
 
             <ItemDetailView
@@ -39,7 +39,6 @@ const ItemList = ({items,loadSingleItem,edit}) => {
 
   )
 }
-
 
 export default ItemList;
 
