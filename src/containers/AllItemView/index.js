@@ -11,7 +11,7 @@ import { editHelper } from '../../lib/editItem';
 import { clearLocal } from '../../lib/editItem';
 import Select from '../../components/Select';
 import _sortBy from 'lodash/sortBy';
-const _ = require('lodash');
+
 
 
 class AllItemView extends Component {
