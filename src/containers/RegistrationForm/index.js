@@ -76,9 +76,7 @@ class RegistrationForm extends Component {
 
     this.setState({ password: event.target.value })
     let self = this.state;
-    console.log('validLength',self.validLength);
-    console.log('validNum',self.validNum);
-    console.log('validCapital',self.validCapital);
+
     if(self.validLength && self.validNum && self.validCapital){
       this.setState({ validPassword: true }) 
     }
@@ -109,9 +107,7 @@ class RegistrationForm extends Component {
   handleSubmit(event){
     event.preventDefault();
     let self = this.state;
-    console.log('user',self.validUsername);
-    console.log('pwd',self.validPassword);
-    console.log('email',self.validEmail);
+
 
     if(self.validUsername && self.validPassword && self.validEmail){
       let newUser = {

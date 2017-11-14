@@ -4,6 +4,7 @@ import { Redirect, withRouter } from 'react-router';
 import { editUser,editPassword } from '../../actions/users.js';
 import ChangePassword from '../../components/ChangePassword';
 import ChangeEmail from '../../components/ChangeEmail';
+import SecurityQs from '../SecurityQs';
 const validator = require("email-validator");
 
 class Settings extends Component {
@@ -22,7 +23,8 @@ class Settings extends Component {
       passwordError: localStorage.passwordError,
       emailError: false,
       changePassword: false,
-      changeEmail: false
+      changeEmail: false,
+      securityQs:false
     }
 
     this.handleCurrentPassword = this.handleCurrentPassword.bind(this);
@@ -34,20 +36,12 @@ class Settings extends Component {
     this.backToSettings = this.backToSettings.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.changeEmail = this.changeEmail.bind(this);
+    this.changeSecurityQs = this.changeSecurityQs.bind(this);
   }
 
-  changeEmail(){
-    this.setState({
-      changeEmail: true
-    })
-
-  }
-  changePassword(){
-    this.setState({
-      changePassword: true
-    })
-
-  }
+  changeEmail(){ this.setState({ changeEmail: true }) }
+  changePassword(){ this.setState({ changePassword: true }) }
+  changeSecurityQs(){ this.setState({ securityQs: true }) }
 
   handleCurrentPassword(event){
     this.setState({
@@ -116,7 +110,7 @@ class Settings extends Component {
   backToSettings(event){
     event.preventDefault();
     this.setState({
-      redirect: true
+      securityQs: false, changeEmail:false, changePassword: false 
     })
     localStorage.removeItem('passwordError');
     localStorage.removeItem('passwordUpdated');
@@ -132,6 +126,7 @@ class Settings extends Component {
     }
    
     return (
+      <div>
       <div id="settings-form">
 
         {this.state.changePassword ? 
@@ -156,6 +151,17 @@ class Settings extends Component {
             emailError={this.state.emailError}/>
         : <button onClick={this.changeEmail}>CHANGE EMAIL</button> }
         
+      </div>
+      <br></br>
+      <div>
+        {this.state.securityQs ? 
+          <SecurityQs /> 
+        : <button onClick={this.changeSecurityQs}>SECURITY QUESTIONS</button> }
+        {this.state.securityQs ? 
+          <button onClick={this.backToSettings}>BACK</button> 
+        : null }
+      </div>
+
       </div>
 
     )
