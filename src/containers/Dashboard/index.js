@@ -5,6 +5,7 @@ import { loadUsers } from '../../actions/users';
 import ItemStatusList from '../../components/ItemStatusList';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
+import filterRoles from '../../lib/filterRoles';
 import filterAllItems from '../../lib/filterAllItems';
 import { editHelper } from '../../lib/editItem';
 import { loadConditions } from '../../actions/conditions';
@@ -67,9 +68,15 @@ class Dashboard extends Component {
     });
   }
 
-  render(){
-    
+  adminAccess(){
+    console.log(this.props.users);
+    let admin = filterRoles(this.props.users,'roles','admin');
+    console.log(admin); 
 
+  }
+
+  render(){
+    this.adminAccess();
     const item = this.state.item;
     const id = localStorage.getItem('userId');
     return(
