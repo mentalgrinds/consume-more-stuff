@@ -4,7 +4,6 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const ADD_QUES = 'ADD_QUES';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
-
 export const loginUser = (newUser) => {
  // console.log(newUser);
   return function(dispatch){
@@ -44,4 +43,5 @@ export const addQues = (newQues) => {
     });
   }
 }
+
 

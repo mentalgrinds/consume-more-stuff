@@ -22,13 +22,7 @@ class App extends Component {
 
 
   componentWillMount(){
-
-  }
-
-  componentDidMount(){
-
-    this.props.loadItems();
-    this.props.loadUsers();
+        this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
     if(admin){ 
@@ -37,6 +31,13 @@ class App extends Component {
         edit: true, 
         auth: true })
     }
+
+  }
+
+  componentDidMount(){
+
+    this.props.loadItems();
+
   }
 
 

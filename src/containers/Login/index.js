@@ -47,7 +47,9 @@ class Login extends Component {
       }this.setState({err: true}); }.bind(this),900);
     }
     /*this is the hapi method - needs to be changed to flag from jesse idea*/
-
+    reset(){
+      this.setState({reset: true})
+    }
 
   render(){
     const err = this.state.err;
@@ -68,7 +70,8 @@ class Login extends Component {
         </form>
         <br></br>
         {err ? errMessage : null }
-        {count ? <Link to="/register">   <button>Reset</button></Link> : null}
+        {count ? <Link to="/reset">   
+        <button onClick={this.reset.bind(this)}>Reset</button></Link> : null}
       </div>
 
     )

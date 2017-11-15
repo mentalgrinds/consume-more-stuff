@@ -1,4 +1,4 @@
-import { LOAD_USERS, ADD_USER, EDIT_USER, EDIT_PASSWORD,ADD_QUES } from '../actions/users';
+import { LOAD_USERS, ADD_USER, EDIT_USER, EDIT_PASSWORD,ADD_QUES,RESET_PASSWORD } from '../actions/users';
 
 const initialState = [];
 
@@ -21,6 +21,15 @@ const users = (state = initialState, action) => {
         return local.updated = true;
       }
         localStorage.setItem('passwordError', true);
+
+      return null;
+    case RESET_PASSWORD:
+      if(action.user.data){
+        localStorage.setItem('resetSuccess', true);
+      }
+      else{
+        localStorage.setItem('resetError', true);
+      }
 
       return null;
     default:
