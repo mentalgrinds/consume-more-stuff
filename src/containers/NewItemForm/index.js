@@ -162,21 +162,21 @@ class NewItemForm extends Component {
         <h2>Add item to marketplace</h2>
           <div id="item-form-left">
             <div id="upload-image-form">
-            Upload photo:
+            <label for="image-upload">Upload photo:</label>
             <br />
               <input type="file" accept="image/*" id="image-upload" placeholder="Image" onChange={this.handleChangeImage}/>
             </div>
             <br />
-            Item name: <input type="text" value={this.state.name} onChange={this.handleChangeName}/>
+            <label for="name">Item name:</label> <input type="text" id="name" value={this.state.name} onChange={this.handleChangeName}/>
             <br/>
             <br/>
-            Description:
+            <label for="description">Description:</label>
             <br/>
-            <textarea cols="50" rows="10" value={this.state.description} onChange={this.handleChangeDescription} />
+            <textarea cols="50" rows="10" id="description" value={this.state.description} onChange={this.handleChangeDescription} />
             <br/>
             <br/>
 
-            Price: <input type="text" value={this.state.price} onChange={this.handleChangePrice}/>
+            <label for="price">Price:</label> <input type="text" id="price" value={this.state.price} onChange={this.handleChangePrice}/>
             <br/>
             <br/>
             Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
@@ -185,18 +185,18 @@ class NewItemForm extends Component {
             Condition: <Select name="condition" handler={this.handleChangeCondition} list={this.props.conditions} show="title" />
             <br/>
             <br/>
-            Manufacturer or make: <input type="text" value={this.state.manufacturer} placeholder="(optional)" onChange={this.handleChangeManufacturer}/>
+            <label for="manufacturer">Manufacturer/Make:</label> <input type="text" id="manufacturer" value={this.state.manufacturer} placeholder="(optional)" onChange={this.handleChangeManufacturer}/>
             <br/>
             <br/>
-            Model: <input type="text" value={this.state.model} placeholder="(optional)" onChange={this.handleChangeModel}/>
+            <label for="model">Model:</label> <input type="text" id="model" value={this.state.model} placeholder="(optional)" onChange={this.handleChangeModel}/>
             <br/>
             <br/>
-            Dimensions: <input type="text" value={this.state.dimensions} placeholder="(optional)" onChange={this.handleChangeDimensions}/>
+            <label for="dimensions">Dimensions:</label> <input type="text" id="dimensions" value={this.state.dimensions} placeholder="(optional)" onChange={this.handleChangeDimensions}/>
             <br/>
             <br/>
-            Any other specifications or notes:
+            <label for="notes">Any other specifications or notes:</label>
             <br/>
-            <textarea cols="50" rows="10" value={this.state.notes} onChange={this.handleChangeNotes} />
+            <textarea cols="50" rows="10" id="notes" value={this.state.notes} onChange={this.handleChangeNotes} />
 
             <br/>
             <input type="submit" className="button" value="Add my item to the marketplace!"/>
@@ -204,9 +204,11 @@ class NewItemForm extends Component {
         </form>
 
         <div id="item-form-right">
-          <div id="uploaded-image-preview">
-            <img id="preview" alt="preview" src={this.state.imageUrl} />
-          </div>
+          <label for="image-upload">
+            <div id="uploaded-image-preview">
+              <img id="preview" alt="preview" src={this.state.imageUrl} />
+            </div>
+          </label>
         </div>
 
       </div>
