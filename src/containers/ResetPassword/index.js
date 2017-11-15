@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router';
-import { loadUsers } from '../../actions/users.js';
+import { loadUsers,resetPassword } from '../../actions/users.js';
 import { addQues } from '../../actions/login';
 import PasswordRequirements from '../../components/PasswordRequirements';
 import filterRegistration from '../../lib/filterRegistration';
@@ -15,6 +15,8 @@ class ResetPassword extends Component {
     super(props);
 
     this.state = {
+      newPassword: '',
+      matchedPassword: '',
       questionOne:'',
       questionTwo:'',
       redirect: false,
@@ -31,6 +33,38 @@ class ResetPassword extends Component {
     this.handleEmailSubmit=this.handleEmailSubmit.bind(this);
     this.handleEmail=this.handleEmail.bind(this);
     this.showQuestions=this.showQuestions.bind(this);
+    this.handleNewPassword = this.handleNewPassword.bind(this);
+    this.handleMatchedPassword = this.handleMatchedPassword.bind(this);
+    this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
+  }
+
+
+   handleNewPassword(event){
+    this.setState({
+      newPassword: event.target.value
+    })
+  }
+  handleMatchedPassword(event){
+    if(event.target.value === this.state.newPassword){
+      this.setState({
+        matched: true,
+        matchedPassword: event.target.value
+      })
+    }
+  }
+
+  handlePasswordSubmit(event){
+    event.preventDefault();
+    console.log(this.state.matchedUser);
+    let user = this.state.matchedUser;
+
+    let newPassword = {
+      id: user.id,
+      username: user.username,
+      matchedPassword: this.state.matchedPassword
+    }
+    console.log(newPassword);
+    this.props.resetPassword(newPassword);
   }
 
 
@@ -85,6 +119,7 @@ class ResetPassword extends Component {
 
 
   render(){
+    console.log(this.state.matchedUser);
     const resetApproved = this.state.resetApproved;
     const emailFound = this.state.emailFound;
     return (
@@ -128,7 +163,10 @@ class ResetPassword extends Component {
           {this.state.reqNotMet ? "Requirements have not been met, please try again" : null}
         </form>
       : null }
-      { resetApproved ? <ResetPasswordForm /> : null }
+      { resetApproved ? <ResetPasswordForm
+            handleNewPassword={this.handleNewPassword}
+            handleMatchedPassword={this.handleMatchedPassword}
+            handlePasswordSubmit={this.handlePasswordSubmit} /> : null }
 
       </div>
 
@@ -146,7 +184,7 @@ const mapStateToProps = (state) => {
 
 const ConnectedResetPassword = connect(
   mapStateToProps,
-  {loadUsers,addQues}
+  {loadUsers,addQues,resetPassword}
 )(ResetPassword);
 
 export default withRouter(ConnectedResetPassword);

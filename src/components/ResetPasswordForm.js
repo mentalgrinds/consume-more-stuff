@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 const ResetPasswordForm = ({handleCurrentPassword,handleNewPassword,handleMatchedPassword,handlePasswordSubmit,matched,backToSettings}) => {
     return (
@@ -26,8 +26,8 @@ const ResetPasswordForm = ({handleCurrentPassword,handleNewPassword,handleMatche
               <br></br>
           </form>
             {localStorage.passwordUpdated ? 'Password updated sucessfully' : null}
-            {localStorage.passwordError ? 'Password update was not successfull, please try again' : null}
-          <button onClick={backToSettings}>BACK</button>
+            {localStorage.passwordError ? `Password update was not successfull, please try again`: null}
+          
       </ol>
     </div>
   )
