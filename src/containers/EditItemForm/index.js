@@ -83,24 +83,24 @@ class EditItemForm extends Component {
             Modify item listing
           </h2>
 
-          Name:
+          <label for="name">Name:</label>
           <br />
-          <input type="text" placeholder={this.props.name} name="name" onChange={this.handleChange} />
+          <input type="text" id="name" placeholder={this.props.name} name="name" onChange={this.handleChange} />
           <br />
           <br />
           Status:
           <br />
-          <Select name="status" handler={this.handleChange} list={this.props.itemStatuses} show="title"/>
+          <Select name="status" id="status" handler={this.handleChange} list={this.props.itemStatuses} show="title"/>
           <br />
           <br />
-          Description:
+          <label for="description">Description:</label>
           <br />
-          <textarea cols="50" rows="10" name="description" onChange={this.handleChange} defaultValue={this.props.description} />
+          <textarea id="description" cols="50" rows="10" name="description" onChange={this.handleChange} defaultValue={this.props.description} />
           <br />
           <br />
-          Price:
+          <label for="price">Price:</label>
           <br />
-          <input type="text" name="price" placeholder={this.props.price} onChange={this.handleChange} />
+          <input type="text" id="price" name="price" placeholder={this.props.price} onChange={this.handleChange} />
           <br />
           <br />
           Category:
@@ -113,24 +113,24 @@ class EditItemForm extends Component {
           <Select name="condition" handler={this.handleChange} list={this.props.conditions} show="title"/>
           <br />
           <br />
-          Manufacturer/Make:
+         <label for="manufacturer">Manufacturer/Make:</label>
           <br />
-          <input type="text" name="manfucturer" placeholder={this.props.manufacturer} onChange={this.handleChange} />
-          <br />
-          <br />
-          Model
-          <br />
-          <input type="text" name="model" placeholder={this.props.model} onChange={this.handleChange} />
+          <input type="text" id="manufacturer" name="manfucturer" placeholder={this.props.manufacturer} onChange={this.handleChange} />
           <br />
           <br />
-          Dimensions:
+          <label for="model">Model:</label>
           <br />
-          <input type="text" name="dimensions" placeholder={this.props.dimensions} onChange={this.handleChange} />
+          <input type="text" id="model" name="model" placeholder={this.props.model} onChange={this.handleChange} />
           <br />
           <br />
-          Notes:
+          <label for="dimensions">Dimensions:</label>
           <br />
-          <textarea cols="50" rows="10" name="notes" onChange={this.handleChange} defaultValue={this.props.notes} />
+          <input type="text" id="dimensions" name="dimensions" placeholder={this.props.dimensions} onChange={this.handleChange} />
+          <br />
+          <br />
+          <label for="notes">Notes:</label>
+          <br />
+          <textarea id="notes" cols="50" rows="10" name="notes" onChange={this.handleChange} defaultValue={this.props.notes} />
           <input type="submit" className="button" value="Submit changes" />
 
         </form>
@@ -140,9 +140,11 @@ class EditItemForm extends Component {
                <h2>
                  Upload new image
                </h2>
-               <div className="img-container-large">
-                 <img alt='Preview' className="fullsize" src={this.state.imageUrl} />
-               </div>
+               <label for="image-upload">
+                 <div className="img-container-large">
+                   <img alt='Preview' className="fullsize" src={this.state.imageUrl} />
+                 </div>
+               </label>
                <div className="select-save-buttons">
                  <div className="select-image-button">
                    <input type="file" accept="image/*" id="image-upload" placeholder="Select new image" onChange={this.handleChangeImage}/>
