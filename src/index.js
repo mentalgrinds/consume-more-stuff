@@ -27,7 +27,7 @@ import Dashboard from './containers/Dashboard';
 import Settings from './containers/Settings';
 import SingleItemView from './containers/SingleItemView'
 import ResetPassword from './containers/ResetPassword'
-
+import NotFound from './containers/NotFound'
 import Nav from './containers/Nav';
 
 import registerServiceWorker from './registerServiceWorker';
@@ -57,6 +57,7 @@ ReactDOM.render(
         <Route path="/reset" component={ResetPassword} />
         <Route path="/settings" component={Settings} />
         <Route path="/login" component={Login} />
+        <Route path="*" component={NotFound} />
       </div>
     </div>
   </Router>
