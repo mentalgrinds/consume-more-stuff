@@ -6,6 +6,8 @@ moment().format();
 
 const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem, closeEdit, toggleEdit}) => {
     console.log('item', item);
+
+    let userId = parseInt(localStorage.userId, 10);
     return (
     <div className='eachItem'>
         <div className="back-to-list">
@@ -36,7 +38,7 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
                 <b>Posted At: </b>{item ? (moment(item[0].createdAt).fromNow()) : null}<br/>
                 <b>Updated At: </b>{item ? (moment(item[0].updatedAt).fromNow()) : null } <br/>
 
-                {auth ?
+                {(auth) && (userId===item[0].userId) ?
                     <button onClick={(e)=>toggleEdit()}>
                         Edit Item
                     </button> : null
