@@ -1,11 +1,11 @@
 import React from 'react';
 
-const notFoundC = ({handleChange}) => {
-  return(<div className="container">
-        <div className="center-Container">
-          <div className="input-Container">
+const NotFoundC = ({handleChange}) => {
+  return(<div className="notfound-container">
+        <div className="notfound-center-Container">
+          <div className="notfound-input-Container">
            <input 
-            className ='input' 
+            className ='notfound-input' 
             placeholder="page not found - type to play"
             onChange={handleChange}>
             </input>
@@ -27,4 +27,4 @@ const notFoundC = ({handleChange}) => {
   </div>);
 };
 
-export default notFoundC;
+export default NotFoundC;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import notFoundC from '../../components/notFoundC';
-import notFoundA from '../../components/notFoundA';
-import notFoundB from '../../components/notFoundB';
+import NotFoundA from '../../components/NotFoundA.js';
+import NotFoundB from '../../components/NotFoundB.js';
+import NotFoundC from '../../components/NotFoundC.js';
+import './notFound.css';
 
 
 
@@ -63,18 +64,18 @@ this.handleChange = this.handleChange.bind(this);
       borderRadius:"100px"
     }
     return (
-      <div className='whole'>
-      <notFoundB 
+      <div className='notfound-whole'>
+      <NotFoundB 
         background={background}/>
-        <div className="body">
-          <notFoundC
+        <div className="notfound-body">
+          <NotFoundC
             handleChange={this.handleChange.bind(this)}/>
-        <div className="footer"> 
-          <notFoundA 
+        <div className="notfound-footer"> 
+          <NotFoundA 
             divStyle={divStyle}
             crackThrottle={this.state.crackThrottle}/>
         </div>
-          <div className='test'></div>
+          <div className='notfound-test'></div>
         </div>
         </div>
         

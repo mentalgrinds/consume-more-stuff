@@ -1,15 +1,15 @@
 import React from 'react';
 
-const notFoundB = ({crackThrottle,background}) => {
+const NotFoundB = ({crackThrottle,background}) => {
     var arr = Array(300).fill('a');
   return(
 
-        <div className="body">
+        <div className="notfound-body">
           {
             arr.map((box,idx) =>{
               return (<div
                         key={idx} 
-                        className='crackThrottle'
+                        className='notfound-crackThrottle'
                         style={background}>
                       </div>)
             })
@@ -28,4 +28,4 @@ const notFoundB = ({crackThrottle,background}) => {
         );
 };
 
-export default notFoundB;
+export default NotFoundB;
