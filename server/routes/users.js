@@ -85,6 +85,22 @@ route.put('/:id', ( req, res ) => {
   })(req, res, next);
 });
 
+  route.put('/:id/password/reset', function(req, res, next) {
+    console.log(req.body);
+      let id = req.body.id;
+      bcrypt.genSalt(saltRounds, function(err,salt){
+        bcrypt.hash(req.body.matchedPassword, salt, function(err, hash){
+          db.user.update({
+            password: hash
+          }, {where: {id: id}}).then(()=>{
+                //console.log('password update fired')
+          })
+          let local = {};
+          local.change = true;
+          res.json(local);
+        });
+      });
+});
 
 
 
