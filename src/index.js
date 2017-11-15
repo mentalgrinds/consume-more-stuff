@@ -27,7 +27,6 @@ import Dashboard from './containers/Dashboard';
 import Settings from './containers/Settings';
 import SingleItemView from './containers/SingleItemView'
 import ResetPassword from './containers/ResetPassword'
-import NotFound from './containers/NotFound'
 import Nav from './containers/Nav';
 
 import registerServiceWorker from './registerServiceWorker';
