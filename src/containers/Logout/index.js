@@ -19,7 +19,7 @@ class Logout extends Component {
     this.setState({redirect: true});
     this.props.logoutUser();
 
-  } 
+  }
 
   render(){
     if(this.state.redirect){
@@ -27,8 +27,9 @@ class Logout extends Component {
     }else{
     return (
         <div id="logout-form">
-          <form onSubmit={this.handleLogout.bind(this)}>
-            <input type="submit" className="button" value="Logout"/>
+          <form onClick={this.handleLogout.bind(this)}>
+            <div>LOG OUT</div>
+            {/*<input type="submit" className="button" value="Logout"/>*/}
           </form>
         </div>
       )
