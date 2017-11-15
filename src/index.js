@@ -54,10 +54,10 @@ ReactDOM.render(
         <Route path="/users" component={Users} />
         <Route path="/register" component={RegistrationForm} />
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/404" component={NotFound} />
         <Route path="/reset" component={ResetPassword} />
         <Route path="/settings" component={Settings} />
         <Route path="/login" component={Login} />
+        <Route path="*" component={NotFound} />
       </div>
     </div>
   </Router>
