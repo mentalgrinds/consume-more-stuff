@@ -16,14 +16,33 @@ class ResetPassword extends Component {
       questionOne:'',
       questionTwo:'',
       redirect: false,
-      reqNotMet: false
+      reqNotMet: false,
+      email: '',
+      matchedUser: {},
+      emailFound: false,
+      resetApproved: false
     }
     this.handleQuestionOne = this.handleQuestionOne.bind(this);
     this.handleQuestionTwo = this.handleQuestionTwo.bind(this);
     this.handleQuestionsSubmit=this.handleQuestionsSubmit.bind(this);
+    this.handleEmailSubmit=this.handleEmailSubmit.bind(this);
+    this.handleEmail=this.handleEmail.bind(this);
   }
 
 
+
+
+
+  handleEmail(e){
+     this.setState({
+      email: e.target.value
+    })
+  }
+  handleEmailSubmit(e){
+    e.preventDefault();
+     let matchedUser = filterRegistration(this.props.users,'email',this.state.email);
+     this.setState({matchedUser: matchedUser, emailFound: true})
+  }
   handleQuestionOne(e){
      this.setState({
       questionOne: e.target.value, reqNotMet: false
@@ -38,21 +57,13 @@ class ResetPassword extends Component {
 
   handleQuestionsSubmit(e){
     e.preventDefault();
-    if(!this.state.questionOne && !this.state.questionTwo){
-        this.setState({reqNotMet:true})
+    let userSavedQOne = this.state.matchedUser.qone;
+    let userSavedQTwo = this.state.matchedUser.qtwo;
+    let checkOne = (userSavedQOne === this.state.questionOne);
+    let checkTwo = (userSavedQTwo === this.state.questionTwo);
+    if(checkOne && checkTwo){
+      this.setState({resetApproved: true})
     }
-
-    let questions = {
-      id: localStorage.userId,
-      username: localStorage.username,
-      qone: this.state.questionOne,
-      qtwo: this.state.questionTwo
-    }
-    this.props.addQues(questions)
-    if(questions.qone && questions.qtwo){
-      this.setState({redirect:true})
-    }
-    
   }
 
 
@@ -60,15 +71,21 @@ class ResetPassword extends Component {
 
 
   render(){
-    const { from } = this.props.location.state || { from: { pathname: '/dashboard' } }
-    const redirect = this.state.redirect;
-
-    if(redirect){
-      return ( <Redirect to={from}/>)
-    }
-
+    console.log(this.state.resetApproved);
     return (
       <div id="registration-form">
+        <form onSubmit={this.handleEmailSubmit}>
+            <input type="text" 
+              value={this.state.email} 
+              placeholder="email"
+              onChange={this.handleEmail}/>
+            <input type="submit" className="button" value=""/>
+        </form>
+
+
+
+
+
         <form onSubmit={this.handleQuestionsSubmit}>
           What is your pets name?
           <input type="text" 
