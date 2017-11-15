@@ -155,7 +155,7 @@ class Settings extends Component {
       <br></br>
       <div>
         {this.state.securityQs ? 
-          <SecurityQs /> 
+          <SecurityQs backToSettings={this.backToSettings} /> 
         : <button onClick={this.changeSecurityQs}>SECURITY QUESTIONS</button> }
         {this.state.securityQs ? 
           <button onClick={this.backToSettings}>BACK</button> 

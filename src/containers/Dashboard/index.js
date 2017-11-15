@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadItems,editItem } from '../../actions/items';
 import ItemStatusList from '../../components/ItemStatusList';
+import { loadUsers } from '../../actions/users';
 import SingleItem from '../../components/SingleItem.js';
 import filterItem from '../../lib/filterItem';
+import filterRoles from '../../lib/filterRoles';
 import filterAllItems from '../../lib/filterAllItems';
 import { editHelper } from '../../lib/editItem';
 import { loadConditions } from '../../actions/conditions';
@@ -16,7 +18,8 @@ class Dashboard extends Component {
     this.state = {
       item: '',
       auth: localStorage.auth,
-      edit: false
+      edit: false,
+      admin: false
     }
 
     this.closeEdit = this.closeEdit.bind(this);
@@ -24,24 +27,23 @@ class Dashboard extends Component {
 
 
 
-  // editNow(item,e){
-  //   let editedItem = editHelper(e);
-  //   this.setState({
-  //     item: item,
-  //     edit: true
-  //   });
-  //   if(this.state.edit){
-  //     console.log(this.state.item)
-  //     editedItem.id = item[0].id;
-  //     this.props.editItem(editedItem);
-  //     this.setState({item: null, edit: false});
-  //   }
-  // }
-
   componentWillMount(){
     this.props.loadItems();
     this.props.loadCategories();
     this.props.loadConditions();
+  }
+
+
+  componentDidMount(){
+    this.props.loadUsers();
+    let id = localStorage.userId;
+    let admin = filterRoles(this.props.users,id);
+    if(admin){ 
+      this.setState({ 
+        admin: true, 
+        edit: true, 
+        auth: true })
+    }
   }
 
   toggleEdit(event){
@@ -72,7 +74,7 @@ class Dashboard extends Component {
   }
 
   render(){
-
+    const admin = this.state.admin;
     const item = this.state.item;
     const id = localStorage.getItem('userId');
     return(
@@ -110,13 +112,14 @@ const mapStateToProps = (state) => {
     items: filterItem(state.items,localStorage.getItem('userId')),
     categories: state.categories,
     conditions: state.conditions,
-    itemStatuses: state.itemStatuses
+    itemStatuses: state.itemStatuses,
+    users: state.users
   }
 }
 
 const ConnectedDashboard = connect(
   mapStateToProps,
-  {loadItems,editItem,loadCategories,loadConditions}
+  {loadItems,editItem,loadCategories,loadConditions,loadUsers}
 )(Dashboard)
 
 export default ConnectedDashboard;

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
+import { loadUsers } from '../../actions/users';
+import filterRoles from '../../lib/filterRoles';
 import {withRouter} from 'react-router-dom';
 import { loadItems } from '../../actions/items';
 import TopItemsView from '../TopItemsView';
@@ -26,7 +28,15 @@ class App extends Component {
   componentDidMount(){
 
     this.props.loadItems();
-    //load items, users, etc.
+    this.props.loadUsers();
+    let id = localStorage.userId;
+    let admin = filterRoles(this.props.users,id);
+    if(admin){ 
+      this.setState({ 
+        admin: true, 
+        edit: true, 
+        auth: true })
+    }
   }
 
 
@@ -44,23 +54,15 @@ class App extends Component {
 const mapStatetoProps = (state) => {
   return {
     data : state.items,
-    auth : state.loginUser
+    users: state.users
 
   }
 }
 
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadItems: () => {
-      dispatch(loadItems())
-    }
-  }
-}
 
 const ConnectedApp = connect(
   mapStatetoProps,
-  mapDispatchToProps
+  {loadUsers,loadItems}
 )(App)
 
 export default withRouter(ConnectedApp);

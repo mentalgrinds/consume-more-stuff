@@ -13,39 +13,46 @@ class SecurityQs extends Component {
     super(props);
 
     this.state = {
-      qOne:'',
-      qTwo: ''
+      questionOne:'',
+      questionTwo:'',
+      redirect: false,
+      reqNotMet: false
     }
-
-
     this.handleQuestionOne = this.handleQuestionOne.bind(this);
     this.handleQuestionTwo = this.handleQuestionTwo.bind(this);
-
-  }
-
-  keyResetEmail(e){
-    if(e.keyCode === 8){ this.setState({ emailTaken: false }) }
+    this.handleQuestionsSubmit=this.handleQuestionsSubmit.bind(this);
   }
 
 
   handleQuestionOne(e){
      this.setState({
-      qOne: e.target.value
+      questionOne: e.target.value, reqNotMet: false
     })
   }
   handleQuestionTwo(e){
      this.setState({
-      qTwo: e.target.value
+      questionTwo: e.target.value, reqNotMet: false
     })
   }
 
 
-  handleSubmit(e){
+  handleQuestionsSubmit(e){
     e.preventDefault();
-    let questions = {
-      qOne: this.state.qOne,
-      qTwo: this.state.qTwo
+    if(!this.state.questionOne && !this.state.questionTwo){
+        this.setState({reqNotMet:true})
     }
+
+    let questions = {
+      id: localStorage.userId,
+      username: localStorage.username,
+      qone: this.state.questionOne,
+      qtwo: this.state.questionTwo
+    }
+    this.props.addQues(questions)
+    if(questions.qone && questions.qtwo){
+      this.setState({redirect:true})
+    }
+    
   }
 
 
@@ -53,10 +60,16 @@ class SecurityQs extends Component {
 
 
   render(){
+    const { from } = this.props.location.state || { from: { pathname: '/dashboard' } }
+    const redirect = this.state.redirect;
+
+    if(redirect){
+      return ( <Redirect to={from}/>)
+    }
 
     return (
       <div id="registration-form">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleQuestionsSubmit}>
           What is your pets name?
           <input type="text" 
             value={this.state.qOne} 
@@ -76,7 +89,7 @@ class SecurityQs extends Component {
           <br></br>
 
           <input type="submit" className="button" value="Complete"/>
-
+          {this.state.reqNotMet ? "Requirements have not been met, please try again" : null}
         </form>
       </div>
 

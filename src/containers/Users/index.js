@@ -32,7 +32,10 @@ class User extends Component {
     }
   }
 
-  componentWillMount(){ this.props.loadUsers(); }
+  componentWillMount(){ 
+    this.props.loadUsers();
+    
+     }
   loadUser(id,e){ this.setState( {user: filterUser(this.props.users,id)} ); }
 
   backToUsers(e){

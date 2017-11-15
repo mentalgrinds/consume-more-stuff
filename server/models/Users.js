@@ -16,6 +16,15 @@ module.exports = function(sequelize, DataTypes){
     },
     userstatus:{
       type: DataTypes.STRING
+    },
+     admin:{
+      type: DataTypes.BOOLEAN
+    },
+    qone:{
+      type: DataTypes.STRING
+    },
+    qtwo:{
+      type: DataTypes.STRING
     }
   })
 
