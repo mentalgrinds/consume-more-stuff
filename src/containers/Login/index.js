@@ -57,7 +57,7 @@ class Login extends Component {
     if(redirect){ return ( <Redirect to='/dashboard'/>) }
 
     return (
-      <div id="login-form">
+      <div id="log" className="login-form">
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input type="text" value={this.state.username} placeholder="username" onChange={this.handleChangeUsername.bind(this)}/>
           <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword.bind(this)}/>
