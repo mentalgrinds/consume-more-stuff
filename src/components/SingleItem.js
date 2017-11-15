@@ -24,19 +24,43 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
             </div>
             <div className="detail-view-details">
                 {item ? item[0].description : null}<br/><br/>
-                <b>Price:</b>  $ {item ? item[0].price : null}<br/>
-                <p>{item[0].id}</p>
 
-                <b>Status:</b> {item ? item[0].itemstatus.title : null}<br/>
+                { (item[0].price) ?
+                    <div className="price">
+                        <span className="detail-field">Price:</span> {item ? item[0].price : null}
+                    </div>
+                     : null
+                }
 
-                <b>Condition:</b>{item ? item[0].itemcondition.title : null}<br/>
-                <b>Category:</b>{item ? item[0].itemcategory.title : null}<br/>
-                <b>Manufacturer:</b>{item ? item[0].manufacturer : null}<br/>
-                <b>Model:</b>{item ? item[0].model : null}<br/>
-                <b>Dimensions:</b>{item ? item[0].dimensions : null}<br/>
-                <b>Notes:</b>{item ? item[0].notes : null}<br/><br/>
-                <b>Posted At: </b>{item ? (moment(item[0].createdAt).fromNow()) : null}<br/>
-                <b>Updated At: </b>{item ? (moment(item[0].updatedAt).fromNow()) : null } <br/>
+                <span className="detail-field">Status: </span> {item ? item[0].itemstatus.title : null}<br/>
+
+                <span className="detail-field">Condition: </span>{item ? item[0].itemcondition.title : null}<br/>
+                <span className="detail-field">Category: </span>{item ? item[0].itemcategory.title : null}<br/>
+
+                { (item[0].manufacturer) ?
+                    <div className="manufacturer">
+                        <span className="detail-field">Manufacturer:</span> {item ? item[0].manufacturer : null}
+                    </div>
+                     : null
+                }
+
+
+                { (item[0].model) ?
+                    <div className="model">
+                        <span className="detail-field">Model:</span> {item ? item[0].model : null}
+                    </div>
+                     : null
+                }
+
+                { (item[0].dimensions) ?
+                    <div className="price">
+                        <span className="detail-field">Dimensions:</span> {item ? item[0].dimensions : null}
+                    </div>
+                     : null
+                }
+                <span className="detail-field">Notes: </span>{item ? item[0].notes : null}<br/><br/>
+                <span className="detail-field">Posted at: </span>{item ? (moment(item[0].createdAt).fromNow()) : null}<br/>
+                <span className="detail-field">Updated at: </span>{item ? (moment(item[0].updatedAt).fromNow()) : null } <br/>
 
                 {(auth) && (userId===item[0].userId) ?
                     <button onClick={(e)=>toggleEdit()}>

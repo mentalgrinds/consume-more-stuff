@@ -13,14 +13,20 @@ const ItemDetailView = ({id, name, description, image, price, conditionId, model
         </div>
 
         <div className="all-view-details">
-            {description}<br/><br/>
+          <div className="detail-view-desc">
+            {description}
+          </div>
             {
-              price ?
-                ( [<span className="price">Price: $</span>, <span> {price} </span>]  )
+              (price) ?
+                <div className="price">
+                  <span className="detail-field">Price: </span>{price}
+                </div>
               :
               null
-            } <br/>
-            <b>Condition:</b>{conditionId}<br/>
+            }
+            <div className="condition">
+              <span className="detail-field">Condition: </span>{conditionId}
+            </div>
         </div>
     </div>
   )
