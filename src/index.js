@@ -57,7 +57,7 @@ ReactDOM.render(
         <Route path="/reset" component={ResetPassword} />
         <Route path="/settings" component={Settings} />
         <Route path="/login" component={Login} />
-        <Route path="*" component={NotFound} />
+
       </div>
     </div>
   </Router>
