@@ -14,7 +14,9 @@ class SecurityQs extends Component {
 
     this.state = {
       questionOne:'',
-      questionTwo:''
+      questionTwo:'',
+      redirect: false,
+      reqNotMet: false
     }
     this.handleQuestionOne = this.handleQuestionOne.bind(this);
     this.handleQuestionTwo = this.handleQuestionTwo.bind(this);
@@ -24,28 +26,33 @@ class SecurityQs extends Component {
 
   handleQuestionOne(e){
      this.setState({
-      questionOne: e.target.value
+      questionOne: e.target.value, reqNotMet: false
     })
   }
   handleQuestionTwo(e){
      this.setState({
-      questionTwo: e.target.value
+      questionTwo: e.target.value, reqNotMet: false
     })
   }
 
 
   handleQuestionsSubmit(e){
     e.preventDefault();
-    console.log(this.state.questionOne);
-    console.log(this.state.questionTwo);
+    if(!this.state.questionOne && !this.state.questionTwo){
+        this.setState({reqNotMet:true})
+    }
+
     let questions = {
       id: localStorage.userId,
       username: localStorage.username,
       qone: this.state.questionOne,
       qtwo: this.state.questionTwo
     }
-    console.log(questions);
     this.props.addQues(questions)
+    if(questions.qone && questions.qtwo){
+      this.setState({redirect:true})
+    }
+    
   }
 
 
@@ -53,6 +60,12 @@ class SecurityQs extends Component {
 
 
   render(){
+    const { from } = this.props.location.state || { from: { pathname: '/dashboard' } }
+    const redirect = this.state.redirect;
+
+    if(redirect){
+      return ( <Redirect to={from}/>)
+    }
 
     return (
       <div id="registration-form">
@@ -76,7 +89,7 @@ class SecurityQs extends Component {
           <br></br>
 
           <input type="submit" className="button" value="Complete"/>
-
+          {this.state.reqNotMet ? "Requirements have not been met, please try again" : null}
         </form>
       </div>
 
