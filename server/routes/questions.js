@@ -9,27 +9,23 @@ const db                      = require('../models');
 const {user}                  = db;
 
 
-  route.post('/', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-      console.log('for you',req.body);
-      let qone = req.body.qone
-      let qtwo = req.body.qtwo
-      let id = user.id;
-
-      user.update({
-        qone: qone,
-        qtwo: qtwo
-      }, {where: {id: id}})
-      .then(()=>{
-        console.log('success');
-      })
-
-
-
-    res.json(user);
-
-  })(req, res, next);
-});
+route.post('/', (req, res) =>{
+  let id = req.body.id;
+  user.findById(id)
+  .then((user)=>{
+    return user.update({
+      qone: req.body.qone,
+      qtwo: req.body.qtwo
+    }).then((user)=>{
+      let local = {}
+      local.username = user.username;
+      local.id = user.id;
+      local.admin = user.admin;
+      local.email = user.email;
+      return res.json(local);
+    })
+  })
+})
 
 
 
