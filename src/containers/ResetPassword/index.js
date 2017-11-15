@@ -36,6 +36,7 @@ class ResetPassword extends Component {
     this.handleNewPassword = this.handleNewPassword.bind(this);
     this.handleMatchedPassword = this.handleMatchedPassword.bind(this);
     this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
 
@@ -114,6 +115,12 @@ class ResetPassword extends Component {
     }
   }
 
+  reset(e){
+    e.preventDefault();
+      localStorage.removeItem('resetSuccess');
+      localStorage.removeItem('resetError');
+    }
+
 
   componentWillMount(){ this.props.loadUsers(); }
 
@@ -164,6 +171,7 @@ class ResetPassword extends Component {
         </form>
       : null }
       { resetApproved ? <ResetPasswordForm
+            reset={this.reset}
             handleNewPassword={this.handleNewPassword}
             handleMatchedPassword={this.handleMatchedPassword}
             handlePasswordSubmit={this.handlePasswordSubmit} /> : null }
