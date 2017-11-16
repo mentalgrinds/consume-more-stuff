@@ -25,6 +25,9 @@ module.exports = function(sequelize, DataTypes){
     },
     qtwo:{
       type: DataTypes.STRING
+    },
+    messageId:{
+      type: DataTypes.INTEGER
     }
   })
 
