@@ -8,8 +8,7 @@ const route                   = express.Router();
 const db                      = require('../models');
 const {item}                 = db;
 const path = require('path');
-
-
+const fs = require('fs');
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: path.join(__dirname, '..', '..', 'public', 'uploads', 'items'),
@@ -55,12 +54,38 @@ route.get('/:id', ( req, res ) => {
   });
 });
 
+function moveImage(idString, fileName, tempFilePath){
+  return new Promise((resolve, reject) => {
+    const targetPath = path.join(__dirname, '..', '..', 'public', 'uploads', 'items', idString);
+
+    fs.mkdir(targetPath, (err) => {
+      if(err && err.code !== 'EEXIST'){
+        reject(err);
+      }
+      fs.rename(tempFilePath, path.join(targetPath, fileName), (err) => {
+        if(err){
+          reject(err);
+        }
+        resolve(path.join(targetPath, fileName));
+      });
+    });
+  });
+}
+
+function moveImageToExisting(idString, fileName, tempFilePath){
+  return new Promise((resolve, reject) => {
+    const targetPath = path.join(__dirname, '..', '..', 'public', 'uploads', 'items', idString);
+    fs.rename(tempFilePath, path.join(targetPath, fileName), (err) => {
+      if(err){
+        reject(err);
+      }
+      resolve(path.join(targetPath, fileName));
+    });
+  });
+}
+
 route.post('/', upload.single('file'), ( req, res ) => {
   let value = req.isAuthenticated();
-
-  let file = req.file;
-
-  let filepath = (req.file.path).slice(((req.file.path).indexOf('/uploads/')));
 
   item.create({
     name : req.body.name,
@@ -70,29 +95,42 @@ route.post('/', upload.single('file'), ( req, res ) => {
     model : req.body.model,
     dimensions    : req.body.dimensions,
     notes : req.body.notes,
-    image    : filepath,
     categoryId : req.body.category,
     conditionId : req.body.condition,
     userId : req.user.id,
     itemstatusId: 2
   }).then((data) => {
-      return item.findOne({
-        where: {
-          id: data.id
-        },
-        include: [
-        { model: User, as: 'seller' },
-        { model: Category, as: 'itemcategory'},
-        { model: Condition, as: 'itemcondition'},
-        { model: ItemStatus, as: 'itemstatus'}
-        ]
+    const idString = data.id.toString();
+    return moveImage(idString, req.file.originalname, req.file.path)
+    .then((imgPath) => {
+      return data.update({
+        image: imgPath.slice(((req.file.path).indexOf('/uploads/')))
+      },{
+        returning: true,
+        plain: true
       })
-    .then((item) => {
-      return res.json(item);
+      .then(updatedItem => {
+        return item.findOne({
+          where: {
+            id: updatedItem.id
+          },
+          include: [
+            { model: User, as: 'seller' },
+            { model: Category, as: 'itemcategory'},
+            { model: Condition, as: 'itemcondition'},
+            { model: ItemStatus, as: 'itemstatus'}
+          ]
+        })
+        .then((foundItem) => {
+          console.log(foundItem);
+          res.json(foundItem);
+        })
+        .catch(err => {
+          throw err;
+        });
+      });
+
     })
-  })
-  .catch((err) => {
-    console.log(err)
   })
 });
 
@@ -135,23 +173,21 @@ route.put('/:id', ( req, res ) => {
   })
 });
 
+
 route.put('/images/:id', upload.single('file'), (req, res) => {
   let value = req.isAuthenticated();
-  let id = req.body.id;
 
-  let newfilepath = (req.file.path).slice(((req.file.path).indexOf('/uploads/')));
-
-  let newImage = {
-    image: newfilepath
-  };
-
-  return item.update(newImage, {where     : [{id: id}],
-      returning : true,
-      plain     : true
-  }).then((data) => {
+  moveImageToExisting(req.body.id.toString(), req.file.originalname, req.file.path)
+  .then((filePath) => {
+    let newFilePath = filePath.slice(((req.file.path).indexOf('/uploads/')));
+    item.update({ image: newFilePath}, {where : [{id: parseInt(req.body.id)}],
+      returning:true,
+      plain: true
+    })
+    .then((data) => {
       return item.findOne({
         where: {
-          id: id
+          id: parseInt(req.body.id)
         },
         include: [
         { model: User, as: 'seller' },
@@ -160,12 +196,10 @@ route.put('/images/:id', upload.single('file'), (req, res) => {
         { model: ItemStatus, as: 'itemstatus'}
         ]
       })
-    .then((editedItem) => {
-      return res.json(editedItem);
+      .then((editedItem) => {
+        return res.json(editedItem);
+      })
     })
-  })
-  .catch((err) => {
-    console.log(err)
   })
 });
 
