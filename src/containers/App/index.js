@@ -25,10 +25,10 @@ class App extends Component {
         this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
-    if(admin){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
 
