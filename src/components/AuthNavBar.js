@@ -13,7 +13,7 @@ const AuthNav = () => {
           <br></br>
           <Link to="/all">All Items</Link>
           <br></br>
-          
+
 
         {localStorage.admin ?
           <Link to="/users">Users</Link>
@@ -46,7 +46,14 @@ const AuthNav = () => {
               </Link>
 
           </li>
-
+          <li>
+              <Link to="/new-item">
+                  <i class="fa fa-envelope-o fa-2x"></i>
+                  <span class="nav-text">
+                      Messages
+                  </span>
+              </Link>
+          </li>
           <li class="has-subnav">
               <Link to="/all">
                  <i class="fa fa-shopping-cart fa-2x"></i>
