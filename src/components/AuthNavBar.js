@@ -25,6 +25,8 @@ const AuthNav = () => {
           <Link to="/dashboard">Dashboard</Link>
           <br />
           <Link to="/settings">Settings</Link>
+          <br />
+          <Link to="/messages">Messages</Link>
         </div>
 
         <div className="new-item">
