@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
+import { loginUser} from '../../actions/login';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
 import { loadMessages,loadMsgByItem,addMessage } from '../../actions/messages';
 import { loadUsers } from '../../actions/users';
@@ -155,7 +156,7 @@ const mapStateToProps = (state) => {
 
 const ConnectedMessages = connect(
   mapStateToProps,
-  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem,loadUsers,loadMessages,loadMsgByItem,addMessage}
+  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem,loadUsers,loadMessages,loadMsgByItem,addMessage,loginUser}
 )(Messages)
 
 export default ConnectedMessages;
