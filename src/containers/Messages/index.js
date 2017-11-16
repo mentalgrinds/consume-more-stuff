@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
+import { loadMessages,loadMsgByItem,addMessage } from '../../actions/messages';
 import { loadUsers } from '../../actions/users';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
@@ -47,16 +48,28 @@ class Messages extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    let messages = this.state.messages;
-    let newMsg = this.state.newMsg;
-    console.log(messages);
-    console.log(newMsg);
-    let arr = [...messages,newMsg] 
-    console.log(arr);
-    this.setState({
-      messages: arr
-    })
+    let newMsg = {
+      content: "yah its for sale, sorry for late reply",
+      buyerId: 1,
+      sellerId: 2,
+      itemId: 5
+    }
+    this.props.addMessage(newMsg);
   }
+
+
+  //  handleSubmit(e){
+  //   e.preventDefault();
+  //   let messages = this.state.messages;
+  //   let newMsg = this.state.newMsg;
+  //   console.log(messages);
+  //   console.log(newMsg);
+  //   let arr = [...messages,newMsg] 
+  //   console.log(arr);
+  //   this.setState({
+  //     messages: arr
+  //   })
+  // }
 
 
 
@@ -155,7 +168,7 @@ const mapStateToProps = (state) => {
 
 const ConnectedMessages = connect(
   mapStateToProps,
-  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem,loadUsers}
+  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem,loadUsers,loadMessages,loadMsgByItem,addMessage}
 )(Messages)
 
 export default ConnectedMessages;
