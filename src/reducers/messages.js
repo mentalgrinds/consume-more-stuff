@@ -11,9 +11,10 @@ const messages = (state = [], action) => {
 
     case ADD_MSG:
       console.log("msg action: ", action.message)
-      return action.message;
+      console.log([...state,action.message])
+      return [...state,action.message];
     default:
-      return state
+      return state;
   }
 }
 

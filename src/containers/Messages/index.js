@@ -21,7 +21,7 @@ class Messages extends Component {
           auth: localStorage.auth,
           edit: false,
           admin: false,
-          messages: this.props.messages,
+          messages: [],
           newMsg: ''
         }
     this.handleChange = this.handleChange.bind(this);
@@ -36,6 +36,9 @@ class Messages extends Component {
 
   componentDidMount(){
     this.props.loadMessages();
+    this.setState({
+      messages:this.props.messages
+    })
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
@@ -47,29 +50,29 @@ class Messages extends Component {
     }
   }
 
-  // handleSubmit(e){
-  //   e.preventDefault();
-  //   let newMsg = {
-  //     content: "yah its for sale, sorry for late reply",
-  //     buyerId: 1, //later this will be localStore.userId
-  //     sellerId: 2, //later this will be item-id - userId
-  //     itemId: 5, //later this will be item-id
-  //     senderId: 1 //later this will be localStorage.userId
-  //   }
-  //   this.props.addMessage(newMsg);
-  // }
-
   handleSubmit(e){
     e.preventDefault();
     let newMsg = {
-      content: "cool ill take it",
-      buyerId: 2, //later this will be localStore.userId
-      sellerId: 1, //later this will be item-id - userId
+      content: "okay send your monies",
+      buyerId: 1, //later this will be localStore.userId
+      sellerId: 2, //later this will be item-id - userId
       itemId: 5, //later this will be item-id
-      senderId: 2 //later this will be localStorage.userId
+      senderId: 1 //later this will be localStorage.userId
     }
     this.props.addMessage(newMsg);
   }
+
+  // handleSubmit(e){
+  //   e.preventDefault();
+  //   let newMsg = {
+  //     content: "cool ill take it",
+  //     buyerId: 2, //later this will be localStore.userId
+  //     sellerId: 1, //later this will be item-id - userId
+  //     itemId: 5, //later this will be item-id
+  //     senderId: 2 //later this will be localStorage.userId
+  //   }
+  //   this.props.addMessage(newMsg);
+  // }
 
 
   //  handleSubmit(e){
@@ -92,7 +95,6 @@ class Messages extends Component {
 
 
   render(){
-    console.log(this.props.messages)
     const msgStyle = {
       width: "600px",
       height: "400px",
@@ -118,7 +120,7 @@ class Messages extends Component {
       textAlign: "right",
       paddingRight: "20px"
     }
-    const messageArr = this.state.messages;
+    const messageArr = this.props.messages;
 
     const input = {
       width: "400px",
@@ -147,7 +149,8 @@ class Messages extends Component {
         </div>
         <div style={msgStyle}>
           {
-            this.props.messages.map((msg,idx)=>{
+            messageArr.map((msg,idx)=>{
+              console.log(msg);
               return(
             <div>
               <p 
