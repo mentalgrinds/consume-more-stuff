@@ -18,7 +18,7 @@ const AuthNav = () => {
 
           </li>
           <li>
-              <Link to="/new-item">
+              <Link to="/messages">
                   <i class="fa fa-envelope-o fa-2x"></i>
                   <span class="nav-text">
                       Messages
