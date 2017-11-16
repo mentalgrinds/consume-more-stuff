@@ -29,12 +29,14 @@ export const loadMsgByItem = (message) => {
 }
 
 export const addMessage = (newMsg) => {
+  console.log('32',newMsg)
   return function(dispatch){
     return axios.post('/api/messages', newMsg)
-    .then( msg => {
+    .then( message => {
+        console.log('32',message)
       dispatch({
         type: ADD_MSG,
-        msg: msg.data
+        message: message.data
       });
     });
   }

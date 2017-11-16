@@ -50,9 +50,10 @@ class Messages extends Component {
     e.preventDefault();
     let newMsg = {
       content: "yah its for sale, sorry for late reply",
-      buyerId: 1,
-      sellerId: 2,
-      itemId: 5
+      buyerId: 1, //later this will be localStore.userId
+      sellerId: 2, //later this will be item-id - userId
+      itemId: 5 //later this will be item-id
+      // senderId: 1 //later this will be localStorage.userId
     }
     this.props.addMessage(newMsg);
   }

@@ -11,7 +11,7 @@ const messages = (state = {}, action) => {
 
     case ADD_MSG:
       console.log("msg action: ", action.message)
-      return action.messages;
+      return action.message;
     default:
       return state
   }
