@@ -39,8 +39,8 @@ class Messages extends Component {
     this.setState({
       content: event.target.value
     })
-    let sellerId = filterItem(this.props.items,2);
-    let itemId = filterAllItems(this.props.items,5);//remember this will have to be parseInt(localStore.itemId)
+    let sellerId = filterItem(this.props.items,3);
+    let itemId = filterAllItems(this.props.items,4);//remember this will have to be parseInt(localStore.itemId)
     this.setState({
       itemId: itemId[0].id, sellerId: sellerId[0].userId
     })
@@ -64,13 +64,12 @@ class Messages extends Component {
     e.preventDefault();
  
     let newMsg = {
-      content: "okay send your monies",
+      content: this.state.content,
       sellerId: this.state.sellerId,
       itemId: this.state.itemId,
       senderId: localStorage.userId
     }
-    console.log(newMsg);
-    //this.props.addMessage(newMsg);
+    this.props.addMessage(newMsg);
   }
 
   // handleSubmit(e){
@@ -121,10 +120,11 @@ class Messages extends Component {
         <div style={msgStyle}>
           {
             messageArr.map((msg,idx)=>{
+              console.log()
               return(
             <div>
-              <p 
-              style={(1===msg.senderId) ? user : notUser}>
+              <p //parseInt( the ls user id)
+              style={(localStorage.userId===msg.senderId) ? user : notUser}>
               {msg.senderId}-{msg.content}</p>
             </div>
                   )
