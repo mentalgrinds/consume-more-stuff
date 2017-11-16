@@ -15,6 +15,10 @@ module.exports = function(sequelize, DataTypes){
       itemId: {
         type: DataTypes.INTEGER,
         allowNull: false
+      },
+      senderId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       }
     })
     Message.associate = function(models){

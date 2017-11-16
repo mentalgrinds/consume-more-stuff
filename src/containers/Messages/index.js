@@ -12,8 +12,8 @@ import filterRoles from '../../lib/filterRoles';
 
 
 class Messages extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
         this.state = {
           item: '',
@@ -21,7 +21,7 @@ class Messages extends Component {
           auth: localStorage.auth,
           edit: false,
           admin: false,
-          messages: [{username:'baseem', message: "hey is it still for sale"},{username:'batman',message:'yeah, well i prefer to trade'}],
+          messages: this.props.messages,
           newMsg: ''
         }
     this.handleChange = this.handleChange.bind(this);
@@ -35,6 +35,7 @@ class Messages extends Component {
   }
 
   componentDidMount(){
+    this.props.loadMessages();
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
@@ -79,7 +80,7 @@ class Messages extends Component {
 
 
   render(){
-    console.log(this.state.newMsg)
+    console.log(this.props.messages)
     const msgStyle = {
       width: "600px",
       height: "400px",
@@ -134,12 +135,12 @@ class Messages extends Component {
         </div>
         <div style={msgStyle}>
           {
-            this.state.messages.map((msg,idx)=>{
+            this.props.messages.map((msg,idx)=>{
               return(
             <div>
               <p 
-              style={(localStorage.username===msg.username) ? user : notUser}>
-              {msg.username}-{msg.message}</p>
+              style={(1===msg.buyerId) ? user : notUser}>
+              {(1===msg.buyerId) ? msg.buyerId : msg.sellerId}-{msg.content}</p>
             </div>
                   )
             })
@@ -163,7 +164,8 @@ class Messages extends Component {
 const mapStateToProps = (state) => {
   return{
     items: state.items,
-    users: state.users
+    users: state.users,
+    messages: state.messages
   }
 }
 
