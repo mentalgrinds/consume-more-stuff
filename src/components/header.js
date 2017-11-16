@@ -53,7 +53,7 @@ const Header = () => {
       children = {
         <div className="childrenImg"> </div>
       }
-    ><Logo/>
+    >
 
     </StickyHeader>
   )
