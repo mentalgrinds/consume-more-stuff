@@ -11,10 +11,12 @@ const itemStatus  = require('./itemStatus.js');
 const login       = require('./login.js');
 const logout      = require('./logout.js');
 const questions   = require('./questions.js');
+const messages    = require('./messages.js');
 
 route.use('/register', register);
 route.use('/login', login);
 route.use('/questions', questions);
+route.use('/messages', messages);
 route.use('/users', users);
 route.use('/items', items);
 route.use('/categories', categories);
