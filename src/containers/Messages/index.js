@@ -23,7 +23,10 @@ class Messages extends Component {
           edit: false,
           admin: false,
           messages: [],
-          newMsg: ''
+          content: "okay send your monies",
+          sellerId: '', //later this will be item-id - userId
+          itemId: '', //later this will be item-id
+          senderId: localStorage.userId
         }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,7 +58,6 @@ class Messages extends Component {
     e.preventDefault();
     let newMsg = {
       content: "okay send your monies",
-      buyerId: 1, //later this will be localStore.userId
       sellerId: 2, //later this will be item-id - userId
       itemId: 5, //later this will be item-id
       senderId: 1 //later this will be localStorage.userId

@@ -7,7 +7,7 @@ const saltRounds              = 12;
 const route                   = express.Router();
 const db                      = require('../models');
 const {messages}              = db;
-
+const {user}                  = db;
 
 route.get('/',(req,res) => {
   return messages.findAll()
@@ -17,9 +17,13 @@ route.get('/',(req,res) => {
 })
 
 route.post('/', (req, res) =>{
-    return messages.create({
+    let id = req.body.senderId
+    user.findById(id)
+    .then((user)=>{
+      let buyerId = user.id;
+      return messages.create({
       content: req.body.content,
-      buyerId: req.body.buyerId,
+      buyerId: buyerId,
       sellerId: req.body.sellerId,
       itemId: req.body.itemId,
       senderId: req.body.senderId
@@ -27,6 +31,8 @@ route.post('/', (req, res) =>{
       return res.json(post);
     })
   })
+    
+})
 
 route.get('/item/:id',(req,res) => {
   let itemId = req.params.id;
