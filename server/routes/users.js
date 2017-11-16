@@ -41,32 +41,19 @@ route.put('/:id', ( req, res ) => {
 
   let newInfo = req.body;
 
-  return user.findById(id)
-  .then(foundUser => {
-    if(parseInt(id) === parseInt(req.user.id)){
-      return foundUser.update(newInfo, {
-        returning: true,
-        plain: true
-      })
-      .then(foundUser => {
-        return user.findOne({
-          where: {
-            id: id
-          }
-        })
-        .then((foundUser) => {
-          return res.json(foundUser);
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    }else{
-      return res.send('error!');
-    }
-  })
-});
 
+  return user.findById(id)
+  .then((user) => {
+    return user.update(newInfo,{
+      returning: true,
+      plain: true
+    })
+    .then((user)=>{
+            console.log('52',user);
+      return res.json(user);
+    })
+  })
+})
 
   route.put('/:id/password', function(req, res, next) {
     console.log(req.body);
