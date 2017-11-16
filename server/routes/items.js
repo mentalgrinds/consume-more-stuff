@@ -8,8 +8,8 @@ const route                   = express.Router();
 const db                      = require('../models');
 const {item}                 = db;
 
-const moveImage = require('../handlers/moveImage');
-const moveImageToExistingFolder = require('../handlers/moveImageToExistingFolder');
+const moveImage = require('../lib/moveImage');
+const moveImageToExistingFolder = require('../lib/moveImageToExistingFolder');
 
 const path = require('path');
 const fs = require('fs');

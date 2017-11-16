@@ -41,11 +41,11 @@ class RegistrationForm extends Component {
   }
 
   keyResetUsername(e){
-    if(e.keyCode === 8){ 
-      this.setState({ 
+    if(e.keyCode === 8){
+      this.setState({
         usernameTaken: false,
         validUsername: false
-      }) }  
+      }) }
   }
 
 
@@ -68,27 +68,48 @@ class RegistrationForm extends Component {
   handleChangePassword(event){
     this.setState({show:true});
     let val = event.target.value;
+    this.setState({ password: event.target.value });
 
-    if(val.length >=3){ this.setState({ validLength: true }) }
-      else{this.setState({ validLength: false })}
-    if(val.match(/\d+/g)){ this.setState({ validNum: true }) }
-    if(val.match(/[A-Z]/g)){ this.setState({ validCapital: true }) }
-
-    this.setState({ password: event.target.value })
-    let self = this.state;
-
-    if(self.validLength && self.validNum && self.validCapital){
-      this.setState({ validPassword: true }) 
-    }
-    if(val.length === 0){
-      this.setState({ validPassword: false }) 
+    let passwordControls = {
+      validLength: false,
+      validNum: false,
+      validCapital: false
     }
 
-    if(!val.match(/\d+/g)){ this.setState({ validNum: false }) }
-    if(!val.match(/[A-Z]/g)){ this.setState({ validCapital: false }) }
+    if(val.length >=3){
+      passwordControls.validLength = true;
+      this.setState({ validLength: true });
+    }else{
+      passwordControls.validLength = false;
+      this.setState({ validLength: false });
+    };
+
+    if(val.match(/\d+/g)){
+      passwordControls.validNum = true;
+      this.setState({ validNum: true });
+    }else{
+      passwordControls.validNum = false;
+      this.setState({ validNum: false });
+    };
+
+    if(val.match(/[A-Z]/g)){
+      passwordControls.validCapital = true;
+      this.setState({ validCapital: true});
+    }else{
+      passwordControls.validCapital = false;
+      this.setState({ validCapital: false });
+    }
+
+    if(passwordControls.validLength && passwordControls.validNum && passwordControls.validCapital){
+      this.setState({ validPassword: true });
+    }else{
+      this.setState({ validPassword: false });
+    }
+
   }
 
   handleChangeEmail(event){
+
     let val = event.target.value;
     let unique = filterRegistration(this.props.users,'email',val);
     let email = unique !== undefined ? unique.email : null
@@ -100,14 +121,13 @@ class RegistrationForm extends Component {
       this.setState({ emailTaken: true, validEmail: false})
     }
     if(val.length === 0){
-      this.setState({ emailTaken: false }) 
+      this.setState({ emailTaken: false })
     }
   }
 
   handleSubmit(event){
     event.preventDefault();
     let self = this.state;
-
 
     if(self.validUsername && self.validPassword && self.validEmail){
       let newUser = {
@@ -148,9 +168,9 @@ class RegistrationForm extends Component {
 
 
           <input type="password" value={this.state.password} placeholder="password" onChange={this.handleChangePassword}/>
-          {show ? 
+          {show ?
             <PasswordRequirements
-              validLength={this.state.validLength} 
+              validLength={this.state.validLength}
               validNum={this.state.validNum}
               validCapital={this.state.validCapital}/> : null }
 
@@ -176,7 +196,7 @@ class RegistrationForm extends Component {
         {this.state.reqNotMet ? "Requirements have not been met, please try again" : null}
       </div>
 
-    ) 
+    )
   }
 
 
