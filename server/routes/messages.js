@@ -6,25 +6,33 @@ const LocalStrategy           = require('passport-local').Strategy;
 const saltRounds              = 12;
 const route                   = express.Router();
 const db                      = require('../models');
-const {user}                  = db;
+const {messages}              = db;
 
+
+route.get('/',(req,res) => {
+  return messages.findAll()
+    .then((messages)=>{
+      return res.json(messages);
+    })
+})
 
 route.post('/', (req, res) =>{
-  let id = req.body.id;
-  user.findById(id)
-  .then((user)=>{
-    return user.update({
-      qone: req.body.qone,
-      qtwo: req.body.qtwo
-    }).then((user)=>{
-      let local = {}
-      local.username = user.username;
-      local.id = user.id;
-      local.admin = user.admin;
-      local.email = user.email;
-      return res.json(local);
+    return messages.create({
+      content: req.body.content,
+      buyerId: req.body.buyerId,
+      sellerId: req.body.sellerId,
+      itemId: req.body.itemId
+    }).then((post)=>{
+      return res.json(post);
     })
   })
+
+route.get('/item/:id',(req,res) => {
+  let itemId = req.params.id;
+  return messages.findAll({where: {itemId: itemId}})
+    .then((message)=>{
+      return res.json(message);
+    })
 })
 
 
