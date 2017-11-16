@@ -54,7 +54,6 @@ class RegistrationForm extends Component {
   handleChangeUsername(event){
 
     let val = event.target.value;
-    console.log(this.state);
     if(val.length >=4){ this.setState({ validUsername: true }) }
 
     this.setState({ username: event.target.value })
@@ -118,7 +117,6 @@ class RegistrationForm extends Component {
         validEmail: validator.validate(val),
         email: event.target.value
       })
-      console.log(this.state);
     if(email === val){
       this.setState({ emailTaken: true, validEmail: false})
     }
@@ -130,8 +128,6 @@ class RegistrationForm extends Component {
   handleSubmit(event){
     event.preventDefault();
     let self = this.state;
-
-    console.log(this.state);
 
     if(self.validUsername && self.validPassword && self.validEmail){
       let newUser = {
