@@ -21,7 +21,7 @@ route.post('/', (req, res) =>{
       content: req.body.content,
       buyerId: req.body.buyerId,
       sellerId: req.body.sellerId,
-      itemId: req.body.itemIdm,
+      itemId: req.body.itemId,
       senderId: req.body.senderId
     }).then((post)=>{
       return res.json(post);

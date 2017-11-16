@@ -47,14 +47,26 @@ class Messages extends Component {
     }
   }
 
+  // handleSubmit(e){
+  //   e.preventDefault();
+  //   let newMsg = {
+  //     content: "yah its for sale, sorry for late reply",
+  //     buyerId: 1, //later this will be localStore.userId
+  //     sellerId: 2, //later this will be item-id - userId
+  //     itemId: 5, //later this will be item-id
+  //     senderId: 1 //later this will be localStorage.userId
+  //   }
+  //   this.props.addMessage(newMsg);
+  // }
+
   handleSubmit(e){
     e.preventDefault();
     let newMsg = {
-      content: "yah its for sale, sorry for late reply",
-      buyerId: 1, //later this will be localStore.userId
-      sellerId: 2, //later this will be item-id - userId
-      itemId: 5 //later this will be item-id
-      // senderId: 1 //later this will be localStorage.userId
+      content: "cool ill take it",
+      buyerId: 2, //later this will be localStore.userId
+      sellerId: 1, //later this will be item-id - userId
+      itemId: 5, //later this will be item-id
+      senderId: 2 //later this will be localStorage.userId
     }
     this.props.addMessage(newMsg);
   }
@@ -139,8 +151,8 @@ class Messages extends Component {
               return(
             <div>
               <p 
-              style={(1===msg.buyerId) ? user : notUser}>
-              {(1===msg.buyerId) ? msg.buyerId : msg.sellerId}-{msg.content}</p>
+              style={(1===msg.senderId) ? user : notUser}>
+              {msg.senderId}-{msg.content}</p>
             </div>
                   )
             })
