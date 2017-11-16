@@ -6,35 +6,6 @@ import Logout from '../containers/Logout';
 const AuthNav = () => {
   return (
 
-/*
-      <div id="auth-nav">
-        <div className="go-to-items">
-          <Link to="/">Home</Link>
-          <br></br>
-          <Link to="/all">All Items</Link>
-          <br></br>
-
-
-        {localStorage.admin ?
-          <Link to="/users">Users</Link>
-          :
-          null}
-        </div>
-
-        <div className="user-tools">
-          <Link to="/dashboard">Dashboard</Link>
-          <br />
-          <Link to="/settings">Settings</Link>
-          <br />
-          <Link to="/messages">Messages</Link>
-        </div>
-
-        <div className="new-item">
-          <Link className="new-item-button" to="/new-item">★New Item★</Link>
-        </div>
-      </div>
-      )*/
-
     <div>
       <ul>
           <li>
@@ -89,6 +60,19 @@ const AuthNav = () => {
                   </span>
               </Link>
           </li>
+          {localStorage.admin ?
+          <li>
+              <Link to="/">
+                  <i class="fa fa-users fa-2x"></i>
+                  <span class="nav-text">
+                      Users
+                  </span>
+              </Link>
+
+          </li>
+          :
+          null}
+
         </ul>
     </div>
   )
