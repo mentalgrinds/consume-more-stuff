@@ -6,12 +6,9 @@ const messages = (state = [], action) => {
 
   switch(action.type){
     case LOAD_MSGS:
-      console.log("msg action: ", action.messages)
       return action.messages;
 
     case ADD_MSG:
-      console.log("msg action: ", action.message)
-      console.log([...state,action.message])
       return [...state,action.message];
     default:
       return state;
