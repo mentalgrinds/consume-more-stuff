@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
+import { loadUsers } from '../../actions/users';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 import { loadItemStatuses } from '../../actions/itemStatuses';
 import ItemList from '../../components/ItemList';
 import SingleItem from '../../components/SingleItem.js';
 import filterAllItems from '../../lib/filterAllItems';
+import filterRoles from '../../lib/filterRoles';
 import { editHelper } from '../../lib/editItem';
 import { clearLocal } from '../../lib/editItem';
 import Select from '../../components/Select';
@@ -19,7 +21,8 @@ class SingleItemView extends Component {
           item: '',
           category: '',
           auth: localStorage.auth,
-          edit: false
+          edit: false,
+          admin: false
         }
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.closeEdit = this.closeEdit.bind(this);
@@ -30,20 +33,17 @@ class SingleItemView extends Component {
       category: event.target.value
     })
   }
-
-  // editNow(item,e){
-  //   let editedItem = editHelper(e);
-  //   this.setState({item: item});
-  //   this.setState({edit: true});
-  //   if(this.state.edit){
-  //     console.log(item);
-  //     editedItem.id = item.id;
-  //     this.props.editItem(editedItem);
-  //     this.setState({item: null});
-  //     this.setState({edit: false});
-  //   }
-  //   clearLocal();
-  // }
+  componentDidMount(){
+    this.props.loadUsers();
+    let id = localStorage.userId;
+    let admin = filterRoles(this.props.users,id);
+    if(admin.length !==0){ 
+      this.setState({ 
+        admin: true, 
+        edit: true, 
+        auth: true })
+    }
+  }
 
   toggleEdit(event){
     if(this.state.edit===false){
@@ -69,6 +69,14 @@ class SingleItemView extends Component {
     this.setState({
       item: filterAllItems(this.props.items,id)
     });
+    let userId = localStorage.userId;
+    let admin = filterRoles(this.props.users,userId);
+    if(admin.length !==0){ 
+      this.setState({ 
+        admin: true, 
+        edit: true, 
+        auth: true })
+    }
   }
 
   backToItems(e){
@@ -131,12 +139,13 @@ const mapStateToProps = (state) => {
     items: state.items,
     categories: state.categories,
     conditions: state.conditions,
-    itemStatuses: state.itemStatuses
+    itemStatuses: state.itemStatuses,
+    users: state.users
   }
 }
 const ConnectedSingleItemView = connect(
   mapStateToProps,
-  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem}
+  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem,loadUsers}
 )(SingleItemView)
 
 export default ConnectedSingleItemView;

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Top3ItemList from '../../components/Top3ItemList';
 import filterAllItems from '../../lib/filterAllItems';
+import { loadUsers } from '../../actions/users';
 import SingleItem from '../../components/SingleItem.js';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
@@ -9,6 +10,7 @@ import { loadItemStatuses } from '../../actions/itemStatuses';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
 import { editHelper } from '../../lib/editItem';
 import { clearLocal } from '../../lib/editItem';
+import filterRoles from '../../lib/filterRoles';
 
 
 class TopItemsView extends Component {
@@ -18,7 +20,8 @@ class TopItemsView extends Component {
       this.state = {
         item: '',
         auth: localStorage.auth,
-        edit: false
+        edit: false,
+        admin: false
       }
 
       this.closeEdit = this.closeEdit.bind(this);
@@ -27,19 +30,17 @@ class TopItemsView extends Component {
 
   handleChange(e){ editHelper(e); }
 
-  // editNow(item,e){
-  //   let editedItem = editHelper(e);
-  //   this.setState({item: item});
-  //   this.setState({edit: true});
-  //   if(this.state.edit){
-  //     console.log(item);
-  //     editedItem.id = item[0].id;
-  //     this.props.editItem(editedItem);
-  //     this.setState({item: null});
-  //     this.setState({edit: false});
-  //   }
-  //   clearLocal();
-  // }
+   componentDidMount(){
+    this.props.loadUsers();
+    let id = localStorage.userId;
+    let admin = filterRoles(this.props.users,id);
+    if(admin.length !==0){ 
+      this.setState({ 
+        admin: true, 
+        edit: true, 
+        auth: true })
+    }
+  }
 
   componentWillMount(){
     this.props.loadItems();
@@ -65,6 +66,14 @@ class TopItemsView extends Component {
     this.setState({
       item: filterAllItems(this.props.items,id)
     });
+    let userId = localStorage.userId;
+    let admin = filterRoles(this.props.users,userId);
+    if(admin.length !==0){ 
+      this.setState({ 
+        admin: true, 
+        edit: true, 
+        auth: true })
+    }
   }
 
   backToItems(e){
@@ -123,7 +132,8 @@ const mapStateToProps = (state) => {
     items: state.items,
     categories: state.categories,
     conditions: state.conditions,
-    itemStatuses: state.itemStatuses
+    itemStatuses: state.itemStatuses,
+    users: state.users
   }
 }
 
@@ -146,6 +156,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     loadConditions: () => {
       dispatch(loadConditions())
+    },
+    loadUsers: () => {
+      dispatch(loadUsers())
     }
   }
 }

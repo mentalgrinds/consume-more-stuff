@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loadUsers,editUser } from '../../actions/users';
 import UserList from '../../components/UserList.js';
 import filterUserStatus from '../../lib/filterUserStatus';
+import filterRoles from '../../lib/filterRoles';
 import filterUser from '../../lib/filterUser';
 import editHelper from '../../lib/editUser';
 import SingleUser from '../../components/SingleUser.js';
@@ -16,7 +17,20 @@ class User extends Component {
     this.state = {
       user: '',
       auth: true,
-      edit: false
+      edit: false,
+      admin: false
+    }
+  }
+
+   componentDidMount(){
+    this.props.loadUsers();
+    let id = localStorage.userId;
+    let admin = filterRoles(this.props.users,id);
+    if(admin.length !==0){ 
+      this.setState({ 
+        admin: true, 
+        edit: true, 
+        auth: true })
     }
   }
 
@@ -26,6 +40,7 @@ class User extends Component {
     let editedUser = editHelper(e);
     this.setState({user: user, edit: true});
     if(this.state.edit){
+
       editedUser.id = user[0].id;
       this.props.editUser(editedUser);
       this.setState({user: null, edit: false});

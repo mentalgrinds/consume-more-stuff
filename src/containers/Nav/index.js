@@ -2,8 +2,11 @@ import React from 'react';
 import AuthNavBar from '../../components/AuthNavBar';
 import UnAuthNavBar from '../../components/UnAuthNavBar';
 
+
+
 const Nav = () => {
   return (
+
     <div>
       <div class="area">
       </div>

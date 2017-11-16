@@ -1,51 +1,52 @@
 import React, {Component} from 'react';
-import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import { loadItems,editItem,deleteItem } from '../../actions/items';
+import Top3ItemList from '../../components/Top3ItemList';
+import filterAllItems from '../../lib/filterAllItems';
 import { loadUsers } from '../../actions/users';
+import SingleItem from '../../components/SingleItem.js';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 import { loadItemStatuses } from '../../actions/itemStatuses';
-import ItemList from '../../components/ItemList';
-import SingleItem from '../../components/SingleItem.js';
-import filterAllItems from '../../lib/filterAllItems';
-import filterRoles from '../../lib/filterRoles';
+import { loadItems,editItem,deleteItem } from '../../actions/items';
 import { editHelper } from '../../lib/editItem';
 import { clearLocal } from '../../lib/editItem';
-import Select from '../../components/Select';
+import filterRoles from '../../lib/filterRoles';
 
 
-class AllItemView extends Component {
+class TopItemsView extends Component {
   constructor(){
     super();
 
-        this.state = {
-          item: '',
-          category: '',
-          auth: localStorage.auth,
-          edit: false,
-          admin: false
-        }
-    this.handleChangeCategory = this.handleChangeCategory.bind(this);
-    this.closeEdit = this.closeEdit.bind(this);
+      this.state = {
+        item: '',
+        auth: localStorage.auth,
+        edit: false,
+        admin: false
+      }
+
+      this.closeEdit = this.closeEdit.bind(this);
+
   }
 
-  handleChangeCategory(event){
-    this.setState({
-      category: event.target.value
-    })
-  }
+  handleChange(e){ editHelper(e); }
 
    componentDidMount(){
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
-    if(admin){ 
+    if(admin.length !==0){ 
       this.setState({ 
         admin: true, 
         edit: true, 
         auth: true })
     }
+  }
+
+  componentWillMount(){
+    this.props.loadItems();
+    this.props.loadCategories();
+    this.props.loadConditions();
+    this.props.loadItemStatuses();
   }
 
   toggleEdit(event){
@@ -61,79 +62,69 @@ class AllItemView extends Component {
     });
   }
 
-  componentWillMount(){
-    this.props.loadItems();
-    this.props.loadCategories();
-    this.props.loadConditions();
-    this.props.loadItemStatuses();
-  }
-
   loadSingleItem(id,e){
     this.setState({
       item: filterAllItems(this.props.items,id)
     });
+    let userId = localStorage.userId;
+    let admin = filterRoles(this.props.users,userId);
+    if(admin.length !==0){ 
+      this.setState({ 
+        admin: true, 
+        edit: true, 
+        auth: true })
+    }
   }
 
   backToItems(e){
     e.preventDefault();
     this.setState({item: null});
+  }
+
+   destroyItem(item,e){
+    e.preventDefault();
+    this.props.deleteItem(item);
+    this.setState({item: null});
     this.setState({edit: false});
   }
 
-
   render(){
     const item = this.state.item;
-    const admin = this.state.admin;
-    let filteredItems = this.props.items.filter(
-      (filteredItem) => {
-        return (filteredItem.itemcategory.id).toString().indexOf(this.state.category) !== -1;
-      }
-    );
-
-    let notSoldItems = filteredItems.filter(
-      (filteredItem) => {
-        return filteredItem.itemstatusId === 2;
-      }
-    );
-
-
-      return ( <Redirect to='/items'/>);
-
-
-
     return(
-      <div className="single-item">
-       {
-        item ?
+      <div className = "top-items">
+        {
+          item ?
         <SingleItem
 
           edit={this.state.edit}
-          closeEdit={this.closeEdit}
           auth={this.state.auth}
           item={this.state.item}
           // editNow={this.editNow.bind(this)}
+          destroyItem={this.destroyItem.bind(this)}
+          handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}
           categories={this.props.categories}
           conditions={this.props.conditions}
           itemStatuses={this.props.itemStatuses}
           toggleEdit={this.toggleEdit.bind(this)}
+          closeEdit={this.closeEdit}
         />
         :
-          <div>
-            FILTER by Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
-
-            <ItemList
-              loadSingleItem={this.loadSingleItem.bind(this)}
-              items={notSoldItems}
-            />
+          <div className= "each-top-item">
+            <h1>TOP 3 for COMPUTERS </h1>
+            <Top3ItemList items={this.props.items} categoryNumber={1} loadSingleItem={this.loadSingleItem.bind(this)}/>
+            <h1>TOP 3 for FURNITURE </h1>
+            <Top3ItemList items={this.props.items} categoryNumber={2} loadSingleItem={this.loadSingleItem.bind(this)}/>
+            <h1>TOP 3 for APPLIANCES </h1>
+            <Top3ItemList items={this.props.items} categoryNumber={3} loadSingleItem={this.loadSingleItem.bind(this)}/>
+            <h1>TOP 3 for VEHICLES </h1>
+            <Top3ItemList items={this.props.items} categoryNumber={4} loadSingleItem={this.loadSingleItem.bind(this)}/>
           </div>
         }
       </div>
     )
-
   }
 }
-
 
 
 const mapStateToProps = (state) => {
@@ -146,9 +137,35 @@ const mapStateToProps = (state) => {
   }
 }
 
-const ConnectedAllItemView = connect(
-  mapStateToProps,
-  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem,loadUsers}
-)(AllItemView)
+const mapDispatchToProps = (dispatch) => {
+  return{
+    loadItems: () => {
+      dispatch(loadItems())
+    },
+    editItem: () => {
+      dispatch(editItem())
+    },
+    loadItemStatuses: () => {
+      dispatch(loadItemStatuses())
+    },
+    deleteItem: () => {
+      dispatch(deleteItem())
+    },
+    loadCategories: () => {
+      dispatch(loadCategories())
+    },
+    loadConditions: () => {
+      dispatch(loadConditions())
+    },
+    loadUsers: () => {
+      dispatch(loadUsers())
+    }
+  }
+}
 
-export default ConnectedAllItemView;
+const ConnectedTopItemsView = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TopItemsView)
+
+export default ConnectedTopItemsView;
