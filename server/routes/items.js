@@ -7,6 +7,10 @@ const saltRounds              = 12;
 const route                   = express.Router();
 const db                      = require('../models');
 const {item}                 = db;
+
+const moveImage = require('../handlers/moveImage');
+const moveImageToExistingFolder = require('../handlers/moveImageToExistingFolder');
+
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
@@ -23,8 +27,6 @@ const User = db.user;
 const Category = db.category;
 const Condition = db.condition;
 const ItemStatus = db.itemstatus;
-
-
 
 route.get('/', ( req, res ) => {
   let value = req.isAuthenticated();
@@ -53,36 +55,6 @@ route.get('/:id', ( req, res ) => {
     res.json(data);
   });
 });
-
-function moveImage(idString, fileName, tempFilePath){
-  return new Promise((resolve, reject) => {
-    const targetPath = path.join(__dirname, '..', '..', 'public', 'uploads', 'items', idString);
-
-    fs.mkdir(targetPath, (err) => {
-      if(err && err.code !== 'EEXIST'){
-        reject(err);
-      }
-      fs.rename(tempFilePath, path.join(targetPath, fileName), (err) => {
-        if(err){
-          reject(err);
-        }
-        resolve(path.join(targetPath, fileName));
-      });
-    });
-  });
-}
-
-function moveImageToExisting(idString, fileName, tempFilePath){
-  return new Promise((resolve, reject) => {
-    const targetPath = path.join(__dirname, '..', '..', 'public', 'uploads', 'items', idString);
-    fs.rename(tempFilePath, path.join(targetPath, fileName), (err) => {
-      if(err){
-        reject(err);
-      }
-      resolve(path.join(targetPath, fileName));
-    });
-  });
-}
 
 route.post('/', upload.single('file'), ( req, res ) => {
   let value = req.isAuthenticated();
@@ -177,7 +149,7 @@ route.put('/:id', ( req, res ) => {
 route.put('/images/:id', upload.single('file'), (req, res) => {
   let value = req.isAuthenticated();
 
-  moveImageToExisting(req.body.id.toString(), req.file.originalname, req.file.path)
+  moveImageToExistingFolder(req.body.id.toString(), req.file.originalname, req.file.path)
   .then((filePath) => {
     let newFilePath = filePath.slice(((req.file.path).indexOf('/uploads/')));
     item.update({ image: newFilePath}, {where : [{id: parseInt(req.body.id)}],
