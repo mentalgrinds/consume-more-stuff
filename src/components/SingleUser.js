@@ -21,13 +21,19 @@ const SingleUser = ({user,backToUsers,handleChange,editNow,auth,edit}) => {
           <input
             type="text"
             name='password'
-            placeholder={user[0].password}
             onChange={handleChange}/>
           <input
             type="text"
             name='email'
             placeholder={user[0].email}
             onChange={handleChange}/>
+            Give user admin access ->
+          <input
+            type="checkbox"
+            name='admin'
+            onChange={handleChange}/>
+
+
         </form>}
       {auth ?
       <button

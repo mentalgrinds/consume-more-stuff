@@ -38,6 +38,7 @@ route.post('/', function(req, res, next) {
       local.id = req.user.id;
       local.username = req.user.username;
       local.auth = true;
+      local.admin = req.user.admin;
       return res.json(local);
     });
   })(req, res, next);

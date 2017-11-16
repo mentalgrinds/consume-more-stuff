@@ -38,7 +38,7 @@ class Dashboard extends Component {
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
-    if(admin){ 
+    if(admin.length !==0){ 
       this.setState({ 
         admin: true, 
         edit: true, 
@@ -63,6 +63,14 @@ class Dashboard extends Component {
     this.setState({
       item: filterAllItems(this.props.items,id)
     });
+    let userId = localStorage.userId;
+    let admin = filterRoles(this.props.users,userId);
+    if(admin.length !==0){ 
+      this.setState({ 
+        admin: true, 
+        edit: true, 
+        auth: true })
+    }
   }
 
   backToItems(e){
