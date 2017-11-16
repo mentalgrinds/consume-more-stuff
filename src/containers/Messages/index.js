@@ -20,18 +20,20 @@ class Messages extends Component {
           auth: localStorage.auth,
           edit: false,
           admin: false,
-          messages: [{username:'baseem', message: "hey is it still for sale"},{username:'batman',message:'yeah, well i prefer to trade'}]
+          messages: [{username:'baseem', message: "hey is it still for sale"},{username:'batman',message:'yeah, well i prefer to trade'}],
+          newMsg: ''
         }
-    this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeCategory(event){
+  handleChange(event){
     this.setState({
-      category: event.target.value
+      newMsg: {username: localStorage.username, message: event.target.value}
     })
   }
 
-   componentDidMount(){
+  componentDidMount(){
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
@@ -43,44 +45,32 @@ class Messages extends Component {
     }
   }
 
-  toggleEdit(event){
-    if(this.state.edit===false){
-      this.setState({edit: true})
-    }
-  }
-
-  closeEdit(event){
-    this.setState({
-      item: null,
-      edit: false
-    });
-  }
-
-  componentWillMount(){
-    this.props.loadItems();
-    this.props.loadCategories();
-    this.props.loadConditions();
-    this.props.loadItemStatuses();
-  }
-
-  loadSingleItem(id,e){
-    this.setState({
-      item: filterAllItems(this.props.items,id)
-    });
-  }
-
-  backToItems(e){
+  handleSubmit(e){
     e.preventDefault();
-    this.setState({item: null});
-    this.setState({edit: false});
+    let messages = this.state.messages;
+    let newMsg = this.state.newMsg;
+    console.log(messages);
+    console.log(newMsg);
+    let arr = [...messages,newMsg] 
+    console.log(arr);
+    this.setState({
+      messages: arr
+    })
   }
+
+
+
+
+
 
 
   render(){
+    console.log(this.state.newMsg)
     const msgStyle = {
       width: "600px",
       height: "400px",
-      border: "1px solid black",
+      border: "4px solid black",
+      backgroundColor: 'lightgrey',
       display:"flex wrap",
       marginTop: "50px"
     }
@@ -89,25 +79,48 @@ class Messages extends Component {
       marginLeft: "3px",
       marginRight: "3px",
       borderRadius: "20px",
-      maxWidth: "300px"
+      maxWidth: "300px",
+      paddingLeft: "20px"
     }
     const notUser = {
       backgroundColor:"lightgreen",
       marginLeft: "299px",
       marginRight: "3px",
       borderRadius: "20px",
-      maxWidth: "300px"
+      maxWidth: "300px",
+      textAlign: "right",
+      paddingRight: "20px"
     }
-
     const messageArr = this.state.messages;
 
+    const input = {
+      width: "400px",
+      height: "60px",
+      marginTop: "30px",
+      fontSize: "40px",
+      marginLeft: "90px",
+      borderRight: "transparent"
+    }
+    const send = {
+      height: "67px",
+      marginTop: "30px",
+      fontSize: "40px",
+      backgroundColor: "lightblue",
+      border: "transparent"
+    }
 
 
     return(
       <div>
+        <div>
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.handleChange} style={input} type='text' placeholder="type message"/>
+          <input type="submit" style={send}/>
+        </form>
+        </div>
         <div style={msgStyle}>
           {
-            messageArr.map((msg,idx)=>{
+            this.state.messages.map((msg,idx)=>{
               return(
             <div>
               <p 
