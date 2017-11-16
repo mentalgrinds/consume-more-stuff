@@ -44,11 +44,9 @@ export const editUser = (newInfo) => {
 }
 
 export const editPassword = (newInfo) => {
-  console.log(newInfo);
   return function(dispatch){
     return axios.put(`/api/users/${newInfo.id}/password`, newInfo)
     .then (user => {
-      console.log(user);
       dispatch({
         type: EDIT_PASSWORD,
         user: user
@@ -58,11 +56,9 @@ export const editPassword = (newInfo) => {
 }
 
 export const resetPassword = (newInfo) => {
- // console.log(newUser);
   return function(dispatch){
     return axios.put(`/api/users/${newInfo.id}/password/reset`,newInfo)
     .then( user => {
-      //console.log('user from then', user)
       dispatch({
         type: RESET_PASSWORD,
         user: user

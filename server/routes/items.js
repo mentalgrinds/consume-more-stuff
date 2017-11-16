@@ -51,7 +51,6 @@ route.get('/:id', ( req, res ) => {
   let id = req.params.id;
   item.findById(id)
   .then((data) => {
-    console.log('items ID route has been requested:, result: ', data);
     res.json(data);
   });
 });
@@ -94,7 +93,6 @@ route.post('/', upload.single('file'), ( req, res ) => {
           ]
         })
         .then((foundItem) => {
-          console.log(foundItem);
           res.json(foundItem);
         })
         .catch(err => {
