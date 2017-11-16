@@ -8,6 +8,7 @@ import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 import { loadItemStatuses } from '../../actions/itemStatuses';
 import filterAllItems from '../../lib/filterAllItems';
+import filterItem from '../../lib/filterItem';
 import filterRoles from '../../lib/filterRoles';
 import { msgStyle, user, notUser, input, send } from '../../lib/MessageStyle';
 
@@ -22,27 +23,31 @@ class Messages extends Component {
           auth: localStorage.auth,
           edit: false,
           admin: false,
-          messages: [],
-          content: "okay send your monies",
-          sellerId: '', //later this will be item-id - userId
-          itemId: '', //later this will be item-id
-          senderId: localStorage.userId
+          content: '',
+          sellerId: '',
+          itemId: '',
+          senderId: parseInt(localStorage.userId)
         }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+
   }
 
   handleChange(event){
     this.setState({
-      newMsg: {username: localStorage.username, message: event.target.value}
+      content: event.target.value
+    })
+    let sellerId = filterItem(this.props.items,2);
+    let itemId = filterAllItems(this.props.items,5);//remember this will have to be parseInt(localStore.itemId)
+    this.setState({
+      itemId: itemId[0].id, sellerId: sellerId[0].userId
     })
   }
 
   componentDidMount(){
     this.props.loadMessages();
-    this.setState({
-      messages:this.props.messages
-    })
+    this.props.loadItems();
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
@@ -56,13 +61,15 @@ class Messages extends Component {
 
   handleSubmit(e){
     e.preventDefault();
+ 
     let newMsg = {
       content: "okay send your monies",
-      sellerId: 2, //later this will be item-id - userId
-      itemId: 5, //later this will be item-id
-      senderId: 1 //later this will be localStorage.userId
+      sellerId: this.state.sellerId,
+      itemId: this.state.itemId,
+      senderId: localStorage.userId
     }
-    this.props.addMessage(newMsg);
+    console.log(newMsg);
+    //this.props.addMessage(newMsg);
   }
 
   // handleSubmit(e){
@@ -99,7 +106,7 @@ class Messages extends Component {
 
   render(){
     const messageArr = this.props.messages;
-    
+
 
 
     return(
@@ -113,7 +120,6 @@ class Messages extends Component {
         <div style={msgStyle}>
           {
             messageArr.map((msg,idx)=>{
-              console.log(msg);
               return(
             <div>
               <p 
