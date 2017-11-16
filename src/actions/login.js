@@ -19,6 +19,7 @@ export const loginUser = (newUser) => {
 }
 
 export const logoutUser = () => {
+  localStorage.clear();
   return function(dispatch){
     return axios.get('/api/logout')
     .then( () => {

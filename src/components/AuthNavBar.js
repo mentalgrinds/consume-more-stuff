@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logout from '../containers/Logout';
 
+
 const AuthNav = () => {
   return (
 
@@ -9,8 +10,15 @@ const AuthNav = () => {
       <div id="auth-nav">
         <div className="go-to-items">
           <Link to="/">Home</Link>
-          <br/>
+          <br></br>
           <Link to="/all">All Items</Link>
+          <br></br>
+          
+
+        {localStorage.admin ?
+          <Link to="/users">Users</Link>
+          :
+          null}
         </div>
 
         <div className="user-tools">
