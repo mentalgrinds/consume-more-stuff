@@ -1,9 +1,11 @@
 import React from 'react';
+const logo = 'logo.png';
+const logourl = require(`../assets/${logo}`);
 
 const Logo = () => {
   return (
-    <div id="logo">
-      <h1>[ <span className="hip-hip">hip, hip</span> ]</h1>
+    <div id="header_logo">
+      <img src={logourl}/>
     </div>
   );
 }
