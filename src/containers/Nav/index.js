@@ -4,16 +4,18 @@ import UnAuthNavBar from '../../components/UnAuthNavBar';
 
 const Nav = () => {
   return (
-    <div id="nav">
-    {localStorage.userId ?
-      <AuthNavBar />
-      :
-      <UnAuthNavBar />
-    }
+    <div>
+      <div class="area">
+      </div>
+      <nav class="main-menu">
+      {localStorage.userId ?
+        <AuthNavBar />
+        :
+        <UnAuthNavBar />
+      }
+      </nav>
     </div>
   )
-
-
 }
 
 export default Nav;
