@@ -34,10 +34,10 @@ class TopItemsView extends Component {
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
-    if(admin.length !==0){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin.length !==0){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
   }
@@ -68,10 +68,10 @@ class TopItemsView extends Component {
     });
     let userId = localStorage.userId;
     let admin = filterRoles(this.props.users,userId);
-    if(admin.length !==0){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin.length !==0){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
   }
@@ -99,7 +99,6 @@ class TopItemsView extends Component {
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}
-          // editNow={this.editNow.bind(this)}
           destroyItem={this.destroyItem.bind(this)}
           handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}

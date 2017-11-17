@@ -8,8 +8,8 @@ const route                   = express.Router();
 const db                      = require('../models');
 const {item}                 = db;
 
-const moveImage = require('../handlers/moveImage');
-const moveImageToExistingFolder = require('../handlers/moveImageToExistingFolder');
+const moveImage = require('../lib/moveImage');
+const moveImageToExistingFolder = require('../lib/moveImageToExistingFolder');
 
 const path = require('path');
 const fs = require('fs');
@@ -51,7 +51,6 @@ route.get('/:id', ( req, res ) => {
   let id = req.params.id;
   item.findById(id)
   .then((data) => {
-    console.log('items ID route has been requested:, result: ', data);
     res.json(data);
   });
 });
@@ -94,7 +93,6 @@ route.post('/', upload.single('file'), ( req, res ) => {
           ]
         })
         .then((foundItem) => {
-          console.log(foundItem);
           res.json(foundItem);
         })
         .catch(err => {

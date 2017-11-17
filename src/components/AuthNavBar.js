@@ -62,7 +62,7 @@ const AuthNav = () => {
           </li>
           {localStorage.admin ?
           <li>
-              <Link to="/">
+              <Link to="/users">
                   <i class="fa fa-users fa-2x"></i>
                   <span class="nav-text">
                       Users
