@@ -1,18 +1,22 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
+import { loginUser} from '../../actions/login';
 import { loadItems,editItem,deleteItem } from '../../actions/items';
+import { loadMessages,loadMsgByItem,addMessage } from '../../actions/messages';
 import { loadUsers } from '../../actions/users';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 import { loadItemStatuses } from '../../actions/itemStatuses';
 import filterAllItems from '../../lib/filterAllItems';
+import filterItem from '../../lib/filterItem';
 import filterRoles from '../../lib/filterRoles';
+import { msgStyle, user, notUser, input, send } from '../../lib/MessageStyle';
 
 
 class Messages extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
         this.state = {
           item: '',
@@ -20,20 +24,31 @@ class Messages extends Component {
           auth: localStorage.auth,
           edit: false,
           admin: false,
-          messages: [{username:'baseem', message: "hey is it still for sale"},{username:'batman',message:'yeah, well i prefer to trade'}],
-          newMsg: ''
+          content: '',
+          sellerId: '',
+          itemId: '',
+          senderId: parseInt(localStorage.userId)
         }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+
   }
 
   handleChange(event){
     this.setState({
-      newMsg: {username: localStorage.username, message: event.target.value}
+      content: event.target.value
+    })
+    let sellerId = filterItem(this.props.items,3);
+    let itemId = filterAllItems(this.props.items,4);//remember this will have to be parseInt(localStore.itemId)
+    this.setState({
+      itemId: itemId[0].id, sellerId: sellerId[0].userId
     })
   }
 
   componentDidMount(){
+    this.props.loadMessages();
+    this.props.loadItems();
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
@@ -47,16 +62,41 @@ class Messages extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    let messages = this.state.messages;
-    let newMsg = this.state.newMsg;
-    console.log(messages);
-    console.log(newMsg);
-    let arr = [...messages,newMsg] 
-    console.log(arr);
-    this.setState({
-      messages: arr
-    })
+ 
+    let newMsg = {
+      content: this.state.content,
+      sellerId: this.state.sellerId,
+      itemId: this.state.itemId,
+      senderId: localStorage.userId
+    }
+    this.props.addMessage(newMsg);
   }
+
+  // handleSubmit(e){
+  //   e.preventDefault();
+  //   let newMsg = {
+  //     content: "cool ill take it",
+  //     buyerId: 2, //later this will be localStore.userId
+  //     sellerId: 1, //later this will be item-id - userId
+  //     itemId: 5, //later this will be item-id
+  //     senderId: 2 //later this will be localStorage.userId
+  //   }
+  //   this.props.addMessage(newMsg);
+  // }
+
+
+  //  handleSubmit(e){
+  //   e.preventDefault();
+  //   let messages = this.state.messages;
+  //   let newMsg = this.state.newMsg;
+  //   console.log(messages);
+  //   console.log(newMsg);
+  //   let arr = [...messages,newMsg] 
+  //   console.log(arr);
+  //   this.setState({
+  //     messages: arr
+  //   })
+  // }
 
 
 
@@ -65,49 +105,8 @@ class Messages extends Component {
 
 
   render(){
-    console.log(this.state.newMsg)
-    const msgStyle = {
-      width: "600px",
-      height: "400px",
-      border: "4px solid black",
-      backgroundColor: 'lightgrey',
-      display:"flex wrap",
-      marginTop: "50px"
-    }
-    const user = {
-      backgroundColor:"cornflowerblue",
-      marginLeft: "3px",
-      marginRight: "3px",
-      borderRadius: "20px",
-      maxWidth: "300px",
-      paddingLeft: "20px"
-    }
-    const notUser = {
-      backgroundColor:"lightgreen",
-      marginLeft: "299px",
-      marginRight: "3px",
-      borderRadius: "20px",
-      maxWidth: "300px",
-      textAlign: "right",
-      paddingRight: "20px"
-    }
-    const messageArr = this.state.messages;
+    const messageArr = this.props.messages;
 
-    const input = {
-      width: "400px",
-      height: "60px",
-      marginTop: "30px",
-      fontSize: "40px",
-      marginLeft: "90px",
-      borderRight: "transparent"
-    }
-    const send = {
-      height: "67px",
-      marginTop: "30px",
-      fontSize: "40px",
-      backgroundColor: "lightblue",
-      border: "transparent"
-    }
 
 
     return(
@@ -120,12 +119,13 @@ class Messages extends Component {
         </div>
         <div style={msgStyle}>
           {
-            this.state.messages.map((msg,idx)=>{
+            messageArr.map((msg,idx)=>{
+              console.log()
               return(
             <div>
-              <p 
-              style={(localStorage.username===msg.username) ? user : notUser}>
-              {msg.username}-{msg.message}</p>
+              <p //parseInt( the ls user id)
+              style={(localStorage.userId===msg.senderId) ? user : notUser}>
+              {msg.senderId}-{msg.content}</p>
             </div>
                   )
             })
@@ -149,13 +149,14 @@ class Messages extends Component {
 const mapStateToProps = (state) => {
   return{
     items: state.items,
-    users: state.users
+    users: state.users,
+    messages: state.messages
   }
 }
 
 const ConnectedMessages = connect(
   mapStateToProps,
-  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem,loadUsers}
+  {loadItems, editItem,loadCategories,loadConditions, loadItemStatuses, deleteItem,loadUsers,loadMessages,loadMsgByItem,addMessage,loginUser}
 )(Messages)
 
 export default ConnectedMessages;
