@@ -38,3 +38,25 @@
       backgroundColor: "lightblue",
       border: "transparent"
     }
+    export const item = {
+      height: "67px",
+      fontSize: "40px",
+      backgroundColor: "lightblue",
+      border: "transparent",
+      width: "200px",
+      height: "200px",
+      marginTop: "50px",
+      marginRight: "30px",
+
+    }
+
+    export const flex = {
+      display:"flex",
+      justifyContent: "space-around"
+    }
+    export const img = {
+      maxWidth: "150px",
+      maxHeight: "150px",
+      marginTop: "50px",
+      marginRight: "30px"
+    }

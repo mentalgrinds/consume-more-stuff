@@ -8,10 +8,11 @@ import { loadUsers } from '../../actions/users';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 import { loadItemStatuses } from '../../actions/itemStatuses';
+import filterItemMsg from '../../lib/messageFilters';
 import filterAllItems from '../../lib/filterAllItems';
 import filterItem from '../../lib/filterItem';
 import filterRoles from '../../lib/filterRoles';
-import { msgStyle, user, notUser, input, send } from '../../lib/MessageStyle';
+import { msgStyle, user, notUser, input, send,item,flex,img } from '../../lib/MessageStyle';
 
 
 class Messages extends Component {
@@ -81,19 +82,30 @@ class Messages extends Component {
 
 
 
+
   render(){
     const messageArr = this.props.messages;
     const userId = parseInt(localStorage.userId);
     const username = this.state.username;
+    let id = localStorage.msgItemId;
+    let item = filterItemMsg(this.props.items,parseInt(id));
 
     return(
       <div>
-        <div>
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} style={input} type='text' placeholder="type message"/>
           <input type="submit" style={send}/>
         </form>
+        
+        <div style={flex}>
+        
+        <div style={item}>
+          <img src={item.image} style={img} alt='preview'/>
+
         </div>
+        
+
+          {/*map begins*/}
         <div style={msgStyle}>
           {
             messageArr.map((msg,idx)=>{
@@ -106,13 +118,11 @@ class Messages extends Component {
                   )
             })
           }
-
-
-
-
-
+        </div>
+        {/*map ends*/}
 
         </div>
+        
       </div>
 
     )

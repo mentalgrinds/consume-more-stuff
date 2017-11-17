@@ -80,7 +80,6 @@ class AllItemView extends Component {
 
 
   render(){
-    console.log(localStorage.msgItemId);
     const item = this.state.item;
 
     let filteredItems = this.props.items.filter(
