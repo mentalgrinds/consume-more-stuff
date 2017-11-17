@@ -24,6 +24,7 @@ route.get('/',(req,res) => {
 })
 
 route.post('/', (req, res) =>{
+  console.log(req.body);
     let id = req.body.senderId
     let local ={}
     user.findById(id)
@@ -35,7 +36,8 @@ route.post('/', (req, res) =>{
       buyerId: local.id,
       sellerId: req.body.sellerId,
       itemId: req.body.itemId,
-      senderId: req.body.senderId
+      senderId: req.body.senderId,
+      senderusername: req.body.senderName
     }).then((post)=>{
       post.username = local.username;
       return res.json(post);
@@ -43,6 +45,7 @@ route.post('/', (req, res) =>{
   })
     
 })
+
 
 
 route.get('/item/:id',(req,res) => {

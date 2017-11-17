@@ -41,11 +41,11 @@ class Messages extends Component {
     this.setState({
       content: event.target.value
     })
-    let sellerId = filterItem(this.props.items,3);
-    let itemId = filterAllItems(this.props.items,4);//remember this will have to be parseInt(localStore.itemId)
+    let id = localStorage.msgItemId;
+    let itemId = filterAllItems(this.props.items,parseInt(id)); 
     this.setState({
       itemId: itemId[0].id, 
-      sellerId: sellerId[0].userId,
+      sellerId: itemId[0].seller.id,
       username: itemId[0].seller.username
       })
      }
@@ -71,7 +71,8 @@ class Messages extends Component {
       content: this.state.content,
       sellerId: this.state.sellerId,
       itemId: this.state.itemId,
-      senderId: localStorage.userId
+      senderId: localStorage.userId,
+      senderName: localStorage.username
     }
     this.props.addMessage(newMsg);
   }
@@ -106,7 +107,7 @@ class Messages extends Component {
         
         <div style={item}>
           <img src={item.image} style={img} alt='preview'/>
-          <h4>{item.name}</h4>
+          <h4 style={desc}>{item.name}</h4>
           <h4>{item.price}</h4>
           <h4 style={desc}>{item.desc}</h4>
 
@@ -117,11 +118,12 @@ class Messages extends Component {
         <div style={msgStyle}>
           {
             messageArr.map((msg,idx)=>{
+              console.log(msg)
               return(
             <div>
               <p 
               style={(userId===msg.senderId) ? user : notUser}>
-              {buyer}-{msg.content}</p>
+              {msg.senderusername}-{msg.content}</p>
             </div>
                   )
             })
