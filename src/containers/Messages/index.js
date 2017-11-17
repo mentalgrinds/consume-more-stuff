@@ -10,9 +10,10 @@ import { loadCategories } from '../../actions/categories';
 import { loadItemStatuses } from '../../actions/itemStatuses';
 import filterItemMsg from '../../lib/messageFilters';
 import filterAllItems from '../../lib/filterAllItems';
+import messagesByItem from '../../lib/messageFilters/messagesByItem.js';
 import filterItem from '../../lib/filterItem';
 import filterRoles from '../../lib/filterRoles';
-import { msgStyle, user, notUser, input, send,item,flex,img } from '../../lib/MessageStyle';
+import { msgStyle, user, notUser, input, send,item,flex,img,desc } from '../../lib/MessageStyle';
 
 
 class Messages extends Component {
@@ -84,11 +85,13 @@ class Messages extends Component {
 
 
   render(){
-    const messageArr = this.props.messages;
-    const userId = parseInt(localStorage.userId);
-    const username = this.state.username;
     let id = localStorage.msgItemId;
     let item = filterItemMsg(this.props.items,parseInt(id));
+    let messageArr = messagesByItem(this.props.messages,parseInt(id));
+    //console.log(messageArr);
+    const userId = parseInt(localStorage.userId);
+    const username = this.state.username;
+    
 
     return(
       <div>
@@ -101,6 +104,9 @@ class Messages extends Component {
         
         <div style={item}>
           <img src={item.image} style={img} alt='preview'/>
+          <h4>{item.name}</h4>
+          <h4>{item.price}</h4>
+          <h4 style={desc}>{item.desc}</h4>
 
         </div>
         

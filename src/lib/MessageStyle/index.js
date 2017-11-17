@@ -28,7 +28,7 @@
       height: "60px",
       marginTop: "30px",
       fontSize: "40px",
-      marginLeft: "90px",
+      marginLeft: "200px",
       borderRight: "transparent"
     }
     export const send = {
@@ -59,4 +59,8 @@
       maxHeight: "150px",
       marginTop: "50px",
       marginRight: "30px"
+    }
+    export const desc = {
+      overflowWrap: "break-word",
+      maxWidth: "140px"
     }

@@ -8,7 +8,7 @@ moment().format();
         
 
 const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem, closeEdit, toggleEdit,goToMessages}) => {
-    console.log('item', item);
+    //console.log('item', item);
 
     let userId = parseInt(localStorage.userId, 10);
     return (

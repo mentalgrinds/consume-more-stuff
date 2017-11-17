@@ -10,6 +10,9 @@ function filterItemMsg(arr,query){
       local.image = value;
     //console.log(`${key} ${value}`); 
     });
+    local.name = (arr.length !== 0 ? obj.name : null)
+    local.desc = (arr.length !== 0 ? obj.description : null)
+    local.price = (arr.length !== 0 ? obj.price : null)
 
   return local;
 }
