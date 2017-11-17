@@ -61,6 +61,5 @@ typings/
 /server/config/config.j*
 
 # public
-/public
 /server/public
 
