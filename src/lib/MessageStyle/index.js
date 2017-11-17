@@ -4,7 +4,8 @@
       border: "4px solid black",
       backgroundColor: 'lightgrey',
       display:"flex wrap",
-      marginTop: "50px"
+      marginTop: "50px",
+      overflow: "auto"
     }
     export const user = {
       backgroundColor:"cornflowerblue",
