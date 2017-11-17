@@ -48,7 +48,7 @@ class Messages extends Component {
       sellerId: itemId[0].seller.id,
       username: itemId[0].seller.username
       })
-     }
+    }
 
   componentDidMount(){
     this.props.loadMessages();
@@ -66,7 +66,7 @@ class Messages extends Component {
 
   handleSubmit(e){
     e.preventDefault();
- 
+  
     let newMsg = {
       content: this.state.content,
       sellerId: this.state.sellerId,
@@ -75,6 +75,7 @@ class Messages extends Component {
       senderName: localStorage.username
     }
     this.props.addMessage(newMsg);
+    (this.refs.form).value = "";
   }
 
 
@@ -99,7 +100,7 @@ class Messages extends Component {
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} style={input} type='text' placeholder="type message"/>
+          <input ref="form" onChange={this.handleChange} style={input} type='text' placeholder="type message"/>
           <input type="submit" style={send}/>
         </form>
         
@@ -108,7 +109,7 @@ class Messages extends Component {
         <div style={item}>
           <img src={item.image} style={img} alt='preview'/>
           <h4 style={desc}>{item.name}</h4>
-          <h4>{item.price}</h4>
+          <h4 style={desc}>{item.price}</h4>
           <h4 style={desc}>{item.desc}</h4>
 
         </div>
@@ -118,7 +119,7 @@ class Messages extends Component {
         <div style={msgStyle}>
           {
             messageArr.map((msg,idx)=>{
-              console.log(msg)
+
               return(
             <div>
               <p 
