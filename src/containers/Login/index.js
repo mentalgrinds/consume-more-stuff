@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginUser, logoutUser } from '../../actions/login';
 import { Redirect, withRouter } from 'react-router';
+import { loadMessages } from '../../actions/messages';
 
 class Login extends Component {
   constructor(props){
@@ -18,6 +19,9 @@ class Login extends Component {
 
   }
 
+    componentDidMount(){
+    this.props.loadMessages();
+    }
 
   handleChangeUsername(event){
     this.setState({
@@ -89,7 +93,7 @@ const mapStatetoProps = (state) => {
 
 const ConnectedLogin = connect(
   mapStatetoProps,
-  {loginUser,logoutUser}
+  {loginUser,logoutUser,loadMessages}
 )(Login)
 
 export default withRouter(ConnectedLogin);

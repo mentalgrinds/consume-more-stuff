@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logout from '../containers/Logout';
 
-
+const msgCount = localStorage.msgCount;
 const AuthNav = () => {
   return (
 
@@ -21,7 +21,7 @@ const AuthNav = () => {
               <Link to="/messages">
                   <i class="fa fa-envelope-o fa-2x"></i>
                   <span class="nav-text">
-                      Messages
+                      Messages - {msgCount}
                   </span>
               </Link>
           </li>
