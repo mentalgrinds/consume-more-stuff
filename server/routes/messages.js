@@ -8,31 +8,45 @@ const route                   = express.Router();
 const db                      = require('../models');
 const {messages}              = db;
 const {user}                  = db;
+const {item}                  = db;
 
 route.get('/',(req,res) => {
-  return messages.findAll()
+  return messages.findAll({
+    include:[
+    { model: user, as: 'seller' },
+    { model: user, as: 'buyer' },
+    { model: item, as: 'item' }
+    ]
+  })
     .then((messages)=>{
       return res.json(messages);
     })
 })
 
 route.post('/', (req, res) =>{
+  console.log(req.body);
     let id = req.body.senderId
+    let local ={}
     user.findById(id)
     .then((user)=>{
-      let buyerId = user.id;
+      local.id = user.id;
+      local.username = user.username;
       return messages.create({
       content: req.body.content,
-      buyerId: buyerId,
+      buyerId: local.id,
       sellerId: req.body.sellerId,
       itemId: req.body.itemId,
-      senderId: req.body.senderId
+      senderId: req.body.senderId,
+      senderusername: req.body.senderName
     }).then((post)=>{
+      post.username = local.username;
       return res.json(post);
     })
   })
     
 })
+
+
 
 route.get('/item/:id',(req,res) => {
   let itemId = req.params.id;

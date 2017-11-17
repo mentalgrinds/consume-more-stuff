@@ -85,6 +85,11 @@ class SingleItemView extends Component {
     this.setState({edit: false});
   }
 
+   goToMessages(){
+    let id = this.state.item[0].id;
+    localStorage.setItem('msgItemId', id)
+    }
+
 
 
   render(){
@@ -108,6 +113,7 @@ class SingleItemView extends Component {
         item ?
         <SingleItem
 
+          goToMessages={this.goToMessages.bind(this)}
           edit={this.state.edit}
           closeEdit={this.closeEdit}
           auth={this.state.auth}

@@ -28,7 +28,7 @@
       height: "60px",
       marginTop: "30px",
       fontSize: "40px",
-      marginLeft: "90px",
+      marginLeft: "200px",
       borderRight: "transparent"
     }
     export const send = {
@@ -37,4 +37,30 @@
       fontSize: "40px",
       backgroundColor: "lightblue",
       border: "transparent"
+    }
+    export const item = {
+      height: "67px",
+      fontSize: "40px",
+      backgroundColor: "lightblue",
+      border: "transparent",
+      width: "200px",
+      height: "200px",
+      marginTop: "50px",
+      marginRight: "30px",
+
+    }
+
+    export const flex = {
+      display:"flex",
+      justifyContent: "space-around"
+    }
+    export const img = {
+      maxWidth: "150px",
+      maxHeight: "150px",
+      marginTop: "50px",
+      marginRight: "30px"
+    }
+    export const desc = {
+      overflowWrap: "break-word",
+      maxWidth: "140px"
     }

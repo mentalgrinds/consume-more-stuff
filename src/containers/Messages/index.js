@@ -8,10 +8,12 @@ import { loadUsers } from '../../actions/users';
 import { loadConditions } from '../../actions/conditions';
 import { loadCategories } from '../../actions/categories';
 import { loadItemStatuses } from '../../actions/itemStatuses';
+import filterItemMsg from '../../lib/messageFilters';
 import filterAllItems from '../../lib/filterAllItems';
+import messagesByItem from '../../lib/messageFilters/messagesByItem.js';
 import filterItem from '../../lib/filterItem';
 import filterRoles from '../../lib/filterRoles';
-import { msgStyle, user, notUser, input, send } from '../../lib/MessageStyle';
+import { msgStyle, user, notUser, input, send,item,flex,img,desc } from '../../lib/MessageStyle';
 
 
 class Messages extends Component {
@@ -39,12 +41,14 @@ class Messages extends Component {
     this.setState({
       content: event.target.value
     })
-    let sellerId = filterItem(this.props.items,3);
-    let itemId = filterAllItems(this.props.items,4);//remember this will have to be parseInt(localStore.itemId)
+    let id = localStorage.msgItemId;
+    let itemId = filterAllItems(this.props.items,parseInt(id)); 
     this.setState({
-      itemId: itemId[0].id, sellerId: sellerId[0].userId
-    })
-  }
+      itemId: itemId[0].id, 
+      sellerId: itemId[0].seller.id,
+      username: itemId[0].seller.username
+      })
+     }
 
   componentDidMount(){
     this.props.loadMessages();
@@ -67,36 +71,13 @@ class Messages extends Component {
       content: this.state.content,
       sellerId: this.state.sellerId,
       itemId: this.state.itemId,
-      senderId: localStorage.userId
+      senderId: localStorage.userId,
+      senderName: localStorage.username
     }
     this.props.addMessage(newMsg);
   }
 
-  // handleSubmit(e){
-  //   e.preventDefault();
-  //   let newMsg = {
-  //     content: "cool ill take it",
-  //     buyerId: 2, //later this will be localStore.userId
-  //     sellerId: 1, //later this will be item-id - userId
-  //     itemId: 5, //later this will be item-id
-  //     senderId: 2 //later this will be localStorage.userId
-  //   }
-  //   this.props.addMessage(newMsg);
-  // }
 
-
-  //  handleSubmit(e){
-  //   e.preventDefault();
-  //   let messages = this.state.messages;
-  //   let newMsg = this.state.newMsg;
-  //   console.log(messages);
-  //   console.log(newMsg);
-  //   let arr = [...messages,newMsg] 
-  //   console.log(arr);
-  //   this.setState({
-  //     messages: arr
-  //   })
-  // }
 
 
 
@@ -105,38 +86,53 @@ class Messages extends Component {
 
 
   render(){
-    const messageArr = this.props.messages;
+    let id = localStorage.msgItemId;
+    let item = filterItemMsg(this.props.items,parseInt(id));
+    let messageArr = messagesByItem(this.props.messages,parseInt(id));
+    let one = messageArr[0];
+    let buyer = (messageArr.length !== 0) ? messageArr[0].buyer.username : "buyer";
+    const userId = parseInt(localStorage.userId);
+    
 
-
+    
 
     return(
       <div>
-        <div>
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} style={input} type='text' placeholder="type message"/>
           <input type="submit" style={send}/>
         </form>
+        
+        <div style={flex}>
+        
+        <div style={item}>
+          <img src={item.image} style={img} alt='preview'/>
+          <h4 style={desc}>{item.name}</h4>
+          <h4>{item.price}</h4>
+          <h4 style={desc}>{item.desc}</h4>
+
         </div>
+        
+
+          {/*map begins*/}
         <div style={msgStyle}>
           {
             messageArr.map((msg,idx)=>{
-              console.log()
+              console.log(msg)
               return(
             <div>
-              <p //parseInt( the ls user id)
-              style={(localStorage.userId===msg.senderId) ? user : notUser}>
-              {msg.senderId}-{msg.content}</p>
+              <p 
+              style={(userId===msg.senderId) ? user : notUser}>
+              {msg.senderusername}-{msg.content}</p>
             </div>
                   )
             })
           }
-
-
-
-
-
+        </div>
+        {/*map ends*/}
 
         </div>
+        
       </div>
 
     )
