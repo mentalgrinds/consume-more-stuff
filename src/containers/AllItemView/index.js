@@ -73,8 +73,14 @@ class AllItemView extends Component {
     this.setState({edit: false});
   }
 
+   goToMessages(){
+    let id = this.state.item.id;
+    localStorage.setItem('msgItemId', id)
+    }
+
 
   render(){
+    console.log(localStorage.msgItemId);
     const item = this.state.item;
 
     let filteredItems = this.props.items.filter(
@@ -100,6 +106,7 @@ class AllItemView extends Component {
         item ?
         <SingleItem
 
+          goToMessages={this.goToMessages.bind(this)}
           edit={this.state.edit}
           closeEdit={this.closeEdit}
           auth={this.state.auth}
