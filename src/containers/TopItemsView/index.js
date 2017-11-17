@@ -116,13 +116,13 @@ class TopItemsView extends Component {
         />
         :
           <div className= "each-top-item">
-            <h1>TOP 3 for COMPUTERS </h1>
+            <h1>TOP 3 for COMPUTERS</h1>
             <Top3ItemList items={this.props.items} categoryNumber={1} loadSingleItem={this.loadSingleItem.bind(this)}/>
-            <h1>TOP 3 for FURNITURE </h1>
+            <h1>TOP 3 for FURNITURE</h1>
             <Top3ItemList items={this.props.items} categoryNumber={2} loadSingleItem={this.loadSingleItem.bind(this)}/>
-            <h1>TOP 3 for APPLIANCES </h1>
+            <h1>TOP 3 for APPLIANCES</h1>
             <Top3ItemList items={this.props.items} categoryNumber={3} loadSingleItem={this.loadSingleItem.bind(this)}/>
-            <h1>TOP 3 for VEHICLES </h1>
+            <h1>TOP 3 for VEHICLES</h1>
             <Top3ItemList items={this.props.items} categoryNumber={4} loadSingleItem={this.loadSingleItem.bind(this)}/>
           </div>
         }

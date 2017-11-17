@@ -44,9 +44,9 @@ class Messages extends Component {
       content: event.target.value
     })
     let id = localStorage.msgItemId;
-    let itemId = filterAllItems(this.props.items,parseInt(id)); 
+    let itemId = filterAllItems(this.props.items,parseInt(id));
     this.setState({
-      itemId: itemId[0].id, 
+      itemId: itemId[0].id,
       sellerId: itemId[0].seller.id,
       username: itemId[0].seller.username
       })
@@ -58,17 +58,17 @@ class Messages extends Component {
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
-    if(admin){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
   }
 
   handleSubmit(e){
     e.preventDefault();
-  
+
     let newMsg = {
       content: this.state.content,
       sellerId: this.state.sellerId,
@@ -95,9 +95,9 @@ class Messages extends Component {
     let one = messageArr[0];
     let buyer = (messageArr.length !== 0) ? messageArr[0].buyer.username : "buyer";
     const userId = parseInt(localStorage.userId);
-    
 
-    
+
+
 
     return(
       <div>
@@ -105,9 +105,9 @@ class Messages extends Component {
           <input ref="form" onChange={this.handleChange} style={input} type='text' placeholder="type message"/>
           <input type="submit" style={send}/>
         </form>
-        
+
         <div style={flex}>
-        
+
         <div style={item}>
           <img src={item.image} style={img} alt='preview'/>
           <h4 style={desc}>{item.name}</h4>
@@ -115,7 +115,7 @@ class Messages extends Component {
           <h4 style={desc}>{item.desc}</h4>
 
         </div>
-        
+
 
           {/*map begins*/}
         <div style={msgStyle}>
@@ -125,7 +125,7 @@ class Messages extends Component {
 
               return(
             <div>
-              <p 
+              <p
               style={(userId===msg.senderId) ? user : notUser}>
               {msg.senderusername}-{msg.content}</p>
             </div>
@@ -136,7 +136,7 @@ class Messages extends Component {
         {/*map ends*/}
 
         </div>
-        
+
       </div>
 
     )

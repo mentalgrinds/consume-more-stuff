@@ -2,11 +2,11 @@ import React from 'react';
 
 const ItemDetailView = ({id, name, description, image, price, conditionId, model,loadSingleItem,idx}) => {
   return (
-    <div className='eachItem'>
+    <div className='eachCard'>
         <div className="all-view-title">
             <span onClick={(e)=>loadSingleItem(id,e)}>
-            <h2>{name}</h2>
-                <div className="img-container-small">
+            <p className='cardTitle'>{name}</p>
+                <div className="cardImg">
                     <img alt='Preview' className="thumbnail" src={image}/><br />
                 </div>
             </span>
@@ -16,17 +16,18 @@ const ItemDetailView = ({id, name, description, image, price, conditionId, model
           <div className="detail-view-desc">
             {description}
           </div>
+          <div className="condition">
+              <span className="detail-view-desc">Condition: {conditionId}
+              </span>
+            </div>
             {
               (price) ?
                 <div className="price">
-                  <span className="detail-field">Price: </span>{price}
+                  <span className="price">Price: </span>{price}
                 </div>
               :
               null
             }
-            <div className="condition">
-              <span className="detail-field">Condition: </span>{conditionId}
-            </div>
         </div>
     </div>
   )

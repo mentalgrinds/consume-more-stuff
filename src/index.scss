@@ -7,7 +7,7 @@ $highlight: #ffe600;
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-
+@import url(https://fonts.googleapis.com/css?family=Barlow|Open+Sans);
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
 body {
@@ -31,10 +31,11 @@ body {
 
 #content-div{
   display: flex;
+  justify-content: center;
   background-color: $pastel;
   min-height: 100vh;
   min-width: 100vh;
-  padding-left: 255px;
+  padding-left: 65px;
 }
 
 /* #unauth-nav{
@@ -91,13 +92,6 @@ body {
 .itemStatusList{
   display: flex;
   justify-content: space-around;
-  .eachItem{
-    border: black solid 1px;
-    height: 350px;
-    width: 300px;
-    margin-top: 2%;
-    text-align: center;
-  }
 }
 
 .detail-view-title{
@@ -161,9 +155,7 @@ body {
   }
 }
 
-.img-container-small{
-  margin: auto;
-}
+
 
 .dashboard-view{
   width: 100%;
@@ -206,6 +198,8 @@ body {
 
 #new-item-form{
   display: flex;
+  justify-content: center;
+  margin: 0px;
 }
 
 #uploaded-image-preview{
@@ -271,11 +265,7 @@ body {
   justify-content: space-around;
 }
 
-.img-container-small{
-  height: 200px;
-  width: 200px;
 
-}
 
 .thumbnail{
   height: 100%;
@@ -408,7 +398,7 @@ a:hover{
   color: $light;
 }
 
-@media screen and (min-width: 480px){
+@media screen and (min-width: 400px){
 
   #header{
     font-size: 80%;
@@ -424,6 +414,14 @@ a:hover{
 
 }
 
+  #content-div{
+  display: flex;
+  background-color: $pastel;
+  min-height: 100vh;
+  min-width: 100vh;
+
+}
+
 @media screen and (min-width: 1000px){
 
   #header{
@@ -434,8 +432,6 @@ a:hover{
     display: inline-block;
   }
 
- /*  #nav{
-    min-width: 12%; }*/
 
 
 }
@@ -457,11 +453,11 @@ a:hover{
   margin-left:20px;
 }
 
-h1{
+/* h1{
   text-align: center;
   font-family: 'Carrois Gothic SC', sans-serif;
-  color: white;
-}
+  color: black;
+} */
 .childrenImg {
   background-size: cover;
   height: 500px;
@@ -469,15 +465,6 @@ h1{
   z-index: 0;
 }
 
-/* #nav{
-  min-width: 80px;
-  min-height: 100vh;
-  background-color: #d5d5d5;
-  min-height: 100%;
-  margin-right: 2%;
-  padding-top: 2%;
-}
- */
 
 
 .fa-2x {
@@ -606,3 +593,151 @@ height: 100%;
   src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
 }
 
+
+
+.eachTopItem{
+  width: 100%;
+  display: flex;
+  flex: 0 0 30%;
+
+}
+
+
+.eachTopItem{
+  .all-view-title{
+    text-align: center;
+  }
+}
+
+.eachTopItem{
+  .eachItem{
+    border: black solid 1px;
+    height: 350px;
+    width: 300px;
+    margin-top: 2%;
+  }
+}
+
+
+
+.eachCard{
+  border-radius: 2px;
+  display: inline-block;
+  height: 350px;
+  margin: 1rem;
+  position: relative;
+  width: 300px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.img-container-small{
+  height: 200px;
+  width: 200px;
+
+}
+.img-container-small{
+  margin: auto;
+
+    &:hover {
+      transform: scale(1.05);
+
+    &:after {
+      opacity: 0;
+    }
+  }
+}
+
+.cardImg{
+  height: 200px;
+  width: 290px;
+  margin: auto;
+    &:hover {
+      transform: scale(1.05);
+
+    &:after {
+      opacity: 0;
+    }
+  }
+}
+.cardTitle{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.detail-view-desc{
+  padding-top: 11px;
+  font-family: sans-serif;
+  font-size: 14.5px;
+  color: #a6a6a6;
+}
+
+.price{
+  padding-top: 7px;
+  font-family: 'Source Sans Pro',sans-serif;
+}
+
+.footer{
+  display: flex;
+  background-color: black;
+  width: 100%;
+  height: 80px;
+  justify-content: flex-end;
+}
+.footer_text{
+  color: white;
+  display: inline-flex;
+  align-self: center;
+  font-family: 'Barlow', sans-serif;
+}
+.github{
+  color: white;
+  align-self: center;
+  justify-content: flex-end;
+}
+.fa-5x{
+  font-size: 50px;
+  color: white;
+}
+.fa-5x:hover{
+  font-size: 60px;
+  color:$splash;
+}
+
+.top-items{
+  text-align: center;
+  border-radius: 2px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+
+h1{
+  position:relative;
+  display:inline-block;
+  margin:20px;
+  padding:0 10px;
+  text-align:center;
+  font:bold 32px Helvetica, Arial, sans-serif;
+  background:$splash;
+  color:#222;
+  &:after {
+    position:absolute;
+    left:-10px;
+    content:" ";
+    width:15px;
+    height:100%;
+    background:$splash;
+    transform:skew(-15deg,0deg);
+  }
+  &:before {
+    position:absolute;
+    left:-10px;
+    content:" ";
+    width:15px;
+    height:100%;
+    background:$splash;
+    transform:skew(-15deg,0deg);
+    left:auto;
+    right:-10px !important;
+    outline:1px solid #f00;
+  }
+}

@@ -17,6 +17,7 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 
 import App from './containers/App';
+import Footer from './components/Footer';
 import Header from './components/header';
 import NewItemForm from './containers/NewItemForm';
 import AllItemView from './containers/AllItemView';
@@ -60,7 +61,7 @@ ReactDOM.render(
         <Route path="/login" component={Login} />
 
       </div>
-
+      <Footer/>
     </div>
   </Router>
   </Provider>,

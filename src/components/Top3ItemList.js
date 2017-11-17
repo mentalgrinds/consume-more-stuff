@@ -3,7 +3,7 @@ import ItemDetailView from './ItemDetailView';
 
 const Top3ItemList = ({items, categoryNumber, loadSingleItem}) => {
   return (
-    <div className='allItemList'>
+    <div className='eachTopItem'>
       {
         items.filter( (item) => {
           return item.itemcategory.id === Number(categoryNumber);
