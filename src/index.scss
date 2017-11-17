@@ -7,7 +7,7 @@ $highlight: #ffe600;
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Barlow|Open+Sans);
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
 body {
@@ -685,7 +685,7 @@ height: 100%;
   color: white;
   display: inline-flex;
   align-self: center;
-  font-family: 'Source Sans Pro',sans-serif;
+  font-family: 'Barlow', sans-serif;
 }
 .github{
   color: white;
@@ -699,4 +699,9 @@ height: 100%;
 .fa-5x:hover{
   font-size: 60px;
   color:$splash;
+}
+
+.top-items{
+  border-radius: 2px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }

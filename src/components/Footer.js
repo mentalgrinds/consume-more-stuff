@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer">
 
       <div className="footer_text"> [
-        hip,hip]    ©  2017 [ Kaley, Baseem & Ella ]
+        hip,hip]{`  `}©{`  `}2017
       </div>
       <div className="github">
        <a href="https://github.com/ba5eem/consume-more-stuff/tree/development"><i class="fa fa-github fa-5x"></i></a>
