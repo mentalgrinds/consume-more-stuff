@@ -37,10 +37,10 @@ class Messages extends Component {
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
-    if(admin){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
   }
@@ -51,7 +51,7 @@ class Messages extends Component {
     let newMsg = this.state.newMsg;
     console.log(messages);
     console.log(newMsg);
-    let arr = [...messages,newMsg] 
+    let arr = [...messages,newMsg]
     console.log(arr);
     this.setState({
       messages: arr
@@ -112,6 +112,7 @@ class Messages extends Component {
 
     return(
       <div>
+      <h1>Messages</h1>
         <div>
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} style={input} type='text' placeholder="type message"/>
@@ -123,7 +124,7 @@ class Messages extends Component {
             this.state.messages.map((msg,idx)=>{
               return(
             <div>
-              <p 
+              <p
               style={(localStorage.username===msg.username) ? user : notUser}>
               {msg.username}-{msg.message}</p>
             </div>
