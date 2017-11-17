@@ -21,7 +21,7 @@ const AuthNav = () => {
               <Link to="/messages">
                   <i class="fa fa-envelope-o fa-2x"></i>
                   <span class="nav-text">
-                      Messages - {msgCount}
+                      Messages  {msgCount}
                   </span>
               </Link>
           </li>
