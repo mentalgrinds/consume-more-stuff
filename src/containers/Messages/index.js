@@ -14,6 +14,8 @@ import messagesByItem from '../../lib/messageFilters/messagesByItem.js';
 import filterItem from '../../lib/filterItem';
 import filterRoles from '../../lib/filterRoles';
 import { msgStyle, user, notUser, input, send,item,flex,img,desc } from '../../lib/MessageStyle';
+import _sortBy from 'lodash/sortBy';
+const _ = require('lodash');
 
 
 class Messages extends Component {
@@ -118,7 +120,8 @@ class Messages extends Component {
           {/*map begins*/}
         <div style={msgStyle}>
           {
-            messageArr.map((msg,idx)=>{
+            _.sortBy(messageArr, o => +new Date(o.createdAt)).reverse()
+        .map((msg,idx) => {
 
               return(
             <div>
