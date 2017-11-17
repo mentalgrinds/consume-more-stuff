@@ -42,9 +42,11 @@ class Messages extends Component {
     let sellerId = filterItem(this.props.items,3);
     let itemId = filterAllItems(this.props.items,4);//remember this will have to be parseInt(localStore.itemId)
     this.setState({
-      itemId: itemId[0].id, sellerId: sellerId[0].userId
-    })
-  }
+      itemId: itemId[0].id, 
+      sellerId: sellerId[0].userId,
+      username: itemId[0].seller.username
+      })
+     }
 
   componentDidMount(){
     this.props.loadMessages();
@@ -72,31 +74,6 @@ class Messages extends Component {
     this.props.addMessage(newMsg);
   }
 
-  // handleSubmit(e){
-  //   e.preventDefault();
-  //   let newMsg = {
-  //     content: "cool ill take it",
-  //     buyerId: 2, //later this will be localStore.userId
-  //     sellerId: 1, //later this will be item-id - userId
-  //     itemId: 5, //later this will be item-id
-  //     senderId: 2 //later this will be localStorage.userId
-  //   }
-  //   this.props.addMessage(newMsg);
-  // }
-
-
-  //  handleSubmit(e){
-  //   e.preventDefault();
-  //   let messages = this.state.messages;
-  //   let newMsg = this.state.newMsg;
-  //   console.log(messages);
-  //   console.log(newMsg);
-  //   let arr = [...messages,newMsg] 
-  //   console.log(arr);
-  //   this.setState({
-  //     messages: arr
-  //   })
-  // }
 
 
 
@@ -106,8 +83,8 @@ class Messages extends Component {
 
   render(){
     const messageArr = this.props.messages;
-
-
+    const userId = parseInt(localStorage.userId);
+    const username = this.state.username;
 
     return(
       <div>
@@ -120,12 +97,11 @@ class Messages extends Component {
         <div style={msgStyle}>
           {
             messageArr.map((msg,idx)=>{
-              console.log()
               return(
             <div>
-              <p //parseInt( the ls user id)
-              style={(localStorage.userId===msg.senderId) ? user : notUser}>
-              {msg.senderId}-{msg.content}</p>
+              <p 
+              style={(userId===msg.senderId) ? user : notUser}>
+              {msg.buyer.username}-{msg.content}-ItemID:{msg.itemId}</p>
             </div>
                   )
             })
