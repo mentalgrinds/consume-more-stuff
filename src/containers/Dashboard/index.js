@@ -81,6 +81,11 @@ class Dashboard extends Component {
     });
   }
 
+  goToMessages(){
+    let id = this.state.item[0].id;
+    localStorage.setItem('msgItemId', id)
+    }
+
   render(){
     const admin = this.state.admin;
     const item = this.state.item;
@@ -90,6 +95,7 @@ class Dashboard extends Component {
 
        {item ?
         <SingleItem
+          goToMessages={this.goToMessages.bind(this)}
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}

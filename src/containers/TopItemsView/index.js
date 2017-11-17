@@ -88,6 +88,11 @@ class TopItemsView extends Component {
     this.setState({edit: false});
   }
 
+   goToMessages(){
+    let id = this.state.item[0].id;
+    localStorage.setItem('msgItemId', id)
+    }
+
   render(){
     const item = this.state.item;
     return(
@@ -96,6 +101,7 @@ class TopItemsView extends Component {
           item ?
         <SingleItem
 
+          goToMessages={this.goToMessages.bind(this)}
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}

@@ -1,17 +1,27 @@
 import React from 'react';
 import 'moment-timezone';
+import { Link } from 'react-router-dom';
 import EditItemForm from '../containers/EditItemForm';
 const moment = require('moment');
 moment().format();
 
-const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem, closeEdit, toggleEdit}) => {
-    console.log('item', item);
+        
+
+const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions, itemStatuses, destroyItem, closeEdit, toggleEdit,goToMessages}) => {
+    //console.log('item', item);
 
     let userId = parseInt(localStorage.userId, 10);
     return (
     <div className='eachItem'>
         <div className="back-to-list">
             <button onClick={(e)=>backToItems(e)}>Back</button>
+            <br></br><br></br>
+        {auth ?
+                    <Link to="/messages"> <button onClick={(e)=>goToMessages()}>
+                        Message
+                    </button></Link> : null
+                }
+           
         </div>
     {!edit ?
 
