@@ -38,10 +38,10 @@ class Dashboard extends Component {
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
-    if(admin.length !==0){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin.length !==0){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
   }
@@ -65,10 +65,10 @@ class Dashboard extends Component {
     });
     let userId = localStorage.userId;
     let admin = filterRoles(this.props.users,userId);
-    if(admin.length !==0){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin.length !==0){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
   }
@@ -103,9 +103,9 @@ class Dashboard extends Component {
           />
         :
         <div className="dash-board-content">
-          <h1> PUBLISHED </h1>
+          <h1> PUBLISHED</h1>
           <ItemStatusList loadSingleItem={this.loadSingleItem.bind(this)} items={this.props.items} statusId={2} currentUserId = {id}/>
-          <h1> SOLD ITEMS  </h1>
+          <h1> SOLD ITEMS</h1>
           <ItemStatusList loadSingleItem={this.loadSingleItem.bind(this)} items={this.props.items} statusId={1} currentUserId = {id}/>
         </div>
         }

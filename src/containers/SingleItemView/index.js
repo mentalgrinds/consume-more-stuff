@@ -37,10 +37,10 @@ class SingleItemView extends Component {
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
-    if(admin.length !==0){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin.length !==0){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
   }
@@ -71,10 +71,10 @@ class SingleItemView extends Component {
     });
     let userId = localStorage.userId;
     let admin = filterRoles(this.props.users,userId);
-    if(admin.length !==0){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin.length !==0){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
   }
@@ -121,6 +121,7 @@ class SingleItemView extends Component {
         />
         :
           <div>
+          <h1>ALL ITEM VIEW</h1><br/>
             FILTER by Category: <Select name="category" handler={this.handleChangeCategory} list={this.props.categories} show="title" />
 
             <ItemList

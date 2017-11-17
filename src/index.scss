@@ -198,6 +198,8 @@ body {
 
 #new-item-form{
   display: flex;
+  justify-content: center;
+  margin: 0px;
 }
 
 #uploaded-image-preview{
@@ -451,11 +453,11 @@ a:hover{
   margin-left:20px;
 }
 
-h1{
+/* h1{
   text-align: center;
   font-family: 'Carrois Gothic SC', sans-serif;
-  color: gray;
-}
+  color: black;
+} */
 .childrenImg {
   background-size: cover;
   height: 500px;
@@ -702,6 +704,40 @@ height: 100%;
 }
 
 .top-items{
+  text-align: center;
   border-radius: 2px;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+
+h1{
+  position:relative;
+  display:inline-block;
+  margin:20px;
+  padding:0 10px;
+  text-align:center;
+  font:bold 32px Helvetica, Arial, sans-serif;
+  background:$splash;
+  color:#222;
+  &:after {
+    position:absolute;
+    left:-10px;
+    content:" ";
+    width:15px;
+    height:100%;
+    background:$splash;
+    transform:skew(-15deg,0deg);
+  }
+  &:before {
+    position:absolute;
+    left:-10px;
+    content:" ";
+    width:15px;
+    height:100%;
+    background:$splash;
+    transform:skew(-15deg,0deg);
+    left:auto;
+    right:-10px !important;
+    outline:1px solid #f00;
+  }
 }

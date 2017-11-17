@@ -26,10 +26,10 @@ class User extends Component {
     this.props.loadUsers();
     let id = localStorage.userId;
     let admin = filterRoles(this.props.users,id);
-    if(admin.length !==0){ 
-      this.setState({ 
-        admin: true, 
-        edit: true, 
+    if(admin.length !==0){
+      this.setState({
+        admin: true,
+        edit: true,
         auth: true })
     }
   }
@@ -47,9 +47,9 @@ class User extends Component {
     }
   }
 
-  componentWillMount(){ 
+  componentWillMount(){
     this.props.loadUsers();
-    
+
      }
   loadUser(id,e){ this.setState( {user: filterUser(this.props.users,id)} ); }
 
@@ -62,7 +62,8 @@ class User extends Component {
     const user = this.state.user;
     return(
       <div>
-      {user ? 
+      <h1>USERS LIST</h1>
+      {user ?
         <SingleUser
           editNow={this.editNow.bind(this)}
           edit={this.state.edit}
@@ -71,7 +72,7 @@ class User extends Component {
           backToUsers={this.backToUsers.bind(this)}
           user={this.state.user} />
         :
-        <UserList 
+        <UserList
           loadUser={this.loadUser.bind(this)}
           users={this.props.users}
           activeUsers={this.props.activeUsers}
@@ -90,7 +91,6 @@ const mapStateToProps = (state) => {
     users: state.users,
     activeUsers: filterUserStatus(state.users,'active'),
     inactiveUsers: filterUserStatus(state.users,'inactive')
-
   }
 }
 

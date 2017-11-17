@@ -159,7 +159,7 @@ class NewItemForm extends Component {
     return (
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
-        <h2>Add item to marketplace</h2>
+        <h1>ADD NEW ITEM</h1>
           <div id="item-form-left">
             <div id="upload-image-form">
             <label for="image-upload">Upload photo:</label>
