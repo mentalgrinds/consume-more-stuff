@@ -9,7 +9,7 @@ const Footer = () => {
         hip,hip]    ©  2017 [ Kaley, Baseem & Ella ]
       </div>
       <div className="github">
-       <i class="fa fa-github fa-5x"></i>
+       <a href="https://github.com/ba5eem/consume-more-stuff/tree/development"><i class="fa fa-github fa-5x"></i></a>
       </div>
     </div>
   )
