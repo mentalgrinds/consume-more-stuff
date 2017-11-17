@@ -25,21 +25,25 @@ route.get('/',(req,res) => {
 
 route.post('/', (req, res) =>{
     let id = req.body.senderId
+    let local ={}
     user.findById(id)
     .then((user)=>{
-      let buyerId = user.id;
+      local.id = user.id;
+      local.username = user.username;
       return messages.create({
       content: req.body.content,
-      buyerId: buyerId,
+      buyerId: local.id,
       sellerId: req.body.sellerId,
       itemId: req.body.itemId,
       senderId: req.body.senderId
     }).then((post)=>{
+      post.username = local.username;
       return res.json(post);
     })
   })
     
 })
+
 
 route.get('/item/:id',(req,res) => {
   let itemId = req.params.id;

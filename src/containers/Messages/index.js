@@ -88,9 +88,11 @@ class Messages extends Component {
     let id = localStorage.msgItemId;
     let item = filterItemMsg(this.props.items,parseInt(id));
     let messageArr = messagesByItem(this.props.messages,parseInt(id));
-    //console.log(messageArr);
+    let one = messageArr[0];
+    let buyer = (messageArr.length !== 0) ? messageArr[0].buyer.username : "buyer";
     const userId = parseInt(localStorage.userId);
-    const username = this.state.username;
+    
+
     
 
     return(
@@ -119,7 +121,7 @@ class Messages extends Component {
             <div>
               <p 
               style={(userId===msg.senderId) ? user : notUser}>
-              {msg.buyer.username}-{msg.content}-ItemID:{msg.itemId}</p>
+              {buyer}-{msg.content}</p>
             </div>
                   )
             })

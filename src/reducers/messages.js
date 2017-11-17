@@ -9,6 +9,7 @@ const messages = (state = [], action) => {
       return action.messages;
 
     case ADD_MSG:
+    console.log(state)
       return [...state,action.message];
     default:
       return state;

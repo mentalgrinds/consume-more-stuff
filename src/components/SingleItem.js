@@ -16,8 +16,11 @@ const SingleItem = ({item,backToItems,edit,auth,editNow, categories, conditions,
         <div className="back-to-list">
             <button onClick={(e)=>backToItems(e)}>Back</button>
             <br></br><br></br>
-            <Link to="/messages">   
-        <button onClick={(e)=>goToMessages(e)}>Message</button></Link>
+        {auth ?
+                    <Link to="/messages"> <button onClick={(e)=>goToMessages()}>
+                        Message
+                    </button></Link> : null
+                }
            
         </div>
     {!edit ?
