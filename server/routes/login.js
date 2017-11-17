@@ -8,31 +8,27 @@ const route                   = express.Router();
 const db                      = require('../models');
 const {user}                  = db;
 
-//LOGIN ROUTE
 route.get('/',(req,res)=>{
   let value = req.isAuthenticated();
-  //console.log('Is the current user authenticated: ', (value ? 'Yes Baseem' : 'No Baseem'));
-  //console.log("REQ.USER***********************",req.user);
   return res.json(req.user);
 });
 
 route.post('/', function(req, res, next) {
-  //console.log(req.body);
   let local = {}
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }//send fail message - logged in false //some error reason
-   if (!user) { 
-      return 
+   if (!user) {
+      return
         local.id = 'undefined';
         local.username = 'undefined';
         local.auth = false;
         return res.json(local);  }
     req.logIn(user, function(err) {
-      if (err) { 
+      if (err) {
         local.id = 'undefined';
         local.username = 'undefined';
         local.auth = false;
-        return res.json(local); 
+        return res.json(local);
       }
 
       local.id = req.user.id;

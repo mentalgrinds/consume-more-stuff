@@ -6,6 +6,7 @@ import categories from './categories';
 import conditions from './conditions';
 import itemStatuses from './itemStatuses';
 import loginUser from './login';
+import messages from './messages';
 
 export default combineReducers({
   items,
@@ -13,5 +14,6 @@ export default combineReducers({
   categories,
   conditions,
   itemStatuses,
-  loginUser
+  loginUser,
+  messages
 });

@@ -99,7 +99,6 @@ class TopItemsView extends Component {
           edit={this.state.edit}
           auth={this.state.auth}
           item={this.state.item}
-          // editNow={this.editNow.bind(this)}
           destroyItem={this.destroyItem.bind(this)}
           handleChange={this.handleChange.bind(this)}
           backToItems={this.backToItems.bind(this)}
